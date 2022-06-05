@@ -1,0 +1,242 @@
+/*------------------------------
+Commands
+------------------------------*/
+
+bin/bundle install
+bin/yarn install
+bin/rails db:install
+bin/rails webpacker:install
+bin/rails webpacker:install:react
+
+/*------------------------------
+Update git config
+------------------------------*/
+
+git config --global user.name ""
+git config --global user.email ""
+
+/*------------------------------
+Local host port
+------------------------------*/
+
+http://localhost:3000/
+
+/*------------------------------
+Run local command
+------------------------------*/
+
+bin/rails server
+
+/*------------------------------
+SQLite commands
+------------------------------*/
+
+​depot>​​ ​​bin/rails​​ ​​dbconsole​
+​ 	SQLite version 3.8.2
+​ 	Enter ".help" for instructions
+​ 	​sqlite>​​ ​​.mode​​ ​​line​
+​ 	​sqlite>​​ ​​select​​ ​​*​​ ​​from​​ ​​orders;​
+​ 	                  id = 1
+​ 	                name = Dave Thomas
+​ 	             address = 123 Main St
+​ 	               email = customer@example.com
+​ 	            pay_type = 0
+​ 	          created_at = 2016-05-29 02:31:04.964785
+​ 	          updated_at = 2016-05-29 02:31:04.964785
+​ 	​sqlite>​​ ​​select​​ ​​*​​ ​​from​​ ​​line_items;​
+​ 	               id = 10
+​ 	       product_id = 2
+​ 	          cart_id =
+​ 	       created_at = 2016-05-29 02:30:26.188914
+​ 	       updated_at = 2016-05-29 02:31:04.966057
+​ 	         quantity = 1
+​ 	            price = 45
+​ 	         order_id = 1
+​ 	​sqlite>​​ ​​.quit​
+
+/*------------------------------
+Compile Webpacker commmand
+------------------------------*/
+
+bin/rails webpacker:compile
+
+/*------------------------------
+To add data files to git, comment out files in gitignore
+------------------------------*/
+
+In your top-level project directory, open the file .gitignore in an editor
+Comment out the following line (# is the comment symbol):
+
+/db/*.sqlite3
+
+save .gitignore
+
+At the command line, do the following:
+1. git add ./db/*.sqlite3
+2. git commit -a -m 'added the sqlite db files'
+3. git push
+
+/*------------------------------
+Configure git commands
+------------------------------*/
+
+git remote add origin https://github.com/kw00183/consciousmess.git
+git branch -M main
+git push -u origin main
+
+Do the git remote and git push instead of just git push from #2. Also change main to master when you git push
+Or, if you want to change your default branch name to main, do this:
+git checkout -b main
+git push -u origin main
+git branch -D master
+git status (to see your new branch thriving)
+
+/*------------------------------
+Example to generate scaffold of model
+------------------------------*/
+
+bin/rails generate scaffold Ripple name:string website:string message:string
+bin/rails db:migrate
+​​bin/rails​​ ​​server​
+
+/*------------------------------
+Reverting to specific git commit
+------------------------------*/
+
+git reset --hard <old-commit-id>
+git push -f <remote-name> <branch-name>
+
+/*------------------------------
+Import csv
+------------------------------*/
+
+https://web.archive.org/web/20160307151355/http://erikonrails.snowedin.net/?p=212
+rake csv_model_import[conciousmess.csv,ripple]
+
+save file as utf-8 text file in excel
+remove any special character weird symbols
+add gem 'utf8-cleaner' to Gemfile and run bundle
+you need an import.rake file in the lib>tasks folder
+
+/*------------------------------
+Add initial commit files to existing empty repository
+------------------------------*/
+
+git add . && git commit -m "initial commit"
+git branch -M main
+git remote add origin https://github.com/kw00183/SplitTheCheck.git
+git push -u origin main
+
+/*------------------------------
+Create a new repository on the command line
+------------------------------*/
+
+echo "# SplitTheCheck" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/kw00183/SplitTheCheck.git
+git push -u origin main
+
+/*------------------------------
+Push an existing repository
+------------------------------*/
+
+git remote add origin https://github.com/kw00183/SplitTheCheck.git
+git branch -M main
+git push -u origin main
+
+/*------------------------------
+Testing 6 Rake Tasks for Running your Tests
+------------------------------*/
+
+You don’t need to set up and run your tests by hand on a test-by-test basis. Rails comes with a number of rake tasks to help in testing. The table below lists all rake tasks that come along in the default Rakefile when you initiate a Rails project.
+Tasks 	Description
+rake test 	             Runs all unit, functional and integration tests. You can also simply run rake as the test target is the default.
+rake test:benchmark 	   Benchmark the performance tests
+rake test:functionals 	 Runs all the functional tests from test/functional
+rake test:integration 	 Runs all the integration tests from test/integration
+rake test:plugins 	     Run all the plugin tests from vendor/plugins/*/**/test (or specify with PLUGIN=_name_)
+rake test:profile 	     Profile the performance tests
+rake test:recent 	      Tests recent changes
+rake test:uncommitted 	Runs all the tests which are uncommitted. Supports Subversion and Git
+rake test:units 	      Runs all the unit tests from test/unit
+
+/*------------------------------
+Devise Gem
+------------------------------*/
+
+# create devise views
+rails generate devise:views
+rails generate devise:controllers users
+
+Depending on your application's configuration some manual setup may be required:
+
+  1. Ensure you have defined default url options in your environments files. Here
+     is an example of default_url_options appropriate for a development environment
+     in config/environments/development.rb:
+
+       config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+     In production, :host should be set to the actual host of your application.
+
+     * Required for all applications. *
+
+  2. Ensure you have defined root_url to *something* in your config/routes.rb.
+     For example:
+
+       root to: "home#index"
+
+     * Not required for API-only Applications *
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+     * Not required for API-only Applications *
+
+  4. You can copy Devise views (for customization) to your app by running:
+
+       rails g devise:views
+
+     * Not required *
+
+     --- unlock sqlite database
+
+     rails console
+     ActiveRecord::Base.connection.execute("BEGIN TRANSACTION; END;")
+
+     --- test_helper
+
+     ENV['RAILS_ENV'] ||= 'test'
+     require_relative "../config/environment"
+     require "rails/test_help"
+
+     class ActiveSupport::TestCase
+       # Run tests in parallel with specified workers
+       # parallelize(workers: :number_of_processors)
+
+       # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+       fixtures :all
+
+       # Add more helper methods to be used by all tests here...
+       include Devise::Test::IntegrationHelpers
+     end
+
+     --- system test sign in users
+
+     sign_in users(:user_1)
+
+     --- disable route testing
+
+     assert_response(type, message = nil) public
+
+     Asserts that the response is one of the following types:
+
+    :success: Status code was 200
+    :redirect: Status code was in the 300-399 range
+    :missing: Status code was 404
+    :error: Status code was in the 500-599 range
