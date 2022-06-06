@@ -240,3 +240,93 @@ Depending on your application's configuration some manual setup may be required:
     :redirect: Status code was in the 300-399 range
     :missing: Status code was 404
     :error: Status code was in the 500-599 range
+
+~~CS6920 Project-Specific Notes~~
+
+#############################
+ Rails Initial Project Setup
+#############################
+
+# assuming use of Ubuntu VM - small tweaks may be needed for local
+
+cd Documents
+
+git clone https://github.com/asuratte/report-it.git
+
+cd report-it
+
+bundle
+
+# go to /config/database.yml and note the development database name
+
+# move on to postgres setup in a new terminal
+
+################
+ Postgres Setup
+################
+
+## Steps for setting up a Postgres db server on Local:
+
+# Go to https://www.postgresql.org/download/ and download your version
+
+# Go through the wizard steps and note any usernames, passwords, port details etc.
+
+# Pin pgAdmin4 and SQL shell (psql) to task bar for future use
+
+# Use pgAdmin4 to create a database called report_it_development
+
+# Still in pgAdmin4 create a db user with your terminal username and the password cs6920t4
+
+# note that the above steps can also be done with psql shell using the steps below 
+
+
+## Steps for setting up a Postgres db server on ubuntu:
+
+# Open a terminal window which you will use for the postgresql server.
+
+# install postgresql
+sudo apt-get install postgresql
+
+# verify that it was installed
+which psql
+
+# invoke psql command line client tool to interact with the db engine
+sudo -u postgres psql
+
+# enter your VM or machine user password when prompted
+# you may get an error like 'could not change directory to "/home/as00193": Permission denied' - this should be OK
+
+# type the following into the postgres interpreter to check the connection details
+\conninfo
+
+# to see a list of all dbs available on the server
+\l
+
+# :wq to get out of that screen
+
+# to see a list of all users with their privileges
+\du
+
+# set a password for the default user
+# I chose cs6920t4, not sure if we all need to do the same thing
+\password postgres
+
+# create a user that matches your terminal username
+create user as00193 with encrypted password 'passwordGoesHere';
+
+# create a database named as specified in your database.yml of your rails app
+CREATE DATABASE database_name_goes_here;
+
+# connect to the newly created database
+\c database_name_goes_here
+
+# for when you want to disconnect from postgres (not needed right now)
+\q
+
+##########################
+ Rails Connect to Server
+##########################
+
+bin/rails server -b 0.0.0.0
+
+# visit http://0.0.0.0:3000 and app should be running with "Welcome to ReportIt" message
