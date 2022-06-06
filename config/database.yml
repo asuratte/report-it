@@ -24,6 +24,7 @@ default: &default
 development:
   <<: *default
   database: report_it_development
+  password: cs6920t4
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
