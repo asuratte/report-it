@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_124239) do
+ActiveRecord::Schema.define(version: 2022_06_07_223545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2022_06_07_124239) do
     t.string "zip"
     t.string "phone"
     t.string "username"
-    t.boolean "active"
-    t.integer "role"
+    t.boolean "active", default: true
+    t.integer "role", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
