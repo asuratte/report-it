@@ -1,27 +1,27 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  address1: MyString
-  address2: MyString
-  city: MyString
-  state: MyString
-  zip: MyString
-  description: MyText
-  category: MyString
-  subcategory: MyString
-  status: MyString
-  severity: MyString
+  address1: 123 Main Street
+  address2: Apt 2
+  city: Atlanta
+  state: Georgia
+  zip: 12345
+  description: No trash pickup on Monday
+  category: Trash, Recycling, and Pickup
+  subcategory: Missed trash pickup
+  status: New
+  severity: 
   user: one
 
 two:
-  address1: MyString
-  address2: MyString
-  city: MyString
-  state: MyString
-  zip: MyString
-  description: MyText
-  category: MyString
-  subcategory: MyString
-  status: MyString
-  severity: MyString
+  address1: West Avenue
+  address2: 
+  city: Atlanta
+  state: Georgia
+  zip: 12345
+  description: The lights are out at the intersection of East and West Ave
+  category: Transportation and Streets
+  subcategory: Traffic light out
+  status: New
+  severity: 
   user: two

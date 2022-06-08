@@ -1,4 +1,4 @@
 class Report < ApplicationRecord
   belongs_to :user
-  validates :city, :state, :zipcode, :description, :category, :subcategory, :status, presence: true
+  validates :city, :state, :zip, :description, :category, :subcategory, presence: true
 end
