@@ -1,0 +1,65 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+ one:
+  email: sprocket@example.com
+  encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
+  first_name: Sprocket
+  last_name: Suratte
+  address1: 123 Test St.
+  address2: null
+  city: Anywhere
+  state: Illinois
+  zip: 60098
+  phone: 888-999-0101
+  username: spr0cket
+  role: 0
+  active: true
+
+ two:
+  email: bella@example.com
+  encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
+  first_name: Bella
+  last_name: Bebis
+  address1: 222 Pheasant St.
+  address2: Apt 2A
+  city: Anywhere
+  state: Nebraska
+  zip: 55342
+  phone: 222-444-2342
+  username: b3lla123
+  role: 1
+  active: true
+
+ three:
+  email: hazel@example.com
+  encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
+  first_name: Hazel
+  last_name: Bebis
+  address1: 129 West 81st St.
+  address2: Apt 5A
+  city: New York
+  state: New York
+  zip: 52349
+  phone: 123-456-7890
+  username: haz3l462
+  role: 2
+  active: true
+
+ four:
+  email: sam@example.com
+  encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
+  first_name: Sam
+  last_name: Sampson
+  address1: 666 Electric Avenue
+  address2: 
+  city: San Diego
+  state: California
+  zip: 44556
+  phone: 333-555-6666
+  username: samsamsam
+  role: 0
+  active: false

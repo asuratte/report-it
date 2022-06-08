@@ -277,6 +277,8 @@ bundle
 
 # Still in pgAdmin4 create a db user with your terminal username and the password cs6920t4
 
+# Also create a database called report_it_test with the same password as development
+
 # note that the above steps can also be done with psql shell using the steps below 
 
 
