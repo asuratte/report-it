@@ -16,4 +16,9 @@ class User < ApplicationRecord
   def is_admin?
     return self.role == 'admin'
   end
+
+  def is_active?
+    return self.active
+  end
+
 end

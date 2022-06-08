@@ -6,6 +6,7 @@ class UserTest < ActiveSupport::TestCase
     @resident_user = users(:one)
     @official_user = users(:two)
     @admin_user = users(:three)
+    @inactive_user = users(:four)
   end
 
   test "should return true for user one is_resident?" do
@@ -42,6 +43,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "should return false for user three is_resident?" do
     assert_equal false, @admin_user.is_resident?
+  end
+
+  test "should return false for user four is_active?" do
+    assert_equal false, @inactive_user.is_active?
+  end
+
+  test "should return true for user three is_active?" do
+    assert @admin_user.is_active?
   end
 
 end
