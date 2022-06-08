@@ -1,5 +1,5 @@
 module ReportsHelper
-    def self.categories
+    def categories
         {
           'Animals' => [
               'Stray/wild/dead animals',
@@ -58,5 +58,13 @@ module ReportsHelper
                 'General Complaint'
             ]
         }
+    end
+
+    def get_categories
+      categories.keys
+    end
+
+    def get_subcategories_by_category(category)
+      categories[category]
     end
 end
