@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum role: [:resident, :official, :admin]
+  validates :first_name, :last_name, :address1, :city, :state, :zip, :phone, :username, presence: true
   
   def is_resident?
     return self.role == 'resident'
