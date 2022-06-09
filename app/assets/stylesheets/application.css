@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+/* global form styles */
+form label.required::after {
+    content: "*";
+    color: red;
+}
+form {
+    max-width: 50rem;
+}
