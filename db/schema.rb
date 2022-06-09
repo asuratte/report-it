@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_234701) do
+ActiveRecord::Schema.define(version: 2022_06_08_161659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reports", force: :cascade do |t|
+    t.string "address1"
+    t.string "address2"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip", null: false
+    t.text "description", null: false
+    t.string "category"
+    t.string "subcategory"
+    t.string "status", default: "New"
+    t.string "severity"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reports_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,4 +56,5 @@ ActiveRecord::Schema.define(version: 2022_06_07_234701) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "reports", "users"
 end
