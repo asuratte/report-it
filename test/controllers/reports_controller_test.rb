@@ -1,8 +1,11 @@
 require "test_helper"
 
 class ReportsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @report = reports(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
@@ -10,17 +13,30 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
+  test "should not get new if signed out" do
     get new_report_url
+    assert_response :redirect
+  end
+
+  test "should not get new without categories if signed in" do
+    sign_in @user
+    get new_report_url
+    assert_response :redirect
+  end
+
+  test "should get new without categories if signed in" do
+    sign_in @user
+    get new_report_path(category: "Animals", subcategory: "Nuisance animal complaint")
     assert_response :success
   end
 
-  test "should create report" do
+  test "should create report if signed in" do
+    sign_in @user
     assert_difference('Report.count') do
       post reports_url, params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, severity: @report.severity, state: @report.state, status: @report.status, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip } }
     end
 
-    assert_redirected_to report_url(Report.last)
+    assert_redirected_to resident_path
   end
 
   test "should show report" do
