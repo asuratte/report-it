@@ -344,6 +344,58 @@ gem install pg -- --with-pg-config=/Library/PostgreSQL/14/bin/pg_config
 
 # where /Library/PostgreSQL/14/bin/pg_config is the path returned from the "find" command above
 
+# Run 
+bundle install
+
+##################
+ Bootstrap Notes
+##################
+
+Bootstrap 5 is the version that is installed
+
+Docs for commonly used components:
+
+# containers
+https://getbootstrap.com/docs/5.0/layout/containers/
+
+# grid system
+https://getbootstrap.com/docs/5.0/layout/grid/
+
+# forms 
+https://getbootstrap.com/docs/5.0/forms/overview/
+
+# buttons 
+https://getbootstrap.com/docs/5.0/components/buttons/ 
+
+# navbar
+https://getbootstrap.com/docs/5.0/components/navbar/
+
+# spacing utilities 
+https://getbootstrap.com/docs/5.0/utilities/spacing/
+
+Example usage:
+
+# Example error message alert with class .alert.alert-danger:
+<% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <p><%= pluralize(@user.errors.count, "error") %> prohibited this user from being added:</p>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+# Example form text input with classes .field, .form-label, .form-control:
+ <div class="field mb-3">
+      <%= f.label :last_name, 'Last Name', :class => 'form-label required' %>
+      <%= f.text_field :last_name, :class => 'form-control' %>
+ </div>
+
+ # Example Utility Classes for spacing:
+ <%= link_to 'Back', users_path, :class => 'd-inline-block my-3' %>
 # Run
 bundle install
 
