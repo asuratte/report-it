@@ -11,21 +11,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree
+ *= require bootstrap.min .
  *= require_self
  */
 
 body {
   @media (min-width: 30em) {
-    font-size: 16px !important;
-    line-height: 18px !important;
+    font-size: 16px;
+    line-height: 18px;
   }
   margin: 0;
   padding: 0;
   font-family: 'Merriweather-Sans', sans-serif !important;
   color: #2F3334;
-  font-size: 12px !important;
-  line-height: 14px !important;
+  font-size: 12px;
+  line-height: 14px;
 }
 
 /*--------------------
@@ -40,7 +41,7 @@ header.main {
   background-color: #EFEEEC;
   padding: 1em;
   margin: 0;
-  background-image: url('cityscape2.png');
+  background-image: url('cityscape.png');
   background-repeat: no-repeat;
   background-size: 65%;
   background-position: center right;
@@ -96,15 +97,23 @@ element styles
 h1, h2, h3, h4, h5, aside {
   margin: 0;
   padding-bottom: 0.4em;
-  color: #C6682A !important;
+  color: #C6682A;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link {
+    color: #1577A6;
+}
+
+.navbar-light .navbar-nav a.nav-link:hover {
+  color: #F49F0A;
 }
 
 a {
-  color: #1577A6 !important;
+  color: #FF5C00 !important;
 }
 
 a:visited {
-  color: #FF5C00 !important;
+    color: #1577A6 !important;
 }
 
 a:hover {
@@ -112,13 +121,26 @@ a:hover {
 }
 
 .btn.btn-primary {
-  color: white;
-  padding: 0.75em 2em;
+  padding: 0.5em 1.5em;
   font-weight: bold;
-  background-color: #C6682A;
   border-radius: 20px;
   background: none;
   border: none;
+  color: white;
+  background-color: #C6682A;
+}
+
+.btn.btn-default {
+  color: white;
+  background-color: #C6682A;
+}
+
+.btn.btn-primary:hover {
+  background-color: #F49F0A;
+}
+
+.btn.btn-success {
+  background-color: #1577A6;
 }
 
 /* global form styles */
