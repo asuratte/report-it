@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :reports
-  devise_for :users, :controllers => {
+  devise_for :users, :path_prefix => 'account', :controllers => {
     registrations: 'registrations'
   }
+  authenticate :user, -> (user) { user.is_admin? } do
+    resources :users
+  end
 
   root to: 'home#index'
   get 'test/index' => 'home#index'
