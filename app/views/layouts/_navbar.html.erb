@@ -21,7 +21,9 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><%=link_to "Edit My Account", edit_user_registration_path , :class=>"dropdown-item" %></li>
                 <!-- Show these links if the user is signed in AND user is resident -->
+                <% if current_user.is_resident? %>
                 <li><%=link_to "Resident Dashboard", resident_path , :class=>"dropdown-item" %></li>
+                <% end %>
             </ul>
           </li>
         <li class="nav-item">
