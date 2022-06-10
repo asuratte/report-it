@@ -1,7 +1,7 @@
 <%= form_with(model: report) do |form| %>
   <% if report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <p><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</p>
 
       <ul>
         <% report.errors.each do |error| %>
@@ -11,62 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :address1 %>
-    <%= form.text_field :address1 %>
+  <div class="field mb-3">
+    <%= form.label :address1, class: 'form-label' %>
+    <%= form.text_field :address1, autofocus: true, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :address2 %>
-    <%= form.text_field :address2 %>
+  <div class="field mb-3">
+    <%= form.label :address2, class: 'form-label' %>
+    <%= form.text_field :address2, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="field mb-3">
+        <%= form.label :city, class: 'form-label required' %>
+        <%= form.text_field :city, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="field mb-3">
+        <%= form.label :state, class: 'form-label required' %>
+        <%= form.text_field :state, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="field mb-3">
+        <%= form.label :zip, class: 'form-label required' %>
+        <%= form.text_field :zip, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="field mb-3">
+    <%= form.label :description, class: 'form-label required' %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
-  </div>
-
-  <div class="field">
-    <%= form.label :zip %>
-    <%= form.text_field :zip %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subcategory %>
-    <%= form.text_field :subcategory %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :severity %>
-    <%= form.text_field :severity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
+  <%= form.hidden_field :category, value: report.category %>
+  <%= form.hidden_field :subcategory, value: report.subcategory %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Submit Report', class: 'btn btn-primary' %>
   </div>
 <% end %>

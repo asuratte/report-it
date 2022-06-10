@@ -12,7 +12,13 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
-    @report = Report.new
+    if params[:category] && params[:subcategory]
+      @report = Report.new
+      @report.category = params[:category]
+      @report.subcategory = params[:subcategory]
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /reports/1/edit
@@ -22,10 +28,10 @@ class ReportsController < ApplicationController
   # POST /reports or /reports.json
   def create
     @report = Report.new(report_params)
-
+    @report.user_id = current_user.id
     respond_to do |format|
       if @report.save
-        format.html { redirect_to report_url(@report), notice: "Report was successfully created." }
+        format.html { redirect_to resident_path, notice: "Report was successfully created." }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +71,6 @@ class ReportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :user_id)
+      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity)
     end
 end
