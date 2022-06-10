@@ -9,6 +9,14 @@ class UserTest < ActiveSupport::TestCase
     @inactive_user = users(:four)
   end
 
+  test "should return true for user one active_for_authentication?" do
+    assert @resident_user.active_for_authentication?
+  end
+
+  test "should return false for user four active_for_authentication?" do
+    assert_equal false, @inactive_user.active_for_authentication?
+  end
+
   test "should return true for user one is_resident?" do
     assert @resident_user.is_resident?
   end
