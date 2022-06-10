@@ -1,9 +1,9 @@
 <div class="container">
-<h2 class="mb-3">Create a New Report</h1>
-<p>Category: <%= @report.category %> </p>
-<p>Subcategory: <%= @report.subcategory %></p>
+    <h2 class="mb-3">Create a New Report</h1>
+        <p>Category: <%= @report.category %></p>
+        <p>Subcategory: <%= @report.subcategory %></p>
 
-<%= render 'form', report: @report %>
+        <%= render 'form' , report: @report %>
 
-<%= link_to 'Back', resident_path, class: 'd-inline-block my-3' %>
+        <%= link_to 'Back' , resident_path, class: 'd-inline-block my-3' %>
 </div>

@@ -17,7 +17,7 @@ class ReportsController < ApplicationController
       @report.category = params[:category]
       @report.subcategory = params[:subcategory]
     else
-      redirect_to root_path
+      redirect_to resident_path
     end
   end
 
