@@ -6,7 +6,6 @@ bin/bundle install
 bin/yarn install
 bin/rails db:install
 bin/rails webpacker:install
-bin/rails webpacker:install:react
 
 /*------------------------------
 Update git config
