@@ -23,12 +23,10 @@ class ReportTest < ActiveSupport::TestCase
     @report.address2 = "a" * 51
     @report.city = "a" * 51
     @report.state = "a" * 51
-    @report.zip = "0" * 6
     @report.description = "a" * 1001
     assert @report.invalid?
     assert @report.errors[:address1].any?
     assert @report.errors[:address2].any?
-    assert @report.errors[:zip].any?
     assert @report.errors[:city].any?
     assert @report.errors[:state].any?
     assert @report.errors[:description].any?

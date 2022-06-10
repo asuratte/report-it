@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  authenticate :user, -> (user) { user.is_resident? } do
+    get 'resident', to: 'resident#index'
+  end
+  
   root to: 'home#index'
   get 'test/index' => 'home#index'
   get '*path' => redirect('/')
