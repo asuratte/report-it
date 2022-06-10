@@ -1,7 +1,6 @@
 <div class="container">
     <h2 class="mb-3">Create a New Report</h1>
-        <p>Category: <%= @report.category %></p>
-        <p>Subcategory: <%= @report.subcategory %></p>
+        <p>Category: <%= @report.category %> (<%= @report.subcategory %>) </p>
 
         <%= render 'form' , report: @report %>
 
