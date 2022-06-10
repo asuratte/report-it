@@ -12,16 +12,21 @@
 
   <body>
     <%= render "layouts/navbar" %>
-    <div class="container-fluid">
-      <% if notice %>
+    <header class='main'>
+      <%= image_tag 'report-it-logo.png', :class => "logo" %>
+    </header>
+    <main class="main-container">
+       <% if notice %>
         <p class="notice alert alert-info mt-4"><%= notice %></p>
       <% end %>
        <% if alert %>
         <p class="alert alert-danger mt-4"><%= alert %></p>
       <% end %>
-    </div>
-    <div class="container-fluid mt-4">
+      
       <%= yield %>
+    </main>
+    <div id="footer">
+      <p class="copyright">Copyright &copy;<span id="year"><%= Date.today.year %></span> Report-It. All Rights Reserved.</p>
     </div>
   </body>
 </html>
