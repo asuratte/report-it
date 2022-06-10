@@ -75,12 +75,12 @@
 
     <div class="field mb-3">
       <%= f.label :role, 'Role', :class => 'form-label required' %>
-      <%= f.select :role, [['Resident', 'resident'], ['Official', 'official'], ['Admin', 'admin']]%>
+      <%= f.select(:role, [['Resident', 'resident'], ['Official', 'official'], ['Admin', 'admin']], {}, { :class => 'form-select' }) %>
     </div>
 
     <div class="field mb-3">
-      <%= f.label :active, 'Active', :class => 'form-label required' %>
-      <%= f.select :active, [['Yes', true], ['No', false]]%>
+      <%= f.label :active, 'Active', :class => 'form-check-label required' %>
+      <%= f.check_box :active, :class => 'form-check-input' %>
     </div>
 
     <div class="actions">

@@ -41,11 +41,11 @@
 </p>
 <p>
   <strong>Role:</strong>
-  <%= @user.role %>
+  <%= @user.role.capitalize %>
 </p>
 <p>
   <strong>Active:</strong>
-  <%= @user.active %>
+  <%= @user.active? ? 'Yes' : 'No' %>
 </p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

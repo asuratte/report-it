@@ -72,6 +72,16 @@
       <%= f.text_field :phone, :class => 'form-control' %>
     </div>
 
+    <div class="field mb-3">
+      <%= f.label :role, 'Role', :class => 'form-label required' %>
+      <%= f.select(:role, [['Resident', 'resident'], ['Official', 'official'], ['Admin', 'admin']], {}, { :class => 'form-select' }) %>
+    </div>
+
+    <div class="field mb-3">
+      <%= f.label :active, 'Active', :class => 'form-check-label required' %>
+      <%= f.check_box :active, :class => 'form-check-input' %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Sign up", :class => 'btn btn-primary' %>
     </div>
