@@ -12,10 +12,14 @@
 
   <body>
     <%= render "layouts/navbar" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class="container-fluid">
+    <header class='main'>
+      <%= image_tag 'report-it-logo.png', :class => "logo" %>
+    </header>
+    <main class="main-container">
       <%= yield %>
+    </main>
+    <div id="footer">
+      <p class="copyright">Copyright &copy;<span id="year"><%= Date.today.year %></span> Report-It. All Rights Reserved.</p>
     </div>
   </body>
 </html>
