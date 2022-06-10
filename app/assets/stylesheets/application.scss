@@ -74,7 +74,7 @@ header styles
 footer styles
 --------------------*/
 #footer {
-  position: fixed;
+  // position: fixed;
   padding: 0.8em 0.4em 0em 0.4em;
   bottom: 0;
   width: 100%;
@@ -150,4 +150,10 @@ form label.required::after {
 }
 form {
     max-width: 50rem;
+}
+
+/* resident portal styles */
+.card:hover{
+  transform: scale(1.02);
+  box-shadow: 0 6px 6px rgba(0,0,0,.10), 0 3px 6px rgba(0,0,0,.05);
 }
