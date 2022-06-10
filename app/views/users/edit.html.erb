@@ -2,9 +2,19 @@
   <h2 class="mb-3">Edit User <%= @user.username %></h2>
 
   <%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <p><%= pluralize(@user.errors.count, "error") %> prohibited this user from being updated:</p>
 
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="field mb-3">
-      <%= f.label :email, :class => 'form-label required' %>
+      <%= f.label :email, :class => 'form-label' %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control' %>
     </div>
 
@@ -24,22 +34,22 @@
 
     
     <div class="field mb-3">
-      <%= f.label :first_name, 'First Name', :class => 'form-label required' %>
+      <%= f.label :first_name, 'First Name', :class => 'form-label' %>
       <%= f.text_field :first_name, :class => 'form-control' %>
     </div>
 
     <div class="field mb-3">
-      <%= f.label :last_name, 'Last Name', :class => 'form-label required' %>
+      <%= f.label :last_name, 'Last Name', :class => 'form-label' %>
       <%= f.text_field :last_name, :class => 'form-control' %>
     </div>
 
     <div class="field mb-3">
-      <%= f.label :username, 'Username', :class => 'form-label required' %>
+      <%= f.label :username, 'Username', :class => 'form-label' %>
       <%= f.text_field :username, :class => 'form-control' %>
     </div>
 
     <div class="field mb-3">
-      <%= f.label :address1, 'Address 1', :class => 'form-label required' %>
+      <%= f.label :address1, 'Address 1', :class => 'form-label' %>
       <%= f.text_field :address1, :class => 'form-control' %>
     </div>
 
@@ -50,41 +60,41 @@
     <div class="row">
       <div class="col-md-6">
         <div class="field mb-3">
-          <%= f.label :city, 'City', :class => 'form-label required' %>
+          <%= f.label :city, 'City', :class => 'form-label' %>
           <%= f.text_field :city, :class => 'form-control' %>
        </div>
       </div>
       <div class="col-md-4">
         <div class="field mb-3">
-          <%= f.label :state, 'State', :class => 'form-label required' %>
+          <%= f.label :state, 'State', :class => 'form-label' %>
           <%= f.text_field :state, :class => 'form-control' %>
        </div>
       </div>
       <div class="col-md-2">
         <div class="field mb-3">
-          <%= f.label :zip, 'Zip', :class => 'form-label required' %>
+          <%= f.label :zip, 'Zip', :class => 'form-label' %>
           <%= f.text_field :zip, :class => 'form-control' %>
         </div>
       </div>
     </div>
 
     <div class="field mb-3">
-      <%= f.label :phone, 'Phone', :class => 'form-label required' %>
+      <%= f.label :phone, 'Phone', :class => 'form-label' %>
       <%= f.text_field :phone, :class => 'form-control' %>
     </div>
 
     <div class="field mb-3">
-      <%= f.label :role, 'Role', :class => 'form-label required' %>
+      <%= f.label :role, 'Role', :class => 'form-label' %>
       <%= f.select(:role, [['Resident', 'resident'], ['Official', 'official'], ['Admin', 'admin']], {}, { :class => 'form-select' }) %>
     </div>
 
     <div class="field mb-3">
-      <%= f.label :active, 'Active', :class => 'form-check-label required' %>
+      <%= f.label :active, 'Active', :class => 'form-check-label' %>
       <%= f.check_box :active, :class => 'form-check-input' %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Update", :class => 'btn btn-primary' %>
+      <%= f.submit "Update User", :class => 'btn btn-primary' %>
     </div>
   <% end %>
 
