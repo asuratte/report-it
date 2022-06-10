@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather-Sans');
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree
+ *= require bootstrap.min .
+ *= require_self
+ */
+
+body {
+  @media (min-width: 30em) {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  margin: 0;
+  padding: 0;
+  font-family: 'Merriweather-Sans', sans-serif !important;
+  color: #2F3334;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+/*--------------------
+header styles
+--------------------*/
+header.main {
+  @media (min-width: 30em) {
+    text-align: left; // left align on desktop
+  }
+  border-top: 5px solid #C6682A;
+  text-align: center; // center on mobile
+  background-color: #EFEEEC;
+  padding: 1em;
+  margin: 0;
+  background-image: url('cityscape.png');
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-position: center right;
+}
+
+/*--------------------
+Logo styles
+--------------------*/
+.logo {
+  @media (min-width: 30em) {
+    max-width:300px;
+  }
+  display: block;
+  max-width:200px;
+  width: auto;
+  height: auto;
+}
+
+/*--------------------
+header styles
+--------------------*/
+.main-container {
+  min-width: fit-content;
+  margin: 0;
+  padding: 1em;
+  width: 100%;
+}
+
+/*--------------------
+footer styles
+--------------------*/
+#footer {
+  position: fixed;
+  padding: 0.8em 0.4em 0em 0.4em;
+  bottom: 0;
+  width: 100%;
+  background-color: #EFEEEC;
+  border-bottom: 5px solid #C6682A;
+}
+
+/*--------------------
+copyright styles
+--------------------*/
+.copyright {
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+}
+
+/*--------------------
+element styles
+--------------------*/
+h1, h2, h3, h4, h5, aside {
+  margin: 0;
+  padding-bottom: 0.4em;
+  color: #C6682A;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link {
+    color: #1577A6;
+}
+
+.navbar-light .navbar-nav a.nav-link:hover {
+  color: #F49F0A;
+}
+
+a {
+  color: #FF5C00 !important;
+}
+
+a:visited {
+    color: #1577A6 !important;
+}
+
+a:hover {
+  color: #F49F0A !important;
+}
+
+.btn.btn-primary {
+  padding: 0.5em 1.5em;
+  font-weight: bold;
+  border-radius: 20px;
+  background: none;
+  border: none;
+  color: white;
+  background-color: #C6682A;
+}
+
+.btn.btn-default {
+  color: white;
+  background-color: #C6682A;
+}
+
+.btn.btn-primary:hover {
+  background-color: #F49F0A;
+}
+
+.btn.btn-success {
+  background-color: #1577A6;
+}
+
+/* global form styles */
+form label.required::after {
+    content: "*";
+    color: red;
+}
+form {
+    max-width: 50rem;
+}

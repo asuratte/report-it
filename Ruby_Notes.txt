@@ -6,7 +6,6 @@ bin/bundle install
 bin/yarn install
 bin/rails db:install
 bin/rails webpacker:install
-bin/rails webpacker:install:react
 
 /*------------------------------
 Update git config
@@ -279,7 +278,7 @@ bundle
 
 # Also create a database called report_it_test with the same password as development
 
-# note that the above steps can also be done with psql shell using the steps below 
+# note that the above steps can also be done with psql shell using the steps below
 
 
 ## Steps for setting up a Postgres db server on ubuntu:
@@ -337,13 +336,70 @@ bin/rails server -b 0.0.0.0
  If having bundle install issues with postgres on mac
 #########################################################
 
-# in a separate terminal run 
+# in a separate terminal run
 sudo find / -name "pg_config" -print to find the path to pg on your local
 
-# Run 
-gem install pg -- --with-pg-config=/Library/PostgreSQL/14/bin/pg_config 
+# Run
+gem install pg -- --with-pg-config=/Library/PostgreSQL/14/bin/pg_config
 
 # where /Library/PostgreSQL/14/bin/pg_config is the path returned from the "find" command above
 
-# Run 
+# Run
 bundle install
+
+/*------------------------------
+Commands for Postgres and install pq libraries
+------------------------------*/
+
+https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04
+
+sudo apt install libpq-dev
+bundle install
+
+/*------------------------------
+If database does not connect
+------------------------------*/
+
+rake db:create:all
+rake db:migrate
+
+/*------------------------------
+Pull/Merge/Rebase in git
+------------------------------*/
+
+MERGE TO MAIN
+
+https://www.togaware.com/linux/survivor/Git_Merge_Master_into.html
+
+FETCH
+
+    git pull --all         Pull all remote branches
+    git branch -a          List all branches now
+
+Checkout and switch to the feature-branch directory. You can simply copy the branch name from the output of branch -a command above
+
+    git checkout -b feature-branch
+
+VALIDATE
+
+Next use the git branch command to see the current branch. It will show feature-branch with * In front of it
+
+git branch   check current branch
+git status   check the state of your codebase
+
+COMMIT
+
+git add .   add all untracked files
+git commit -m "Refactor code or use your message"
+
+Take update and the push changes on the origin server
+
+ git pull origin feature-branch
+ git push origin feature-branch
+
+OR you can rebase with the master before commit
+
+git fetch
+git rebase origin/master
+git push origin feature-branch
