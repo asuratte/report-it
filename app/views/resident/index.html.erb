@@ -2,7 +2,7 @@
     <h1 class="text-center">Resident Dashboard</h1>
     <%= render 'nav_cards' %>
     <div class="row justify-content-between">
-        <div class="col-md-5">
+        <div class="col-lg-5">
             <h2 class="text-center mb-3">Create New Report</h2>
             <p>To create a new report, start by selecting a category below.</p>
             <div class="accordion accordion-flush" id="accordionCategories">
@@ -27,27 +27,29 @@
                 <% end %>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <h2 class="text-center mb-3">My Reports</h2>
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th>Date Reported</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-              
-                <tbody>
-                  <% @reports.each do |report| %>
-                    <tr>
-                      <td><%= report.created_at.to_date %></td>
-                      <td><%= report.category %> - <%= report.subcategory %></td>
-                      <td><%= report.status %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
+                <div class="reports-table">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th class="w-25">Date Reported</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                          <% @reports.each do |report| %>
+                            <tr>
+                              <td><%= report.created_at.to_date %></td>
+                              <td><%= report.category %> - <%= report.subcategory %></td>
+                              <td><%= report.status %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                </div>
         </div>
     </div>
 
