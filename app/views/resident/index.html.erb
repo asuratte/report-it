@@ -44,7 +44,8 @@
                     </thead>
 
                     <tbody>
-                    <% @reports.each do |report| %>
+                    <% if @reports.count > 0 %>
+                        <% @reports.each do |report| %>
                         <tr>
                             <td>
                                 <%= report.created_at.to_date %>
@@ -55,6 +56,11 @@
                             <td>
                                 <%= report.status %>
                             </td>
+                        </tr>
+                        <% end %>
+                    <% else %>
+                        <tr>
+                            <td colspan="3" class="py-3">You have not submitted any reports.</td>
                         </tr>
                     <% end %>
                     </tbody>
