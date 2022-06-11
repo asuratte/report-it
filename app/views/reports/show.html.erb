@@ -1,12 +1,26 @@
 <p>
+  <strong>Category:</strong>
+  <%= @report.category %> - <%= @report.subcategory %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @report.status %>
+</p>
+
+<% if @report.address1? %>
+<p>
   <strong>Address1:</strong>
   <%= @report.address1 %>
 </p>
+<% end %>
 
+<% if @report.address2? %>
 <p>
   <strong>Address2:</strong>
   <%= @report.address2 %>
 </p>
+<% end %>
 
 <p>
   <strong>City:</strong>
@@ -28,30 +42,13 @@
   <%= @report.description %>
 </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @report.category %>
-</p>
+<!-- Only display if report created by current user and status is new -->
+<% if current_user == @report.user && @report.status == 'New' %>
+<%= link_to 'Edit', edit_report_path(@report), class: "d-inline-block my-3" %> |
+<% end %>
 
-<p>
-  <strong>Subcategory:</strong>
-  <%= @report.subcategory %>
-</p>
+<% if user_signed_in? %>
+<%= link_to 'Resident Dashboard', resident_path, class: "d-inline-block my-3" %> |
+<% end %>
 
-<p>
-  <strong>Status:</strong>
-  <%= @report.status %>
-</p>
-
-<p>
-  <strong>Severity:</strong>
-  <%= @report.severity %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @report.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %>
+<%= link_to 'Home', root_path, class: "d-inline-block my-3" %>
