@@ -30,8 +30,8 @@
     </div>
     <div class="col-md-3">
       <div class="field mb-3">
-        <%= form.label :state, class: 'form-label required' %>
-        <%= form.text_field :state, class: 'form-control' %>
+          <%= form.label :state, 'State', :class => 'form-label required' %>
+          <%= form.select(:state, options_for_select(us_states, :selected => form.object.state), {}, { :class => 'form-select' }) %>
       </div>
     </div>
     <div class="col-md-3">
