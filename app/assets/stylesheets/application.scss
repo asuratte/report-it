@@ -48,6 +48,17 @@ header.main {
 }
 
 /*--------------------
+main styles
+--------------------*/
+.main-container {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+/*--------------------
 Logo styles
 --------------------*/
 .logo {
@@ -78,6 +89,7 @@ footer styles
 --------------------*/
 footer {
   border-bottom: 5px solid #C6682A;
+  background-color: #EFEEEC;
 }
 
 /*--------------------
