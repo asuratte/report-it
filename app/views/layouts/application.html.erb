@@ -22,11 +22,19 @@
        <% if alert %>
         <p class="alert alert-danger mt-4"><%= alert %></p>
       <% end %>
-      
+
       <%= yield %>
     </main>
-    <div id="footer">
-      <p class="copyright">Copyright &copy;<span id="year"><%= Date.today.year %></span> Report-It. All Rights Reserved.</p>
-    </div>
+    <footer class="text-center fixed-bottom">
+      <!-- Grid container -->
+      <div class="container p-4"></div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <p class="copyright">Copyright &copy;<span id="year"><%= Date.today.year %></span> Report-It. All Rights Reserved.</p>
+      </div>
+      <!-- Copyright -->
+    </footer>
   </body>
 </html>
