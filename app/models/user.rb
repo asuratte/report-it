@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates_format_of :zip, :with => /\A\d{5}(-\d{4})?\z/, :message => "should be a valid US zip code. ex: 12345 or 12345-1234"
   validates_format_of :phone,  with: /\A(1-)?\d{3}-\d{3}-\d{4}\z/, :message => "should be a valid phone number with dashes. ex: 111-222-3333, 1-333-444-5555"
   validates :username, length: {minimum: 6, maximum: 30}
+  has_many :reports
   
   def active_for_authentication?
     super && self.active
