@@ -1,5 +1,5 @@
-<div class="row mb-3">
-  <div class="col-lg-3 mx-auto">
+<div class="row mb-3 justify-content-center">
+  <div class="col-lg-3">
       <div class="card mx-3 text-center">
           <div class="card-body">
             <%= link_to 'My Dashboard', resident_path, class: 'stretched-link link-primary card-title h5 text-decoration-none' %>
@@ -7,6 +7,14 @@
           </div>
         </div>
   </div>
+  <div class="col-lg-3">
+    <div class="card mx-3 text-center">
+        <div class="card-body">
+          <%= link_to 'Explore Reports', reports_path, class: 'stretched-link link-primary card-title h5 text-decoration-none' %>
+          <p class="card-text">View reports that have been submitted in your area.</p>
+        </div>
+      </div>
+</div>
     
 </div>
     
