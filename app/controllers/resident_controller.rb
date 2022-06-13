@@ -3,6 +3,6 @@ class ResidentController < ApplicationController
   
   def index
     @user = current_user
-    @reports = @user.reports.order('created_at DESC')
+    @pagy, @reports = pagy(@user.reports.order('created_at DESC'), items: 7)
   end
 end
