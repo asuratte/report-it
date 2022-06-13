@@ -7,7 +7,7 @@
     <!-- Resident Dashboard Tile - shows if logged in as resident user -->
     <% if  user_signed_in? && current_user.is_resident? %>                
         <div class="card homepage-tile text-center py-5">
-            <img src="#" class="card-img-top" alt="">
+             <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Resident Dashboard</h5>
                 <p class="card-text">Submit a new report and track existing reports</p>
@@ -17,7 +17,7 @@
     <% end %>
     <!-- Explore Tile -->
         <div class="card homepage-tile text-center py-5">
-            <img src="#" class="card-img-top" alt="">
+            <%= image_tag 'compass-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Explore</h5>
                 <p class="card-text">View all open reports</p>
