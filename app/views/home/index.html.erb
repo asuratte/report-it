@@ -1,1 +1,29 @@
-<h1 class="fw-bold">Welcome to ReportIt</h1>
+<div class="mx-auto text-center mt-3">
+    <h1 class="fw-bold mb-0 pb-2">Welcome to ReportIt</h1>
+    <p>Report, track, and browse non-emergency issues in your community.</p>
+</div>
+
+<div class="row home-tiles my-5">
+    <!-- dashboard tile -->
+    <div class="col-md-6">
+            <div class="card homepage-tile mx-auto text-center py-5">
+                <img src="#" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Resident Dashboard</h5>
+                    <p class="card-text">Submit a new report and track existing reports</p>
+                    <%=link_to "Resident Dashboard", resident_path , :class=>"btn btn-primary stretched-link" %>
+                </div>
+            </div>
+    </div>
+    <!-- dashboard tile -->
+    <div class="col-md-6">
+            <div class="card homepage-tile mx-auto text-center py-5">
+                <img src="#" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Explore</h5>
+                    <p class="card-text">View all open reports</p>
+                    <button href="#" class="btn btn-primary stretched-link">Explore open reports</button>
+                </div>
+            </div>
+    </div>
+</div>

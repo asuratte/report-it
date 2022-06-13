@@ -119,16 +119,16 @@ h1, h2, h3, h4, h5, aside {
   color: #F49F0A;
 }
 
-a {
-  color: #FF5C00 !important;
-}
-
-a:visited {
-    color: #1577A6 !important;
-}
-
-a:hover {
-  color: #F49F0A !important;
+#navbarNav {
+  a {
+    color: #FF5C00;
+  }
+  a:visited {
+      color: #1577A6;
+  }
+  a:hover {
+    color: #F49F0A;
+  }
 }
 
 .btn.btn-primary {
