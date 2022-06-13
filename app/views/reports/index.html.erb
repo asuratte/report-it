@@ -1,45 +1,38 @@
-<h1>Reports</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Address1</th>
-      <th>Address2</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Subcategory</th>
-      <th>Status</th>
-      <th>Severity</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reports.each do |report| %>
+<div class="container">
+  <h1 class="text-center">Explore All Reports</h1>
+  <% if user_signed_in? && current_user.is_resident? %>
+    <%= render 'resident/nav_cards' %>
+  <% end %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= report.address1 %></td>
-        <td><%= report.address2 %></td>
-        <td><%= report.city %></td>
-        <td><%= report.state %></td>
-        <td><%= report.zip %></td>
-        <td><%= report.description %></td>
-        <td><%= report.category %></td>
-        <td><%= report.subcategory %></td>
-        <td><%= report.status %></td>
-        <td><%= report.severity %></td>
-        <td><%= report.user_id %></td>
-        <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Edit', edit_report_path(report) %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Date Created</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Status</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+  
+    <tbody>
+      <% @reports.each do |report| %>
+        <tr>
+          <td><%= report.created_at.to_date %></td>
+          <td><%= report.subcategory %></td>
+          <td><%= truncate(report.description, length: 40) %></td>
+          <td><%= report.city %></td>
+          <td><%= report.state %></td>
+          <td><%= report.zip %></td>
+          <td><%= report.status %></td>
+          <td><%= link_to 'Show', report %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
-
-<%= link_to 'New Report', new_report_path %>
+  <%== pagy_bootstrap_nav(@pagy) %>
+  
+</div>
