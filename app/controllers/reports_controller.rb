@@ -2,6 +2,7 @@ class ReportsController < ApplicationController
   rescue_from Pagy::OverflowError, with: :redirect_to_last_page
   rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_report, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[ index show ]
 
   # GET /reports or /reports.json
   def index
