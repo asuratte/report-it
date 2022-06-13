@@ -344,7 +344,7 @@ gem install pg -- --with-pg-config=/Library/PostgreSQL/14/bin/pg_config
 
 # where /Library/PostgreSQL/14/bin/pg_config is the path returned from the "find" command above
 
-# Run 
+# Run
 bundle install
 
 ##################
@@ -361,16 +361,16 @@ https://getbootstrap.com/docs/5.0/layout/containers/
 # grid system
 https://getbootstrap.com/docs/5.0/layout/grid/
 
-# forms 
+# forms
 https://getbootstrap.com/docs/5.0/forms/overview/
 
-# buttons 
-https://getbootstrap.com/docs/5.0/components/buttons/ 
+# buttons
+https://getbootstrap.com/docs/5.0/components/buttons/
 
 # navbar
 https://getbootstrap.com/docs/5.0/components/navbar/
 
-# spacing utilities 
+# spacing utilities
 https://getbootstrap.com/docs/5.0/utilities/spacing/
 
 Example usage:
@@ -422,7 +422,9 @@ Pull/Merge/Rebase in git
 
 MERGE TO MAIN
 
-https://www.togaware.com/linux/survivor/Git_Merge_Master_into.html
+git checkout validator
+git merge origin/main
+git push
 
 FETCH
 
