@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @pagy, @reports = pagy(Report.all.order('created_at DESC'), items: 10)
   end
 
   # GET /reports/1 or /reports/1.json
