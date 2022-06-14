@@ -45,16 +45,19 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
+    sign_in @user
     get edit_report_url(@report)
     assert_response :success
   end
 
   test "should update report" do
+    sign_in @user
     patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, severity: @report.severity, state: @report.state, status: @report.status, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip } }
     assert_redirected_to report_url(@report)
   end
 
-  test "should destroy report" do
+  test "should not destroy report" do
+    sign_in @user
     assert_difference('Report.count', -1) do
       delete report_url(@report)
     end
