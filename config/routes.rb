@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'resident', to: 'resident#index'
   end
 
-  authenticate :user, -> (user) { user.is_official? } do
+  authenticate :user, -> (user) { user.is_official? || user.is_admin? } do
     get 'official', to: 'official#index'
   end
 
