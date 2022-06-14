@@ -1,3 +1,28 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.homepage-tiles-container {
+    @media screen and (max-width: 991px) { 
+        flex-direction: column;
+    }
+    flex-direction: row;
+}
+.homepage-tile {
+    @media screen and (max-width: 991px) { 
+        margin: 0 auto 2rem auto;
+    }
+    max-width: 30rem;
+    width: 100%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    .card-img-top {
+        width: 3rem;
+        margin: 0 auto;
+        height: 3rem;
+      }
+}
+.how-it-works-icon {
+    width: 3rem;
+    margin: 0 auto 1rem auto;
+    height: 3rem;
+}

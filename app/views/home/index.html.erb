@@ -1,1 +1,72 @@
-<h1 class="fw-bold">Welcome to ReportIt</h1>
+<div class="mx-auto text-center mt-3">
+    <h1 class="fw-bold mb-0 pb-2">Welcome to ReportIt</h1>
+    <p>Report, track, and browse non-emergency issues in your community.</p>
+</div>
+
+<div class="homepage-tiles-container my-5 mx-auto d-flex justify-content-center">
+    <!-- Resident Dashboard Tile - shows if logged in as resident user -->
+    <% if  user_signed_in? && current_user.is_resident? %>                
+        <div class="card homepage-tile text-center py-5">
+             <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Resident Dashboard</h5>
+                <p class="card-text">Submit a new report and track existing reports</p>
+                <%=link_to "Resident Dashboard", resident_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+    <% end %>
+    <!-- Official Dashboard Tile - shows if logged in as official or admin user -->
+    <% if  user_signed_in? && (current_user.is_admin? || current_user.is_official?) %>                
+        <div class="card homepage-tile text-center py-5">
+             <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Officials Dashboard</h5>
+                <p class="card-text">Manage and update submitted reports</p>
+                <%=link_to "Officials Dashboard", official_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+    <% end %>
+    <!-- Explore Tile -->
+        <div class="card homepage-tile text-center py-5">
+            <%= image_tag 'compass-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Explore</h5>
+                <p class="card-text">View all open reports</p>
+                <%=link_to "Explore open reports", reports_path, :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+</div>
+
+<div class="homepage-how-it-works-container text-center pt-3">
+    <h2 class="fw-bold mb-4">How It Works</h2>
+    <div class="row text-center">
+        <div class="col-md-3">
+            <div class="text-inner mx-3 mb-5">
+                <%= image_tag 'report-icon.svg', :class => "how-it-works-icon" %>
+                <h5 class="fw-bold">Submit Report</h5>
+                <p>Submit a detailed report about an issue in your community</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-inner mx-3 mb-5">
+                <%= image_tag 'review-icon.svg', :class => "how-it-works-icon" %>
+                <h5 class="fw-bold">Review</h5>
+                <p>City Officials will review and prioritize your submitted report</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-inner mx-3 mb-5">
+                <%= image_tag 'action-icon.svg', :class => "how-it-works-icon" %>
+                <h5 class="fw-bold">Action</h5>
+                <p>Appropriate action will be taken based on the situation</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-inner mx-3 mb-5">
+                <%= image_tag 'update-icon.svg', :class => "how-it-works-icon" %>
+                <h5 class="fw-bold">Update</h5>
+                <p>You will be updated once the report has been addressed</p>
+            </div>
+        </div>
+    </div>
+</div>

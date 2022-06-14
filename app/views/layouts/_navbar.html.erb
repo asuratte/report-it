@@ -12,7 +12,7 @@
         <li class="nav-item">
           <%=link_to "Reports", reports_path, :class=>"nav-link" %>
         </li>
-
+        <!-- Show these links if the user is signed in AND user is official or admin -->
         <% if user_signed_in? %>
           <% if current_user.is_official? || current_user.is_admin? %>
             <li class="nav-item">
@@ -20,25 +20,20 @@
             </li>
           <% end %>
         <% end %>
-
+        <!-- Show these links if the user is signed in AND user is resident -->
+        <% if user_signed_in? && current_user.is_resident? %>
+        <li class="nav-item"><%=link_to "Resident Dashboard", resident_path , :class=>"nav-link" %></li>
+        <% end %>
         <!-- Show these links if user is signed in -->
         <% if user_signed_in? %>
-        <li class="nav-item">
-          <%=link_to "Log Out", destroy_user_session_path, :method => 'delete', :class=>"nav-link" %>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               My Account
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><%=link_to "Edit My Account", edit_user_registration_path , :class=>"dropdown-item" %></li>
-                <!-- Show these links if the user is signed in AND user is resident -->
-                <% if current_user.is_resident? %>
-                <li><%=link_to "Resident Dashboard", resident_path , :class=>"dropdown-item" %></li>
-                <% end %>
             </ul>
           </li>
-
           <!-- Show these links if user is signed in AND user is admin-->
           <% if current_user.is_admin? %>
           <li class="nav-item dropdown">
@@ -51,6 +46,9 @@
             </ul>
           </li>
           <% end %>
+          <li class="nav-item">
+          <%=link_to "Log Out", destroy_user_session_path, :method => 'delete', :class=>"nav-link" %>
+        </li>
         <% else %>
         <!-- Show these links to unauthenticated users only -->
         <li class="nav-item">

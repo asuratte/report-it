@@ -192,6 +192,12 @@ header styles
   padding-bottom: 6em;
   padding-left: 1.5em;
   width: 100%;
+  a {
+      color: #FF5C00;
+      &:hover {
+        color: #F49F0A;
+      }
+  }
 }
 
 /*--------------------
@@ -240,18 +246,6 @@ h1, h2, h3, h4, h5, aside {
   color: #F49F0A;
 }
 
-a {
-  color: #FF5C00 !important;
-}
-
-a:visited {
-    color: #1577A6 !important;
-}
-
-a:hover {
-  color: #F49F0A !important;
-}
-
 .btn.btn-primary {
   padding: 0.5em 1.5em;
   font-weight: bold;
@@ -269,6 +263,7 @@ a:hover {
 
 .btn.btn-primary:hover {
   background-color: #F49F0A;
+  color: #fff;
 }
 
 .btn.btn-success {
@@ -294,4 +289,8 @@ form {
 .pagination .page-item.active .page-link {
   background-color: #efeeec;
   border-color: #efeeec;
+  color: #FF5C00;
+}
+.pagination .page-item .page-link {
+  color: #1577A6;
 }
