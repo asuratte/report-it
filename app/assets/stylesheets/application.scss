@@ -192,6 +192,15 @@ header styles
   padding-bottom: 6em;
   padding-left: 1.5em;
   width: 100%;
+  a {
+      color: #FF5C00;
+      &:visited {
+        color: #FF5C00;
+      }
+      .content-container a:hover {
+        color: #F49F0A;
+      }
+  }
 }
 
 /*--------------------
@@ -238,18 +247,6 @@ h1, h2, h3, h4, h5, aside {
 
 .navbar-light .navbar-nav a.nav-link:hover {
   color: #F49F0A;
-}
-
-a {
-  color: #FF5C00 !important;
-}
-
-a:visited {
-    color: #1577A6 !important;
-}
-
-a:hover {
-  color: #F49F0A !important;
 }
 
 .btn.btn-primary {
