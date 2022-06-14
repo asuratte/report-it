@@ -1,11 +1,10 @@
-class ResidentController < ApplicationController
+class OfficialController < ApplicationController
   rescue_from Pagy::OverflowError, with: :redirect_to_last_page
   rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :authenticate_user!, only: [:index]
-  
+
   def index
-    @user = current_user
-    @pagy, @reports = pagy(@user.reports.order('created_at DESC'), items: 7)
+    @pagy, @reports = pagy(Report.order('created_at DESC'), items: 10)
   end
 
   private

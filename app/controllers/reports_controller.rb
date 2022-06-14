@@ -1,9 +1,12 @@
 class ReportsController < ApplicationController
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+  rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_report, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[ index show ]
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.all
+    @pagy, @reports = pagy(Report.all.order('created_at DESC'), items: 10)
   end
 
   # GET /reports/1 or /reports/1.json
@@ -72,5 +75,10 @@ class ReportsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def report_params
       params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity)
+    end
+
+    # Redirects to the last page when exception thrown
+    def redirect_to_last_page(exception)
+      redirect_to url_for(page: exception.pagy.last)
     end
 end

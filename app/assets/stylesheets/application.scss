@@ -17,16 +17,111 @@
  */
 
 body {
-  @media (min-width: 30em) {
-    font-size: 16px;
-    line-height: 18px;
-  }
   margin: 0;
   padding: 0;
   font-family: 'Merriweather-Sans', sans-serif !important;
   color: #2F3334;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 16px !important;
+  line-height: 18px !important;
+}
+
+$border-color: #EFEEEC;
+
+table {
+	border: 0;
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0 !important;
+	width: 100%;
+	table-layout: fixed;
+
+	caption {
+		text-align: left;
+		font-size: 1.3em;
+		margin: .5em 0 .75em;
+	}
+
+	thead {
+		display: none;
+	}
+
+	tr {
+		display: block;
+		border: 1px solid $border-color;
+		padding: 1em 1em .5em;
+
+		& + tr {
+			margin-top: 0.625em;
+		}
+	}
+
+	td {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+    padding: 1em 1em 0.5em !important;
+		border-bottom: 1px solid $border-color;
+		font-size: .8em;
+		line-height: 1.35em;
+
+		&:before {
+			content: attr(data-label);
+			font-size: 0.90em;
+			text-align: left;
+			font-weight: bold;
+			max-width: 100%;
+			color: #545454;
+		}
+
+		& + td {
+			margin-top: 0.8em;
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+}
+
+@media screen and (min-width: 650px) {
+	table {
+		caption {
+			font-size: 1.5em;
+		}
+
+		thead {
+			display: table-header-group;
+		}
+
+		tr {
+			display: table-row;
+			border: 0;
+		}
+
+    th {
+      padding-bottom: 0.4em;
+    }
+
+		th, td {
+			text-align: left;
+		}
+
+		th {
+			font-size: 0.85em;
+		}
+
+		td {
+			display: table-cell;
+
+			&:before {
+				display: none;
+			}
+
+			&:last-child {
+				border-bottom: 1px solid $border-color;
+			}
+		}
+	}
 }
 
 /*--------------------
@@ -35,6 +130,7 @@ header styles
 header.main {
   @media (min-width: 30em) {
     text-align: left; // left align on desktop
+    background-size: 65%;
   }
   border-top: 5px solid #C6682A;
   text-align: center; // center on mobile
@@ -43,9 +139,16 @@ header.main {
   margin: 0;
   background-image: url('cityscape.png');
   background-repeat: no-repeat;
-  background-size: 65%;
+  background-size: 100%;
   background-position: center right;
 }
+
+/*--------------------
+alternate list colors
+--------------------*/
+tr.list_line_odd {
+    background-color: #F5F5F5;
+  }
 
 /*--------------------
 main styles
@@ -76,12 +179,18 @@ Logo styles
 header styles
 --------------------*/
 .content-container {
+  @media (min-width: 30em) {
+    padding-top: 2em;
+    padding-right: 2em;
+    padding-bottom: 6em;
+    padding-left: 2em;
+  }
   min-width: fit-content;
   margin: 0;
-  padding-top: 2em;
-  padding-right: 2em;
+  padding-top: 1.5em;
+  padding-right: 1.5em;
   padding-bottom: 6em;
-  padding-left: 2em;
+  padding-left: 1.5em;
   width: 100%;
 }
 
@@ -103,6 +212,18 @@ copyright styles
 }
 
 /*--------------------
+login styles
+--------------------*/
+.logged_in_as {
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+  padding: 1em 2em;
+  background-color: #2f3334;
+  color: #FFFFFF;
+}
+
+/*--------------------
 element styles
 --------------------*/
 h1, h2, h3, h4, h5, aside {
@@ -119,16 +240,16 @@ h1, h2, h3, h4, h5, aside {
   color: #F49F0A;
 }
 
-#navbarNav {
-  a {
-    color: #FF5C00;
-  }
-  a:visited {
-      color: #1577A6;
-  }
-  a:hover {
-    color: #F49F0A;
-  }
+a {
+  color: #FF5C00 !important;
+}
+
+a:visited {
+    color: #1577A6 !important;
+}
+
+a:hover {
+  color: #F49F0A !important;
 }
 
 .btn.btn-primary {
@@ -168,13 +289,9 @@ form {
   transform: scale(1.02);
   box-shadow: 0 6px 6px rgba(0,0,0,.10), 0 3px 6px rgba(0,0,0,.05);
 }
-.reports-table {
-  overflow: auto;
-  height: 350px;
-}
-.reports-table thead th {
-  background-color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+
+/* pagination styles */
+.pagination .page-item.active .page-link {
+  background-color: #efeeec;
+  border-color: #efeeec;
 }
