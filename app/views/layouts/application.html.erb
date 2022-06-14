@@ -15,6 +15,15 @@
     <header class='main'>
       <%= image_tag 'report-it-logo.png', :class => "logo" %>
     </header>
+    <% if user_signed_in? %>
+      <div class="logged_in_as">
+      Welcome:
+        <% if current_user.is_official? || current_user.is_admin? %>
+        <strong><%= current_user.role %></strong> |
+        <% end %>
+        <%= current_user.email %>
+      </div>
+    <% end %>
     <main class="main-container">
       <div class="content-container">
         <% if notice %>

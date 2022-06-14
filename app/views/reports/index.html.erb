@@ -1,38 +1,29 @@
-<div class="container">
-  <h1 class="text-center">Explore All Reports</h1>
-  <% if user_signed_in? && current_user.is_resident? %>
-    <%= render 'resident/nav_cards' %>
-  <% end %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Date Created</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
-        <th>Status</th>
-        <th colspan="2"></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @reports.each do |report| %>
-        <tr>
-          <td><%= report.created_at.to_date %></td>
-          <td><%= report.subcategory %></td>
-          <td><%= truncate(report.description, length: 40) %></td>
-          <td><%= report.city %></td>
-          <td><%= report.state %></td>
-          <td><%= report.zip %></td>
-          <td><%= report.status %></td>
-          <td><%= link_to 'Show', report %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<h1 class="text-center">Explore All Reports</h1>
+<% if user_signed_in? && current_user.is_resident? %>
+  <%= render 'resident/nav_cards' %>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Date Created</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Zip</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
 
-  <%== pagy_bootstrap_nav(@pagy) %>
-  
-</div>
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td data-label="Date Created"><%= report.created_at.to_date %></td>
+        <td data-label="Category"><%= link_to report.subcategory, report %></td>
+        <td data-label="Description"><%= truncate(report.description, length: 30) %></td>
+        <td data-label="Zip"><%= report.zip %></td>
+        <td data-label="Status"><%= report.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%== pagy_bootstrap_nav(@pagy) %>

@@ -10,12 +10,12 @@ one:
   category: Trash, Recycling, and Pickup
   subcategory: Missed trash pickup
   status: New
-  severity: 
+  severity: Low
   user: one
 
 two:
   address1: West Avenue
-  address2: 
+  address2:
   city: Atlanta
   state: Georgia
   zip: 12345
@@ -23,5 +23,5 @@ two:
   category: Transportation and Streets
   subcategory: Traffic light out
   status: New
-  severity: 
+  severity: Low
   user: two
