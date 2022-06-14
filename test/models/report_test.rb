@@ -4,7 +4,6 @@ class ReportTest < ActiveSupport::TestCase
 
   setup do
     @report = reports(:one)
-    @user = users(:two)
   end
 
   test "report attributes cannot be empty" do
