@@ -8,11 +8,13 @@
   <%= @report.status %>
 </p>
 
-<% if current_user.is_official? %>
-  <p>
-    <strong>Severity:</strong>
-    <%= @report.severity %>
-  </p>
+<% if user_signed_in? %>
+  <% if current_user.is_official? || current_user.is_admin? %>
+    <p>
+      <strong>Severity:</strong>
+      <%= @report.severity %>
+    </p>
+  <% end %>
 <% end %>
 
 <% if @report.address1? %>
@@ -49,10 +51,13 @@
   <%= @report.description %>
 </p>
 
-<!-- Only display if user is Official/Admin/Or the report writer -->
-<% if current_user == @report.user || current_user.is_official? || current_user.is_admin? %>
 <br>
-<%= button_to 'Edit', edit_report_path(@report), class: "btn btn-primary" %>
+
+<!-- Only display if user is Official/Admin/Or the report writer -->
+<% if user_signed_in? %>
+  <% if current_user == @report.user || current_user.is_official? || current_user.is_admin? %>
+    <%= button_to 'Edit', edit_report_path(@report), class: "btn btn-primary" %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Back', url_for(:back), class: "d-inline-block my-3" %>
