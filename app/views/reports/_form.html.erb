@@ -14,16 +14,16 @@
   <!-- Only display if user is Official or Admin -->
   <% if user_signed_in? %>
     <% if current_user.is_official? || current_user.is_admin? %>
-      <div class="row mb-3">
+      <div class="row">
         <div class="col-md-6">
-          <div class="field mb-6">
+          <div class="field mb-3">
             <%= form.label :status, 'Status', :class => 'form-label required' %>
             <%= form.select(:status, options_for_select(status, :selected => form.object.status), {}, { :class => 'form-select' }) %>
           </div>
         </div>
 
         <div class="col-md-6">
-          <div class="field mb-6">
+          <div class="field mb-3">
             <%= form.label :severity, 'Severity', :class => 'form-label required' %>
             <%= form.select(:severity, options_for_select(severity, :selected => form.object.severity), {}, { :class => 'form-select' }) %>
           </div>
