@@ -26,9 +26,6 @@
         <% end %>
         <!-- Show these links if user is signed in -->
         <% if user_signed_in? %>
-        <li class="nav-item">
-          <%=link_to "Log Out", destroy_user_session_path, :method => 'delete', :class=>"nav-link" %>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               My Account
@@ -49,6 +46,9 @@
             </ul>
           </li>
           <% end %>
+          <li class="nav-item">
+          <%=link_to "Log Out", destroy_user_session_path, :method => 'delete', :class=>"nav-link" %>
+        </li>
         <% else %>
         <!-- Show these links to unauthenticated users only -->
         <li class="nav-item">
