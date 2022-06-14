@@ -10,7 +10,7 @@ class CreateReports < ActiveRecord::Migration[6.1]
       t.string :category
       t.string :subcategory
       t.string :status, default: 'New'
-      t.string :severity
+      t.string :severity, default: 'Not Set'
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

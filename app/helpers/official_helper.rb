@@ -12,6 +12,7 @@ module OfficialHelper
   def severity
     [
     ['Select', nil],
+    ['Not Set', 'Not Set'],
     ['Low', 'Low'],
     ['Moderate', 'Moderate'],
     ['Major', 'Major'],
