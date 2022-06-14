@@ -15,13 +15,24 @@
             </div>
         </div>
     <% end %>
+    <!-- Official Dashboard Tile - shows if logged in as official or admin user -->
+    <% if  user_signed_in? && (current_user.is_admin? || current_user.is_official?) %>                
+        <div class="card homepage-tile text-center py-5">
+             <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Officials Dashboard</h5>
+                <p class="card-text">Manage and update submitted reports</p>
+                <%=link_to "Officials Dashboard", official_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+    <% end %>
     <!-- Explore Tile -->
         <div class="card homepage-tile text-center py-5">
             <%= image_tag 'compass-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Explore</h5>
                 <p class="card-text">View all open reports</p>
-                <button href="#" class="btn btn-primary stretched-link">Explore open reports</button>
+                <%=link_to "Explore open reports", reports_path, :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
 </div>
