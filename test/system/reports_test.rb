@@ -3,6 +3,7 @@ require "application_system_test_case"
 class ReportsTest < ApplicationSystemTestCase
   setup do
     @report = reports(:one)
+    @user = users(:two)
   end
 
   test "visiting the index" do
