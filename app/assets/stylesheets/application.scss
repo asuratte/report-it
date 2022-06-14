@@ -194,10 +194,7 @@ header styles
   width: 100%;
   a {
       color: #FF5C00;
-      &:visited {
-        color: #FF5C00;
-      }
-      .content-container a:hover {
+      &:hover {
         color: #F49F0A;
       }
   }
@@ -291,4 +288,8 @@ form {
 .pagination .page-item.active .page-link {
   background-color: #efeeec;
   border-color: #efeeec;
+  color: #FF5C00;
+}
+.pagination .page-item .page-link {
+  color: #1577A6;
 }
