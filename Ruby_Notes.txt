@@ -420,6 +420,10 @@ rake db:migrate
 Pull/Merge/Rebase in git
 ------------------------------*/
 
+git pull
+git checkout reports-index
+bundle
+
 MERGE TO MAIN
 
 git checkout validator
@@ -457,3 +461,11 @@ OR you can rebase with the master before commit
 git fetch
 git rebase origin/master
 git push origin feature-branch
+
+/*------------------------------
+User types
+------------------------------*/
+
+0 = resident
+1 = official
+2 = admin
