@@ -1,0 +1,51 @@
+email,first_name,last_name,address1,address2,city,state,zip,phone,username,active,role,password,password_confirmation
+admin@email.com,Cristina,Casine,42 Gerald Hill,,Valdosta,GA,31605,229-418-1188,ccasine0,true,admin,password,password
+official@email.com,Sinclare,Cluelow,7671 Alpine Way,,Marietta,GA,30066,770-788-8052,scluelow1,true,official,password,password
+ddarrington2@typepad.com,Demetris,Darrington,2517 Ramsey Center,,Atlanta,GA,30380,404-384-4345,ddarrington2,true,official,H09oYWLT9t,H09oYWLT9t
+maslie3@mozilla.org,Mateo,Aslie,21 Truax Alley,,Valdosta,GA,31605,229-895-8462,maslie3,true,official,iWcbaEhaL79,iWcbaEhaL79
+resident@email.com,Valma,Burkman,943 Washington Plaza,,Atlanta,GA,30368,404-346-0241,vburkman4,true,resident,password,password
+rklimus5@salon.com,Raine,Klimus,30172 Canary Court,,Columbus,GA,31914,706-187-6217,rklimus5,true,resident,QoH7FYnpF0i,QoH7FYnpF0i
+rbarstock6@behance.net,Rog,Barstock,4738 Coolidge Court,Apt 2,Macon,GA,31217,912-268-0860,rbarstock6,false,resident,boPMsrvmc,boPMsrvmc
+eboag7@economist.com,Esdras,Boag,8121 Tennyson Lane,,Atlanta,GA,31106,404-893-5557,eboag7,false,resident,zgQfIK,zgQfIK
+dcorking8@lycos.com,Drew,Corking,63 Cardinal Way,,Atlanta,GA,30380,404-184-7955,dcorking8,true,resident,RznWTdflc3M,RznWTdflc3M
+sfryd9@studiopress.com,Susana,Fryd,455 Weeping Birch Street,Apt 10,Atlanta,GA,30323,770-910-4918,sfryd9,true,resident,RCT1GNa,RCT1GNa
+anorwicha@ow.ly,Annmaria,Norwich,90 Steensland Drive,,Atlanta,GA,30311,770-953-5881,anorwicha,true,resident,k71Vg8vmIxj,k71Vg8vmIxj
+aterranb@ebay.co.uk,Albrecht,Terran,77062 Delladonna Hill,Apt 4,Atlanta,GA,31190,404-357-3018,aterranb,true,resident,81uC1Ygt,81uC1Ygt
+lgasonc@wix.com,Latrena,Gason,21 Waywood Park,,Atlanta,GA,31190,404-641-7061,lgasonc,true,resident,e5yENlk,e5yENlk
+jvanhalend@spiegel.de,Jayson,Van Halen,99114 Derek Hill,,Savannah,GA,31416,912-630-9007,jvanhalend,true,resident,esK3YHys,esK3YHys
+nhunne@hugedomains.com,Northrup,Hunn,4345 Sheridan Junction,,Marietta,GA,30066,770-185-3321,nhunne,true,resident,hqKwrVFshkv0,hqKwrVFshkv0
+jstoddartf@sogou.com,Jeannie,Stoddart,3 Cascade Circle,,Savannah,GA,31416,912-534-8544,jstoddartf,true,resident,PWSZCZ4P7P2u,PWSZCZ4P7P2u
+pguysg@w3.org,Park,Guys,72014 Redwing Way,Apt 2,Columbus,GA,31998,706-647-9835,pguysg,true,resident,E84EGG,E84EGG
+shugkh@blinklist.com,Sandra,Hugk,9331 Columbus Trail,,Atlanta,GA,30301,404-464-8041,shugkh,true,resident,mmYHJkvDQ,mmYHJkvDQ
+ktomczaki@patch.com,Karyl,Tomczak,1 Fulton Hill,,Atlanta,GA,31136,404-521-7006,ktomczaki,true,resident,dnxrpLl,dnxrpLl
+klawfulj@jiathis.com,Korella,Lawful,2436 Bultman Avenue,,Atlanta,GA,31165,404-274-3380,klawfulj,true,resident,1wqzvl,1wqzvl
+gdeark@google.pl,Gillian,Dear,10827 Dorton Alley,,Atlanta,GA,31132,404-887-8697,gdeark,true,resident,YqdlvKR,YqdlvKR
+efagencel@google.fr,Eartha,Fagence,69853 Arkansas Center,,Columbus,GA,31914,706-133-0205,efagencel,true,resident,QteG31wjAe7p,QteG31wjAe7p
+amansonm@slate.com,Archambault,Manson,620 Continental Road,,Decatur,GA,30033,770-992-3012,amansonm,true,resident,nNc9d48Cvg,nNc9d48Cvg
+cdufairen@wikimedia.org,Christine,Dufaire,8 Warrior Crossing,,Gainesville,GA,30506,678-142-2071,cdufairen,true,resident,4OJh6Q9,4OJh6Q9
+cwimletto@nbcnews.com,Colet,Wimlett,36696 Claremont Trail,,Atlanta,GA,31106,404-660-3615,cwimletto,true,resident,xGQN7KEVw,xGQN7KEVw
+aandrichukp@webmd.com,Arnuad,Andrichuk,19 Oak Valley Way,,Atlanta,GA,30316,770-945-3728,aandrichukp,true,resident,35tbppUBdZlw,35tbppUBdZlw
+qhemeretq@opera.com,Quinta,Hemeret,84356 Ludington Road,Apt 4,Atlanta,GA,31190,404-380-6621,qhemeretq,true,resident,Bv8o3vrkUdws,Bv8o3vrkUdws
+kdemkowiczr@wsj.com,Kaiser,Demkowicz,29171 Schurz Lane,,Savannah,GA,31405,912-258-5820,kdemkowiczr,true,resident,nWEbON,nWEbON
+bpeles@comcast.net,Bertha,Pele,45802 Ohio Avenue,,Columbus,GA,31904,706-502-1721,bpeles,true,resident,HhaI4bqJ,HhaI4bqJ
+tdreiert@jalbum.net,Towney,Dreier,92519 Spohn Park,Apt 1,Decatur,GA,30089,770-700-9588,tdreiert,true,resident,aT25fh2SWH8B,aT25fh2SWH8B
+cmulvinu@sun.com,Cherianne,Mulvin,4695 Morning Way,,Atlanta,GA,30340,770-296-7024,cmulvinu,true,resident,3k3cDKpG81F,3k3cDKpG81F
+oreichhardtv@phpbb.com,Orella,Reichhardt,10 Rusk Street,,Macon,GA,31217,912-538-8286,oreichhardtv,true,resident,FEIiNb09Qm,FEIiNb09Qm
+toldredw@is.gd,Tarra,Oldred,982 Sage Circle,,Columbus,GA,31914,706-342-9283,toldredw,true,resident,06Pc1lh7cr,06Pc1lh7cr
+adreix@bandcamp.com,Ave,Drei,16034 Petterle Plaza,,Atlanta,GA,30358,404-261-9257,adreix,true,resident,d2BrGMLCWiTF,d2BrGMLCWiTF
+dchutery@dyndns.org,Doloritas,Chuter,3024 Fairview Alley,,Albany,GA,31704,229-819-2186,dchutery,true,resident,jrtUoB9M,jrtUoB9M
+jwiffieldz@scientificamerican.com,Joanie,Wiffield,3194 Wayridge Crossing,,Valdosta,GA,31605,229-126-4165,jwiffieldz,true,resident,tsAOlioz,tsAOlioz
+csneddon10@chronoengine.com,Corri,Sneddon,951 Rieder Plaza,,Atlanta,GA,31196,404-197-9333,csneddon10,true,resident,zf5TF2TVrkYr,zf5TF2TVrkYr
+plegan11@jalbum.net,Paige,Legan,604 Red Cloud Parkway,,Albany,GA,31704,229-827-5232,plegan11,true,resident,2GBmfzyz,2GBmfzyz
+wmerriday12@seattletimes.com,Wiley,Merriday,04 Rusk Place,,Atlanta,GA,31132,404-268-7629,wmerriday12,true,resident,nDyS60,nDyS60
+sfewell13@columbia.edu,Suzie,Fewell,033 Graceland Park,Unit 6,Savannah,GA,31416,912-359-5292,sfewell13,true,resident,XgioKnA,XgioKnA
+llimbrick14@mapquest.com,Lulu,Limbrick,20973 Goodland Point,Apt 5,Savannah,GA,31416,912-856-1751,llimbrick14,true,resident,xQndnMtsprVJ,xQndnMtsprVJ
+agiff15@indiegogo.com,Araldo,Giff,962 Sugar Way,Unit 4,Athens,GA,30610,706-318-9990,agiff15,true,resident,khFrqtHdvLS,khFrqtHdvLS
+dsherwood16@hud.gov,Daile,Sherwood,080 Hooker Way,,Atlanta,GA,30356,404-434-3864,dsherwood16,true,resident,9n54se4,9n54se4
+imerill17@freewebs.com,Irv,Merill,55732 Village Street,,Columbus,GA,31998,706-832-3080,imerill17,true,resident,QPzFbuF,QPzFbuF
+ksillitoe18@blogger.com,Kit,Sillitoe,82985 Dexter Parkway,Apt 10,Columbus,GA,31914,706-137-7651,ksillitoe18,true,resident,1efUGKSJ,1efUGKSJ
+tcrampton19@yale.edu,Tina,Crampton,57597 Lerdahl Road,,Athens,GA,30605,706-435-8578,tcrampton19,true,resident,cR7WGjcl,cR7WGjcl
+cblose1a@goodreads.com,Carson,Blose,751 Luster Place,,Atlanta,GA,30351,404-439-5275,cblose1a,true,resident,m9mWT9xoftsd,m9mWT9xoftsd
+kdavidofski1b@ycombinator.com,Kristen,Davidofski,2 Oakridge Junction,,Atlanta,GA,30301,770-669-2210,kdavidofski1b,true,resident,gVMElRRAuz,gVMElRRAuz
+tnealand1c@mlb.com,Tabbitha,Nealand,5663 Quincy Road,,Lawrenceville,GA,30245,770-859-9614,tnealand1c,true,resident,fEstqdFiR0,fEstqdFiR0
+ispratling1d@gravatar.com,Inglebert,Spratling,9604 Mariners Cove Center,,Columbus,GA,31998,706-770-8812,ispratling1d,true,resident,gvJW5cr,gvJW5cr
