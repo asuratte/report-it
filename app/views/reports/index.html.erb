@@ -18,7 +18,7 @@
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td data-label="Date Created"><%= report.created_at.to_date %></td>
         <td data-label="Category"><%= link_to report.subcategory, report %></td>
-        <td data-label="Description"><%= truncate(report.description, length: 50) %></td>
+        <td data-label="Description"><%= truncate(report.description, length: 30) %></td>
         <td data-label="Zip"><%= report.zip %></td>
         <td data-label="Status"><%= report.status %></td>
       </tr>

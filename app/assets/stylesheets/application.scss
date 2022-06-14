@@ -17,16 +17,12 @@
  */
 
 body {
-  @media (min-width: 30em) {
-    font-size: 16px !important;
-    line-height: 18px !important;
-  }
   margin: 0;
   padding: 0;
   font-family: 'Merriweather-Sans', sans-serif !important;
   color: #2F3334;
-  font-size: 14px !important;
-  line-height: 16px !important;
+  font-size: 16px !important;
+  line-height: 18px !important;
 }
 
 $border-color: #EFEEEC;
