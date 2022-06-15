@@ -47,5 +47,6 @@
   <strong>Active:</strong>
   <%= @user.active? ? 'Yes' : 'No' %>
 </p>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<br>
+<%= button_to 'Edit', edit_user_path(@user), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', users_path, :method => :get, class: "btn btn-secondary button-float" %>

@@ -93,10 +93,10 @@
       <%= f.check_box :active, :class => 'form-check-input' %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Add User", :class => 'btn btn-primary' %> 
-    </div>
+    <br>
+    <span class="actions button-float">
+      <%= f.submit "Add User", :class => 'btn btn-primary' %>
+    </span>
   <% end %>
-  <%= link_to 'Back', users_path, :class => 'd-inline-block my-3' %>
+  <%= button_to 'Back', users_path, :method => :get, class: "btn btn-secondary button-float" %>
 </div>
-
