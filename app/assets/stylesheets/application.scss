@@ -25,6 +25,10 @@ body {
   line-height: 18px !important;
 }
 
+/*--------------------
+Table Responsive Styles
+--------------------*/
+
 $border-color: #EFEEEC;
 
 table {
@@ -277,6 +281,15 @@ form label.required::after {
 }
 form {
     max-width: 50rem;
+}
+
+/*--------------------
+Button Float Styles
+--------------------*/
+.button-float {
+   float:left;
+   margin-right: 20px;
+   margin-bottom: 20px;
 }
 
 /* resident portal styles */

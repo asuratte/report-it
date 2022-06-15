@@ -3,4 +3,4 @@
 
 <%= render 'form' , report: @report %>
 
-<%= link_to 'Back to Dashboard' , resident_path, class: 'd-inline-block my-3' %>
+<%= button_to 'Back to Dashboard', resident_path, :method => :get, class: "btn btn-primary button-float" %>
