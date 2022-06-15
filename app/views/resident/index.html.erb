@@ -20,12 +20,12 @@
                 <% get_subcategories_by_category(category).each do |subcategory| %>
                   <%= link_to subcategory, new_report_path(category: category, subcategory: subcategory),
                     class: "py-1 list-group-item list-group-item-action" %>
-                    <% end %>
+                  <% end %>
               </div>
             </div>
           </div>
         </div>
-        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="col-lg-6">
@@ -53,12 +53,12 @@
                 <%= report.status %>
               </td>
             </tr>
-            <% end %>
-              <% else %>
-                <tr>
-                  <td colspan="3" class="py-3">You have not submitted any reports.</td>
-                </tr>
-                <% end %>
+          <% end %>
+          <% else %>
+            <tr>
+              <td colspan="3" class="py-3">You have not submitted any reports.</td>
+            </tr>
+          <% end %>
       </tbody>
     </table>
     <%== pagy_bootstrap_nav(@pagy) if @pagy.pages> 1 %>

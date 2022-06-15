@@ -56,8 +56,8 @@
 <!-- Only display if user is Official/Admin/Or the report writer -->
 <% if user_signed_in? %>
   <% if current_user == @report.user || current_user.is_official? || current_user.is_admin? %>
-    <%= button_to 'Edit', edit_report_path(@report), class: "btn btn-primary" %>
+    <%= button_to 'Edit', edit_report_path(@report), class: "btn btn-primary button-float" %>
   <% end %>
 <% end %>
 
-<%= link_to 'Back', url_for(:back), class: "d-inline-block my-3" %>
+<%= button_to 'Back', url_for(:back), :method => :get, class: "btn btn-primary button-float" %>
