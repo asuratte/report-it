@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :set_current_user
   include Pagy::Backend
 
   def after_sign_in_path_for(resource)
@@ -12,9 +11,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
-
-  def set_current_user
-    User.current = current_user
-  end
 end
