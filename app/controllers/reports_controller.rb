@@ -27,6 +27,9 @@ class ReportsController < ApplicationController
 
   # GET /reports/1/edit
   def edit
+    if current_user.is_resident? && @report.status != "New"
+      redirect_to reports_path
+    end
   end
 
   # POST /reports or /reports.json

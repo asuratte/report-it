@@ -5,7 +5,6 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @report = reports(:one)
-    @report2 = reports(:two)
     @resident_user = users(:one)
     @official_user = users(:two)
     @admin_user = users(:three)
@@ -53,6 +52,12 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not get edit if report status not new" do
+    sign_in @resident_user
+    get edit_report_url(reports(:three))
+    assert_response :redirect
+  end
+
   test "should get edit if signed in as official or admin" do
     sign_in @official_user
     get edit_report_url(@report)
@@ -65,7 +70,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not get edit if signed in as resident who did not create report" do
     sign_in @resident_user
-    get edit_report_url(@report2)
+    get edit_report_url(reports(:two))
     assert_response :redirect
   end
 

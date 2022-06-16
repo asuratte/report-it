@@ -25,3 +25,16 @@ two:
   status: New
   severity: Low
   user: two
+
+three:
+  address1: North Avenue
+  address2:
+  city: Atlanta
+  state: Georgia
+  zip: 23456
+  description: The lights are out at the intersection of East and West Ave
+  category: Transportation and Streets
+  subcategory: Traffic light out
+  status: Resolved
+  severity: Low
+  user: one
