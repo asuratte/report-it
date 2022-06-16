@@ -44,7 +44,7 @@ table {
 
 	tr {
 		display: block;
-		border: 1px solid $border-color; 
+		border: 1px solid $border-color;
 		padding: 1em 1em .5em;
 
 		& + tr {
@@ -70,7 +70,7 @@ table {
 			text-align: left;
 			font-weight: bold;
 			max-width: 100%;
-			color: #545454;
+			color: #7E7D7D;
 		}
 
 		& + td {
@@ -241,7 +241,7 @@ h1, h2, h3, h4, h5, aside {
   border-radius: 20px;
   background: none;
   border: none;
-  color: white;
+  color: #FFFFFF;
   background-color: #C6682A;
 }
 
@@ -251,18 +251,23 @@ h1, h2, h3, h4, h5, aside {
   border-radius: 20px;
   background: none;
   border: none;
-  color: white;
+  color: #FFFFFF;
   background-color: #7E7D7D;
 }
 
 .btn.btn-default {
-  color: white;
+  color: #FFFFFF;
   background-color: #C6682A;
 }
 
 .btn.btn-primary:hover {
   background-color: #F49F0A;
-  color: #fff;
+  color: #FFFFFF;
+}
+
+.btn.btn-secondary:hover {
+  background-color: #F49F0A;
+  color: #FFFFFF;
 }
 
 .btn.btn-success {
