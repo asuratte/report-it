@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'home#index'
-  get 'test/index' => 'home#index'
   get '*path' => redirect('/')
 
   post '/reports/:id/edit' => 'reports#edit'

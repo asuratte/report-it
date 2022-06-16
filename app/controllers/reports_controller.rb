@@ -26,6 +26,9 @@ class ReportsController < ApplicationController
 
   # GET /reports/1/edit
   def edit
+    unless current_user == @report.user || current_user.role == 'official' || current_user.role == 'admin'
+      redirect_to('/', notice: "Not authorized.") and return
+    end
   end
 
   # POST /reports or /reports.json
