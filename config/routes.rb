@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :themes
   resources :reports
   devise_for :users, :path_prefix => 'account', :controllers => {
     registrations: 'registrations'

@@ -1,0 +1,157 @@
+<%= form_with(model: theme) do |form| %>
+  <% if theme.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
+
+      <ul>
+        <% theme.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :logo %>
+    <%= form.text_field :logo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hero %>
+    <%= form.text_field :hero %>
+  </div>
+
+  <div class="field">
+    <%= form.label :font_google_css %>
+    <%= form.text_field :font_google_css %>
+  </div>
+
+  <div class="field">
+    <%= form.label :font_google_css_url %>
+    <%= form.text_field :font_google_css_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :font_default_css %>
+    <%= form.text_field :font_default_css %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_header_text %>
+    <%= form.text_field :color_header_text %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_accent %>
+    <%= form.text_field :color_accent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_text_dark %>
+    <%= form.text_field :color_text_dark %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_text_light %>
+    <%= form.text_field :color_text_light %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_login_bar %>
+    <%= form.text_field :color_login_bar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_header_background %>
+    <%= form.text_field :color_header_background %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_footer_background %>
+    <%= form.text_field :color_footer_background %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_button_primary %>
+    <%= form.text_field :color_button_primary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_button_secondary %>
+    <%= form.text_field :color_button_secondary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_button_hover %>
+    <%= form.text_field :color_button_hover %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_button_text_dark %>
+    <%= form.text_field :color_button_text_dark %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_button_text_light %>
+    <%= form.text_field :color_button_text_light %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_nav_link %>
+    <%= form.text_field :color_nav_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_nav_link_hover %>
+    <%= form.text_field :color_nav_link_hover %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_page_link %>
+    <%= form.text_field :color_page_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_page_link_active %>
+    <%= form.text_field :color_page_link_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_page_background %>
+    <%= form.text_field :color_page_background %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_page_border %>
+    <%= form.text_field :color_page_border %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_table_before %>
+    <%= form.text_field :color_table_before %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_list_even %>
+    <%= form.text_field :color_list_even %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_list_odd %>
+    <%= form.text_field :color_list_odd %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_container_link %>
+    <%= form.text_field :color_container_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_container_link_hover %>
+    <%= form.text_field :color_container_link_hover %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

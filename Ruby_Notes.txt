@@ -113,6 +113,14 @@ Example to generate controller only
 bin/rails generate controller controller_name
 
 /*------------------------------
+Destroy generates
+------------------------------*/
+
+rails destroy scaffold Theme -f
+rails destroy model Theme -f
+rails destroy controller Theme -f
+
+/*------------------------------
 Reverting to specific git commit
 ------------------------------*/
 
@@ -488,19 +496,18 @@ User types
 theme
 ------------------------------*/
 
-city:string
-state:string
-
-logo_url:string
-hero_url:string
-
+logo:string
+hero:string
+font_google:string
+font_google_url:string
+font_default:string
 color_header_text:string --C6682A
 color_accent:string --C6682A
 color_text_dark:string --2F3334
 color_text_light:string --FFFFFF
 color_login_bar:string --2F3334
-color_header:string --EFEEEC
-color_footer:string --EFEEEC
+color_header_background:string --EFEEEC
+color_footer_background:string --EFEEEC
 color_button_primary:string --C6682A
 color_button_secondary:string --7E7D7D
 color_button_hover:string --F49F0A
@@ -510,8 +517,8 @@ color_nav_link:string --1577A6
 color_nav_link_hover:string --F49F0A
 color_page_link:string --1577A6
 color_page_link_active:string --FF5C00
-color_page_background_color:string --EFEEEC
-color_page_border_color:string --EFEEEC
+color_page_background:string --EFEEEC
+color_page_border:string --EFEEEC
 color_table_before:string --7E7D7D
 color_list_even:string --FFFFFF
 color_list_odd:string --F5F5F5

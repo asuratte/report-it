@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Themes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Hero</th>
+      <th>Font google css</th>
+      <th>Font google css url</th>
+      <th>Font default css</th>
+      <th>Color header text</th>
+      <th>Color accent</th>
+      <th>Color text dark</th>
+      <th>Color text light</th>
+      <th>Color login bar</th>
+      <th>Color header background</th>
+      <th>Color footer background</th>
+      <th>Color button primary</th>
+      <th>Color button secondary</th>
+      <th>Color button hover</th>
+      <th>Color button text dark</th>
+      <th>Color button text light</th>
+      <th>Color nav link</th>
+      <th>Color nav link hover</th>
+      <th>Color page link</th>
+      <th>Color page link active</th>
+      <th>Color page background</th>
+      <th>Color page border</th>
+      <th>Color table before</th>
+      <th>Color list even</th>
+      <th>Color list odd</th>
+      <th>Color container link</th>
+      <th>Color container link hover</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @themes.each do |theme| %>
+      <tr>
+        <td><%= theme.logo %></td>
+        <td><%= theme.hero %></td>
+        <td><%= theme.font_google_css %></td>
+        <td><%= theme.font_google_css_url %></td>
+        <td><%= theme.font_default_css %></td>
+        <td><%= theme.color_header_text %></td>
+        <td><%= theme.color_accent %></td>
+        <td><%= theme.color_text_dark %></td>
+        <td><%= theme.color_text_light %></td>
+        <td><%= theme.color_login_bar %></td>
+        <td><%= theme.color_header_background %></td>
+        <td><%= theme.color_footer_background %></td>
+        <td><%= theme.color_button_primary %></td>
+        <td><%= theme.color_button_secondary %></td>
+        <td><%= theme.color_button_hover %></td>
+        <td><%= theme.color_button_text_dark %></td>
+        <td><%= theme.color_button_text_light %></td>
+        <td><%= theme.color_nav_link %></td>
+        <td><%= theme.color_nav_link_hover %></td>
+        <td><%= theme.color_page_link %></td>
+        <td><%= theme.color_page_link_active %></td>
+        <td><%= theme.color_page_background %></td>
+        <td><%= theme.color_page_border %></td>
+        <td><%= theme.color_table_before %></td>
+        <td><%= theme.color_list_even %></td>
+        <td><%= theme.color_list_odd %></td>
+        <td><%= theme.color_container_link %></td>
+        <td><%= theme.color_container_link_hover %></td>
+        <td><%= link_to 'Show', theme %></td>
+        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
+        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Theme', new_theme_path %>
