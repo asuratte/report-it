@@ -19,21 +19,18 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not get new without categories if signed in" do
-    get '/users/sign_in'
     sign_in users(:two)
     get new_report_url
     assert_response :redirect
   end
 
   test "should get new without categories if signed in" do
-    get '/users/sign_in'
     sign_in users(:two)
     get new_report_path(category: "Animals", subcategory: "Nuisance animal complaint")
     assert_response :success
   end
 
   test "should create report if signed in" do
-    get '/users/sign_in'
     sign_in users(:two)
     assert_difference('Report.count') do
       post reports_url, params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, severity: @report.severity, state: @report.state, status: @report.status, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip } }
@@ -48,21 +45,18 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    get '/users/sign_in'
     sign_in users(:two)
     get edit_report_url(@report)
     assert_response :success
   end
 
   test "should update report" do
-    get '/users/sign_in'
     sign_in users(:two)
     patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip } }
     assert_redirected_to report_url(@report)
   end
 
   test "should destroy report" do
-    get '/users/sign_in'
     sign_in users(:two)
     assert_difference('Report.count', -1) do
       delete report_url(@report)
