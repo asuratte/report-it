@@ -3,6 +3,7 @@ class ReportsController < ApplicationController
   rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_report, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[ index show ]
+  before_action :allow_report_access, only: %i[ edit update destroy ]
 
   # GET /reports or /reports.json
   def index
@@ -26,6 +27,9 @@ class ReportsController < ApplicationController
 
   # GET /reports/1/edit
   def edit
+    if current_user.is_resident? && @report.status != "New"
+      redirect_to reports_path
+    end
   end
 
   # POST /reports or /reports.json
@@ -80,5 +84,11 @@ class ReportsController < ApplicationController
     # Redirects to the last page when exception thrown
     def redirect_to_last_page(exception)
       redirect_to url_for(page: exception.pagy.last)
+    end
+
+    def allow_report_access
+      unless @report.user_id == current_user.id || current_user.is_official? || current_user.is_admin?
+        redirect_to root_path
+      end
     end
 end
