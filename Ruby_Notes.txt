@@ -8,6 +8,12 @@ bin/rails db:install
 bin/rails webpacker:install
 
 /*------------------------------
+Clear Cache
+------------------------------*/
+
+rake tmp:cache:clear
+
+/*------------------------------
 Update git config
 ------------------------------*/
 

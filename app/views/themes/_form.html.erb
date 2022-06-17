@@ -11,8 +11,17 @@
     </div>
   <% end %>
 
+  <div id="error_explanation" class="alert alert-danger">
+    <p>Please note:</p>
+
+    <ul>
+        <li>you will need to clear cache for any value changes to take effect</li>
+        <li>making changes may result in lost css functionality</li>
+    </ul>
+  </div>
+
   <div class="field">
-    <%= form.label :element, :class => 'form-label required' %> <i>(Warning: Editing may remove existing css values)</i>
+    <%= form.label :element, :class => 'form-label required' %>
     <br>
     <%= form.text_field :element %>
   </div>
