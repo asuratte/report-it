@@ -1,29 +1,25 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Themes</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Value</th>
-      <th colspan="3"></th>
+      <th scope="col">Element</th>
+      <th scope="col">Value</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @themes.each do |theme| %>
-      <tr>
-        <td><%= theme.name %></td>
-        <td><%= theme.value %></td>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td data-label="Element"><%= theme.element %></td>
+        <td data-label="Value"><%= theme.value %></td>
         <td><%= link_to 'Show', theme %></td>
         <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
-        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Theme', new_theme_path %>
+<%= button_to 'New Theme', new_theme_path, :method => :get, class: "btn btn-primary button-float" %>

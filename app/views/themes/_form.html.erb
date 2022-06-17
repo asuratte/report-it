@@ -1,7 +1,7 @@
 <%= form_with(model: theme) do |form| %>
   <% if theme.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <p><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</p>
 
       <ul>
         <% theme.errors.each do |error| %>
@@ -12,16 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :element, :class => 'form-label required' %> <i>(Warning: Editing may remove existing css values)</i>
+    <br>
+    <%= form.text_field :element %>
   </div>
 
+  <br>
+
   <div class="field">
-    <%= form.label :value %>
+    <%= form.label :value, :class => 'form-label required' %>
+    <br>
     <%= form.text_field :value %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <br>
+  <span class="actions button-float">
+    <%= form.submit 'Update Theme', class: 'btn btn-primary' %>
+  </span>
 <% end %>

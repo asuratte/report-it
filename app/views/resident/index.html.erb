@@ -33,9 +33,9 @@
     <table class="mb-3">
       <thead>
         <tr>
-          <th>Date Reported</th>
-          <th>Report Type</th>
-          <th>Status</th>
+          <th scope="col">Date Reported</th>
+          <th scope="col">Report Type</th>
+          <th scope="col">Status</th>
         </tr>
       </thead>
 
@@ -43,13 +43,13 @@
         <% if @reports.count> 0 %>
           <% @reports.each do |report| %>
             <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-              <td>
+              <td data-label="Date Reported">
                 <%= report.created_at.to_date %>
               </td>
-              <td>
+              <td data-label="Report Type">
                 <%= link_to report.subcategory, report %>
-              </td>
-              <td>
+              </td data-label="Date Created">
+              <td data-label="Status">
                 <%= report.status %>
               </td>
             </tr>

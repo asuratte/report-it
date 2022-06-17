@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @theme.name %>
+  <strong>Element:</strong>
+  <%= @theme.element %>
 </p>
 
 <p>
@@ -10,5 +10,6 @@
   <%= @theme.value %>
 </p>
 
-<%= link_to 'Edit', edit_theme_path(@theme) %> |
-<%= link_to 'Back', themes_path %>
+<br>
+<%= button_to 'Edit', edit_theme_path(@theme), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', themes_path, :method => :get, class: "btn btn-secondary button-float" %>

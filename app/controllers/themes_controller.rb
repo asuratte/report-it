@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: %i[ show edit update destroy ]
+  before_action :set_theme, only: %i[ show edit update ]
 
   # GET /themes or /themes.json
   def index
@@ -65,6 +65,6 @@ class ThemesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def theme_params
-      params.require(:theme).permit(:name, :value)
+      params.require(:theme).permit(:element, :value)
     end
 end
