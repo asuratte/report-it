@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_043056) do
     t.string "category"
     t.string "subcategory"
     t.string "status", default: "New"
-    t.string "severity", default: "Not Set"
+    t.string "severity"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
