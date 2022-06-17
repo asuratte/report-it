@@ -49,6 +49,35 @@ class ThemesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to theme_url(@theme)
   end
 
-  test "should destroy theme" do
+  test "should not allow resident to access" do
+    sign_in @resident_user
+    get edit_theme_url(@theme)
+    assert_response :redirect
+  end
+
+  test "should not allow official to access" do
+    sign_in @official_user
+    get edit_theme_url(@theme)
+    assert_response :redirect
+  end
+
+  test "should allow admin to access" do
+    sign_in @admin_user
+    get edit_theme_url(@theme)
+    assert_response :success
+  end
+
+  test "should not allow anyone to destroy" do
+    sign_in @resident_user
+    get '/theme/1/destroy'
+    assert_response :redirect
+
+    sign_in @official_user
+    get '/theme/1/destroy'
+    assert_response :redirect
+
+    sign_in @admin_user
+    get '/theme/1/destroy'
+    assert_response :redirect
   end
 end
