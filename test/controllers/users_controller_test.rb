@@ -5,19 +5,41 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   
   setup do
     @admin_user = users(:three)
-    @user2 = users(:two)
+    @official_user = users(:two)
+    @resident_user = users(:one)
+    @resident_user_2 = users(:four)
   end
 
-  test "should get index" do
+  test "should get index if admin" do
     sign_in @admin_user
     get users_url
     assert_response :success
   end
 
-  test "should get new" do
+  test "should not get index if resident or official" do
+    sign_in @official_user
+    get users_url
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @resident_user
+    get users_url
+    assert_response :redirect
+  end
+
+  test "should get new if admin" do
     sign_in @admin_user
     get new_user_url
     assert_response :success
+  end
+
+  test "should not get new if resident or official" do
+    sign_in @official_user
+    get new_user_url
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @resident_user
+    get new_user_url
+    assert_response :redirect
   end
 
   test "should create user" do
@@ -28,22 +50,42 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(User.last)
   end
 
-  test "should show user" do
+  test "should show user if admin user" do
     sign_in @admin_user
-    get user_url(@user2)
+    get user_url(@official_user)
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should not show user if official or resident user" do
+    sign_in @official_user
+    get user_url(@resident_user_2)
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @resident_user
+    get user_url(@resident_user_2)
+    assert_response :redirect
+  end
+
+  test "should get edit if admin user" do
     sign_in @admin_user
-    get edit_user_url(@user2)
+    get edit_user_url(@official_user)
     assert_response :success
+  end
+
+  test "should not get edit if official or resident user" do
+    sign_in @official_user
+    get edit_user_url(@resident_user_2)
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @resident_user
+    get edit_user_url(@resident_user_2)
+    assert_response :redirect
   end
 
   test "should update user" do
     sign_in @admin_user
-    patch user_url(@user2), params:  { user: { first_name: 'Charles', last_name: @user2.last_name, address1: @user2.address1, address2: @user2.address2, city: @user2.city, state: @user2.state, zip: @user2.zip, phone: @user2.phone, username: @user2.username, active: @user2.active, role: @user2.role, email: @user2.email, password: @user2.password } }
-    assert_redirected_to user_url(@user2)
+    patch user_url(@official_user), params:  { user: { first_name: 'Charles', last_name: @official_user.last_name, address1: @official_user.address1, address2: @official_user.address2, city: @official_user.city, state: @official_user.state, zip: @official_user.zip, phone: @official_user.phone, username: @official_user.username, active: @official_user.active, role: @official_user.role, email: @official_user.email, password: @official_user.password } }
+    assert_redirected_to user_url(@official_user)
   end
 
 end

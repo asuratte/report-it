@@ -1,7 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   address1: 123 Main Street
   address2: Apt 2
   city: Atlanta
@@ -15,7 +14,6 @@ one:
   user: one
 
 two:
-  id: 2
   address1: West Avenue
   address2:
   city: Atlanta
@@ -27,3 +25,16 @@ two:
   status: New
   severity: Low
   user: two
+
+three:
+  address1: North Avenue
+  address2:
+  city: Atlanta
+  state: Georgia
+  zip: 23456
+  description: The lights are out at the intersection of East and West Ave
+  category: Transportation and Streets
+  subcategory: Traffic light out
+  status: Resolved
+  severity: Low
+  user: one
