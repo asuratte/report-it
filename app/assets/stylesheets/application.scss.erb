@@ -1,0 +1,275 @@
+@import url('<%= Theme.find_by(element: "font_google_css_url").value %>');
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree
+ *= require bootstrap
+ *= require_self
+ */
+ body {
+   margin: 0;
+   padding: 0;
+   font-family: '<%= Theme.find_by(element: "font_google_css").value %>', <%= Theme.find_by(element: "font_default_css").value %>;
+   color: <%= Theme.find_by(element: "color_text_dark").value %>;
+   font-size: 16px;
+   line-height: 18px;
+ }
+
+ a {
+     color: <%= Theme.find_by(element: "color_container_link").value %>;
+     &:hover {
+       color: <%= Theme.find_by(element: "color_container_link_hover").value %>;
+     }
+ }
+
+ table {
+   border: 0;
+   border-collapse: collapse;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+
+   thead {
+     display: none;
+   }
+
+   tr {
+     display: block;
+     border: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+     padding: 1em 1em .5em;
+
+     & + tr {
+       margin-top: 0.625em;
+     }
+   }
+
+   th {
+     padding: 0.6em 0.6em;
+     border-bottom: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+   }
+
+   td {
+     display: flex;
+     justify-content: space-between;
+     padding: 0.6em 0.6em;
+     border-bottom: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+     font-size: .90em;
+
+     &:before {
+       content: attr(data-label);
+       font-size: 0.95em;
+       text-align: left;
+       font-weight: bold;
+       max-width: 100%;
+       color: <%= Theme.find_by(element: "color_table_before").value %>;
+     }
+
+     & + td {
+       margin-top: 0.8em;
+     }
+
+     &:last-child {
+       border-bottom: 0;
+     }
+   }
+ }
+
+ @media screen and (min-width: 650px) {
+   table {
+     thead {
+       display: table-header-group;
+     }
+
+     tr {
+       display: table-row;
+       border: 0;
+     }
+
+     th, td {
+       text-align: left;
+       font-size: .95em;
+     }
+
+     td {
+       display: table-cell;
+
+       &:before {
+         display: none;
+       }
+
+       &:last-child {
+         border-bottom: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+       }
+     }
+   }
+ }
+
+ header.main {
+   @media (min-width: 30em) {
+     text-align: left;
+     background-size: 65%;
+   }
+   border-top: 5px solid <%= Theme.find_by(element: "color_accent").value %>;
+   text-align: center;
+   background-color: <%= Theme.find_by(element: "color_header_background").value %>;
+   padding: 1em;
+   margin: 0;
+   background-image: url('<%= Theme.find_by(element: "hero").value %>');
+   background-repeat: no-repeat;
+   background-size: 100%;
+   background-position: center right;
+ }
+
+ tr.list_line_odd {
+     background-color: <%= Theme.find_by(element: "color_list_odd").value %>;
+   }
+
+ .main-container {
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+ }
+
+ .logo {
+   @media (min-width: 30em) {
+     max-width: 300px;
+   }
+   display: block;
+   max-width: 200px;
+   width: auto;
+   height: auto;
+ }
+
+ .content-container {
+   @media (min-width: 30em) {
+     padding-top: 2em;
+     padding-right: 2em;
+     padding-bottom: 6em;
+     padding-left: 2em;
+   }
+   min-width: fit-content;
+   margin: 0;
+   padding-top: 1.5em;
+   padding-right: 1.5em;
+   padding-bottom: 6em;
+   padding-left: 1.5em;
+   width: 100%;
+   a {
+       color: <%= Theme.find_by(element: "color_container_link").value %>;
+       &:hover {
+         color: <%= Theme.find_by(element: "color_container_link_hover").value %>;
+       }
+   }
+ }
+
+ footer {
+   border-bottom: 5px solid <%= Theme.find_by(element: "color_accent").value %>;
+   background-color: <%= Theme.find_by(element: "color_footer_background").value %>;
+ }
+
+ .copyright {
+   font-size: 13px;
+   line-height: 15px;
+   text-align: center;
+ }
+
+ .logged_in_as {
+   font-size: 12px;
+   line-height: 14px;
+   margin: 0;
+   padding: 1em 2em;
+   background-color: <%= Theme.find_by(element: "color_login_bar").value %>;
+   color: <%= Theme.find_by(element: "color_text_light").value %>;
+ }
+
+ h1, h2, h3, h4, h5, aside {
+   margin: 0;
+   padding-bottom: 0.4em;
+   color: <%= Theme.find_by(element: "color_header_text").value %>;
+ }
+
+ .navbar-light .navbar-nav .nav-item .nav-link {
+     color: <%= Theme.find_by(element: "color_nav_link").value %>;
+ }
+
+ .navbar-light .navbar-nav a.nav-link:hover {
+   color: <%= Theme.find_by(element: "color_nav_link_hover").value %>;
+ }
+
+ .btn.btn-primary {
+   padding: 0.5em 1.5em;
+   font-weight: bold;
+   border-radius: 20px;
+   background: none;
+   border: none;
+   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
+   background-color: <%= Theme.find_by(element: "color_button_primary").value %>;
+ }
+
+ .btn.btn-secondary {
+   padding: 0.5em 1.5em;
+   font-weight: bold;
+   border-radius: 20px;
+   background: none;
+   border: none;
+   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
+   background-color: <%= Theme.find_by(element: "color_button_secondary").value %>;
+ }
+
+ .btn.btn-default {
+   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
+   background-color: <%= Theme.find_by(element: "color_button_primary").value %>;
+ }
+
+ .btn.btn-primary:hover {
+   background-color: <%= Theme.find_by(element: "color_button_hover").value %>;
+   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
+ }
+
+ .btn.btn-secondary:hover {
+   background-color: <%= Theme.find_by(element: "color_button_hover").value %>;
+   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
+ }
+
+ .btn.btn-success {
+   background-color: <%= Theme.find_by(element: "color_page_link").value %>;
+ }
+
+ form label.required::after {
+     content: "*";
+     color: red;
+ }
+ form {
+     max-width: 50em;
+ }
+
+ .button-float {
+    float:left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+ }
+
+ .card:hover{
+   transform: scale(1.02);
+   box-shadow: 0 6px 6px rgba(0,0,0,.10), 0 3px 6px rgba(0,0,0,.05);
+ }
+
+ .pagination .page-item.active .page-link {
+   background-color: <%= Theme.find_by(element: "color_page_background").value %>;
+   border-color: <%= Theme.find_by(element: "color_page_border").value %>;
+   color: <%= Theme.find_by(element: "color_page_link_active").value %>;
+ }
+ .pagination .page-item .page-link {
+   color: <%= Theme.find_by(element: "color_page_link").value %>;
+ }

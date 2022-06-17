@@ -16,7 +16,7 @@
   <body class="d-flex flex-column min-vh-100">
     <%= render "layouts/navbar" %>
     <header class='main'>
-      <a href="<%= root_path %>"><%= image_tag 'report-it-logo.png', :class => "logo" %></a>
+      <a href="<%= root_path %>"><%= image_tag Theme.find_by(element: "logo").value, :class => "logo" %></a>
     </header>
     <% if user_signed_in? %>
       <div class="logged_in_as">
