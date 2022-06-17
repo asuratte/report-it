@@ -24,12 +24,12 @@ class ThemesController < ApplicationController
     @theme = Theme.new(theme_params)
 
     respond_to do |format|
-      if @theme.save
+      if @save
         format.html { redirect_to theme_url(@theme), notice: "Theme was successfully created." }
         format.json { render :show, status: :created, location: @theme }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @theme.errors, status: :unprocessable_entity }
+        format.json { render json: @errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,14 +42,14 @@ class ThemesController < ApplicationController
         format.json { render :show, status: :ok, location: @theme }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @theme.errors, status: :unprocessable_entity }
+        format.json { render json: @errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /themes/1 or /themes/1.json
   def destroy
-    @theme.destroy
+    @destroy
 
     respond_to do |format|
       format.html { redirect_to themes_url, notice: "Theme was successfully destroyed." }

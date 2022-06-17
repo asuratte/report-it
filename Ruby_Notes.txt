@@ -14,6 +14,12 @@ Clear Cache
 rake tmp:cache:clear
 
 /*------------------------------
+Simple responsive table in css
+------------------------------*/
+
+https://codepen.io/AllThingsSmitty/pen/MyqmdM
+
+/*------------------------------
 Update git config
 ------------------------------*/
 

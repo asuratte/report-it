@@ -1,4 +1,4 @@
-@import url('<%= Theme.find_by(element: "font_google_css_url").value %>');
+@import url('https://fonts.googleapis.com/css?family=Merriweather-Sans');
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,19 +15,81 @@
  *= require bootstrap
  *= require_self
  */
+
+ $color_header_text: #C6682A;
+ $color_accent: #C6682A;
+ $color_text_dark: #2F3334;
+ $color_text_light: #FFFFFF;
+ $color_login_bar: #2F3334;
+ $color_header_background: #EFEEEC;
+ $color_footer_background: #EFEEEC;
+ $color_button_primary: #C6682A;
+ $color_button_secondary: #7E7D7D;
+ $color_button_hover: #F49F0A;
+ $color_button_text_dark: #2F3334;
+ $color_button_text_light: #FFFFFF;
+ $color_nav_link: #1577A6;
+ $color_nav_link_hover: #F49F0A;
+ $color_page_link: #1577A6;
+ $color_page_link_active: #FF5C00;
+ $color_page_background: #EFEEEC;
+ $color_page_border: #EFEEEC;
+ $color_table_before: #7E7D7D;
+ $color_list_even: #FFFFFF;
+ $color_list_odd: #F5F5F5;
+ $color_container_link: #FF5C00;
+ $color_container_link_hover: #F49F0A;
+ $color_accordion_button: #F5F5F5;
+ $color_accordion_button_collapsed: #FFFFFF;
+ $color_accordion_text: #C6682A;
+ $color_nav_background: #E9F1F2;
+ $color_alert_background: #E9F1F2;
+
  body {
    margin: 0;
    padding: 0;
-   font-family: '<%= Theme.find_by(element: "font_google_css").value %>', <%= Theme.find_by(element: "font_default_css").value %>;
-   color: <%= Theme.find_by(element: "color_text_dark").value %>;
+   font-family: 'Merriweather-Sans', sans-serif !important;
+   color: $color_text_dark;
    font-size: 16px;
    line-height: 18px;
  }
 
+ .alert.alert-info {
+   background-color: $color_alert_background !important;
+   border-color: $color_alert_background !important;
+ }
+
+ .navbar.navbar-light {
+   background-color: $color_nav_background !important;
+ }
+
+ .accordion-button:focus {
+   box-shadow: none !important;
+   border-color: rgba(0,0,0,.125) !important;
+ }
+
+ .accordion-button {
+   background-color: $color_accordion_button_collapsed !important;
+   color: $color_accordion_text !important;
+ }
+
+ .accordion-button:focus {
+   box-shadow: none;
+ }
+
+ .accordion-button:not(.collapsed) {
+   background-color: $color_accordion_button !important;
+   color: $color_accordion_text !important;
+ }
+
+ .accordion-button:not(.collapsed)::after {
+   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23$color_accordion_text'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+ }
+
  a {
-     color: <%= Theme.find_by(element: "color_container_link").value %>;
+     color: $color_container_link;
      &:hover {
-       color: <%= Theme.find_by(element: "color_container_link_hover").value %>;
+       color: $color_container_link_hover;
      }
  }
 
@@ -44,7 +106,7 @@
 
    tr {
      display: block;
-     border: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+     border: 1px solid $color_header_background;
      padding: 1em 1em .5em;
 
      & + tr {
@@ -54,14 +116,14 @@
 
    th {
      padding: 0.6em 0.6em;
-     border-bottom: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+     border-bottom: 1px solid $color_header_background;
    }
 
    td {
      display: flex;
      justify-content: space-between;
      padding: 0.6em 0.6em;
-     border-bottom: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+     border-bottom: 1px solid $color_header_background;
      font-size: .90em;
 
      &:before {
@@ -70,7 +132,7 @@
        text-align: left;
        font-weight: bold;
        max-width: 100%;
-       color: <%= Theme.find_by(element: "color_table_before").value %>;
+       color: $color_table_before;
      }
 
      & + td {
@@ -107,7 +169,7 @@
        }
 
        &:last-child {
-         border-bottom: 1px solid <%= Theme.find_by(element: "color_header_background").value %>;
+         border-bottom: 1px solid $color_header_background;
        }
      }
    }
@@ -118,19 +180,19 @@
      text-align: left;
      background-size: 65%;
    }
-   border-top: 5px solid <%= Theme.find_by(element: "color_accent").value %>;
+   border-top: 5px solid $color_accent;
    text-align: center;
-   background-color: <%= Theme.find_by(element: "color_header_background").value %>;
+   background-color: $color_header_background;
    padding: 1em;
    margin: 0;
-   background-image: url('<%= Theme.find_by(element: "hero").value %>');
+   background-image: url('cityscape_1.png');
    background-repeat: no-repeat;
    background-size: 100%;
    background-position: center right;
  }
 
  tr.list_line_odd {
-     background-color: <%= Theme.find_by(element: "color_list_odd").value %>;
+     background-color: $color_list_odd;
    }
 
  .main-container {
@@ -166,16 +228,16 @@
    padding-left: 1.5em;
    width: 100%;
    a {
-       color: <%= Theme.find_by(element: "color_container_link").value %>;
+       color: $color_container_link;
        &:hover {
-         color: <%= Theme.find_by(element: "color_container_link_hover").value %>;
+         color: $color_container_link_hover;
        }
    }
  }
 
  footer {
-   border-bottom: 5px solid <%= Theme.find_by(element: "color_accent").value %>;
-   background-color: <%= Theme.find_by(element: "color_footer_background").value %>;
+   border-bottom: 5px solid $color_accent;
+   background-color: $color_footer_background;
  }
 
  .copyright {
@@ -189,22 +251,22 @@
    line-height: 14px;
    margin: 0;
    padding: 1em 2em;
-   background-color: <%= Theme.find_by(element: "color_login_bar").value %>;
-   color: <%= Theme.find_by(element: "color_text_light").value %>;
+   background-color: $color_login_bar;
+   color: $color_text_light;
  }
 
  h1, h2, h3, h4, h5, aside {
    margin: 0;
    padding-bottom: 0.4em;
-   color: <%= Theme.find_by(element: "color_header_text").value %>;
+   color: $color_header_text;
  }
 
  .navbar-light .navbar-nav .nav-item .nav-link {
-     color: <%= Theme.find_by(element: "color_nav_link").value %>;
+     color: $color_nav_link;
  }
 
  .navbar-light .navbar-nav a.nav-link:hover {
-   color: <%= Theme.find_by(element: "color_nav_link_hover").value %>;
+   color: $color_nav_link_hover;
  }
 
  .btn.btn-primary {
@@ -213,8 +275,8 @@
    border-radius: 20px;
    background: none;
    border: none;
-   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
-   background-color: <%= Theme.find_by(element: "color_button_primary").value %>;
+   color: $color_button_text_light;
+   background-color: $color_button_primary;
  }
 
  .btn.btn-secondary {
@@ -223,27 +285,32 @@
    border-radius: 20px;
    background: none;
    border: none;
-   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
-   background-color: <%= Theme.find_by(element: "color_button_secondary").value %>;
+   color: $color_button_text_light;
+   background-color: $color_button_secondary;
+ }
+
+ .btn:focus {
+   box-shadow: none !important;
+   border-color: rgba(0,0,0,.125) !important;
  }
 
  .btn.btn-default {
-   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
-   background-color: <%= Theme.find_by(element: "color_button_primary").value %>;
+   color: $color_button_text_light;
+   background-color: $color_button_primary;
  }
 
  .btn.btn-primary:hover {
-   background-color: <%= Theme.find_by(element: "color_button_hover").value %>;
-   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
+   background-color: $color_button_hover;
+   color: $color_button_text_light;
  }
 
  .btn.btn-secondary:hover {
-   background-color: <%= Theme.find_by(element: "color_button_hover").value %>;
-   color: <%= Theme.find_by(element: "color_button_text_light").value %>;
+   background-color: $color_button_hover;
+   color: $color_button_text_light;
  }
 
  .btn.btn-success {
-   background-color: <%= Theme.find_by(element: "color_page_link").value %>;
+   background-color: $color_page_link;
  }
 
  form label.required::after {
@@ -266,10 +333,10 @@
  }
 
  .pagination .page-item.active .page-link {
-   background-color: <%= Theme.find_by(element: "color_page_background").value %>;
-   border-color: <%= Theme.find_by(element: "color_page_border").value %>;
-   color: <%= Theme.find_by(element: "color_page_link_active").value %>;
+   background-color: $color_page_background;
+   border-color: $color_page_border;
+   color: $color_page_link_active;
  }
  .pagination .page-item .page-link {
-   color: <%= Theme.find_by(element: "color_page_link").value %>;
+   color: $color_page_link;
  }
