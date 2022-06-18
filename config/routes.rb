@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   authenticate :user, -> (user) { user.is_admin? } do
     resources :users
-    resources :themes
+    resources :themes, except: [:create, :new, :destroy]
   end
 
   authenticate :user, -> (user) { user.is_resident? } do
@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   end
 
   root to: 'home#index'
-  get '*path' => redirect('/')
 
   post '/reports/:id/edit' => 'reports#edit'
+
+  get '*path' => redirect('/')
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
