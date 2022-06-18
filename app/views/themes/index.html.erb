@@ -1,0 +1,21 @@
+<h1>Themes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Current Theme</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @themes.each do |theme| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td data-label="Selected Theme"><%= theme.name %></td>
+        <td><%= link_to 'Show', theme %></td>
+        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

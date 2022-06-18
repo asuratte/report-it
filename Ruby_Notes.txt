@@ -8,6 +8,18 @@ bin/rails db:install
 bin/rails webpacker:install
 
 /*------------------------------
+Clear Cache
+------------------------------*/
+
+rake tmp:cache:clear
+
+/*------------------------------
+Simple responsive table in css
+------------------------------*/
+
+https://codepen.io/AllThingsSmitty/pen/MyqmdM
+
+/*------------------------------
 Update git config
 ------------------------------*/
 
@@ -25,6 +37,14 @@ Run local command
 ------------------------------*/
 
 bin/rails server
+
+bin/rails db:migrate  RAILS_ENV=test
+
+sudo service postgresql restart
+
+rake db:schema:load
+
+rails routes
 
 /*------------------------------
 SQLite commands
@@ -97,6 +117,28 @@ Example to generate scaffold of model
 bin/rails generate scaffold Ripple name:string website:string message:string
 bin/rails db:migrate
 ​​bin/rails​​ ​​server​
+
+/*------------------------------
+Example to generate model only
+------------------------------*/
+
+bin/rails generate model Ripple name:string website:string message:string
+bin/rails db:migrate
+​​bin/rails​​ ​​server​
+
+/*------------------------------
+Example to generate controller only
+------------------------------*/
+
+bin/rails generate controller controller_name
+
+/*------------------------------
+Destroy generates
+------------------------------*/
+
+rails destroy scaffold Theme -f
+rails destroy model Theme -f
+rails destroy controller Theme -f
 
 /*------------------------------
 Reverting to specific git commit
@@ -469,3 +511,52 @@ User types
 0 = resident
 1 = official
 2 = admin
+
+/*------------------------------
+theme
+------------------------------*/
+
+logo:string
+hero:string
+font_google:string
+font_google_url:string
+font_default:string
+color_header_text:string --C6682A
+color_accent:string --C6682A
+color_text_dark:string --2F3334
+color_text_light:string --FFFFFF
+color_login_bar:string --2F3334
+color_header_background:string --EFEEEC
+color_footer_background:string --EFEEEC
+color_button_primary:string --C6682A
+color_button_secondary:string --7E7D7D
+color_button_hover:string --F49F0A
+color_button_text_dark:string --2F3334
+color_button_text_light:string --FFFFFF
+color_nav_link:string --1577A6
+color_nav_link_hover:string --F49F0A
+color_page_link:string --1577A6
+color_page_link_active:string --FF5C00
+color_page_background:string --EFEEEC
+color_page_border:string --EFEEEC
+color_table_before:string --7E7D7D
+color_list_even:string --FFFFFF
+color_list_odd:string --F5F5F5
+color_container_link:string --FF5C00
+color_container_link_hover:string --F49F0A
+
+/* colors */
+C6682A
+EFEEEC
+A4B424
+1577A6
+2F3334
+6F7A80
+A4B078
+64B09C
+64B464
+FF5C00
+F49F0A
+7E7D7D
+F5F5F5
+FFFFFF

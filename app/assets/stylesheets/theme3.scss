@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans');
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree
+ *= require bootstrap
+ *= require_self
+ */
+
+ $color_header_text: #7B2755;
+ $color_accent: #7B2755;
+ $color_text_dark: #576924;
+ $color_text_light: #FFFFFF;
+ $color_login_bar: #576924;
+ $color_header_background: #F2F1F1;
+ $color_footer_background: #F2F1F1;
+ $color_button_primary: #7B2755;
+ $color_button_secondary: #4177A4;
+ $color_button_hover: #86A234;
+ $color_button_text_dark: #576924;
+ $color_button_text_light: #FFFFFF;
+ $color_nav_link: #7B2755;
+ $color_nav_link_hover: #86A234;
+ $color_page_link: #7B2755;
+ $color_page_link_active: #0C5075;
+ $color_page_background: #ECECEC;
+ $color_page_border: #ECECEC;
+ $color_table_before: #4177A4;
+ $color_list_even: #FFFFFF;
+ $color_list_odd: #F2F1F1;
+ $color_container_link: #0C5075;
+ $color_container_link_hover: #86A234;
+ $color_accordion_button: #F2F1F1;
+ $color_accordion_button_collapsed: #FFFFFF;
+ $color_accordion_text: #7B2755;
+ $color_nav_background: #F5F0E6;
+ $color_alert_background: #F5F0E6;
+
+ body {
+   margin: 0;
+   padding: 0;
+   font-family: 'DM Sans', sans-serif !important;
+   color: $color_text_dark;
+   font-size: 16px;
+   line-height: 18px;
+ }
+
+ .palette-image {
+   @media (min-width: 30em) {
+     width: 60%;
+   }
+   width: 90%;
+   margin-top: 15px;
+  }
+
+ .alert.alert-info {
+   background-color: $color_alert_background !important;
+   border-color: $color_alert_background !important;
+ }
+
+ .navbar.navbar-light {
+   background-color: $color_nav_background !important;
+ }
+
+ .accordion-button:focus {
+   box-shadow: none !important;
+   border-color: rgba(0,0,0,.125) !important;
+ }
+
+ .accordion-button {
+   background-color: $color_accordion_button_collapsed !important;
+   color: $color_accordion_text !important;
+ }
+
+ .accordion-button:focus {
+   box-shadow: none;
+ }
+
+ .accordion-button:not(.collapsed) {
+   background-color: $color_accordion_button !important;
+   color: $color_accordion_text !important;
+ }
+
+ .accordion-button:not(.collapsed)::after {
+   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23$color_accordion_text'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+ }
+
+ a {
+     color: $color_container_link;
+     &:hover {
+       color: $color_container_link_hover;
+     }
+ }
+
+ table {
+   border: 0;
+   border-collapse: collapse;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+
+   thead {
+     display: none;
+   }
+
+   tr {
+     display: block;
+     border: 1px solid $color_header_background;
+     padding: 1em 1em .5em;
+
+     & + tr {
+       margin-top: 0.625em;
+     }
+   }
+
+   th {
+     padding: 0.6em 0.6em;
+     border-bottom: 1px solid $color_header_background;
+   }
+
+   td {
+     display: flex;
+     justify-content: space-between;
+     padding: 0.6em 0.6em;
+     border-bottom: 1px solid $color_header_background;
+     font-size: .90em;
+
+     &:before {
+       content: attr(data-label);
+       font-size: 0.95em;
+       text-align: left;
+       font-weight: bold;
+       max-width: 100%;
+       color: $color_table_before;
+     }
+
+     & + td {
+       margin-top: 0.8em;
+     }
+
+     &:last-child {
+       border-bottom: 0;
+     }
+   }
+ }
+
+ @media screen and (min-width: 650px) {
+   table {
+     thead {
+       display: table-header-group;
+     }
+
+     tr {
+       display: table-row;
+       border: 0;
+     }
+
+     th, td {
+       text-align: left;
+       font-size: .95em;
+     }
+
+     td {
+       display: table-cell;
+
+       &:before {
+         display: none;
+       }
+
+       &:last-child {
+         border-bottom: 1px solid $color_header_background;
+       }
+     }
+   }
+ }
+
+ header.main {
+   @media (min-width: 30em) {
+     text-align: left;
+     background-size: 65%;
+   }
+   border-top: 5px solid $color_accent;
+   text-align: center;
+   background-color: $color_header_background;
+   padding: 1em;
+   margin: 0;
+   background-image: url('cityscape_3.png');
+   background-repeat: no-repeat;
+   background-size: 100%;
+   background-position: center right;
+ }
+
+ tr.list_line_odd {
+     background-color: $color_list_odd;
+   }
+
+ .main-container {
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+ }
+
+ .logo {
+   @media (min-width: 30em) {
+     max-width: 300px;
+   }
+   display: block;
+   max-width: 200px;
+   width: auto;
+   height: auto;
+ }
+
+ .content-container {
+   @media (min-width: 30em) {
+     padding-top: 2em;
+     padding-right: 2em;
+     padding-bottom: 6em;
+     padding-left: 2em;
+   }
+   min-width: fit-content;
+   margin: 0;
+   padding-top: 1.5em;
+   padding-right: 1.5em;
+   padding-bottom: 6em;
+   padding-left: 1.5em;
+   width: 100%;
+   a {
+       color: $color_container_link;
+       &:hover {
+         color: $color_container_link_hover;
+       }
+   }
+ }
+
+ footer {
+   border-bottom: 10px solid $color_accent;
+   background-color: $color_footer_background;
+ }
+
+ .copyright {
+   font-size: 13px;
+   line-height: 15px;
+   text-align: center;
+ }
+
+ .logged_in_as {
+   font-size: 12px;
+   line-height: 14px;
+   margin: 0;
+   padding: 1em 2em;
+   background-color: $color_login_bar;
+   color: $color_text_light;
+ }
+
+ h1, h2, h3, h4, h5, aside {
+   margin: 0;
+   padding-bottom: 0.4em;
+   color: $color_header_text;
+ }
+
+ .navbar-light .navbar-nav .nav-item .nav-link {
+     color: $color_nav_link;
+ }
+
+ .navbar-light .navbar-nav a.nav-link:hover {
+   color: $color_nav_link_hover;
+ }
+
+ .btn.btn-primary {
+   padding: 0.5em 1.5em;
+   font-weight: bold;
+   border-radius: 20px;
+   background: none;
+   border: none;
+   color: $color_button_text_light;
+   background-color: $color_button_primary;
+ }
+
+ .btn.btn-secondary {
+   padding: 0.5em 1.5em;
+   font-weight: bold;
+   border-radius: 20px;
+   background: none;
+   border: none;
+   color: $color_button_text_light;
+   background-color: $color_button_secondary;
+ }
+
+ .btn:focus {
+   box-shadow: none !important;
+   border-color: rgba(0,0,0,.125) !important;
+ }
+
+ .btn.btn-default {
+   color: $color_button_text_light;
+   background-color: $color_button_primary;
+ }
+
+ .btn.btn-primary:hover {
+   background-color: $color_button_hover;
+   color: $color_button_text_light;
+ }
+
+ .btn.btn-secondary:hover {
+   background-color: $color_button_hover;
+   color: $color_button_text_light;
+ }
+
+ .btn.btn-success {
+   background-color: $color_page_link;
+ }
+
+ form label.required::after {
+     content: "*";
+     color: red;
+ }
+ form {
+     max-width: 50em;
+ }
+
+ .button-float {
+    float:left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+ }
+
+ .card:hover{
+   transform: scale(1.02);
+   box-shadow: 0 6px 6px rgba(0,0,0,.10), 0 3px 6px rgba(0,0,0,.05);
+ }
+
+ .pagination .page-item.active .page-link {
+   background-color: $color_page_background;
+   border-color: $color_page_border;
+   color: $color_page_link_active;
+ }
+ .pagination .page-item .page-link {
+   color: $color_page_link;
+ }

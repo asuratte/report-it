@@ -1,0 +1,18 @@
+<p>
+  <strong>Name:</strong>
+  <span id="current_theme"><%= @theme.name %></span>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= get_description_by_name(@theme.name) %>
+</p>
+
+<div>
+  <%= image_tag get_image_by_name(@theme.name), :class => "palette-image" %>
+</div>
+
+
+<br>
+<%= button_to 'Edit', edit_theme_path(@theme), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', themes_path, :method => :get, class: "btn btn-secondary button-float" %>

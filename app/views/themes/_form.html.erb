@@ -1,0 +1,27 @@
+<%= form_with(model: theme) do |form| %>
+  <% if theme.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
+
+      <ul>
+        <% theme.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-md-6">
+    <div class="field mb-3">
+      <div class="mb-2">
+      <strong>Select New Theme:</strong>
+      </div>
+      <%= form.select :name, options_for_select(themes.collect {|x| [x['name']] }), { }, { class: 'form-select'} %>
+    </div>
+  </div>
+
+  <br>
+  <span class="actions button-float">
+    <%= form.submit 'Update Theme', class: 'btn btn-primary' %>
+  </span>
+<% end %>

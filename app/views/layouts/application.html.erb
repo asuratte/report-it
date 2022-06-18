@@ -8,6 +8,17 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <% if get_current_theme == 'Theme 1' %>
+      <%= stylesheet_link_tag 'theme1', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% elsif get_current_theme == 'Theme 2' %>
+      <%= stylesheet_link_tag 'theme2', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% elsif get_current_theme == 'Theme 3' %>
+      <%= stylesheet_link_tag 'theme3', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% else %>
+      <%= stylesheet_link_tag 'theme1', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% end %>
+
     <% if current_page?('/') %>
       <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
     <% end %>
