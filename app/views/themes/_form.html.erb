@@ -13,8 +13,10 @@
 
   <div class="col-md-6">
     <div class="field mb-3">
-      <%= form.label :name %>
-      <%= form.select :name, options_for_select(themes.collect {|x| [x['name']] }), {}, { class: 'form-select'} %>
+      <div class="mb-2">
+      <strong>Select New Theme:</strong>
+      </div>
+      <%= form.select :name, options_for_select(themes.collect {|x| [x['name']] }), { }, { class: 'form-select'} %>
     </div>
   </div>
 

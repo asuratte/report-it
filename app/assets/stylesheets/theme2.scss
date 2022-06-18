@@ -54,6 +54,14 @@
    line-height: 18px;
  }
 
+ .palette-image {
+   @media (min-width: 30em) {
+     width: 60%;
+   }
+   width: 90%;
+   margin-top: 15px;
+  }
+
  .alert.alert-info {
    background-color: $color_alert_background !important;
    border-color: $color_alert_background !important;
@@ -236,7 +244,7 @@
  }
 
  footer {
-   border-bottom: 5px solid $color_accent;
+   border-bottom: 10px solid $color_accent;
    background-color: $color_footer_background;
  }
 

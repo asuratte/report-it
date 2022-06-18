@@ -1,6 +1,10 @@
 <h1>Editing Theme</h1>
 
+<p>
+  <strong>Current Theme:</strong> <%= get_current_theme %>
+</p>
+
 <%= render 'form', theme: @theme %>
 
-<%= button_to 'Show', @theme, :method => :get, class: "btn btn-secondary button-float" %>
+<%= button_to 'Show Current', @theme, :method => :get, class: "btn btn-secondary button-float" %>
 <%= button_to 'Back', themes_path, :method => :get, class: "btn btn-secondary button-float" %>
