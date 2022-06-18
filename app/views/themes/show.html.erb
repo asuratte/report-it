@@ -1,14 +1,17 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Element:</strong>
-  <%= @theme.element %>
+  <strong>Name:</strong>
+  <%= @theme.name %>
 </p>
 
 <p>
-  <strong>Value:</strong>
-  <%= @theme.value %>
+  <strong>Description:</strong>
+  <%= get_description_by_name(@theme.name) %>
 </p>
+
+<div>
+  
+</div>
+
 
 <br>
 <%= button_to 'Edit', edit_theme_path(@theme), :method => :get, class: "btn btn-primary button-float" %>

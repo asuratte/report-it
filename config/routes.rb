@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+  resources :themes
   resources :reports
   devise_for :users, :path_prefix => 'account', :controllers => {
     registrations: 'registrations'
   }
   authenticate :user, -> (user) { user.is_admin? } do
     resources :users
-    resources :themes
-  end
+    end
 
   authenticate :user, -> (user) { user.is_resident? } do
     get 'resident', to: 'resident#index'

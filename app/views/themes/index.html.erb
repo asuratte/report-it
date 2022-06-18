@@ -3,23 +3,19 @@
 <table>
   <thead>
     <tr>
-      <th scope="col">Element</th>
-      <th scope="col">Value</th>
-      <th colspan="2"></th>
+      <th scope="col">Selected Theme</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @themes.each do |theme| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td data-label="Element"><%= theme.element %></td>
-        <td data-label="Value"><%= theme.value %></td>
+        <td data-label="Selected Theme"><%= theme.name %></td>
         <td><%= link_to 'Show', theme %></td>
         <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-<%= button_to 'New Theme', new_theme_path, :method => :get, class: "btn btn-primary button-float" %>

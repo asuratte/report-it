@@ -1,7 +1,7 @@
 <%= form_with(model: theme) do |form| %>
   <% if theme.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <p><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</p>
+    <div id="error_explanation">
+      <h2><%= pluralize(theme.errors.count, "error") %> prohibited this theme from being saved:</h2>
 
       <ul>
         <% theme.errors.each do |error| %>
@@ -11,27 +11,11 @@
     </div>
   <% end %>
 
-  <div id="error_explanation" class="alert alert-danger">
-    <p>Please note:</p>
-
-    <ul>
-        <li>you will need to clear cache for any value changes to take effect</li>
-        <li>making changes may result in lost css functionality</li>
-    </ul>
-  </div>
-
-  <div class="field">
-    <%= form.label :element, :class => 'form-label required' %>
-    <br>
-    <%= form.text_field :element %>
-  </div>
-
-  <br>
-
-  <div class="field">
-    <%= form.label :value, :class => 'form-label required' %>
-    <br>
-    <%= form.text_field :value %>
+  <div class="col-md-6">
+    <div class="field mb-3">
+      <%= form.label :name %>
+      <%= form.select :name, options_for_select(themes.collect {|x| [x['name']] }), {}, { class: 'form-select'} %>
+    </div>
   </div>
 
   <br>
