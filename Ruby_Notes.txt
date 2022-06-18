@@ -38,6 +38,14 @@ Run local command
 
 bin/rails server
 
+bin/rails db:migrate  RAILS_ENV=test
+
+sudo service postgresql restart
+
+rake db:schema:load
+
+rails routes
+
 /*------------------------------
 SQLite commands
 ------------------------------*/

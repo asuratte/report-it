@@ -1,7 +1,7 @@
 <h1>Editing Theme</h1>
 
 <p>
-  <strong>Current Theme:</strong> <%= get_current_theme %>
+  <strong>Current Theme:</strong> <span id="current_theme"><%= get_current_theme %></span>
 </p>
 
 <%= render 'form', theme: @theme %>
