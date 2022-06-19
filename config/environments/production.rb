@@ -64,7 +64,7 @@ Rails.application.configure do
 
   # Devise Email Config
   
-  config.action_mailer.default_url_options = { :host => 'reportit.tech' }
+  config.action_mailer.default_url_options = { :host => 'http://www.reportit.tech' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => ENV['SMTP_SERVER'],
