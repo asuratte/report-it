@@ -23,17 +23,8 @@
 
 - rake import:csv_model
     - Populates Users table
-- Run the following query on the development database:
-    
-    ```jsx
-    INSERT INTO 
-        themes (name, created_at, updated_at)
-    VALUES
-        ('Theme 1',NOW(),NOW())
-    ;
-    ```
-    
-    - Populates the Themes table
+    - Populates Reports table
+    - Populates Themes table
 
 ## Run Locally
 
