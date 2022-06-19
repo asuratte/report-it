@@ -62,6 +62,10 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "report_it_production"
 
+  # Devise Email Config
+  config.action_mailer.default_url_options = { :host => 'report-it-tracker.herokuapp.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
