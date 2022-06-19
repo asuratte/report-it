@@ -74,7 +74,7 @@ Rails.application.configure do
     :authentication       => :plain,
     :enable_starttls_auto => true  }
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
