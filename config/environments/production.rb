@@ -63,7 +63,16 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "report_it_production"
 
   # Devise Email Config
+  
   config.action_mailer.default_url_options = { :host => 'report-it-tracker.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => ENV['SMTP_SERVER'],
+    :port                 => ENV['SMTP_PORT'],
+    :user_name            => ENV['SMTP_USER'],
+    :password             => ENV['SMTP_PASSWORD'],
+    :authentication       => :plain,
+    :enable_starttls_auto => true  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
