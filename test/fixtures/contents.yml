@@ -1,11 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  homepage_heading_1: MyString
-  footer_copyright: MyString
-  logo_image_path: MyString
+  homepage_heading_1: Welcome to ReportIt
+  footer_copyright: Report-It. All Rights Reserved.
+  logo_image_path: https://placekitten.com/400/147
 
-two:
-  homepage_heading_1: MyString
-  footer_copyright: MyString
-  logo_image_path: MyString
