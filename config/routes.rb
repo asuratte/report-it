@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :contents
   resources :reports
   devise_for :users, :path_prefix => 'account', :controllers => {
     registrations: 'registrations'
@@ -7,6 +6,7 @@ Rails.application.routes.draw do
   authenticate :user, -> (user) { user.is_admin? } do
     resources :users
     resources :themes, except: [:create, :new, :destroy]
+    resources :contents, except: [:create, :new, :destroy]
   end
 
   authenticate :user, -> (user) { user.is_resident? } do
