@@ -1,0 +1,32 @@
+<%= form_with(model: content) do |form| %>
+  <% if content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+        <% content.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :homepage_heading_1 %>
+    <%= form.text_field :homepage_heading_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :footer_copyright %>
+    <%= form.text_field :footer_copyright %>
+  </div>
+
+  <div class="field">
+    <%= form.label :logo_image_path %>
+    <%= form.text_field :logo_image_path %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

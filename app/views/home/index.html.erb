@@ -1,5 +1,11 @@
 <div class="mx-auto text-center mt-3">
-    <h1 class="fw-bold mb-0 pb-2">Welcome to ReportIt</h1>
+    <h1 class="fw-bold mb-0 pb-2">
+    <% if get_homepage_heading_1 == nil || get_homepage_heading_1 == "" %>
+        Welcome to ReportIt
+    <% else %>
+        <%= get_homepage_heading_1 %>
+    <% end %>
+    </h1>
     <p>Report, track, and browse non-emergency issues in your community.</p>
 </div>
 

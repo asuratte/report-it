@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Homepage heading 1:</strong>
+  <%= @content.homepage_heading_1 %>
+</p>
+
+<p>
+  <strong>Footer copyright:</strong>
+  <%= @content.footer_copyright %>
+</p>
+
+<p>
+  <strong>Logo image path:</strong>
+  <%= @content.logo_image_path %>
+</p>
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>
