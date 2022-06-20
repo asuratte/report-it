@@ -1,6 +1,4 @@
 <h1>Editing Content</h1>
-
+<p class="mb-4"><em>Leave fields blank to use default values.</em></p>
 <%= render 'form', content: @content %>
-
-<%= link_to 'Show', @content %> |
-<%= link_to 'Back', contents_path %>
+<%= button_to 'Back', content_path(0), :method => :get, class: "btn btn-secondary button-float" %>

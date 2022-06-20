@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :homepage_heading_1 %>
-    <%= form.text_field :homepage_heading_1 %>
+  <div class="field mb-3">
+    <%= form.label :homepage_heading_1, :class => 'form-label' %>
+    <%= form.text_field :homepage_heading_1, :class => 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :footer_copyright %>
-    <%= form.text_field :footer_copyright %>
+  <div class="field mb-3">
+    <%= form.label :footer_copyright, :class => 'form-label' %>
+    <%= form.text_field :footer_copyright, :class => 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :logo_image_path %>
-    <%= form.text_field :logo_image_path %>
+  <div class="field mb-3">
+    <%= form.label :logo_image_path, :class => 'form-label' %>
+    <%= form.text_field :logo_image_path, :class => 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <span class="actions button-float">
+      <%= form.submit "Update Content", :class => 'btn btn-primary' %>
+    </span>
 <% end %>

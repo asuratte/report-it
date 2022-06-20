@@ -13,5 +13,6 @@
   <%= @content.logo_image_path %>
 </p>
 
-<%= link_to 'Edit', edit_content_path(@content) %> |
-<%= link_to 'Back', contents_path %>
+<br>
+<%= button_to 'Edit', edit_content_path(@content), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', contents_path, :method => :get, class: "btn btn-secondary button-float" %>
