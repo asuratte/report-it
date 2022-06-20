@@ -74,6 +74,10 @@
   <br>
 
   <span class="actions button-float">
+  <% if current_page?(:controller => 'reports', :action => 'new')%>
     <%= form.submit 'Submit Report', class: 'btn btn-primary' %>
+  <% else %>
+    <%= form.submit 'Update Report', class: 'btn btn-primary' %>
+  <% end %>
   </span>
 <% end %>
