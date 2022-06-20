@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   authenticate :user, -> (user) { user.is_admin? } do
     resources :users
     resources :themes, except: [:create, :new, :destroy]
+    resources :contents, except: [:create, :new, :destroy]
   end
 
   authenticate :user, -> (user) { user.is_resident? } do

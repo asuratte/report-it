@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_18_164008) do
+ActiveRecord::Schema.define(version: 2022_06_20_002828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contents", force: :cascade do |t|
+    t.string "homepage_heading_1"
+    t.string "footer_copyright"
+    t.string "logo_image_path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "reports", force: :cascade do |t|
     t.string "address1"

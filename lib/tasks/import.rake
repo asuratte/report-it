@@ -51,5 +51,15 @@ namespace :import do
       t.save
     end
 
+    csv_text = File.read(Rails.root.join("lib", "content_data.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    csv.each do |row|
+      c = Content.new
+      c.homepage_heading_1 = row["homepage_heading_1"]
+      c.logo_image_path = row["logo_image_path"]
+      c.footer_copyright = row["footer_copyright"]
+      c.save
+    end
+
   end
 end

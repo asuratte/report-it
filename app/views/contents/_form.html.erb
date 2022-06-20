@@ -1,0 +1,38 @@
+<%= form_with(model: content) do |form| %>
+  <% if content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+        <% content.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :homepage_heading_1, :class => 'form-label' %>
+    <%= form.text_field :homepage_heading_1, :class => 'form-control' %>
+    <div class="form-text"><strong>Default:</strong> Welcome to ReportIt</div>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :footer_copyright, :class => 'form-label' %>
+    <%= form.text_field :footer_copyright, :class => 'form-control' %>
+    <div class="form-text"><strong>Default:</strong> Copyright ©2022 ReportIt. All Rights Reserved.</div>
+    <div class="form-text"><strong>Note:</strong> Copyright ©[current year] is added to the beginning of the text automatically.</div>
+  </div>
+
+  <div class="field mb-4">
+    <%= form.label :logo_image_path, :class => 'form-label' %>
+    <%= form.text_field :logo_image_path, :class => 'form-control' %>
+    <div class="form-text"><strong>Default:</strong> ReportIt logo</div>
+    <div class="form-text"><strong>Note:</strong> Please enter a full hosted image URL such as www.example.com/images/logo.png.</div>
+    <div class="form-text">Dimensions of 400px wide by 150px high will work best.</div>
+  </div>
+
+  <span class="actions button-float">
+      <%= form.submit "Update Content", :class => 'btn btn-primary' %>
+    </span>
+<% end %>
