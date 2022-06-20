@@ -11,7 +11,7 @@ class OfficialController < ApplicationController
       WHEN status = 'Flagged' THEN 3 
       WHEN status = 'Resolved' THEN 4 
       ELSE 5 END, created_at DESC"
-      )), items: 10, size: [1,1,1,1])
+      )), items: 10, size: [1,0,0,1])
   end
 
   private

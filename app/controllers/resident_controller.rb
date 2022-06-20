@@ -5,7 +5,7 @@ class ResidentController < ApplicationController
   
   def index
     @user = current_user
-    @pagy, @reports = pagy(@user.reports.order('created_at DESC'), items: 7, size: [1,1,1,1])
+    @pagy, @reports = pagy(@user.reports.order('created_at DESC'), items: 7, size: [1,0,0,1])
   end
 
   private
