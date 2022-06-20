@@ -10,4 +10,8 @@ module ContentsHelper
     def get_footer_copyright
         @footer_copyright = Content.first.footer_copyright
     end
+
+    def get_content
+        @content = Content.first
+    end
 end
