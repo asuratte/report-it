@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @pagy, @reports = pagy(Report.all.order('created_at DESC'), items: 10)
+    @pagy, @reports = pagy(Report.all.order('created_at DESC'), items: 10, size: [1,0,0,1])
   end
 
   # GET /reports/1 or /reports/1.json
