@@ -1,5 +1,7 @@
 class Report < ApplicationRecord
   belongs_to :user
+  has_one_attached :image, dependent: :destroy
+  validates :image, content_type: [:png, :jpg, :jpeg]
 
   validates :city, :state, :zip, :description, :category, :subcategory, presence: true
   validates :address1, :address2, :city, :state, length: { maximum: 50 }
