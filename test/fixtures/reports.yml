@@ -13,6 +13,7 @@ one:
   status: New
   severity: Low
   user: one
+  active_status: 0
 
 two:
   id: 2
@@ -27,6 +28,7 @@ two:
   status: New
   severity: Low
   user: two
+  active_status: 1
 
 three:
   id: 3
@@ -41,3 +43,19 @@ three:
   status: Resolved
   severity: Low
   user: one
+  active_status: 2
+
+four:
+  id: 4
+  address1:
+  address2:
+  city: Albany
+  state: Georgia
+  zip: 31701
+  description: It looks like there is a sewer cave-in on Eastern Ave. Someone needs to look into it right away. 
+  category: Transportation and Streets
+  subcategory: Sewer complaint 
+  status: New
+  severity: Low
+  user: one
+  active_status: 3
