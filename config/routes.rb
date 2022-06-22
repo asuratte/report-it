@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   post '/reports/:id/edit' => 'reports#edit'
 
-  get '*path' => redirect('/')
+  get '*path', to: redirect('/'), constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -68,6 +68,15 @@
     <%= form.text_area :description, class: 'form-control', rows: 4 %>
   </div>
 
+  <div class="field mb-3">
+    <% if report.image.attached? && report.image.representable? %>
+      <%= image_tag report.image %>
+    <% else %>
+      <%= form.label :image, class: 'form-label' %>
+      <%= form.file_field :image, class: 'form-control'%>
+    <% end %>
+  </div>
+
   <%= form.hidden_field :category, value: report.category %>
   <%= form.hidden_field :subcategory, value: report.subcategory %>
 
