@@ -11,6 +11,15 @@
     </div>
   <% end %>
 
+  <% if user_signed_in? %>
+    <% if current_user.is_official? || current_user.is_admin? %>
+    <p>
+      <strong id="incident_number">Incident Number:</strong>
+      <%= @report.id %>
+    </p>
+    <% end %>
+  <% end %>
+
   <!-- Only display if user is Official or Admin -->
   <% if user_signed_in? %>
     <% if current_user.is_official? || current_user.is_admin? %>

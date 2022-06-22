@@ -6,6 +6,11 @@
           <thead>
             <tr>
               <th scope="col">Date Reported</th>
+              <% if user_signed_in? %>
+                <% if current_user.is_official? || current_user.is_admin? %>
+                <th scope="col">Incident No.</th>
+                <% end %>
+              <% end %>
               <th scope="col">Report Type</th>
               <th scope="col">Status</th>
               <th scope="col">Severity</th>
@@ -18,6 +23,11 @@
               <% @reports.each do |report| %>
                 <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
                   <td data-label="Date Reported"><%= report.created_at.to_date %></td>
+                  <% if user_signed_in? %>
+                    <% if current_user.is_official? || current_user.is_admin? %>
+                    <td data-label="Incident Number"><%= report.id %></td>
+                    <% end %>
+                  <% end %>
                   <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
                   <td data-label="Status"><%= report.status %></td>
                   <td data-label="Severity"><%= report.severity %></td>
