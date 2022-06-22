@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :reports
+  resources :reports do
+    member do
+      delete 'delete_image/:image_id', to: 'reports#delete_image', as: 'delete_image'
+    end
+  end
+
   devise_for :users, :path_prefix => 'account', :controllers => {
     registrations: 'registrations'
   }

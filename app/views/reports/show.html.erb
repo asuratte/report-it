@@ -52,11 +52,11 @@
 </p>
 
 <div>
+  <% if @report.image.attached? && @report.image.representable? %>
   <p>
     <strong>Image:</strong>
   </p>
-  <% if @report.image.attached? && @report.image.representable? %>
-    <%= image_tag @report.image %>
+  <%= image_tag @report.image %>
   <% end %>
 </div>
 

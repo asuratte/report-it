@@ -70,6 +70,16 @@ class ReportsController < ApplicationController
     end
   end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    if current_user.id == image.record.user_id || current_user.admin?
+      image.purge
+      redirect_back fallback_location: request.referer
+    else
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
