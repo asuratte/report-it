@@ -14,7 +14,7 @@
   <% if user_signed_in? %>
     <% if current_user.is_official? || current_user.is_admin? %>
     <p>
-      <strong>Incident Number:</strong>
+      <strong id="incident_number">Incident Number:</strong>
       <%= @report.id %>
     </p>
     <% end %>
