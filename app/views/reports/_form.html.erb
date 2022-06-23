@@ -70,7 +70,7 @@
 
   <div class="field mb-3">
     <% if report.image.attached? %>
-      <%= image_tag report.image, class: 'd-block mb-2' %>
+      <%= image_tag report.image, class: 'd-block mb-2 img-fluid' %>
       <%= link_to "Remove Image", delete_image_report_url(image_id: report.image.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' } %>
     <% else %>
       <%= form.label :image, class: 'form-label' %>
