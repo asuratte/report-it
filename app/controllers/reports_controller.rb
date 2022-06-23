@@ -72,9 +72,10 @@ class ReportsController < ApplicationController
 
   def delete_image
     image = ActiveStorage::Attachment.find(params[:image_id])
-    if current_user.id == image.record.user_id || current_user.admin?
+    report = image.record
+    if current_user.id == report.user_id || current_user.admin?
       image.purge
-      redirect_back fallback_location: request.referer
+      redirect_to edit_report_path(report)
     else
       redirect_to root_path
     end
