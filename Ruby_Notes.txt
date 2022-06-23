@@ -560,3 +560,12 @@ F49F0A
 7E7D7D
 F5F5F5
 FFFFFF
+
+/*------------------------------
+Report Status Enum Reference
+------------------------------*/
+
+0 active
+1 spam
+2 abuse
+3 outside_area
