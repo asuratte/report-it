@@ -1,3 +1,12 @@
+<% if user_signed_in? %>
+  <% if current_user.is_official? || current_user.is_admin? %>
+  <p>
+    <strong id="incident_number">Incident Number:</strong>
+    <%= @report.id %>
+  </p>
+  <% end %>
+<% end %>
+
 <p>
   <strong>Category:</strong>
   <%= @report.category %> - <%= @report.subcategory %>
