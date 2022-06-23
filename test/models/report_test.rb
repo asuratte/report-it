@@ -3,7 +3,10 @@ require "test_helper"
 class ReportTest < ActiveSupport::TestCase
 
   setup do
-    @report = reports(:one)
+    @report1 = reports(:one)
+    @report2 = reports(:two)
+    @report3 = reports(:three)
+    @report4 = reports(:four)
   end
 
   test "report attributes cannot be empty" do
@@ -23,10 +26,10 @@ class ReportTest < ActiveSupport::TestCase
     report.address2 = "b" * 51
     report.city = "c" * 51
     report.state = "d" * 51
-    report.zip = @report.zip
+    report.zip = @report1.zip
     report.description = "a" * 1001
-    report.category = @report.category
-    report.subcategory = @report.subcategory
+    report.category = @report1.category
+    report.subcategory = @report1.subcategory
     assert report.invalid?
     assert report.errors[:address1].any?
     assert report.errors[:address2].any?
@@ -37,14 +40,14 @@ class ReportTest < ActiveSupport::TestCase
 
   test "report should not be created if zip has invalid format" do
     report = Report.new
-    report.address1 = @report.address1
-    report.address2 = @report.address2
-    report.city = @report.city
-    report.state = @report.state
+    report.address1 = @report1.address1
+    report.address2 = @report1.address2
+    report.city = @report1.city
+    report.state = @report1.state
     report.zip = 1234
-    report.description = @report.description
-    report.category = @report.category
-    report.subcategory = @report.subcategory
+    report.description = @report1.description
+    report.category = @report1.category
+    report.subcategory = @report1.subcategory
     assert report.invalid?
     assert report.errors[:zip].any?
     report.zip = "123456"
@@ -59,11 +62,31 @@ class ReportTest < ActiveSupport::TestCase
     report.city = "Boston"
     report.state = "Massachusetts"
     report.zip = 12345
-    report.description = @report.description
-    report.category = @report.category
-    report.subcategory = @report.subcategory
+    report.description = @report1.description
+    report.category = @report1.category
+    report.subcategory = @report1.subcategory
     report.user = users(:one)
     assert report.valid?
+  end
+
+  test "should return true for report1 is_active?" do
+    assert @report1.is_active?
+    assert_equal @report1.active_status, "active"
+  end
+
+  test "should return false for report2 with active_status 'spam' is_active?" do
+    assert !@report2.is_active?
+    assert_equal @report2.active_status, "spam"
+  end
+
+  test "should return false for report3 with active_status 'abuse' is_active?" do
+    assert !@report3.is_active?
+    assert_equal @report3.active_status, "abuse"
+  end
+
+  test "should return false for report4 with active_status 'outside_area' is_active?" do
+    assert !@report4.is_active?
+    assert_equal @report4.active_status, "outside_area"
   end
 
 end
