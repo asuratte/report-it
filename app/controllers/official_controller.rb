@@ -4,7 +4,7 @@ class OfficialController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @pagy, @reports = pagy(Report.order(Arel.sql(
+    @pagy, @reports = pagy(Report.where(active_status: 0).order(Arel.sql(
       "CASE 
       WHEN status = 'New' THEN 1 
       WHEN status = 'In Progress' THEN 2 
