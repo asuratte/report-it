@@ -93,5 +93,21 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to reports_url
   end
+
+  test "should delete image from report" do
+    sign_in @resident_user
+    get report_url(@report)
+    assert_response :success
+    assert_equal false, @report.image.attached?
+
+    patch report_url(@report), params: { report: { image: fixture_file_upload('test/fixtures/files/testimage.png', 'image/png') } }
+    @report.reload
+    assert @report.image.attached?
+    assert_equal "testimage.png", @report.image.filename.to_s
+
+    delete delete_image_report_path(image_id: @report.image.id)
+    @report.reload
+    assert_equal false, @report.image.attached?
+  end
   
 end

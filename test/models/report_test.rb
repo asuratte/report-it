@@ -89,4 +89,45 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal @report4.active_status, "outside_area"
   end
 
+  test "report should be created with valid image content type" do
+    report = Report.new
+    report.address1 = "123 Main Street"
+    report.address2 = "Apt 1"
+    report.city = "Boston"
+    report.state = "Massachusetts"
+    report.zip = 12345
+    report.description = @report1.description
+    report.category = @report1.category
+    report.subcategory = @report1.subcategory
+    report.user = users(:one)
+    report.image.attach(
+      io: File.open(Rails.root.join('test', 'fixtures', 'files', 'testimage.png')),
+      filename: 'testimage.png',
+      content_type: 'image/png'
+    )
+    assert report.image.attached?
+    assert report.valid?
+  end
+
+  test "report should not be created with invalid image content type" do
+    report = Report.new
+    report.address1 = "123 Main Street"
+    report.address2 = "Apt 1"
+    report.city = "Boston"
+    report.state = "Massachusetts"
+    report.zip = 12345
+    report.description = @report1.description
+    report.category = @report1.category
+    report.subcategory = @report1.subcategory
+    report.user = users(:one)
+    report.image.attach(
+      io: File.open(Rails.root.join('test', 'fixtures', 'files', 'testimage2.gif')),
+      filename: 'testimage2.gif',
+      content_type: 'image/gif'
+    )
+    assert report.invalid?
+    assert report.errors[:image].any?
+    assert_equal ["has an invalid content type"], report.errors[:image]
+  end
+
 end

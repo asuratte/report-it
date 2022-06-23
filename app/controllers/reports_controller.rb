@@ -70,6 +70,17 @@ class ReportsController < ApplicationController
     end
   end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    report = image.record
+    if current_user.id == report.user_id || current_user.admin?
+      image.purge
+      redirect_to edit_report_path(report)
+    else
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
@@ -78,7 +89,7 @@ class ReportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity)
+      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :image)
     end
 
     # Redirects to the last page when exception thrown

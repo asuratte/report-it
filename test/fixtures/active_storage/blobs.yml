@@ -1,0 +1,15 @@
+png:
+  key: '12345'
+  filename: 'testimage.png'
+  content_type: 'image/png'
+  service_name: 'local'
+  byte_size: <%= File.size(Rails.root.join('test', 'fixtures', 'files', 'testimage.png')) %>
+  checksum: <%= Digest::MD5.file(Rails.root.join('test', 'fixtures', 'files', 'testimage.png')).base64digest %>
+
+gif:
+  key: '54321'
+  filename: 'testimage2.gif'
+  content_type: 'image/gif'
+  service_name: 'local'
+  byte_size: <%= File.size(Rails.root.join('test', 'fixtures', 'files', 'testimage2.gif')) %>
+  checksum: <%= Digest::MD5.file(Rails.root.join('test', 'fixtures', 'files', 'testimage2.gif')).base64digest %>

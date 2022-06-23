@@ -1,5 +1,7 @@
 class Report < ApplicationRecord
   belongs_to :user
+  has_one_attached :image, dependent: :destroy
+  validates :image, content_type: [:png, :jpg, :jpeg]
   enum active_status: [:active, :spam, :abuse, :outside_area]
 
   validates :city, :state, :zip, :description, :category, :subcategory, presence: true

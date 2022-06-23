@@ -1,0 +1,11 @@
+one:
+  name: 'image'
+  record_type: 'Report'
+  record_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  blob_id: <%= ActiveRecord::FixtureSet.identify(:png) %>
+
+two:
+  name: 'image'
+  record_type: 'Report'
+  record_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
+  blob_id: <%= ActiveRecord::FixtureSet.identify(:gif) %>

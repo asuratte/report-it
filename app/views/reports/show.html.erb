@@ -60,6 +60,16 @@
   <%= @report.description %>
 </p>
 
+<div>
+  <% if @report.image.attached? %>
+  <p>
+    <strong>Image:</strong>
+  </p>
+  <%= image_tag @report.image, class: 'img-fluid' %>
+  <% end %>
+</div>
+
+
 <br>
 
 <!-- Only display if user is Official/Admin/Or the report writer -->
