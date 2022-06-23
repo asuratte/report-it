@@ -38,6 +38,7 @@ namespace :import do
       r.status = row["status"]
       r.severity = row["severity"]
       r.user_id = row["user_id"]
+      r.active_status = row["active_status"]
       r.save
       r.created_at = (rand*30).days.ago
       r.save
