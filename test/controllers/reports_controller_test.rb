@@ -5,6 +5,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @report = reports(:one)
+    @inactive_report = reports(:two)
     @resident_user = users(:one)
     @official_user = users(:two)
     @admin_user = users(:three)
@@ -41,9 +42,37 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to resident_path
   end
 
-  test "should show report" do
+  test "should show active report for all user roles" do
     get report_url(@report)
     assert_response :success
+    sign_in @admin_user
+    get report_url(@report)
+    assert_response :success
+    sign_out @admin_user
+    sign_in @official_user
+    get report_url(@report)
+    assert_response :success
+    sign_out @official_user
+    sign_in @resident_user
+    get report_url(@report)
+    assert_response :success
+    sign_out @resident_user
+  end
+
+  test "should show inactive report for admin user" do
+    sign_in @admin_user
+    get report_url(@inactive_report)
+    assert_response :success
+  end
+
+  test "should not show inactive report for official or resident user" do
+    sign_in @official_user
+    get report_url(@inactive_report)
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @resident_user
+    get report_url(@inactive_report)
+    assert_response :redirect
   end
 
   test "should get edit if signed in as resident who created report" do
@@ -82,6 +111,12 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   test "should update report" do
     sign_in @resident_user
     patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip } }
+    assert_redirected_to report_url(@report)
+  end
+
+  test "should update report active_status as admin" do
+    sign_in @admin_user
+    patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip, active_status: "abuse" } }
     assert_redirected_to report_url(@report)
   end
 

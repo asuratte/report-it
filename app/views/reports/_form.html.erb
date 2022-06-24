@@ -87,6 +87,15 @@
     <% end %>
   </div>
 
+  <% if current_user.is_admin? %>
+   <div class="field mb-3 row">
+      <div class="col-md-4">
+        <%= form.label :active_status, 'Active Status', :class => 'form-label', :id => 'active_status_label' %>
+        <%= form.select(:active_status, [['Active', 'active'], ['Spam', 'spam'], ['Abuse', 'abuse'], ['Ouside Area', 'outside_area']], {}, { :class => 'form-select' }) %>
+      </div>
+    </div>
+  <% end %>
+
   <%= form.hidden_field :category, value: report.category %>
   <%= form.hidden_field :subcategory, value: report.subcategory %>
 

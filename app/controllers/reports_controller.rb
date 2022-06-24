@@ -12,6 +12,9 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
+    if @report.active_status != "active" && (current_user == nil || current_user.is_resident? || current_user.is_official?)
+      redirect_to reports_path
+    end
   end
 
   # GET /reports/new
@@ -89,7 +92,7 @@ class ReportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :image)
+      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :image, :active_status)
     end
 
     # Redirects to the last page when exception thrown

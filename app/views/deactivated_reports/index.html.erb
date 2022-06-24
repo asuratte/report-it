@@ -1,0 +1,29 @@
+<h1 class="text-center mb-4">Deactivated Reports</h1>
+<table class="mb-3">
+    <thead>
+      <tr>
+        <th scope="col">Date Created</th>
+        <th scope="col">Incident No.</th>
+        <th scope="col">User</th>
+        <th scope="col">Report Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Zip</th>
+        <th scope="col">Reason</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @deactivated_reports.each do |report| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td data-label="Date Created" class="text-nowrap"><%= report.created_at.to_date %></td>
+          <td data-label="Incident No."><%= report.id %></td>
+          <td data-label="User"><%= link_to report.user.username, user_path(report.user) %></td>
+          <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
+          <td data-label="Description"><%= truncate(report.description, length: 40) %></td>
+          <td data-label="Zip"><%= report.zip %></td>
+          <td data-label="Reason"><%= report.active_status.humanize.titleize %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_bootstrap_nav(@pagy) %>

@@ -65,10 +65,19 @@
   <p>
     <strong>Image:</strong>
   </p>
-  <%= image_tag @report.image, class: 'img-fluid' %>
+  <%= image_tag @report.image, class: 'img-fluid mb-4' %>
   <% end %>
 </div>
 
+<% if user_signed_in? && current_user.is_admin? %>
+  <p>
+    <strong>Active Status:</strong>
+    <% if @report.active_status != "active" %>
+      Deactivated - 
+    <% end %>
+    <%= @report.active_status.humanize.titleize %>
+  </p>
+<% end %>
 
 <br>
 
