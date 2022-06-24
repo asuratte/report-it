@@ -69,7 +69,7 @@
   <% end %>
 </div>
 
-<% if current_user.is_admin? %>
+<% if user_signed_in? && current_user.is_admin? %>
   <p>
     <strong>Active Status:</strong>
     <% if @report.active_status != "active" %>

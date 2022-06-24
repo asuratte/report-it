@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     get 'official', to: 'official#index'
   end
 
+  authenticate :user, -> (user) { user.is_admin? } do
+    get 'deactivated-reports', to: 'deactivated_reports#index'
+  end
+
   root to: 'home#index'
 
   post '/reports/:id/edit' => 'reports#edit'
