@@ -88,4 +88,11 @@
   <% end %>
 <% end %>
 
+<!-- Only display if user is the report writer -->
+<% if user_signed_in? %>
+  <% if (current_user == @report.user && @report.status == "New") %>
+  <%= button_to 'Delete', @report, method: :delete, class: "btn btn-primary button-float", data: { confirm: 'Are you sure you want to delete this report?' } %>
+  <% end %>
+<% end %>
+
 <%= button_to 'Back', url_for(:back), :method => :get, class: "btn btn-primary button-float" %>
