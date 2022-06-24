@@ -127,7 +127,7 @@ class ReportTest < ActiveSupport::TestCase
     )
     assert report.invalid?
     assert report.errors[:image].any?
-    assert_equal ["has an invalid content type"], report.errors[:image]
+    assert_equal ["has an invalid content type", "must be between 1 KB and 5 MB"], report.errors[:image]
   end
 
 end
