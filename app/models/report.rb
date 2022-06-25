@@ -1,5 +1,5 @@
 class Report < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_one_attached :image, dependent: :destroy
   enum active_status: [:active, :spam, :abuse, :outside_area]
 
