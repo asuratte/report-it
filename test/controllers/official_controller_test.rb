@@ -130,6 +130,17 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     assert_select "strong#incident_number", text: "Incident Number:"
   end
 
+  test "should return record on incident search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?incident=1'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
   test "should return record on status search" do
     get '/users/sign_in'
     sign_in @official_user

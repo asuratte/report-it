@@ -18,7 +18,11 @@ class OfficialController < ApplicationController
   def index
     # enum [Status, Severity, Address, City, State, Zip, Description]
     @search_made = true
-    if params[:status].blank? == false
+    if params[:incident].blank? == false
+      @pagy, list = pagy(Report.where("id =" + params[:incident]).order(Arel.sql(@sort.to_s)), items: 10, size: [1,0,0,1])
+      self.set_reports(list)
+      @selected_incident = "selected"
+    elsif params[:status].blank? == false
       @pagy, list = pagy(Report.where("lower(status) LIKE ?", "%" + params[:status].downcase + "%").order(Arel.sql(@sort.to_s)), items: 10, size: [1,0,0,1])
       self.set_reports(list)
       @selected_status = "selected"
