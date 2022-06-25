@@ -33,10 +33,19 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  test "should create report" do
+  test "should create report with resident information" do
     sign_in @resident_user
     assert_difference('Report.count') do
       post reports_url, params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, severity: @report.severity, state: @report.state, status: @report.status, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip } }
+    end
+
+    assert_redirected_to resident_path
+  end
+
+  test "should create report without resident information" do
+    sign_in @resident_user
+    assert_difference('Report.count') do
+      post reports_url, params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, severity: @report.severity, state: @report.state, status: @report.status, subcategory: @report.subcategory, zip: @report.zip } }
     end
 
     assert_redirected_to resident_path
