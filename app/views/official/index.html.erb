@@ -1,7 +1,115 @@
+<script>
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".box").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".box").hide();
+            }
+        });
+    }).change();
+});
+</script>
 <h1 class="text-center mb-4">Officials Dashboard</h1>
-  <div class="row justify-content-between">
-    <div class="col-lg-12">
-      <h2 class="text-center mb-3">Reports</h2>
+<div class="search-parent-container">
+  <div class="search-child-container">
+    <span class="search-select">
+      <select name="search" class="form-select">
+        <option value="incident" <%= @selected_incident %>>Incident No.</option>
+        <option value="status" <%= @selected_status %>>Status</option>
+        <option value="severity" <%= @selected_severity %>>Severity</option>
+        <option value="address" <%= @selected_address %>>Address</option>
+        <option value="city" <%= @selected_city %>>City</option>
+        <option value="state" <%= @selected_state %>>State</option>
+        <option value="zip" <%= @selected_zip %>>Zip</option>
+        <option value="description" <%= @selected_description %>>Description</option>
+      </select>
+    </span>
+    <span class="incident box search-form" id="container-incident">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="incident" name="incident" placeholder="" pattern="^[0-9]+$" title="Only numbers allowed with no spaces" required="true" value="<%= params[:incident] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-status").show();
+    </script>
+    <span class="status box search-form" id="container-status">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="status" name="status" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:status] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-status").hide();
+    </script>
+    <span class="severity box search-form" id="container-severity">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="severity" name="severity" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:severity] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-severity").hide();
+    </script>
+    <span class="address box search-form" id="container-address">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="address" name="address" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:address] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-address").hide();
+    </script>
+    <span class="city box search-form" id="container-city">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="city" name="city" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:city] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-city").hide();
+    </script>
+    <span class="state box search-form" id="container-state">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="state" name="state" placeholder="ex. TX" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:state] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-state").hide();
+    </script>
+    <span class="zip box search-form" id="container-zip">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="zip" name="zip" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:zip] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-zip").hide();
+    </script>
+    <span class="description box search-form" id="container-description">
+      <form action="/official-search">
+        <span class="search-textbox"><input class="form-control" type="text" id="description" name="description" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:description] %>"></span>
+        <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
+      </form>
+    </span>
+    <script>
+      $("#container-description").hide();
+    </script>
+  </div>
+</div>
+
+<% if @reports.blank? == false %>
+<br>
+<hr>
+
+  <span class="row justify-content-between">
+    <span class="col-lg-12">
+      <h2 class="text-center mb-3" id="reports_header">Reports</h2>
         <table class="mb-3">
           <thead>
             <tr>
@@ -42,5 +150,13 @@
           </tbody>
         </table>
         <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
-    </div>
-  </div>
+    </span>
+  </span>
+
+<% end %>
+<% if @reports.blank? == true && @search_made == true %>
+<br>
+<hr>
+
+<p id="no_reports">No reports found.</p>
+<% end %>

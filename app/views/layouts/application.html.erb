@@ -23,6 +23,7 @@
       <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
     <% end %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   </head>
 
   <body class="d-flex flex-column min-vh-100">
@@ -57,7 +58,7 @@
     <footer class="text-center mt-auto">
       <!-- Copyright -->
       <div class="text-center p-3">
-        <p class="copyright">Copyright &copy;<span id="year"><%= Date.today.year %></span> 
+        <p class="copyright">Copyright &copy;<span id="year"><%= Date.today.year %></span>
         <% if get_footer_copyright == nil || get_footer_copyright == "" %>
           Report-It. All Rights Reserved.
         <% else %>

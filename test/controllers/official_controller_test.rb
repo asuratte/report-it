@@ -129,4 +129,107 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "strong#incident_number", text: "Incident Number:"
   end
+
+  test "should return record on incident search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?incident=1'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return record on status search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?status=new'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return record on severity search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?severity=low'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return record on address search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?address=main'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+
+    get '/official-search?address=apt+2'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return record on city search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?city=atlanta'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return record on state search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?state=GA'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return record on zip search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?zip=12345'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return record on description search" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?description=trash'
+    assert_response :success
+    assert_select "h2#reports_header", text: "Reports"
+  end
+
+  test "should return no records on search where none exist" do
+    get '/users/sign_in'
+    sign_in @official_user
+    get official_url
+    assert_response :success
+
+    get '/official-search?zip=00000'
+    assert_response :success
+    assert_select "p#no_reports", text: "No reports found."
+  end
 end

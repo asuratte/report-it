@@ -81,10 +81,6 @@
    color: $color_accordion_text !important;
  }
 
- .accordion-button:focus {
-   box-shadow: none;
- }
-
  .accordion-button:not(.collapsed) {
    background-color: $color_accordion_button !important;
    color: $color_accordion_text !important;

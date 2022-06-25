@@ -38,7 +38,9 @@ class ReportsController < ApplicationController
   # POST /reports or /reports.json
   def create
     @report = Report.new(report_params)
-    @report.user_id = current_user.id
+    unless params[:hidden_user] == "true"
+      @report.user_id = current_user.id
+    end
     respond_to do |format|
       if @report.save
         format.html { redirect_to resident_path, notice: "Report was successfully created." }
