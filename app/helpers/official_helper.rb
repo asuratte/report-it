@@ -1,16 +1,4 @@
 module OfficialHelper
-  def search
-    [
-    ['Status', 'status'],
-    ['Severity', 'severity'],
-    ['Address', 'address'],
-    ['City', 'city'],
-    ['State', 'state'],
-    ['Zip', 'zip'],
-    ['Description', 'description']
-    ]
-  end
-
   def status
     [
     ['New', 'New'],
