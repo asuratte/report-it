@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   authenticate :user, -> (user) { user.is_admin? } do
     get 'deactivated-reports', to: 'deactivated_reports#index'
+    get 'flagged-reports', to: 'flagged_reports#index'
   end
 
   root to: 'home#index'
