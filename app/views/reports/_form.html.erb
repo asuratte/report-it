@@ -95,6 +95,13 @@
       </div>
     </div>
   <% end %>
+  
+  <% if current_page?(:controller => 'reports', :action => 'new')%>
+    <div class="form-check form-switch mt-4">
+      <%= check_box_tag :anonymous, true, false, class: 'form-check-input' %>
+      <%= label_tag :anonymous, "Hide My Identifying Information", class: 'form-check-label' %>
+    </div>
+  <% end %>
 
   <%= form.hidden_field :category, value: report.category %>
   <%= form.hidden_field :subcategory, value: report.subcategory %>
