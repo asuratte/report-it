@@ -5,7 +5,7 @@ one:
   address1: 123 Main Street
   address2: Apt 2
   city: Atlanta
-  state: Georgia
+  state: GA
   zip: 12345
   description: No trash pickup on Monday
   category: Trash, Recycling, and Pickup
@@ -20,7 +20,7 @@ two:
   address1: West Avenue
   address2:
   city: Atlanta
-  state: Georgia
+  state: GA
   zip: 12345
   description: The lights are out at the intersection of East and West Ave
   category: Transportation and Streets
@@ -35,7 +35,7 @@ three:
   address1: North Avenue
   address2:
   city: Atlanta
-  state: Georgia
+  state: GA
   zip: 23456
   description: The lights are out at the intersection of East and West Ave
   category: Transportation and Streets
@@ -50,11 +50,11 @@ four:
   address1:
   address2:
   city: Albany
-  state: Georgia
+  state: GA
   zip: 31701
-  description: It looks like there is a sewer cave-in on Eastern Ave. Someone needs to look into it right away. 
+  description: It looks like there is a sewer cave-in on Eastern Ave. Someone needs to look into it right away.
   category: Transportation and Streets
-  subcategory: Sewer complaint 
+  subcategory: Sewer complaint
   status: New
   severity: Low
   user: one

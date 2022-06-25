@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   post '/reports/:id/edit' => 'reports#edit'
 
+  get '/official-search', to: "official#index"
+
   get '*path', to: redirect('/'), constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'
   }
