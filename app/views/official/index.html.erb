@@ -14,43 +14,43 @@
   </span>
   <span class="status box search-form">
     <form action="/official-search">
-      <span class="search-textbox"><input class="form-control" type="text" id="status" name="status" placeholder="" required="true" value="<%= params[:status] %>"></span>
+      <span class="search-textbox"><input class="form-control" type="text" id="status" name="status" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:status] %>"></span>
       <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
     </form>
   </span>
   <span class="severity box search-form">
     <form action="/official-search">
-      <span class="search-textbox"><input class="form-control" type="text" id="severity" name="severity" placeholder="" required="true" value="<%= params[:severity] %>"></span>
+      <span class="search-textbox"><input class="form-control" type="text" id="severity" name="severity" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:severity] %>"></span>
       <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
     </form>
   </span>
   <span class="address box search-form">
     <form action="/official-search">
-      <span class="search-textbox"><input class="form-control" type="text" id="address" name="address" placeholder="" required="true" value="<%= params[:address] %>"></span>
+      <span class="search-textbox"><input class="form-control" type="text" id="address" name="address" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:address] %>"></span>
       <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
     </form>
   </span>
   <span class="city box search-form">
     <form action="/official-search">
-      <span class="search-textbox"><input class="form-control" type="text" id="city" name="city" placeholder="" required="true" value="<%= params[:city] %>"></span>
+      <span class="search-textbox"><input class="form-control" type="text" id="city" name="city" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:city] %>"></span>
       <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
     </form>
   </span>
   <span class="state box search-form">
     <form action="/official-search">
-      <span class="search-textbox"><input class="form-control" type="text" id="state" name="state" placeholder="ex. TX" required="true" value="<%= params[:state] %>"></span>
+      <span class="search-textbox"><input class="form-control" type="text" id="state" name="state" placeholder="ex. TX" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:state] %>"></span>
       <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
     </form>
   </span>
   <span class="zip box search-form">
     <form action="/official-search">
-      <span class="search-textbox"><input class="form-control" type="text" id="zip" name="zip" placeholder="" required="true" value="<%= params[:zip] %>"></span>
+      <span class="search-textbox"><input class="form-control" type="text" id="zip" name="zip" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:zip] %>"></span>
       <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
     </form>
   </span>
   <span class="description box search-form">
     <form action="/official-search">
-      <span class="search-textbox"><input class="form-control" type="text" id="description" name="description" placeholder="" required="true" value="<%= params[:description] %>"></span>
+      <span class="search-textbox"><input class="form-control" type="text" id="description" name="description" placeholder="" pattern="^[^\s].*$" title="No leading or only spaces allowed" required="true" value="<%= params[:description] %>"></span>
       <span class="search-button"><button type="submit" class="btn btn-primary">Search</button></span>
     </form>
   </span>
