@@ -3,7 +3,7 @@ class FlaggedReportsController < ApplicationController
     rescue_from Pagy::VariableError, with: :redirect_to_last_page
 
     def index
-        @pagy, @flagged_reports = pagy(Report.all.where(status: "Flagged").order('created_at DESC'), items: 10, size: [1,0,0,1])
+        @pagy, @flagged_reports = pagy(Report.all.where(status: "Flagged", active_status: "active").order('created_at DESC'), items: 10, size: [1,0,0,1])
     end
 
     private
