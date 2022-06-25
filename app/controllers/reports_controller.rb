@@ -30,7 +30,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/1/edit
   def edit
-    if current_user.is_resident? && @report.status != "New"
+    if current_user.is_resident? && (@report.status != "New" || @report.active_status != "active")
       redirect_to reports_path
     end
   end
