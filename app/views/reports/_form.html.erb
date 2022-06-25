@@ -98,8 +98,8 @@
   
   <% if current_page?(:controller => 'reports', :action => 'new')%>
     <div class="form-check form-switch mt-4">
-      <%= check_box_tag :anonymous, true, false, class: 'form-check-input' %>
-      <%= label_tag :anonymous, "Hide My Identifying Information", class: 'form-check-label' %>
+      <%= check_box_tag :hidden_user, true, false, class: 'form-check-input' %>
+      <%= label_tag :hidden_user, "Hide My Identifying Information", class: 'form-check-label' %>
     </div>
   <% end %>
 
