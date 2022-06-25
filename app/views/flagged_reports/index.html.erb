@@ -17,7 +17,13 @@
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td data-label="Date Created" class="text-nowrap"><%= report.created_at.to_date %></td>
           <td data-label="Incident No."><%= report.id %></td>
-          <td data-label="User"><%= link_to report.user.username, user_path(report.user) %></td>
+           <td data-label="User">
+            <% if report.user.present? %>
+              <%= link_to report.user.username, user_path(report.user) %>
+            <% else %>
+              Anonymous
+            <% end %>
+          </td>
           <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
           <td data-label="Description"><%= truncate(report.description, length: 40) %></td>
           <td data-label="Zip"><%= report.zip %></td>
