@@ -8,9 +8,10 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @search_type = session[:search_type]
-    @search_term = session[:search_term]
-    @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:search_type], session[:search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    @form_submit_path = reports_path
+    @resident_search_type = session[:resident_search_type]
+    @resident_search_term = session[:resident_search_term]
+    @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
   end
 
   # GET /reports/1 or /reports/1.json
@@ -113,9 +114,9 @@ class ReportsController < ApplicationController
 
     # Sets the search type and term for the session using the search parameters
     def get_search_values
-      if params[:search_term]
-        session[:search_type] = params[:search_type]
-        session[:search_term] = params[:search_term]
+      if params[:resident_search_term]
+        session[:resident_search_type] = params[:resident_search_type]
+        session[:resident_search_term] = params[:resident_search_term]
       end
     end
 end

@@ -1,18 +1,6 @@
 <h1 class="text-center mb-4">Explore All Reports</h1>
 
-<%= form_tag(reports_path, method: :get, class: "mx-auto") do %>
-  <div class="d-md-flex justify-content-center mb-4">
-    <div class="m-2">
-      <%= select_tag :search_type, options_for_select(["Incident No.", "Address", "City", "State", "Zip", "Description"], @search_type), class: "form-select" %>
-    </div>
-    <div class="m-2">
-      <%= text_field_tag :search_term, @search_term, class: "form-control", size: 50 %>
-    </div>
-    <div class="m-2">
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+<%= render 'search_form', report: @report %>
 
 <hr>
 <% if @reports.empty? %>
@@ -43,5 +31,5 @@
       <% end %>
     </tbody>
   </table>
-  <%== pagy_bootstrap_nav(@pagy) %>
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 <% end %>

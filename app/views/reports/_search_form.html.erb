@@ -1,0 +1,43 @@
+<script>
+$(document).ready(function(){
+  $("#official-select").on("change", function () {
+    $("#official-search-text").attr("value", "");
+    if($(this).val() == "State") {
+      $("#official-search-text").attr("placeholder", "ex. TX");
+    } else {
+      $("#official-search-text").attr("placeholder", "");
+    }
+  });
+
+  $("#resident-select").on("change", function () {
+    $("#resident-search-text").attr("value", "");
+    if($(this).val() == "State") {
+      $("#resident-search-text").attr("placeholder", "ex. TX");
+    } else {
+      $("#resident-search-text").attr("placeholder", "");
+    }
+  });
+});
+</script>
+
+<%= form_tag(@form_submit_path, method: :get, class: "mx-auto") do %>
+  <div class="d-md-flex justify-content-center mb-4">
+    <div class="m-2">
+      <% if current_page?('/official') || current_page?('/official-search') %>
+        <%= select_tag :official_search_type, options_for_select(["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"], @official_search_type), class: "form-select", id: 'official-select' %>
+      <% else %>
+        <%= select_tag :resident_search_type, options_for_select(["Incident No.", "Address", "City", "State", "Zip", "Description"], @resident_search_type), class: "form-select", id: 'resident-select' %>
+      <% end %>
+    </div>
+    <div class="m-2">
+      <% if current_page?('/official') || current_page?('/official-search') %>
+        <%= text_field_tag :official_search_term, @official_search_term, id: 'official-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+      <% else %>
+        <%= text_field_tag :resident_search_term, @resident_search_term, id: 'resident-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+      <% end %>
+    </div>
+    <div class="m-2">
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
