@@ -1,7 +1,7 @@
 <h1 class="text-center mb-4">Explore All Reports</h1>
 
 <%= form_tag(reports_path, method: :get, class: "mx-auto") do %>
-  <div class="d-md-flex justify-content-center mb-3">
+  <div class="d-md-flex justify-content-center mb-4">
     <div class="m-2">
       <%= select_tag :search_type, options_for_select(["Incident No.", "Address", "City", "State", "Zip", "Description"], @search_type), class: "form-select" %>
     </div>
