@@ -4,10 +4,13 @@ class ReportsController < ApplicationController
   before_action :set_report, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[ index show ]
   before_action :allow_report_access, only: %i[ edit update destroy ]
+  before_action :get_search_values, only: [:index]
 
   # GET /reports or /reports.json
   def index
-    @pagy, @reports = pagy(Report.all.where(active_status: 0).order('created_at DESC'), items: 10, size: [1,0,0,1])
+    @search_type = session[:search_type]
+    @search_term = session[:search_term]
+    @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:search_type], session[:search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
   end
 
   # GET /reports/1 or /reports/1.json
@@ -105,6 +108,14 @@ class ReportsController < ApplicationController
     def allow_report_access
       unless @report.user_id == current_user.id || current_user.is_official? || current_user.is_admin?
         redirect_to root_path
+      end
+    end
+
+    # Sets the search type and term for the session using the search parameters
+    def get_search_values
+      if params[:search_term]
+        session[:search_type] = params[:search_type]
+        session[:search_term] = params[:search_term]
       end
     end
 end

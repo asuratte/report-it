@@ -1,8 +1,28 @@
 <h1 class="text-center mb-4">Explore All Reports</h1>
+
+<%= form_tag(reports_path, method: :get, class: "mx-auto") do %>
+  <div class="d-md-flex justify-content-center mb-4">
+    <div class="m-2">
+      <%= select_tag :search_type, options_for_select(["Incident No.", "Address", "City", "State", "Zip", "Description"], @search_type), class: "form-select" %>
+    </div>
+    <div class="m-2">
+      <%= text_field_tag :search_term, @search_term, class: "form-control", size: 50 %>
+    </div>
+    <div class="m-2">
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<hr>
+<% if @reports.empty? %>
+  <p>No reports found.</p>
+<% else %>
   <table class="mb-3">
     <thead>
       <tr>
         <th scope="col">Date Created</th>
+        <th scope="col">Incident No.</th>
         <th scope="col">Report Type</th>
         <th scope="col">Description</th>
         <th scope="col">Zip</th>
@@ -14,6 +34,7 @@
       <% @reports.each do |report| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td data-label="Date Created" class="text-nowrap"><%= report.created_at.to_date %></td>
+          <td data-label="Incident No."><%= report.id %></td>
           <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
           <td data-label="Description"><%= truncate(report.description, length: 40) %></td>
           <td data-label="Zip"><%= report.zip %></td>
@@ -22,4 +43,5 @@
       <% end %>
     </tbody>
   </table>
-<%== pagy_bootstrap_nav(@pagy) %>
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>
