@@ -14,37 +14,9 @@
  *= require bootstrap
  *= require_self
  */
- .search-form {
-   display: inline-block;
-   padding-bottom: 10px;
- }
-
- .search-select {
-   display: inline-block;
-   padding-bottom: 10px;
- }
-
- .search-textbox {
-   display: inline-block;
-   padding-bottom: 10px;
- }
-
- .search-button {
-   display: inline-block;
-   padding-bottom: 10px;
- }
-
- .search-parent-container {
-   text-align: center;
- }
- .search-parent-container > .search-child-container {
-   @media (min-width: 40em) {
-     margin: 0 auto; width: 900px;
-     text-align: center;
-   }
-   margin: 0 auto; width: 200px;
-   text-align: left;
- }
+.form-select {
+  min-width: 200px !important;
+}
 
 .form-control:focus {
   box-shadow: none !important;

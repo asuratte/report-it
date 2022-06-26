@@ -23,6 +23,12 @@ class Report < ApplicationRecord
       else
         report = report.none
       end
+    elsif search_type == "Status" && search_term.present?
+      report = report.where("lower(status) LIKE ?", "%#{search_term.downcase}%")
+    elsif search_type == "Severity" && search_term.present?
+      report = report.where("lower(severity) LIKE ?", "%#{search_term.downcase}%")
+    elsif search_type == "Category" && search_term.present?
+      report = report.where("lower(category) LIKE :search_term OR lower(subcategory) LIKE :search_term", search_term: "%#{search_term.downcase}%")
     elsif search_type == "Address" && search_term.present?
       report = report.where("lower(address1) LIKE :search_term OR lower(address2) LIKE :search_term", search_term: "%#{search_term.downcase}%")
     elsif search_type == "City" && search_term.present?

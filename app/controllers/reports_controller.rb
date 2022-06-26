@@ -8,6 +8,7 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
+    @form_submit_path = reports_path
     @search_type = session[:search_type]
     @search_term = session[:search_term]
     @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:search_type], session[:search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
