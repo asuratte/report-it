@@ -1,11 +1,21 @@
 <script>
 $(document).ready(function(){
   $("#official-select").on("change", function () {
-    $("#official-search-text").val("");
+    $("#official-search-text").attr("value", "");
+    if($(this).val() == "State") {
+      $("#official-search-text").attr("placeholder", "ex. TX");
+    } else {
+      $("#official-search-text").attr("placeholder", "");
+    }
   });
 
   $("#resident-select").on("change", function () {
-    $("#resident-search-text").val("");
+    $("#resident-search-text").attr("value", "");
+    if($(this).val() == "State") {
+      $("#resident-search-text").attr("placeholder", "ex. TX");
+    } else {
+      $("#resident-search-text").attr("placeholder", "");
+    }
   });
 });
 </script>
