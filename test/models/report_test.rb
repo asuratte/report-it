@@ -130,4 +130,81 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal ["has an invalid content type", "must be between 1 KB and 5 MB"], report.errors[:image]
   end
 
+  test "search returns a single report" do
+    report = Report.search("Incident No.", @report1.id.to_s)
+    assert_equal 1, report.count
+  end
+
+  test "search returns multiple reports" do
+    report = Report.search("State", "GA")
+    assert report.count > 1
+  end
+
+  test "search returns no report" do
+    report = Report.search("State", "HI")
+    assert_equal 0, report.count
+  end
+
+  test "search returns all reports if no search parameters specified" do
+    report = Report.search("", "")
+    assert_equal 5, report.count
+  end
+
+  test "search finds reports by incident number" do
+    report = Report.search("Incident No.", @report1.id.to_s)
+    assert_equal 1, report.count
+    assert_equal "No trash pickup on Monday", report.first.description
+  end
+
+  test "search finds no reports for invalid incident numbers" do
+    report = Report.search("Incident No.", "abc")
+    assert_equal 0, report.count
+    report = Report.search("Incident No.", "1.5")
+    assert_equal 0, report.count
+  end
+
+  test "search finds reports by address" do
+    report = Report.search("Address", @report1.address1)
+    assert_equal 1, report.count
+    assert_equal "No trash pickup on Monday", report.first.description
+  end
+
+  test "search finds reports by partial address" do
+    report = Report.search("Address", "Main")
+    assert_equal 1, report.count
+    assert_equal "No trash pickup on Monday", report.first.description
+  end
+
+  test "search finds reports by city" do
+    report = Report.search("City", @report1.city)
+    assert_equal 3, report.count
+    assert_equal "No trash pickup on Monday", report.first.description
+    assert_equal "The lights are out at the intersection of East and West Ave", report.last.description
+  end
+
+  test "search finds reports by state" do
+    report = Report.search("State", @report1.state)
+    assert_equal 5, report.count
+  end
+
+  test "search finds reports by zip" do
+    report = Report.search("Zip", @report1.zip)
+    assert_equal 2, report.count
+    assert_equal "No trash pickup on Monday", report.first.description
+    assert_equal "The lights are out at the intersection of East and West Ave", report.last.description
+  end
+
+  test "search finds reports by description" do
+    report = Report.search("Description", @report1.description)
+    assert_equal 1, report.count
+    assert_equal 1, report.first.id
+  end
+
+  test "search finds reports by partial description" do
+    report = Report.search("Description", "lights are out")
+    assert_equal 2, report.count
+    assert_equal 2, report.first.id
+    assert_equal 3, report.last.id
+  end
+
 end
