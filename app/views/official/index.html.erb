@@ -2,8 +2,8 @@
 
 <%= render '/reports/search_form', report: @report %>
 
-<% if @reports.empty? && session[:search_term].nil? %>
-<% elsif @reports.empty? %>
+<% if @reports.empty? && session[:official_search_term].nil? == true %>
+<% elsif @reports.empty? && session[:official_search_term].nil? == false %>
 <hr>
   <p id="no_reports">No reports found.</p>
 <% else %>
@@ -11,7 +11,7 @@
   <table class="mb-3">
     <thead>
       <tr>
-        <th scope="col">Date Reported</th>
+        <th scope="col" id="date_reported">Date Reported</th>
           <th scope="col">Incident No.</th>
         <th scope="col">Report Type</th>
         <th scope="col">Status</th>

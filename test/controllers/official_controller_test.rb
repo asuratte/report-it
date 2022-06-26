@@ -136,9 +136,12 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?incident=1'
+    @search_type = "Incident+No."
+    @search_term = "1"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return record on status search" do
@@ -147,9 +150,12 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?status=new'
+    @search_type = "Status"
+    @search_term = "new"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return record on severity search" do
@@ -158,9 +164,12 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?severity=low'
+    @search_type = "Severity"
+    @search_term = "low"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return record on address search" do
@@ -169,13 +178,19 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?address=main'
-    assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    @search_type = "Address"
+    @search_term = "main"
 
-    get '/official-search?address=apt+2'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
+
+    @search_type = "Address"
+    @search_term = "apt+2"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return record on city search" do
@@ -184,9 +199,12 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?city=atlanta'
+    @search_type = "City"
+    @search_term = "atlanta"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return record on state search" do
@@ -195,9 +213,12 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?state=GA'
+    @search_type = "State"
+    @search_term = "GA"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return record on zip search" do
@@ -206,9 +227,12 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?zip=12345'
+    @search_type = "Zip"
+    @search_term = "12345"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return record on description search" do
@@ -217,9 +241,12 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?description=trash'
+    @search_type = "Description"
+    @search_term = "trash"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
-    assert_select "h2#reports_header", text: "Reports"
+    assert_select "th#date_reported", text: "Date Reported"
   end
 
   test "should return no records on search where none exist" do
@@ -228,7 +255,10 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     get official_url
     assert_response :success
 
-    get '/official-search?zip=00000'
+    @search_type = "Zip"
+    @search_term = "00000"
+
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
     assert_response :success
     assert_select "p#no_reports", text: "No reports found."
   end
