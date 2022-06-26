@@ -1,32 +1,18 @@
-<script>
-$(document).ready(function(){
-  $("search-text").val("");
-
-  $("select").change(function(){
-      $(this).find("option:selected").each(function(){
-          var optionValue = $(this).attr("value");
-          if(optionValue){
-              $(".box").not("." + optionValue).hide();
-              $("." + optionValue).show();
-          } else{
-              $(".box").hide();
-          }
-      });
-  }).change();
-});
-</script>
-
 <%= form_tag(@form_submit_path, method: :get, class: "mx-auto") do %>
   <div class="d-md-flex justify-content-center mb-4">
     <div class="m-2">
       <% if current_page?('/official') || current_page?('/official-search') %>
-        <%= select_tag :search_type, options_for_select(["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"], @search_type), class: "form-select" %>
+        <%= select_tag :official_search_type, options_for_select(["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"], @official_search_type), class: "form-select" %>
       <% else %>
-        <%= select_tag :search_type, options_for_select(["Incident No.", "Address", "City", "State", "Zip", "Description"], @search_type), class: "form-select" %>
+        <%= select_tag :resident_search_type, options_for_select(["Incident No.", "Address", "City", "State", "Zip", "Description"], @resident_search_type), class: "form-select" %>
       <% end %>
     </div>
     <div class="m-2">
-      <%= text_field_tag :search_term, @search_term, id: 'search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+      <% if current_page?('/official') || current_page?('/official-search') %>
+        <%= text_field_tag :official_search_term, @official_search_term, id: 'search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+      <% else %>
+        <%= text_field_tag :resident_search_term, @resident_search_term, id: 'search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+      <% end %>
     </div>
     <div class="m-2">
       <%= submit_tag "Search", class: "btn btn-primary" %>
