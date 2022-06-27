@@ -1,0 +1,45 @@
+name,category_id,active
+Stray/wild/dead animals,1,TRUE
+Nuisance animal complaint,1,TRUE
+Vicious animal complaint,1,TRUE
+Pet wellness check request,1,TRUE
+Injured animal report,1,TRUE
+Bee/wasp removal request,1,TRUE
+Animal in trap complaint,1,TRUE
+Coyote interaction complaint,1,TRUE
+Missed trash pickup complaint,2,TRUE
+Missed recycling pickup complaint,2,TRUE
+Missed yard waste pickup complaint,2,TRUE
+Overflowing public receptacle complaint,2,TRUE
+Pothole complaint,3,TRUE
+Road hazard complaint,3,TRUE
+Sewer complaint,3,TRUE
+Water on street complaint,3,TRUE
+Street light out complaint,3,TRUE
+Sidewalk complaint,3,TRUE
+Traffic light out complaint,3,TRUE
+Pedestrian signal complaint,3,TRUE
+Sign repair request,3,TRUE
+Abandoned vehicle complaint,3,TRUE
+Abandoned bicycle complaint,3,TRUE
+Parking violation complaint,3,TRUE
+Bike lane obstruction complaint,3,TRUE
+Bike rack damage complaint,3,TRUE
+Illegal dumping complaint,4,TRUE
+Sanitation code violation complaint,4,TRUE
+Air pollution complaint,4,TRUE
+Water pollution complaint,4,TRUE
+"Tree trimming, debris cleanup, or removal request",4,TRUE
+Business complaint,5,TRUE
+City official complaint,5,TRUE
+Graffiti removal request,5,TRUE
+Building code violation complaint,5,TRUE
+Commercial fire safety inspection request,5,TRUE
+Building permit violation complaint,5,TRUE
+Excessive noise complaint,5,TRUE
+Property maintenance complaint,5,TRUE
+Inoperable vehicles/junk/trash on property complaint,5,TRUE
+Residential wellness check request,5,TRUE
+Disability accessibility/accommodation request,5,TRUE
+General Complaint,6,TRUE
+COVID-19 Business Mask Compliance Complaint,7,FALSE
