@@ -3,7 +3,7 @@ class SubcategoriesController < ApplicationController
 
   # GET /subcategories or /subcategories.json
   def index
-    @subcategories = Subcategory.all
+    @subcategories = Subcategory.all.order(:id, :active)
   end
 
   # GET /subcategories/1 or /subcategories/1.json
