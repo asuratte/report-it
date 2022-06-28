@@ -18,7 +18,7 @@
 
   <div class="field mb-3">
     <%= form.label :category_id, 'Parent Category', class: 'form-label' %>
-    <%= form.select :category_id, Category.all.collect { |x| [x.name, x.id]}, {:include_hidden => false}, { :class => 'form-select' } %>
+    <%= form.select :category_id, Category.get_active_categories.collect { |x| [x.name, x.id]}, {:include_hidden => false}, { :class => 'form-select' } %>
   </div>
 
   <div class="field mb-3">
