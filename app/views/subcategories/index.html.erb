@@ -1,0 +1,27 @@
+<h1>Subcategories</h1>
+
+<table class="mb-3">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Active</th>
+      <th scope="col">Parent Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subcategories.each do |subcategory| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= subcategory.name %></td>
+        <td><% if subcategory.active %>Active<% else %>Inactive<% end %></td>
+        <td><%= Category.find_by(id: subcategory.category_id).name %></td>
+        <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+<br>
+
+<%= link_to 'Add New Subcategory', new_subcategory_path, class: "btn btn-primary button-float" %>

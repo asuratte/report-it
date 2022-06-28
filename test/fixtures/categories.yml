@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Transportation and streets
+  active: true
+
+two:
+  name: Animals
+  active: true
+
+three:
+  name: Sidewalks
+  active: false

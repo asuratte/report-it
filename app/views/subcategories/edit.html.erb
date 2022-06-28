@@ -1,0 +1,6 @@
+<h1>Editing Subcategory</h1>
+
+<%= render 'form', subcategory: @subcategory %>
+
+<%= button_to 'Show', @subcategory, :method => :get, class: "btn btn-secondary button-float" %>
+<%= button_to 'Back', subcategories_path, :method => :get, class: "btn btn-secondary button-float" %>

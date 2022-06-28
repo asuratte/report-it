@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Pothole complaint
+  active: true
+  category: one
+
+two:
+  name: Road hazard complaint
+  active: true
+  category: one
+
+three:
+  name: General road complaint
+  active: false
+  category: one

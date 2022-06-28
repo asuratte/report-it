@@ -1,0 +1,32 @@
+<%= form_with(model: subcategory) do |form| %>
+  <% if subcategory.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(subcategory.errors.count, "error") %> prohibited this subcategory from being saved:</h2>
+
+      <ul>
+        <% subcategory.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :category_id, 'Parent Category', class: 'form-label' %>
+    <%= form.select :category_id, Category.get_active_categories.collect { |x| [x.name, x.id]}, {:include_hidden => false}, { :class => 'form-select' } %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :active, class: 'form-label' %>
+    <%= form.check_box :active, class: 'form-check-input' %>
+  </div>
+
+  <div class="actions button-float">
+    <%= form.submit :class => 'btn btn-primary' %>
+  </div>
+<% end %>

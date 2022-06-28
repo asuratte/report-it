@@ -62,5 +62,24 @@ namespace :import do
       c.save
     end
 
+    csv_text = File.read(Rails.root.join("lib", "category_data.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    csv.each do |row|
+      cat = Category.new
+      cat.name = row["name"]
+      cat.active = row["active"]
+      cat.save
+    end
+
+    csv_text = File.read(Rails.root.join("lib", "subcategory_data.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    csv.each do |row|
+      subcat = Subcategory.new
+      subcat.name = row["name"]
+      subcat.category_id = row["category_id"]
+      subcat.active = row["active"]
+      subcat.save
+    end
+
   end
 end

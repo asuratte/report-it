@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <% if @category.active %>Active<% else %>Inactive<% end %>
+</p>
+
+<%= button_to 'Edit', edit_category_path(@category), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', categories_path, :method => :get, class: "btn btn-secondary button-float" %>

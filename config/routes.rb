@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :users
     resources :themes, except: [:create, :new, :destroy]
     resources :contents, except: [:create, :new, :destroy]
+    resources :subcategories, except: [:destroy]
+    resources :categories, except: [:destroy]
   end
 
   authenticate :user, -> (user) { user.is_resident? } do

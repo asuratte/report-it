@@ -1,0 +1,6 @@
+<h1>Editing Category</h1>
+
+<%= render 'form', category: @category %>
+
+<%= button_to 'Show', @category, :method => :get, class: "btn btn-secondary button-float" %>
+<%= button_to 'Back', categories_path, :method => :get, class: "btn btn-secondary button-float" %>

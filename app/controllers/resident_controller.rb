@@ -5,6 +5,7 @@ class ResidentController < ApplicationController
   
   def index
     @user = current_user
+    @categories = Category.all.order(:id)
     @pagy, @reports = pagy(@user.reports.where(active_status: 0).order('created_at DESC'), items: 7, size: [1,0,0,1])
   end
 
