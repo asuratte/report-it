@@ -41,10 +41,12 @@
               Admin
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><%=link_to "Manage Users",  users_path, :class=>"dropdown-item" %></li>
-                <li><%=link_to "Add User",  new_user_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "View Deactivated Reports",  deactivated_reports_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "View Flagged Reports",  flagged_reports_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "Manage Users",  users_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "Add User",  new_user_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "Manage Categories",  categories_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "Manage Subcategories",  subcategories_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "Manage Themes",  themes_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "Manage Content",  content_path(1), :class=>"dropdown-item" %></li>
             </ul>
