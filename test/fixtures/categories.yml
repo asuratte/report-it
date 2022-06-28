@@ -7,3 +7,7 @@ one:
 two:
   name: Animals
   active: true
+
+three:
+  name: Sidewalks
+  active: false
