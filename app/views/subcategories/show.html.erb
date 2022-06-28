@@ -5,12 +5,12 @@
 
 <p>
   <strong>Active:</strong>
-  <%= @subcategory.active %>
+  <% if @subcategory.active %>Active<% else %>Inactive<% end %>
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @subcategory.category_id %>
+  <strong>Parent Category:</strong>
+  <%= Category.find_by(id: @subcategory.category_id).name %>
 </p>
 
 <%= button_to 'Edit', edit_subcategory_path(@subcategory), :method => :get, class: "btn btn-primary button-float" %>

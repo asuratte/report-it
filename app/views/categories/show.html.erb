@@ -5,7 +5,7 @@
 
 <p>
   <strong>Active:</strong>
-  <%= @category.active %>
+  <% if @category.active %>Active<% else %>Inactive<% end %>
 </p>
 
 <%= button_to 'Edit', edit_category_path(@category), :method => :get, class: "btn btn-primary button-float" %>
