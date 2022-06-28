@@ -15,5 +15,5 @@
   <%= @subcategory.category_id %>
 </p>
 
-<%= link_to 'Edit', edit_subcategory_path(@subcategory) %> |
-<%= link_to 'Back', subcategories_path %>
+<%= button_to 'Edit', edit_subcategory_path(subcategory), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', subcategories_path, :method => :get, class: "btn btn-secondary button-float" %>

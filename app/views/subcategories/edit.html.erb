@@ -2,5 +2,5 @@
 
 <%= render 'form', subcategory: @subcategory %>
 
-<%= link_to 'Show', @subcategory %> |
-<%= link_to 'Back', subcategories_path %>
+<%= button_to 'Show', @subcategory, :method => :get, class: "btn btn-secondary button-float" %>
+<%= button_to 'Back', subcategories_path, :method => :get, class: "btn btn-secondary button-float" %>
