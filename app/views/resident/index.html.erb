@@ -17,7 +17,7 @@
               data-bs-parent="#accordionCategories">
               <div class="accordion-body p-2">
                 <div class="list-group">
-                  <% Subcategory.get_subcategories_by_category(category).each do |subcategory| %>
+                  <% Subcategory.get_active_subcategories_by_category(category).each do |subcategory| %>
                     <%= link_to subcategory.name, new_report_path(category: category.name, subcategory: subcategory.name),
                       class: "py-1 list-group-item list-group-item-action" %>
                     <% end %>

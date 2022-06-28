@@ -9,3 +9,8 @@ two:
   name: Road hazard complaint
   active: true
   category: one
+
+three:
+  name: General road complaint
+  active: false
+  category: one
