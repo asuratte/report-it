@@ -25,6 +25,8 @@
     - Populates Users table
     - Populates Reports table
     - Populates Themes table
+    - Populates Categories table
+    - Populates Subcategories table
 
 ## Run Locally
 
