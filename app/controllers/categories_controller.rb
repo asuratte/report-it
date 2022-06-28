@@ -1,9 +1,11 @@
 class CategoriesController < ApplicationController
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+  rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_category, only: %i[ show edit update ]
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.all.order(:id, :active)
+    @pagy, @categories = pagy(Category.all.order(:id), items: 10, size: [1,0,0,1])
   end
 
   # GET /categories/1 or /categories/1.json
@@ -67,4 +69,10 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name, :active)
     end
+
+    # Redirects to the last page when exception thrown
+    def redirect_to_last_page(exception)
+      redirect_to url_for(page: exception.pagy.last)
+    end
+    
 end

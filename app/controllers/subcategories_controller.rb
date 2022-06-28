@@ -1,9 +1,11 @@
 class SubcategoriesController < ApplicationController
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+  rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_subcategory, only: %i[ show edit update ]
 
   # GET /subcategories or /subcategories.json
   def index
-    @subcategories = Subcategory.all.order(:id, :active)
+    @pagy, @subcategories = pagy(Subcategory.all.order(:id), items: 10, size: [1,0,0,1])
   end
 
   # GET /subcategories/1 or /subcategories/1.json
@@ -67,4 +69,10 @@ class SubcategoriesController < ApplicationController
     def subcategory_params
       params.require(:subcategory).permit(:name, :active, :category_id)
     end
+
+    # Redirects to the last page when exception thrown
+    def redirect_to_last_page(exception)
+      redirect_to url_for(page: exception.pagy.last)
+    end
+
 end

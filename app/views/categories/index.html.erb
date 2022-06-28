@@ -1,6 +1,6 @@
 <h1>Categories</h1>
 
-<table>
+<table class="mb-3">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -19,7 +19,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 <br>
 
 <%= link_to 'Add New Category', new_category_path, class: "btn btn-primary button-float" %>
