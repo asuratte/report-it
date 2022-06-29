@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+  rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_user, only: %i[ show edit update ]
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @pagy, @users = pagy(User.all.order(:username), items: 10, size: [1,0,0,1])
   end
 
   # GET /users/1 or /users/1.json
@@ -62,5 +64,10 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :address1, :address2, :city, :state, :zip, :phone, :username, :active, :role, :email, :password, :password_confirmation) 
+    end
+
+    # Redirects to the last page when exception thrown
+    def redirect_to_last_page(exception)
+        redirect_to url_for(page: exception.pagy.last)
     end
 end

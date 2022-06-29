@@ -1,9 +1,10 @@
 <h1>Users</h1>
 
-<table>
+<table class="mb-3">
   <thead>
     <tr>
       <th scope="col">Username</th>
+      <th scope="col">Name</th>
       <th scope="col">Role</th>
       <th scope="col">Active</th>
       <th></th>
@@ -15,6 +16,7 @@
     <% @users.each do |user| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td data-label="Username"><%= user.username %></td>
+        <td data-label="Username"><%= user.first_name %> <%= user.last_name %></td>
         <td data-label="Role"><%= user.role %></td>
         <td data-label="Active"><%= user.active %></td>
         <td><%= link_to 'View User', user %></td>
@@ -23,3 +25,4 @@
     <% end %>
   </tbody>
 </table>
+<%== pagy_bootstrap_nav(@pagy) %>
