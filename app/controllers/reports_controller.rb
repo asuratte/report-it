@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
-    if params[:category] && params[:subcategory]
+    if params[:category] && params[:subcategory] && Category.get_active_categories.any?{|category| category.name == params[:category]} && Subcategory.get_active_subcategories.any?{|subcategory| subcategory.name == params[:subcategory]}
       @report = Report.new
       @report.category = params[:category]
       @report.subcategory = params[:subcategory]

@@ -18,8 +18,14 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new with specified categories if signed in" do
     sign_in @resident_user
-    get new_report_path(category: "Animals", subcategory: "Nuisance animal complaint")
+    get new_report_path(category: "Transportation and streets", subcategory: "Road hazard complaint")
     assert_response :success
+  end
+
+  test "should not get new with fake categories if signed in" do
+    sign_in @resident_user
+    get new_report_path(category: "Fruits and Vegetables", subcategory: "Pears")
+    assert_response :redirect
   end
 
   test "should not get new without categories if signed in" do
