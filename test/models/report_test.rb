@@ -220,4 +220,15 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal 4, report.first.id
   end
 
+  test "search finds reports by status" do
+    report = Report.search("Status", "Resolved")
+    assert_equal 1, report.count
+    assert_equal 3, report.first.id
+  end
+
+  test "search finds reports by severity" do
+    report = Report.search("Severity", "Low")
+    assert_equal 5, report.count
+  end
+
 end
