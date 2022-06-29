@@ -207,4 +207,17 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal 3, report.last.id
   end
 
+  test "search finds reports by category" do
+    report = Report.search("Category", "Trash, Recycling, and Pickup")
+    assert_equal 2, report.count
+    assert_equal 1, report.first.id
+    assert_equal 5, report.last.id
+  end
+
+  test "search finds reports by subcategory" do
+    report = Report.search("Category", "Sewer complaint")
+    assert_equal 1, report.count
+    assert_equal 4, report.first.id
+  end
+
 end
