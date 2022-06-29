@@ -9,10 +9,10 @@
     <p>Report, track, and browse non-emergency issues in your community.</p>
 </div>
 
-<div class="homepage-tiles-container my-5 mx-auto d-flex justify-content-center">
+<div class="homepage-tiles-container my-5 mx-auto d-flex flex-wrap justify-content-center">
     <!-- Resident Dashboard Tile - shows if logged in as resident user -->
     <% if  user_signed_in? && current_user.is_resident? %>                
-        <div class="card homepage-tile text-center py-5">
+        <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Resident Dashboard</h5>
@@ -23,7 +23,7 @@
     <% end %>
     <!-- Official Dashboard Tile - shows if logged in as official or admin user -->
     <% if  user_signed_in? && (current_user.is_admin? || current_user.is_official?) %>                
-        <div class="card homepage-tile text-center py-5">
+        <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Officials Dashboard</h5>
@@ -32,13 +32,48 @@
             </div>
         </div>
     <% end %>
+    <!-- Admin Only Tiles - shows if logged in as admin user -->
+    <% if  user_signed_in? && (current_user.is_admin?) %>                
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'add-user-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Add Users</h5>
+                <p class="card-text">Add new resident, official, and admin users</p>
+                <%=link_to "Add Users", new_user_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'manage-users-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Manage Users</h5>
+                <p class="card-text">Update and deactivate existing user accounts</p>
+                <%=link_to "Manage Users", users_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'flagged-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Flagged Reports</h5>
+                <p class="card-text">View and process flagged reports</p>
+                <%=link_to "View  FlaggedReports", flagged_reports_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'deactivated-report-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Deactivated Reports</h5>
+                <p class="card-text">View deactivated reports</p>
+                <%=link_to "View Deactivated Reports", deactivated_reports_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+    <% end %>
     <!-- Explore Tile -->
-        <div class="card homepage-tile text-center py-5">
+        <div class="card homepage-tile text-center py-5 mb-5">
             <%= image_tag 'compass-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Explore</h5>
                 <p class="card-text">View all open reports</p>
-                <%=link_to "Explore open reports", reports_path, :class=>"btn btn-primary stretched-link" %>
+                <%=link_to "Explore Open Reports", reports_path, :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
 </div>
