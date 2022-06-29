@@ -26,7 +26,7 @@ $(document).ready(function(){
       <% if current_page?('/official') || current_page?('/official-search') %>
         <%= select_tag :official_search_type, options_for_select(["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"], @official_search_type), class: "form-select", id: 'official-select' %>
       <% else %>
-        <%= select_tag :resident_search_type, options_for_select(["Incident No.", "Address", "City", "State", "Zip", "Description"], @resident_search_type), class: "form-select", id: 'resident-select' %>
+        <%= select_tag :resident_search_type, options_for_select(["Incident No.", "Category", "Address", "City", "State", "Zip", "Description"], @resident_search_type), class: "form-select", id: 'resident-select' %>
       <% end %>
     </div>
     <div class="m-2">
