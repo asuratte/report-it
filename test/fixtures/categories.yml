@@ -11,3 +11,7 @@ two:
 three:
   name: Sidewalks
   active: false
+
+four:
+  name: Residential
+  active: true
