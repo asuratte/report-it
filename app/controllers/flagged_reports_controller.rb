@@ -8,7 +8,6 @@ class FlaggedReportsController < ApplicationController
       @admin_flagged_search_type = session[:admin_flagged_search_type]
       @admin_flagged_search_term = session[:admin_flagged_search_term]
       @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
-      #@pagy, @flagged_reports = pagy(Report.all.where(status: "Flagged", active_status: "active").order('created_at DESC'), items: 10, size: [1,0,0,1])
     end
 
     private

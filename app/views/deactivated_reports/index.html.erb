@@ -4,12 +4,12 @@
 
 <hr>
 <% if @deactivated_reports.empty? %>
-  <p>No deactivated reports.</p>
+  <p id="no_reports">No deactivated reports.</p>
 <% else %>
 <table class="mb-3">
     <thead>
       <tr>
-        <th scope="col">Date Created</th>
+        <th scope="col" id="date_reported">Date Reported</th>
         <th scope="col">Incident No.</th>
         <th scope="col">User</th>
         <th scope="col">Report Type</th>
@@ -22,7 +22,7 @@
     <tbody>
       <% @deactivated_reports.each do |report| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-          <td data-label="Date Created" class="text-nowrap"><%= report.created_at.to_date %></td>
+          <td data-label="Date Reported" class="text-nowrap"><%= report.created_at.to_date %></td>
           <td data-label="Incident No."><%= report.id %></td>
           <td data-label="User">
             <% if report.user.present? %>
