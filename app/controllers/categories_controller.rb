@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @pagy, @categories = pagy(Category.all.order(:id), items: 10, size: [1,0,0,1])
+    @pagy, @categories = pagy(Category.all.order('active DESC','name ASC'), items: 10, size: [1,0,0,1])
   end
 
   # GET /categories/1 or /categories/1.json
