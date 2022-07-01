@@ -15,4 +15,11 @@ class CategoryTest < ActiveSupport::TestCase
     assert_equal Category.get_active_categories, categories
   end
 
+  test "Should not create category if name is empty" do
+    category = Category.new
+    category.active = @category1.active
+    assert category.invalid?
+    assert category.errors[:name].any?
+  end
+
 end

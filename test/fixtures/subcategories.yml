@@ -3,6 +3,7 @@
 one:
   name: Pothole complaint
   active: true
+  description: Report pothole issues.
   category: one
 
 two:
