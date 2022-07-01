@@ -76,6 +76,7 @@ namespace :import do
     csv.each do |row|
       subcat = Subcategory.new
       subcat.name = row["name"]
+      subcat.description = row["description"]
       subcat.category_id = row["category_id"]
       subcat.active = row["active"]
       subcat.save
