@@ -1,5 +1,7 @@
 class Subcategory < ApplicationRecord
   belongs_to :category, :optional => true
+  validates :description, length: {maximum: 500}
+  validates :name, presence: true
 
   def self.get_active_subcategories
     self.all.where(:active => true)
