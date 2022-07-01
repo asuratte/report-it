@@ -1,7 +1,7 @@
 <%= form_with(model: subcategory) do |form| %>
   <% if subcategory.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(subcategory.errors.count, "error") %> prohibited this subcategory from being saved:</h2>
+      <p><%= pluralize(subcategory.errors.count, "error") %> prohibited this subcategory from being saved:</p>
 
       <ul>
         <% subcategory.errors.each do |error| %>
@@ -12,13 +12,18 @@
   <% end %>
 
   <div class="field mb-3">
-    <%= form.label :name, class: 'form-label' %>
+    <%= form.label :name, class: 'form-label required' %>
     <%= form.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="field mb-3">
     <%= form.label :category_id, 'Parent Category', class: 'form-label' %>
     <%= form.select :category_id, Category.get_active_categories.collect { |x| [x.name, x.id]}, {:include_hidden => false}, { :class => 'form-select' } %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, rows: 4, class: 'form-control' %>
   </div>
 
   <div class="field mb-3">
