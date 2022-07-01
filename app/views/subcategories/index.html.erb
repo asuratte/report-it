@@ -15,7 +15,7 @@
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td><%= subcategory.name %></td>
         <td><% if subcategory.active %>Active<% else %>Inactive<% end %></td>
-        <td><%= Category.find_by(id: subcategory.category_id).name %></td>
+        <td><%= subcategory.category.name %></td>
         <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
       </tr>
     <% end %>
