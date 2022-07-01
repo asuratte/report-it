@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :check_user, only: [:edit, :create, :delete, :update, :new]
 
   def check_user
+    #restrict resident from comments
     if current_user.is_resident?
       redirect_to root_path, error: 'You are not allowed to access this part of the site'
     end
@@ -39,6 +40,7 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @check = Comment.find(params[:id])
+    #add logic to allow admin or official creator to edit
     if @check.blank? == false && (current_user.id == @check.user_id || current_user.is_admin?)
     else
       redirect_to root_path
@@ -63,6 +65,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1 or /comments/1.json
   def update
     @check = Comment.find(params[:id])
+    #add logic to allow admin or official creator to update
     if current_user.id == @check.user_id || current_user.is_admin?
       respond_to do |format|
         if @comment.update(comment_params)
@@ -81,11 +84,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1 or /comments/1.json
   def destroy
     @check = Comment.find(params[:id])
+    #add logic to allow admin or official creator to delete
     if current_user.id == @check.user_id || current_user.is_admin?
       @comment.destroy
 
       respond_to do |format|
-        format.html { redirect_to report_path(@check.report_id), notice: "Comment was successfully destroyed." }
+        format.html { redirect_to report_path(@check.report_id), notice: "Comment was successfully deleted." }
         format.json { head :no_content }
       end
     else
