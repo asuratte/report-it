@@ -21,7 +21,9 @@
                   <div class="py-1 list-group-item list-group-item-action">
                     <%= link_to subcategory.name, new_report_path(category: category.name, subcategory: subcategory.name),
                       class: "stretched-link" %>
-                      <%= image_tag 'info-circle-fill.svg', 'data-bs-toggle':'tooltip', 'data-bs-placement':'right', title: subcategory.description, class:'category-info-icon d-inline-block ms-2 align-text-bottom' %>
+                      <% if subcategory.description.present? %>
+                        <%= image_tag 'info-circle-fill.svg', 'data-bs-toggle':'tooltip', 'data-bs-placement':'right', title: subcategory.description, class:'category-info-icon d-inline-block ms-2 align-text-bottom' %>
+                      <% end %>
                   </div>
                   <% end %>  
                 </div>
