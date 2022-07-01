@@ -60,6 +60,27 @@
   <%= @report.description %>
 </p>
 
+<% if current_user.role == 'admin' || current_user.role == 'official' %>
+  <p>
+    <strong>Reported By:</strong>
+      <!-- Show linked username or Anonymous for Admin users -->
+      <% if current_user.role == 'admin' %>
+        <% if @report.user %>
+          <%= link_to @report.user.username, user_path(@report.user) %>
+        <% else  %>
+          Anonymous
+        <% end %>
+      <!-- Show plain text username or Anonymous for Official users -->
+      <% elsif current_user.role == 'official' %>
+        <% if @report.user %>
+          <%= @report.user.username %>
+        <% else  %>
+          Anonymous
+        <% end %>
+      <% end %>
+  </p>
+<% end %>
+
 <div>
   <% if @report.image.attached? %>
   <p>
