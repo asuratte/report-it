@@ -179,6 +179,13 @@
    }
  }
 
+ @media screen and (max-width: 649px) {
+   th, td {
+       text-align: right;
+       font-size: .95em;
+     }
+ }
+
  header.main {
    @media (min-width: 30em) {
      text-align: left;

@@ -16,11 +16,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
-    sql = "SELECT comments.id, users.username, comments.comment, comments.created_at FROM comments
-      JOIN users ON comments.user_id = users.id
-      WHERE comments.report_id = " + params[:id].to_s + " ORDER BY comments.created_at DESC"
-
-    @report_comments = Comment.find_by_sql(sql)
+    @pagy, @report_comments = pagy(Comment.joins(:user).select("comments.id, comments.user_id, users.username, comments.comment, comments.created_at").where("comments.report_id = " + params[:id].to_s), items: 5, size: [1,0,0,1])
 
     if @report.active_status != "active" && (current_user == nil || current_user.is_resident? || current_user.is_official?)
       redirect_to reports_path

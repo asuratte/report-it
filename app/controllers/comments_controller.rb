@@ -38,6 +38,11 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @check = Comment.find(params[:id])
+    if @check.blank? == false && (current_user.id == @check.user_id || current_user.is_admin?)
+    else
+      redirect_to root_path
+    end
   end
 
   # POST /comments or /comments.json
@@ -57,24 +62,34 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1 or /comments/1.json
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully updated." }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+    @check = Comment.find(params[:id])
+    if current_user.id == @check.user_id || current_user.is_admin?
+      respond_to do |format|
+        if @comment.update(comment_params)
+          format.html { redirect_to report_path(@check.report_id), notice: "Comment was successfully updated." }
+          format.json { render :show, status: :ok, location: @comment }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to report_path(@check.report_id)
     end
   end
 
   # DELETE /comments/1 or /comments/1.json
   def destroy
-    @comment.destroy
+    @check = Comment.find(params[:id])
+    if current_user.id == @check.user_id || current_user.is_admin?
+      @comment.destroy
 
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Comment was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to report_path(@check.report_id), notice: "Comment was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to report_path(@check.report_id)
     end
   end
 
