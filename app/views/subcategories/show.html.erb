@@ -10,7 +10,7 @@
 
 <p>
   <strong>Parent Category:</strong>
-  <%= Category.find_by(id: @subcategory.category_id).name %>
+  <%= @subcategory.category.name %>
 </p>
 
 <p>
