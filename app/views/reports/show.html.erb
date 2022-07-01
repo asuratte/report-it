@@ -60,7 +60,7 @@
   <%= @report.description %>
 </p>
 
-<% if current_user.role == 'admin' || current_user.role == 'official' %>
+<% if user_signed_in? && (current_user.role == 'admin' || current_user.role == 'official') %>
   <p>
     <strong>Reported By:</strong>
       <!-- Show linked username or Anonymous for Admin users -->
