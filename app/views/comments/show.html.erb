@@ -15,5 +15,5 @@
   <%= @comment.comment %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= button_to 'Edit', edit_comment_path(@comment), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', :back, :method => :get, class: "btn btn-secondary button-float" %>

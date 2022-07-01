@@ -11,22 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+  <%= hidden_field_tag :user_id, @comment.user_id %>
+  <%= hidden_field_tag :report_id, @comment.report_id %>
+
+  <p>
+    <strong>User:</strong>
+    <%= @comment.user_id %>
+  </p>
+
+  <p>
+    <strong>Report:</strong>
+    <%= @comment.report_id %>
+  </p>
+
+  <div class="field mb-3">
+    <%= form.label :comment, class: 'form-label' %>
+    <%= form.text_area :comment, class: 'form-control', :maxlength => 200, :size => 200 %>
   </div>
 
-  <div class="field">
-    <%= form.label :report_id %>
-    <%= form.number_field :report_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_field :comment %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <span class="actions button-float">
+    <%= form.submit 'Update Report', class: 'btn btn-primary' %>
+  </span>
 <% end %>

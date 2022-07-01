@@ -2,5 +2,5 @@
 
 <%= render 'form', comment: @comment %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<%= button_to 'Show', @comment, :method => :get, class: "btn btn-secondary button-float" %>
+<%= button_to 'Back', report_path(@comment.report_id), :method => :get, class: "btn btn-secondary button-float" %>

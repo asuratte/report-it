@@ -16,6 +16,12 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
+    sql = "SELECT comments.id, users.username, comments.comment, comments.created_at FROM comments
+      JOIN users ON comments.user_id = users.id
+      WHERE comments.report_id = " + params[:id].to_s + " ORDER BY comments.created_at DESC"
+
+    @report_comments = Comment.find_by_sql(sql)
+
     if @report.active_status != "active" && (current_user == nil || current_user.is_resident? || current_user.is_official?)
       redirect_to reports_path
     end

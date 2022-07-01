@@ -1,9 +1,30 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :check_user, only: [:edit, :create, :delete, :update, :new]
+
+  def check_user
+    if current_user.is_resident?
+      redirect_to root_path, error: 'You are not allowed to access this part of the site'
+    end
+  end
 
   # GET /comments or /comments.json
   def index
     @comments = Comment.all
+  end
+
+  # post comment to database
+  def submit_comment
+    @comment_string = params[:comment]
+    @report_id = params[:report_id]
+    @report = Report.find(@report_id)
+    @user_id = current_user.id
+
+    @comment = Comment.create!(user_id: @user_id, report_id: @report_id, comment: @comment_string)
+
+    respond_to do |format|
+      format.html { redirect_to report_path(@report), notice: "Your comment was logged" }
+    end
   end
 
   # GET /comments/1 or /comments/1.json
