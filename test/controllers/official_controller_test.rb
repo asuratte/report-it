@@ -11,21 +11,18 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "official should go to official dashboard on login" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
   end
 
   test "admin should go to official dashboard on login" do
-    get '/users/sign_in'
     sign_in @admin_user
     get official_url
     assert_response :success
   end
 
   test "official should see status on edit of report" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -36,7 +33,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "official should see severity on edit of report" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -47,7 +43,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "admin should see status on edit of report" do
-    get '/users/sign_in'
     sign_in @admin_user
     get official_url
     assert_response :success
@@ -58,7 +53,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "admin should see severity on edit of report" do
-    get '/users/sign_in'
     sign_in @admin_user
     get official_url
     assert_response :success
@@ -69,7 +63,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "resident should not see incident number on report show" do
-    get '/users/sign_in'
     sign_in @resident_user
 
     get '/reports/1'
@@ -78,7 +71,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "official should see incident number on report show" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -89,7 +81,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "admin should see incident number on report show" do
-    get '/users/sign_in'
     sign_in @admin_user
     get official_url
     assert_response :success
@@ -100,7 +91,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "resident should not see incident number on report edit" do
-    get '/users/sign_in'
     sign_in @resident_user
 
     get '/reports/1/edit'
@@ -109,7 +99,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "official should see incident number on report edit" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -120,7 +109,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "admin should see incident number on report edit" do
-    get '/users/sign_in'
     sign_in @admin_user
     get official_url
     assert_response :success
@@ -131,7 +119,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on incident search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -145,7 +132,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on status search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -159,7 +145,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on severity search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -173,7 +158,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on address search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -194,7 +178,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on city search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -208,7 +191,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on state search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -222,7 +204,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on zip search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -236,7 +217,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return record on description search" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success
@@ -250,7 +230,6 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return no records on search where none exist" do
-    get '/users/sign_in'
     sign_in @official_user
     get official_url
     assert_response :success

@@ -12,7 +12,7 @@
 
 <p>
   <strong>Comment:</strong>
-  <%= @comment.comment %>
+  <span id="comment"><%= @comment.comment %></span>
 </p>
 
 <%= button_to 'Edit', edit_comment_path(@comment), :method => :get, class: "btn btn-primary button-float" %>
