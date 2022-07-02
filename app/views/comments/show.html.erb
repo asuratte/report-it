@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @comment.user_id %>
+  <strong>Username:</strong>
+  <%= User.get_username(@comment.user_id).username %>
 </p>
 
 <p>
-  <strong>Report:</strong>
+  <strong>Incident Number:</strong>
   <%= @comment.report_id %>
 </p>
 
