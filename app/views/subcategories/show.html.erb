@@ -10,7 +10,12 @@
 
 <p>
   <strong>Parent Category:</strong>
-  <%= Category.find_by(id: @subcategory.category_id).name %>
+  <%= @subcategory.category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @subcategory.description %>
 </p>
 
 <%= button_to 'Edit', edit_subcategory_path(@subcategory), :method => :get, class: "btn btn-primary button-float" %>

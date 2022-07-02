@@ -1,45 +1,45 @@
-name,category_id,active
-Stray/wild/dead animals,1,TRUE
-Nuisance animal complaint,1,TRUE
-Vicious animal complaint,1,TRUE
-Pet wellness check request,1,TRUE
-Injured animal report,1,TRUE
-Bee/wasp removal request,1,TRUE
-Animal in trap complaint,1,TRUE
-Coyote interaction complaint,1,TRUE
-Missed trash pickup complaint,2,TRUE
-Missed recycling pickup complaint,2,TRUE
-Missed yard waste pickup complaint,2,TRUE
-Overflowing public receptacle complaint,2,TRUE
-Pothole complaint,3,TRUE
-Road hazard complaint,3,TRUE
-Sewer complaint,3,TRUE
-Water on street complaint,3,TRUE
-Street light out complaint,3,TRUE
-Sidewalk complaint,3,TRUE
-Traffic light out complaint,3,TRUE
-Pedestrian signal complaint,3,TRUE
-Sign repair request,3,TRUE
-Abandoned vehicle complaint,3,TRUE
-Abandoned bicycle complaint,3,TRUE
-Parking violation complaint,3,TRUE
-Bike lane obstruction complaint,3,TRUE
-Bike rack damage complaint,3,TRUE
-Illegal dumping complaint,4,TRUE
-Sanitation code violation complaint,4,TRUE
-Air pollution complaint,4,TRUE
-Water pollution complaint,4,TRUE
-"Tree trimming, debris cleanup, or removal request",4,TRUE
-Business complaint,5,TRUE
-City official complaint,5,TRUE
-Graffiti removal request,5,TRUE
-Building code violation complaint,5,TRUE
-Commercial fire safety inspection request,5,TRUE
-Building permit violation complaint,5,TRUE
-Excessive noise complaint,5,TRUE
-Property maintenance complaint,5,TRUE
-Inoperable vehicles/junk/trash on property complaint,5,TRUE
-Residential wellness check request,5,TRUE
-Disability accessibility/accommodation request,5,TRUE
-General Complaint,6,TRUE
-COVID-19 Business Mask Compliance Complaint,7,FALSE
+name,description,category_id,active
+Stray/wild/dead animals,Report an unleashed animal not in the presence of an owner or a dead animal in a public place.,1,TRUE
+Nuisance animal complaint,"Report complaints regarding unlicensed, unvaccinated animals or animal waste issues.",1,TRUE
+Vicious animal complaint,"Report any animal that is creating a dangerous or hazardous condition, including attacking or attempting to bite.",1,TRUE
+Pet wellness check request,"Report the need of a wellness check, an animal being abused, or concerns for a pet such as no food or water.",1,TRUE
+Injured animal report,Report any animal in a public place that is injured or sick.,1,TRUE
+Bee/wasp removal request,Report a beehive or wasp's nest that needs removal. This does not pertain to nests on private property.,1,TRUE
+Animal in trap complaint,Report a trapped or contained animal.,1,TRUE
+Coyote interaction complaint,Report a coyote sighting or interaction.,1,TRUE
+Missed trash pickup complaint,"Report trash that was not picked up on your service day or at a scheduled appointment. Let us know if only your trash pickup was missed, or if the entire street was missed.",2,TRUE
+Missed recycling pickup complaint,"Report recycling that was not picked up on your service day or at a scheduled appointment. Let us know if only your recycling pickup was missed, or if the entire street was missed.",2,TRUE
+Missed yard waste pickup complaint,"Report yard waste that was not picked up on your service day or at a scheduled appointment. Let us know if only your yard waste was missed, or if the entire street was missed.",2,TRUE
+Overflowing public receptacle complaint,Report an overflowing or misused public receptacle.,2,TRUE
+Pothole complaint,Report locations of street potholes or cave-ins.,3,TRUE
+Road hazard complaint,"Report hazards such as trash and debris in the driving or bike lane of a city street.",3,TRUE
+Sewer complaint,"Report issues with sewers such as damage, odors, and clogs.",3,TRUE
+Water on street complaint,Report water that remains on the street and does not drain properly.,3,TRUE
+Street light out complaint,Report a street light that is not working.,3,TRUE
+Sidewalk complaint,Report an issue with the condition of city sidewalks or ramps.,3,TRUE
+Traffic light out complaint,Report a traffic light that is not working.,3,TRUE
+Pedestrian signal complaint,Report pedestrian crossing signals that are not working or flashing.,3,TRUE
+Sign repair request,"Report maintenance issues to traffic or parking signs, or request to have new signs installed.",3,TRUE
+Abandoned vehicle complaint,"Report an abandoned vehicle (car, truck, motorcycle, etc.) on public property that has not moved for at least 72 hours.",3,TRUE
+Abandoned bicycle complaint,Report an abandoned bicycle (except for branded bikeshare bicycles).,3,TRUE
+Parking violation complaint,Report parking violations on city streets.,3,TRUE
+Bike lane obstruction complaint,Report a bicycle lane that is being obstructed by vehicles or debris.,3,TRUE
+Bike rack damage complaint,Report a bike rack that has been damaged or request a new bike rack.,3,TRUE
+Illegal dumping complaint,"Report garbage or construction debris that has been illegally dumped on public property or a vacant lot.",4,TRUE
+Sanitation code violation complaint,"Report unsanitary conditions on private property that should cause the owner to receive a citation.",4,TRUE
+Air pollution complaint,"Report dust, odors or other air pollution from commercial and industrial sites.",4,TRUE
+Water pollution complaint,"Report pollution in rivers, lakes, canals, or sewers.",4,TRUE
+"Tree trimming, debris cleanup, or removal request","Report a tree in need of trimming, request a pick-up of a pile of branches or bushes, or request the removal of a dead or dangerous tree.",4,TRUE
+Business complaint,"Report a business operating without a proper license or engaging in illegal practices.",5,TRUE
+City official complaint,"Report an issue with a city official, including wrongdoing or fraud.",5,TRUE
+Graffiti removal request,"Request graffiti removal from your property or public property.",5,TRUE
+Building code violation complaint,"Report general building code violations.",5,TRUE
+Commercial fire safety inspection request,"Request the Fire Department to schedule an inspection to determine whether fire hazards exist in a property.",5,TRUE
+Building permit violation complaint,"Report the building or rehabilitating of a structure without having an appropriate permit displayed.",5,TRUE
+Excessive noise complaint,"Report excessive noise from vehicles, establishments, neighbors, or equipment.",5,TRUE
+Property maintenance complaint,"Report a maintenance problem in a commercial or residential building.",5,TRUE
+Inoperable vehicles/junk/trash on property complaint,"Report trash, household debris, or inoperable vehicles on private property.",5,TRUE
+Residential wellness check request,"Report residents whose health, safety or general well being are in question.",5,TRUE
+Disability accessibility/accommodation request,"Report inadequate disability access to buildings or public spaces.",5,TRUE
+General Complaint,"Report a general complaint or use if you cannot find an appropriate category.",6,TRUE
+COVID-19 Business Mask Compliance Complaint,"Report a business that is not in compliance with current mask protocols.",7,FALSE

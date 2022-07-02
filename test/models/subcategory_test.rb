@@ -34,4 +34,23 @@ class SubcategoryTest < ActiveSupport::TestCase
     assert_equal 0, Subcategory.get_active_subcategories_by_category(@category2).count
   end
 
+  test "Should not create subcategory if description is invalid length" do
+    subcategory = Subcategory.new
+    subcategory.name = @subcategory1.name
+    subcategory.category = @subcategory1.category
+    subcategory.active = @subcategory1.active
+    subcategory.description = "a" * 501
+    assert subcategory.invalid?
+    assert subcategory.errors[:description].any?
+  end
+
+  test "Should not create subcategory if name is empty" do
+    subcategory = Subcategory.new
+    subcategory.category = @subcategory1.category
+    subcategory.active = @subcategory1.active
+    subcategory.description = "a" * 501
+    assert subcategory.invalid?
+    assert subcategory.errors[:name].any?
+  end
+
 end
