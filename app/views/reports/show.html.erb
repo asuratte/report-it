@@ -125,9 +125,7 @@
         <th scope="col">Date</th>
         <th scope="col">Username</th>
         <th scope="col">Comment</th>
-        <% if (current_user.is_official? && current_user.id == @report_comments[0].user_id) || current_user.is_admin? %>
-          <th colspan="2"></th>
-        <% end %>
+        <th colspan="2"></th>
       </tr>
     </thead>
 
@@ -141,6 +139,8 @@
           <% if (current_user.is_official? && current_user.id == report_comment.user_id) || current_user.is_admin? %>
             <td><%= link_to 'Edit', edit_comment_path(report_comment) %></td>
             <td><%= link_to 'Delete', report_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td colspan="2"></td>
           <% end %>
         </tr>
       <% end %>
