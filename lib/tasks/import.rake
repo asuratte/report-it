@@ -82,5 +82,15 @@ namespace :import do
       subcat.save
     end
 
+    csv_text = File.read(Rails.root.join("lib", "comment_data.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    csv.each do |row|
+      com = Comment.new
+      com.user_id = row["user_id"]
+      com.report_id = row["report_id"]
+      com.comment = row["comment"]
+      com.save
+    end
+
   end
 end
