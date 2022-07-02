@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates_format_of :phone,  with: /\A(1-)?\d{3}-\d{3}-\d{4}\z/, :message => "should be a valid phone number with dashes. ex: 111-222-3333, 1-333-444-5555"
   validates :username, length: {minimum: 6, maximum: 30}, uniqueness: true
   has_many :reports
+  has_many :comments
 
   def active_for_authentication?
     super && self.active
@@ -28,6 +29,10 @@ class User < ApplicationRecord
 
   def is_active?
     return self.active
+  end
+
+  def self.get_username(user_id)
+    User.find(user_id)
   end
 
 end

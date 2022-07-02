@@ -14,22 +14,27 @@ Rails.application.routes.draw do
     resources :contents, except: [:create, :new, :destroy]
     resources :subcategories, except: [:destroy]
     resources :categories, except: [:destroy]
+    get 'deactivated-reports', to: 'deactivated_reports#index'
+    get 'flagged-reports', to: 'flagged_reports#index'
+
+    get 'official', to: 'official#index'
+
+    resources :comments, except: [:index]
   end
 
   authenticate :user, -> (user) { user.is_resident? } do
     get 'resident', to: 'resident#index'
   end
 
-  authenticate :user, -> (user) { user.is_official? || user.is_admin? } do
+  authenticate :user, -> (user) { user.is_official? } do
     get 'official', to: 'official#index'
-  end
 
-  authenticate :user, -> (user) { user.is_admin? } do
-    get 'deactivated-reports', to: 'deactivated_reports#index'
-    get 'flagged-reports', to: 'flagged_reports#index'
+    resources :comments, except: [:index]
   end
 
   root to: 'home#index'
+
+  get '/submit_comment', to: "comments#submit_comment"
 
   post '/reports/:id/edit' => 'reports#edit'
 

@@ -47,6 +47,14 @@ rake db:schema:load
 rails routes
 
 /*------------------------------
+Reset the Database
+------------------------------*/
+
+rake db:reset
+rake import:csv_model
+bin/rails db:migrate
+
+/*------------------------------
 SQLite commands
 ------------------------------*/
 

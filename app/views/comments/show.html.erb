@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= User.get_username(@comment.user_id).username %>
+</p>
+
+<p>
+  <strong>Incident Number:</strong>
+  <%= @comment.report_id %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <span id="comment"><%= @comment.comment %></span>
+</p>
+
+<%= button_to 'Edit', edit_comment_path(@comment), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', :back, :method => :get, class: "btn btn-secondary button-float" %>

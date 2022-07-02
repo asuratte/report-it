@@ -1,3 +1,34 @@
+<script>
+  $( document ).ready( function() {
+    var errorMessage = "No leading spaces, only spaces or empty values allowed.";
+
+    $( this ).find( "textarea" ).on( "input change propertychange", function() {
+
+      var pattern = $( this ).attr( "pattern" );
+
+      if(typeof pattern !== typeof undefined && pattern !== false) {
+        var patternRegex = new RegExp( "^" + pattern.replace(/^\^|\$$/g, '') + "$", "g" );
+
+        hasError = !$( this ).val().match( patternRegex );
+
+        if ( typeof this.setCustomValidity === "function") {
+          this.setCustomValidity( hasError ? errorMessage : "" );
+        } else {
+          $( this ).toggleClass( "error", !!hasError );
+          $( this ).toggleClass( "ok", !hasError );
+
+          if ( hasError ) {
+            $( this ).attr( "title", errorMessage );
+          } else {
+            $( this ).removeAttr( "title" );
+          }
+        }
+      }
+
+    });
+  });
+</script>
+
 <% if user_signed_in? %>
   <% if current_user.is_official? || current_user.is_admin? %>
   <p>
@@ -94,7 +125,7 @@
   <p>
     <strong>Active Status:</strong>
     <% if @report.active_status != "active" %>
-      Deactivated - 
+      Deactivated -
     <% end %>
     <%= @report.active_status.humanize.titleize %>
   </p>
@@ -116,4 +147,58 @@
   <% end %>
 <% end %>
 
-<%= button_to 'Back', url_for(:back), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', url_for(:back), :method => :get, class: "btn btn-secondary button-float" %>
+
+<!-- Only display if user is Official/Admin -->
+<% if user_signed_in? %>
+  <% if current_user.is_official? || current_user.is_admin? %>
+
+    <br><br><br>
+    <%= form_tag('/submit_comment', method: :get) do %>
+      <div class="field mb-3">
+        <%= text_area_tag :comment, @comment, id: 'comment-text', class: "form-control", :maxlength => 200, :size => 200, placeholder: 'Comment', required: true, pattern: '^[^\s].*$' %>
+      </div>
+
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= hidden_field_tag :report_id, @report.id %>
+
+      <span class="actions button-float">
+        <%= submit_tag "Submit Comment", class: "btn btn-primary" %>
+      </span>
+    <% end %>
+
+    <br><br>
+    <% if @report_comments.blank? == false %>
+
+    <hr>
+    <table class="mb-3">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Username</th>
+        <th scope="col">Comment</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @report_comments.each do |report_comment| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td id="comment_date" data-label="Date"><%= report_comment.created_at.strftime("%m-%d-%Y") %></td>
+          <td id="comment_username" data-label="Username"><%= report_comment.username %></td>
+          <td id="report_comment" data-label="Comment"><%= report_comment.comment %></td>
+
+          <% if (current_user.is_official? && current_user.id == report_comment.user_id) || current_user.is_admin? %>
+            <td><%= link_to 'Edit', edit_comment_path(report_comment) %></td>
+            <td><%= link_to 'Delete', report_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td colspan="2"></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+    <% end %>
+  <% end %>
+<% end %>

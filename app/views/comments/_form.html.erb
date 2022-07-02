@@ -1,0 +1,66 @@
+<script>
+  $( document ).ready( function() {
+    var errorMessage = "No leading spaces, only spaces or empty values allowed.";
+
+    $( this ).find( "textarea" ).on( "input change propertychange", function() {
+
+      var pattern = $( this ).attr( "pattern" );
+
+      if(typeof pattern !== typeof undefined && pattern !== false) {
+        var patternRegex = new RegExp( "^" + pattern.replace(/^\^|\$$/g, '') + "$", "g" );
+
+        hasError = !$( this ).val().match( patternRegex );
+
+        if ( typeof this.setCustomValidity === "function") {
+          this.setCustomValidity( hasError ? errorMessage : "" );
+        } else {
+          $( this ).toggleClass( "error", !!hasError );
+          $( this ).toggleClass( "ok", !hasError );
+
+          if ( hasError ) {
+            $( this ).attr( "title", errorMessage );
+          } else {
+            $( this ).removeAttr( "title" );
+          }
+        }
+      }
+
+    });
+  });
+</script>
+
+<%= form_with(model: comment) do |form| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% comment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag :user_id, @comment.user_id %>
+  <%= hidden_field_tag :report_id, @comment.report_id %>
+
+  <p>
+    <strong>Username:</strong>
+    <%= User.get_username(@comment.user_id).username %>
+  </p>
+
+  <p>
+    <strong>Incident Number:</strong>
+    <%= @comment.report_id %>
+  </p>
+
+  <div class="field mb-3">
+    <%= form.label :comment, class: 'form-label' %>
+    <%= form.text_area :comment, class: 'form-control', :maxlength => 200, :size => 200, placeholder: 'Comment', required: true, pattern: '^[^\s].*$' %>
+  </div>
+
+  <span class="actions button-float">
+    <%= form.submit 'Update Report', class: 'btn btn-primary' %>
+  </span>
+<% end %>

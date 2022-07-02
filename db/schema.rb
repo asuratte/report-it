@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 2022_07_01_155640) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "report_id"
+    t.string "comment", limit: 200
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "contents", force: :cascade do |t|
     t.string "homepage_heading_1"
     t.string "footer_copyright"
