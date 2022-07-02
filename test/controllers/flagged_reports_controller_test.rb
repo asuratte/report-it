@@ -15,7 +15,9 @@ class FlaggedReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "official and resident users should not get flagged-reports" do
+  test "official, resident, and unauthenticated users should not get flagged-reports" do
+    get flagged_reports_url
+    assert_response :redirect
     sign_in @official_user
     get flagged_reports_url
     assert_response :redirect
@@ -23,6 +25,7 @@ class FlaggedReportsControllerTest < ActionDispatch::IntegrationTest
     sign_in @resident_user
     get flagged_reports_url
     assert_response :redirect
+    sign_out @resident_user
   end
 
   test "should return record on incident search" do
