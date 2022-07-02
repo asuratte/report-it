@@ -25,22 +25,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test "should get new comment for official or admin" do
-    sign_in @official_user
-    get reports_url(@report)
-    assert_response :success
-
-    get new_comment_url
-    assert_response :success
-
-    sign_in @admin_user
-    get reports_url(@report)
-    assert_response :success
-
-    get new_comment_url
-    assert_response :success
-  end
-
   test "should not get new comment for resident" do
     sign_in @resident_user
     get reports_url(@report)
@@ -50,7 +34,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test "should create comment for official or admin" do
+  test "should create new comment for official or admin" do
     sign_in @official_user
     get '/reports/' + @report.id.to_s
     assert_response :success
@@ -75,12 +59,14 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show comment for admin or official" do
+    @show_comment = Comment.create(user_id: @official_user.id, report_id: @report.id, comment: 'Testing')
+
     sign_in @admin_user
-    get comment_url(@comment)
+    get comment_url(@show_comment)
     assert_response :success
 
     sign_in @official_user
-    get comment_url(@comment)
+    get comment_url(@show_comment)
     assert_response :success
   end
 
