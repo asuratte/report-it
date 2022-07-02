@@ -1,3 +1,34 @@
+<script>
+  $( document ).ready( function() {
+    var errorMessage = "No leading spaces, only spaces or empty values allowed.";
+
+    $( this ).find( "textarea" ).on( "input change propertychange", function() {
+
+      var pattern = $( this ).attr( "pattern" );
+
+      if(typeof pattern !== typeof undefined && pattern !== false) {
+        var patternRegex = new RegExp( "^" + pattern.replace(/^\^|\$$/g, '') + "$", "g" );
+
+        hasError = !$( this ).val().match( patternRegex );
+
+        if ( typeof this.setCustomValidity === "function") {
+          this.setCustomValidity( hasError ? errorMessage : "" );
+        } else {
+          $( this ).toggleClass( "error", !!hasError );
+          $( this ).toggleClass( "ok", !hasError );
+
+          if ( hasError ) {
+            $( this ).attr( "title", errorMessage );
+          } else {
+            $( this ).removeAttr( "title" );
+          }
+        }
+      }
+
+    });
+  });
+</script>
+
 <% if user_signed_in? %>
   <% if current_user.is_official? || current_user.is_admin? %>
   <p>
@@ -125,7 +156,7 @@
     <br><br><br>
     <%= form_tag('/submit_comment', method: :get) do %>
       <div class="field mb-3">
-        <%= text_area_tag :comment, @comment, id: 'comment-text', class: "form-control", :maxlength => 200, :size => 200, placeholder: 'Comment', required: true %>
+        <%= text_area_tag :comment, @comment, id: 'comment-text', class: "form-control", :maxlength => 200, :size => 200, placeholder: 'Comment', required: true, pattern: '^[^\s].*$' %>
       </div>
 
       <%= hidden_field_tag :user_id, current_user.id %>
