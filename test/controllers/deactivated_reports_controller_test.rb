@@ -18,6 +18,19 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "official, resident, and unauthenticated users should not get deactivated-reports" do
+    get deactivated_reports_url
+    assert_response :redirect
+    sign_in @official_user
+    get deactivated_reports_url
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @resident_user
+    get deactivated_reports_url
+    assert_response :redirect
+    sign_out @resident_user
+  end
+
   test "official and resident users should not get deactivated-reports" do
     sign_in @official_user
     get deactivated_reports_url
