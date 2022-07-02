@@ -12,14 +12,8 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
 
   test "official should go to official dashboard on login" do
     sign_in @official_user
-    get official_url
-    assert_response :success
-  end
-
-  test "admin should go to official dashboard on login" do
-    sign_in @admin_user
-    get official_url
-    assert_response :success
+    post user_session_url
+    assert_redirected_to official_url
   end
 
   test "official should see status on edit of report" do
