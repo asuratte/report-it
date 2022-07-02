@@ -104,7 +104,7 @@
     <br><br><br>
     <%= form_tag('/submit_comment', method: :get) do %>
       <div class="field mb-3">
-        <%= text_area_tag :comment, @comment, id: 'comment-text', class: "form-control", :maxlength => 200, :size => 200 %>
+        <%= text_area_tag :comment, @comment, id: 'comment-text', class: "form-control", :maxlength => 200, :size => 200, placeholder: 'Comment', required: true %>
       </div>
 
       <%= hidden_field_tag :user_id, current_user.id %>
