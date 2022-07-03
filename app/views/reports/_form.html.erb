@@ -91,11 +91,11 @@
    <div class="field mb-3 row">
       <div class="col-md-4">
         <%= form.label :active_status, 'Active Status', :class => 'form-label', :id => 'active_status_label' %>
-        <%= form.select(:active_status, [['Active', 'active'], ['Spam', 'spam'], ['Abuse', 'abuse'], ['Ouside Area', 'outside_area']], {}, { :class => 'form-select' }) %>
+        <%= form.select(:active_status, [['Active', 'active'], ['Spam', 'spam'], ['Abuse', 'abuse'], ['Outside Area', 'outside_area']], {}, { :class => 'form-select' }) %>
       </div>
     </div>
   <% end %>
-  
+
   <% if current_page?(:controller => 'reports', :action => 'new')%>
     <div data-bs-toggle="collapse" data-bs-target="#trackingMessage">
       <div class="form-check form-switch mt-4">
