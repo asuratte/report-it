@@ -1,0 +1,2 @@
+class ReportsByUserController < ApplicationController
+end
