@@ -8,6 +8,7 @@
       <th scope="col">Role</th>
       <th scope="col">Active</th>
       <th></th>
+      <% if current_user.role == 'admin' %><th></th><% end %>
       <th></th>
     </tr>
   </thead>
@@ -20,7 +21,8 @@
         <td data-label="Role"><%= user.role %></td>
         <td data-label="Active"><%= user.active %></td>
         <td><%= link_to 'View User', user %></td>
-        <td><%= link_to 'Edit User', edit_user_path(user) %></td>
+        <% if current_user.role == 'admin' %><td><%= link_to 'Edit User', edit_user_path(user) %></td><% end %>
+        <td><% if user.role == 'resident' %><%= link_to "View Reports by User", reports_by_user_path(:user_id => user.id)%><% end %></td>
       </tr>
     <% end %>
   </tbody>

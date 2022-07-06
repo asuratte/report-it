@@ -47,8 +47,8 @@
   <%= @user.active? ? 'Yes' : 'No' %>
 </p>
 <br>
-<%= button_to 'Edit', edit_user_path(@user), :method => :get, class: "btn btn-primary button-float" %>
-<%= button_to 'Back', users_path, :method => :get, class: "btn btn-secondary button-float" %>
 <% if @user.role == 'resident' %>
-  <%= button_to "View Reports by #{@user.username}", reports_by_user_path, :method => :get, params: { user_id: @user.id }, class: "btn btn-secondary button-float" %>
+  <%= button_to "View Reports by #{@user.username}", reports_by_user_path, :method => :get, params: { user_id: @user.id }, class: "btn btn-primary button-float" %>
 <% end %>
+<% if current_user.role == 'admin' %><%= button_to 'Edit', edit_user_path(@user), :method => :get, class: "btn btn-secondary button-float" %><% end %>
+<%= button_to 'Back', users_path, :method => :get, class: "btn btn-secondary button-float" %>
