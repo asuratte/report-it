@@ -4,7 +4,11 @@ class ReportsByUserController < ApplicationController
 
     def index
         user_id = params[:user_id]
-        @pagy, @user_reports = pagy(Report.where('user_id = ?', user_id).order('created_at DESC'), items: 10, size: [1,0,0,1])
+        if (User.where(id: user_id).present?)
+            @pagy, @user_reports = pagy(Report.where('user_id = ?', user_id).order('created_at DESC'), items: 10, size: [1,0,0,1])
+        else
+            redirect_to users_path
+        end
     end
 
     private
