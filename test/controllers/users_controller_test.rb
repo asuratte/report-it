@@ -66,10 +66,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
+  test "should not show user if invalid user id passed" do
+    sign_in @resident_user
+    get user_url(2000)
+    assert_response :redirect
+  end
+
   test "should get edit if admin user" do
     sign_in @admin_user
     get edit_user_url(@official_user)
     assert_response :success
+  end
+
+  test "should not get edit if admin user and invalid user id passed" do
+    sign_in @admin_user
+    get edit_user_url(2000)
+    assert_response :redirect
   end
 
   test "should not get edit if official or resident user" do
