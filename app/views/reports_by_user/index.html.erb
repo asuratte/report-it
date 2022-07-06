@@ -1,1 +1,36 @@
-<h1 class="text-center mb-4">Reports by <%= @user_reports.first.user.username%></h1>
+<h1 class="text-center mb-4">Reports by <%= @user_reports.first.user.username %></h1>
+<% if @user_reports.empty? %>
+  <p id="no_reports"><%= @user_reports.first.user.username %> has not submitted any reports.</p>
+<% else %>
+<table class="mb-3">
+    <thead>
+      <tr>
+        <th scope="col" id="date_reported">Date Reported</th>
+        <th scope="col">Incident No.</th>
+        <th scope="col">Report Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
+        <th scope="col">Severity</th>
+        <th scope="col">Visibility</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @user_reports.each do |report| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td data-label="Date Reported" class="text-nowrap"><%= report.created_at.to_date %></td>
+          <td data-label="Incident No."><%= report.id %></td>
+          <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
+          <td data-label="Description"><%= truncate(report.description, length: 40) %></td>
+          <td data-label="Status"><%= report.status %></td>
+          <td data-label="Status"><%= report.severity %></td>
+          <td data-label="Reason">
+            <% if report.active_status != "active" %>Deactivated -<% end %>
+            <%= report.active_status.humanize.titleize %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+<% end %>
