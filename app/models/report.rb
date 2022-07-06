@@ -50,8 +50,8 @@ class Report < ApplicationRecord
     [address1, address2, city, state, zip].compact.join(', ')
   end
 
-  def google_map(latitude, longitude)
-    "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=600x400&markers=size:small%7Ccolor:red%7C#{latitude},#{longitude}&key=#{Rails.application.credentials.google_maps_api_key}"
+  def google_map
+    "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:small%7Ccolor:red%7C#{latitude},#{longitude}&key=#{Rails.application.credentials.google_maps_api_key}"
   end
 
 end
