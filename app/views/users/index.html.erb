@@ -22,7 +22,7 @@
         <td data-label="Active"><%= user.active %></td>
         <td><%= link_to 'View User', user %></td>
         <% if current_user.role == 'admin' %><td><%= link_to 'Edit User', edit_user_path(user) %></td><% end %>
-        <td><% if user.role == 'resident' %><%= link_to "View Reports by User", reports_by_user_path(:user_id => user.id)%><% end %></td>
+        <td><% if user.role == 'resident' && user.reports.count > 0 %><%= link_to "View Reports by User", reports_by_user_path(:user_id => user.id)%><% end %></td>
       </tr>
     <% end %>
   </tbody>
