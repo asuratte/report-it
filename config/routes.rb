@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   authenticate :user, -> (user) { user.is_official? } do
     get 'official', to: 'official#index'
     get 'reports-by-user', to: 'reports_by_user#index'
+    get '/users/new', to: redirect('/users')
 
     resources :users, only: [:index, :show]
     resources :comments, except: [:index]
