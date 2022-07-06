@@ -1,7 +1,7 @@
-<h1 class="text-center mb-4">Reports by <%= @user_reports.first.user.username %></h1>
 <% if @user_reports.empty? %>
-  <p id="no_reports"><%= @user_reports.first.user.username %> has not submitted any reports.</p>
+  <p id="no_reports" class="mb-4">User <%= User.find(params[:user_id]).username %> has not submitted any reports.</p>
 <% else %>
+<h1 class="text-center mb-4">Reports by <%= @user_reports.first.user.username %></h1>
 <table class="mb-3">
     <thead>
       <tr>
@@ -34,3 +34,4 @@
   </table>
   <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 <% end %>
+<%= button_to 'Back', :back, :method => :get, class: "btn btn-secondary button-float" %>
