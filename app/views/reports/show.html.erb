@@ -29,71 +29,76 @@
   });
 </script>
 
-<div class="row">
-  <div class="col-md-6">
-    <% if user_signed_in? %>
+
+<% if user_signed_in? %>
   <% if current_user.is_official? || current_user.is_admin? %>
-  <p>
-    <strong id="incident_number">Incident Number:</strong>
-    <%= @report.id %>
-  </p>
+    <p>
+      <strong id="incident_number">Incident Number:</strong>
+      <%= @report.id %>
+    </p>
   <% end %>
 <% end %>
 
-    <p>
-      <strong>Category:</strong>
-      <%= @report.category %> - <%= @report.subcategory %>
-    </p>
-    
-    <p>
-      <strong>Status:</strong>
-      <%= @report.status %>
-    </p>
-    
-    <% if user_signed_in? %>
-      <% if current_user.is_official? || current_user.is_admin? %>
-        <p>
-          <strong>Severity:</strong>
-          <%= @report.severity %>
-        </p>
-      <% end %>
-    <% end %>
-    
-    <% if @report.address1? %>
-    <p>
-      <strong>Address1:</strong>
-      <%= @report.address1 %>
-    </p>
-    <% end %>
-    
-    <% if @report.address2? %>
-    <p>
-      <strong>Address2:</strong>
-      <%= @report.address2 %>
-    </p>
-    <% end %>
-    
-    <p>
-      <strong>City:</strong>
-      <%= @report.city %>
-    </p>
-    
-    <p>
-      <strong>State:</strong>
-      <%= @report.state %>
-    </p>
-    
-    <p>
-      <strong>Zip:</strong>
-      <%= @report.zip %>
-    </p>
+<p>
+  <strong>Category:</strong>
+  <%= @report.category %> - <%= @report.subcategory %>
+</p>
 
-    <p>
-      <strong>Description:</strong>
-      <%= @report.description %>
-    </p>
+<p>
+  <strong>Status:</strong>
+  <%= @report.status %>
+</p>
 
-    <% if user_signed_in? && (current_user.role == 'admin' || current_user.role == 'official') %>
+<% if user_signed_in? %>
+  <% if current_user.is_official? || current_user.is_admin? %>
+    <p>
+      <strong>Severity:</strong>
+      <%= @report.severity %>
+    </p>
+  <% end %>
+<% end %>
+
+<% if @report.address1? %>
+<p>
+  <strong>Address1:</strong>
+  <%= @report.address1 %>
+</p>
+<% end %>
+
+<% if @report.address2? %>
+<p>
+  <strong>Address2:</strong>
+  <%= @report.address2 %>
+</p>
+<% end %>
+
+<p>
+  <strong>City:</strong>
+  <%= @report.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @report.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @report.zip %>
+</p>
+
+<div>
+  <% if @report.address1.present? %>
+    <%= image_tag @report.google_map, class: 'img-fluid mb-4' %>
+  <% end %>
+</div>
+
+<p>
+  <strong>Description:</strong>
+  <%= @report.description %>
+</p>
+
+<% if user_signed_in? && (current_user.role == 'admin' || current_user.role == 'official') %>
   <p>
     <strong>Reported By:</strong>
       <!-- Show linked username or Anonymous for Admin users -->
@@ -113,16 +118,6 @@
       <% end %>
   </p>
 <% end %>
-
-  </div>
-  <div class="col-md-6">
-    <% if @report.address.present? %>
-  <%= image_tag @report.google_map(@report.latitude, @report.longitude), class: 'img-fluid mb-4' %>
-  <% end %>
-  </div>
-</div>
-
-
 
 <div>
   <% if @report.image.attached? %>
