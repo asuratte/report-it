@@ -10,17 +10,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @resident_user_2 = users(:four)
   end
 
-  test "should get index if admin" do
+  test "should get index if admin or official" do
     sign_in @admin_user
+    get users_url
+    assert_response :success
+    sign_out @admin_user
+    sign_in @official_user
     get users_url
     assert_response :success
   end
 
-  test "should not get index if resident or official" do
-    sign_in @official_user
-    get users_url
-    assert_response :redirect
-    sign_out @official_user
+  test "should not get index if resident" do
     sign_in @resident_user
     get users_url
     assert_response :redirect
@@ -50,19 +50,25 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(User.last)
   end
 
-  test "should show user if admin user" do
+  test "should show user if admin or official" do
     sign_in @admin_user
     get user_url(@official_user)
     assert_response :success
-  end
-
-  test "should not show user if official or resident user" do
+    sign_out @admin_user
     sign_in @official_user
     get user_url(@resident_user_2)
-    assert_response :redirect
-    sign_out @official_user
+    assert_response :success
+  end
+
+  test "should not show user if resident user" do
     sign_in @resident_user
     get user_url(@resident_user_2)
+    assert_response :redirect
+  end
+
+  test "should not show user if invalid user id passed" do
+    sign_in @admin_user
+    get user_url(2000)
     assert_response :redirect
   end
 
@@ -70,6 +76,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     sign_in @admin_user
     get edit_user_url(@official_user)
     assert_response :success
+  end
+
+  test "should not get edit if admin user and invalid user id passed" do
+    sign_in @admin_user
+    get edit_user_url(2000)
+    assert_response :redirect
   end
 
   test "should not get edit if official or resident user" do
