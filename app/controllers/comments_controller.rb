@@ -30,6 +30,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1 or /comments/1.json
   def show
+    @username = User.get_username(@comment.user_id).username
   end
 
   # GET /comments/new
@@ -39,6 +40,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @username = User.get_username(@comment.user_id).username
     @check = Comment.find(params[:id])
     #add logic to allow admin or official creator to edit
     if @check.blank? == false && (current_user.id == @check.user_id || current_user.is_admin?)
