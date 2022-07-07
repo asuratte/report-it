@@ -67,7 +67,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not show user if invalid user id passed" do
-    sign_in @resident_user
+    sign_in @admin_user
     get user_url(2000)
     assert_response :redirect
   end
