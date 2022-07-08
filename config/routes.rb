@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   authenticate :user, -> (user) { user.is_admin? } do
     resources :users
     resources :themes, except: [:create, :new, :destroy]
-    resources :contents, except: [:create, :new, :destroy]
+    resources :settings, except: [:create, :new, :destroy]
     resources :subcategories, except: [:destroy]
     resources :categories, except: [:destroy]
     get 'deactivated-reports', to: 'deactivated_reports#index'

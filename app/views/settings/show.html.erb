@@ -1,0 +1,25 @@
+<h1>Settings</h1>
+
+<p>
+  <strong>Homepage heading 1 text:</strong>
+  <%= @setting.homepage_heading_1 %>
+</p>
+
+<p>
+  <strong>Footer copyright text:</strong>
+  <%= @setting.footer_copyright %>
+</p>
+
+<p>
+  <strong>Logo image path:</strong>
+  <%= @setting.logo_image_path %>
+</p>
+
+<p>
+  <strong>Allow Anonymous Report Submission?:</strong>
+  <%= @setting.allow_anonymous_reports ? 'Yes' : 'No' %>
+</p>
+
+<br>
+<%= button_to 'Edit', edit_setting_path(@setting), :method => :get, class: "btn btn-primary button-float" %>
+<%= button_to 'Back', settings_path, :method => :get, class: "btn btn-secondary button-float" %>

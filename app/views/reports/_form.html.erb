@@ -96,7 +96,7 @@
     </div>
   <% end %>
 
-  <% if current_page?(:controller => 'reports', :action => 'new')%>
+  <% if current_page?(:controller => 'reports', :action => 'new') && get_allow_anonymous_reports %>
     <div data-bs-toggle="collapse" data-bs-target="#trackingMessage">
       <div class="form-check form-switch mt-4">
         <%= check_box_tag :hidden_user, true, false, class: 'form-check-input' %>

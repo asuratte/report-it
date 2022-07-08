@@ -3,4 +3,4 @@ one:
   homepage_heading_1: Welcome to ReportIt
   footer_copyright: Report-It. All Rights Reserved.
   logo_image_path: https://placekitten.com/400/147
-
+  allow_anonymous_reports: true
