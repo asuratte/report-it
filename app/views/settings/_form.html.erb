@@ -1,10 +1,10 @@
-<%= form_with(model: content) do |form| %>
-  <% if content.errors.any? %>
+<%= form_with(model: setting) do |form| %>
+  <% if setting.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+      <h2><%= pluralize(setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
 
       <ul>
-        <% content.errors.each do |error| %>
+        <% setting.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -33,6 +33,6 @@
   </div>
 
   <span class="actions button-float">
-      <%= form.submit "Update Content", :class => 'btn btn-primary' %>
+      <%= form.submit "Update setting", :class => 'btn btn-primary' %>
     </span>
 <% end %>

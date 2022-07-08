@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_02_232144) do
+ActiveRecord::Schema.define(version: 2022_07_08_001434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,14 +58,6 @@ ActiveRecord::Schema.define(version: 2022_07_02_232144) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "contents", force: :cascade do |t|
-    t.string "homepage_heading_1"
-    t.string "footer_copyright"
-    t.string "logo_image_path"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "reports", force: :cascade do |t|
     t.string "address1"
     t.string "address2"
@@ -84,6 +76,15 @@ ActiveRecord::Schema.define(version: 2022_07_02_232144) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "homepage_heading_1"
+    t.string "footer_copyright"
+    t.string "logo_image_path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "allow_anonymous_reports"
   end
 
   create_table "subcategories", force: :cascade do |t|

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Homepage heading 1</th>
+      <th>Footer copyright</th>
+      <th>Logo image path</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><%= setting.homepage_heading_1 %></td>
+        <td><%= setting.footer_copyright %></td>
+        <td><%= setting.logo_image_path %></td>
+        <td><%= link_to 'Show', setting %></td>
+        <td><%= link_to 'Edit', edit_setting_path(setting) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,4 @@
+<h1>Editing Settings</h1>
+<p class="mb-4"><em>Leave fields blank to use default values.</em></p>
+<%= render 'form', setting: @setting %>
+<%= button_to 'Back', setting_path(1), :method => :get, class: "btn btn-secondary button-float" %>
