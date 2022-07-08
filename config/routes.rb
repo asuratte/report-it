@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :themes, except: [:create, :new, :destroy]
     resources :settings, except: [:create, :new, :destroy] do
       member do
-        delete 'delete_image/:image_id', to: 'reports#delete_image', as: 'delete_image'
+        delete 'delete_image/:image_id', to: 'settings#delete_image', as: 'delete_image'
       end
     end
     resources :subcategories, except: [:destroy]
