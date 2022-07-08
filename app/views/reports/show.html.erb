@@ -29,12 +29,13 @@
   });
 </script>
 
+
 <% if user_signed_in? %>
   <% if current_user.is_official? || current_user.is_admin? %>
-  <p>
-    <strong id="incident_number">Incident Number:</strong>
-    <%= @report.id %>
-  </p>
+    <p>
+      <strong id="incident_number">Incident Number:</strong>
+      <%= @report.id %>
+    </p>
   <% end %>
 <% end %>
 
@@ -85,6 +86,12 @@
   <strong>Zip:</strong>
   <%= @report.zip %>
 </p>
+
+<div>
+  <% if @report.address1.present? %>
+    <%= image_tag @report.google_map, class: 'img-fluid mb-4' %>
+  <% end %>
+</div>
 
 <p>
   <strong>Description:</strong>

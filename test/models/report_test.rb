@@ -231,4 +231,31 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal 5, report.count
   end
 
+  test "should generate latitude and longitude using location after validation" do
+    report = Report.new
+    report.city = "New York City"
+    report.state = "New York"
+    report.zip = 10007
+    report.description = @report1.description
+    report.category = @report1.category
+    report.subcategory = @report1.subcategory
+    report.user = users(:one)  
+    assert report.valid?
+    assert_equal -74.0059731, report.longitude.to_f
+    assert_equal 40.7143528, report.latitude.to_f
+  end
+
+  test "should not generate latitude and longitude if report is invalid" do
+    report = Report.new
+    report.city = "Boston"
+    report.state = "Massachusetts"
+    report.zip = 02132
+    assert report.longitude.blank?
+    assert report.latitude.blank?
+    report.description = @report1.description
+    assert report.longitude.blank?
+    assert report.latitude.blank?
+    assert report.invalid?
+  end
+
 end

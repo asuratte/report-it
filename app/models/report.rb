@@ -2,6 +2,8 @@ class Report < ApplicationRecord
   belongs_to :user, optional: true
   has_one_attached :image, dependent: :destroy
   enum active_status: [:active, :spam, :abuse, :outside_area]
+  geocoded_by :address
+  after_validation :geocode
 
   validates :city, :state, :zip, :description, :category, :subcategory, presence: true
   validates :address1, :address2, :city, :state, length: { maximum: 50 }
@@ -42,6 +44,14 @@ class Report < ApplicationRecord
       report = report.where("lower(description) LIKE ?", "%#{search_term.downcase}%")
     end
     return report
+  end
+
+  def address
+    [address1, address2, city, state, zip].compact.join(', ')
+  end
+
+  def google_map
+    "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:small%7Ccolor:red%7C#{latitude},#{longitude}&key=#{Rails.application.credentials.google_maps_api_key}"
   end
 
 end
