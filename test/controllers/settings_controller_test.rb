@@ -60,7 +60,7 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update setting" do
     sign_in @admin_user
-    patch setting_url(@setting), params: { setting: { footer_copyright: @setting.footer_copyright, homepage_heading_1: @setting.homepage_heading_1, logo_image_path: @setting.logo_image_path } }
+    patch setting_url(@setting), params: { setting: { footer_copyright: @setting.footer_copyright, homepage_heading_1: @setting.homepage_heading_1, logo_image_path: @setting.logo_image_path, allow_anonymous_reports: false } }
     assert_redirected_to setting_url(@setting)
   end
 
