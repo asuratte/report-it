@@ -59,6 +59,7 @@ namespace :import do
       c.homepage_heading_1 = row["homepage_heading_1"]
       c.logo_image_path = row["logo_image_path"]
       c.footer_copyright = row["footer_copyright"]
+      c.allow_anonymous_reports = row["allow_anonymous_reports"]
       c.save
     end
 
