@@ -4,10 +4,19 @@ class FlaggedReportsController < ApplicationController
     before_action :get_search_values, only: [:index]
 
     def index
-      @form_submit_path = '/flagged-reports'
-      @admin_flagged_search_type = session[:admin_flagged_search_type]
-      @admin_flagged_search_term = session[:admin_flagged_search_term]
-      @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
+      @search_submit_path = '/flagged-reports'
+
+      if params[:submit] == 'Clear'
+        @admin_flagged_search_type = nil
+        @admin_flagged_search_term = nil
+        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
+      else
+        @admin_flagged_search_type = session[:admin_flagged_search_type]
+        @admin_flagged_search_term = session[:admin_flagged_search_term]
+        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
+      end
+
+
     end
 
     private

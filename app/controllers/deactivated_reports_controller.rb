@@ -4,10 +4,17 @@ class DeactivatedReportsController < ApplicationController
     before_action :get_search_values, only: [:index]
 
     def index
-      @form_submit_path = '/deactivated-reports'
-      @admin_deactivated_search_type = session[:admin_deactivated_search_type]
-      @admin_deactivated_search_term = session[:admin_deactivated_search_term]
-      @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').search(session[:admin_deactivated_search_type], session[:admin_deactivated_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      @search_submit_path = '/deactivated-reports'
+
+      if params[:submit] == 'Clear'
+        @admin_deactivated_search_type = nil
+        @admin_deactivated_search_term = nil
+        @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      else
+        @admin_deactivated_search_type = session[:admin_deactivated_search_type]
+        @admin_deactivated_search_term = session[:admin_deactivated_search_term]
+        @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').search(session[:admin_deactivated_search_type], session[:admin_deactivated_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      end
     end
 
     private

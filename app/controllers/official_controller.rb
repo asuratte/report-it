@@ -5,9 +5,9 @@ class OfficialController < ApplicationController
   before_action :get_search_values, only: [:index]
 
   def index
-    @form_submit_path = '/official-search'
+    @search_submit_path = '/official-search'
 
-    if session[:official_search_term].nil?
+    if session[:official_search_term].nil? || params[:submit] == 'Clear'
       self.clear_reports_list
     else
       @official_search_type = session[:official_search_type]

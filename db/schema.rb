@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2022_07_08_001434) do
     t.string "logo_image_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "allow_anonymous_reports"
+    t.boolean "allow_anonymous_reports", default: true
   end
 
   create_table "subcategories", force: :cascade do |t|

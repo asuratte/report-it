@@ -38,7 +38,7 @@ $(document).ready(function(){
 });
 </script>
 
-<%= form_tag(@form_submit_path, method: :get, class: "mx-auto") do %>
+<%= form_tag(@search_submit_path, method: :get, class: "mx-auto") do %>
   <div class="d-md-flex justify-content-center mb-4">
     <div class="m-2">
       <% if current_page?('/flagged-reports') %>
@@ -63,7 +63,10 @@ $(document).ready(function(){
       <% end %>
     </div>
     <div class="m-2">
-      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <%= submit_tag("Search", :value=>"Search", :id=>"search-button", :class=>"btn btn-primary", :name=>"submit") %>
+    </div>
+    <div class="m-2">
+      <%= submit_tag("Clear", :value=>"Clear", :id=>"clear-button", :class=>"btn btn-primary", :name=>"submit") %>
     </div>
   </div>
 <% end %>
