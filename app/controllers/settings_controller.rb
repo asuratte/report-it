@@ -65,6 +65,6 @@ class SettingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def setting_params
-      params.require(:setting).permit(:homepage_heading_1, :footer_copyright, :logo_image_path)
+      params.require(:setting).permit(:homepage_heading_1, :footer_copyright, :logo_image_path, :allow_anonymous_reports)
     end
 end
