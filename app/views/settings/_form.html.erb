@@ -34,13 +34,14 @@
 
   <div class="field mb-3">
     <% if setting.image.attached? && setting.image.persisted? %>
-      <%= image_tag setting.image, class: 'uploaded-logo-image d-block mb-2 img-fluid' %>
+      <%= image_tag setting.image, class: 'uploaded-logo-image d-block my-4 img-fluid' %>
       <%= link_to "Remove Image", delete_image_setting_url(image_id: setting.image.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' } %>
     <% else %>
       <%= form.label :image, "Logo Image", class: 'form-label' %>
+      <%= image_tag 'report-it-logo.png', :class => "uploaded-logo-image d-block my-4" %>
       <%= form.file_field :image, class: 'form-control'%>
     <% end %>
-    <div class="form-text">Dimensions of 400px wide by 150px high will work best.</div>
+    <div class="form-text mt-2">Dimensions of 400px wide by 150px high will work best.</div>
   </div>
 
   <div class="mb-2 form-check form-switch">

@@ -15,8 +15,8 @@
 </p>
   <% if @setting.image.attached? %>
     <%= image_tag @setting.image, class: 'uploaded-logo-image img-fluid mb-4' %>  
-  <% elsif %>
-  Default - ReportIt Logo
+  <% else %>
+    <%= image_tag 'report-it-logo.png', :class => "uploaded-logo-image img-fluid mb-4" %>
   <% end %>
 
 
