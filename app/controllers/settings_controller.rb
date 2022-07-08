@@ -57,6 +57,17 @@ class SettingsController < ApplicationController
     end
   end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    setting = image.record
+    if current_user.admin?
+      image.purge
+      redirect_to edit_setting_path(setting)
+    else
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_setting
@@ -65,6 +76,6 @@ class SettingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def setting_params
-      params.require(:setting).permit(:homepage_heading_1, :footer_copyright, :logo_image_path, :allow_anonymous_reports)
+      params.require(:setting).permit(:homepage_heading_1, :footer_copyright, :logo_image_path, :allow_anonymous_reports, :image)
     end
 end
