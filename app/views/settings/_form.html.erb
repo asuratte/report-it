@@ -32,13 +32,11 @@
     <div class="form-text">Dimensions of 400px wide by 150px high will work best.</div>
   </div>
 
-  <div data-bs-toggle="collapse" data-bs-target="#anonymousMessage">
-    <div class="mb-3 form-check form-switch">
-      <%= form.check_box :allow_anonymous_reports, :class => 'form-check-input' %>
-      <%= form.label :allow_anonymous_reports, 'Allow Anonymous Report Submission', :class => 'form-check-label' %>
-    </div>
-    <p id="anonymousMessage" class="fst-italic small collapse mt-1">Note: When anonymous report submission is enabled, reports submitted anonymously cannot be traced back to the user who posted them.</p>
+  <div class="mb-2 form-check form-switch">
+    <%= form.check_box :allow_anonymous_reports, :class => 'form-check-input' %>
+    <%= form.label :allow_anonymous_reports, 'Allow Anonymous Report Submission', :class => 'form-check-label' %>
   </div>
+  <div class="form-text mb-4"><strong>Note:</strong> When anonymous report submission is enabled, reports submitted anonymously cannot be traced back to the user who posted them.</div>
 
   <span class="actions button-float">
       <%= form.submit "Update setting", :class => 'btn btn-primary' %>

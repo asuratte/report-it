@@ -11,6 +11,10 @@ module SettingsHelper
         @footer_copyright = Setting.first.footer_copyright
     end
 
+    def get_allow_anonymous_reports
+        @allow_anonymous_reports = Setting.first.allow_anonymous_reports
+    end
+
     def get_setting
         @setting = Setting.first
     end
