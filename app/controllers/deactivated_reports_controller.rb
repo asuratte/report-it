@@ -17,7 +17,11 @@ class DeactivatedReportsController < ApplicationController
         @admin_deactivated_search_term = session[:admin_deactivated_search_term]
         @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').search(session[:admin_deactivated_search_type], session[:admin_deactivated_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
 
-        @reports_cleared = false
+        if @admin_deactivated_search_term.nil? == false
+          @reports_cleared = false
+        else
+          @reports_cleared = true
+        end
       end
     end
 

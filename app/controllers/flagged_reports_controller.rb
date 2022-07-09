@@ -17,7 +17,11 @@ class FlaggedReportsController < ApplicationController
         @admin_flagged_search_term = session[:admin_flagged_search_term]
         @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
 
-        @reports_cleared = false
+        if @admin_flagged_search_term.nil? == false
+          @reports_cleared = false
+        else
+          @reports_cleared = true
+        end
       end
 
 

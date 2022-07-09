@@ -67,11 +67,7 @@
       <%= submit_tag("Search", :value=>"Search", :id=>"search-button", :class=>"btn btn-primary", :name=>"submit") %>
     </div>
     <div class="m-2">
-      <% if current_page?('/official') || current_page?('/official-search') %>
-        <%= submit_tag("Clear", :value=>"Clear", :id=>"clear-button", :disabled=>@reports.empty?, :class=>"btn btn-primary", :name=>"submit") %>
-      <% else %>
-        <%= submit_tag("Clear", :value=>"Clear", :id=>"clear-button", :disabled=>(@reports_cleared == true), :class=>"btn btn-primary", :name=>"submit") %>
-      <% end %>
+      <%= submit_tag("Clear", :value=>"Clear", :id=>"clear-button", :disabled=>(@reports_cleared == true), :class=>"btn btn-primary", :name=>"submit") %>
     </div>
   </div>
 <% end %>

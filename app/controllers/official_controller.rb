@@ -9,6 +9,8 @@ class OfficialController < ApplicationController
 
     if session[:official_search_term].nil? || params[:submit] == 'Clear'
       self.clear_reports_list
+
+      @reports_cleared = true
     else
       @official_search_type = session[:official_search_type]
       @official_search_term = session[:official_search_term]
@@ -18,6 +20,12 @@ class OfficialController < ApplicationController
         WHEN status = 'Flagged' THEN 3
         WHEN status = 'Resolved' THEN 4
         ELSE 5 END, created_at DESC")).search(session[:official_search_type], session[:official_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
+
+        if @official_search_term.nil? == false
+          @reports_cleared = false
+        else
+          @reports_cleared = true
+        end
     end
   end
 
