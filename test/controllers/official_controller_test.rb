@@ -120,7 +120,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Incident+No."
     @search_term = "1"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -133,7 +133,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Status"
     @search_term = "new"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -146,7 +146,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Severity"
     @search_term = "low"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -159,14 +159,14 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Address"
     @search_term = "main"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
 
     @search_type = "Address"
     @search_term = "apt+2"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -179,7 +179,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "City"
     @search_term = "atlanta"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -192,7 +192,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "State"
     @search_term = "GA"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -205,7 +205,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Zip"
     @search_term = "12345"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -218,7 +218,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Description"
     @search_term = "trash"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -231,7 +231,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Zip"
     @search_term = "00000"
 
-    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search'
+    get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "p#no_reports", text: "No reports found."
   end

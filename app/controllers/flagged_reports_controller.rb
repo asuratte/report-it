@@ -8,27 +8,27 @@ class FlaggedReportsController < ApplicationController
 
       if params[:commit] == 'Clear Attribute'
         self.set_submit_fields('clear')
-        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').where.not(active_status: 0), items: 10, size: [1,0,0,1])
+        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
 
         @reports_cleared = true
         self.set_radio_div('attribute')
 
       elsif params[:commit] == 'Clear Dates'
         self.set_submit_fields('clear')
-        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').where.not(active_status: 0), items: 10, size: [1,0,0,1])
+        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
 
         @reports_cleared = true
         self.set_radio_div('dates')
 
       elsif params[:commit] == 'Search Dates' && session[:admin_flagged_start_date].present? && session[:admin_flagged_end_date].present?
         self.set_submit_fields('dates')
-        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search_dates(session[:admin_flagged_start_date], session[:admin_flagged_end_date]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search_dates(session[:admin_flagged_start_date], session[:admin_flagged_end_date]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
 
         @reports_cleared = false
         self.set_radio_div('dates')
       else
         self.set_submit_fields('attribute')
-        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
 
         @reports_cleared = false
         self.set_radio_div('attribute')

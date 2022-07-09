@@ -159,5 +159,5 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     @report.reload
     assert_equal false, @report.image.attached?
   end
-  
+
 end
