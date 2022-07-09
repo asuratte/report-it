@@ -1,42 +1,43 @@
 <script>
-$(document).ready(function(){
-  $("#official-select").on("change", function () {
-    $("#official-search-text").attr("value", "");
-    if($(this).val() == "State") {
-      $("#official-search-text").attr("placeholder", "ex. TX");
-    } else {
-      $("#official-search-text").attr("placeholder", "");
-    }
-  });
+  $(document).ready(function(){
+    $("#official-select").on("change", function () {
+      $("#official-search-text").attr("value", "");
+      if($(this).val() == "State") {
+        $("#official-search-text").attr("placeholder", "ex. TX");
+      } else {
+        $("#official-search-text").attr("placeholder", "");
+      }
+    });
 
-  $("#resident-select").on("change", function () {
-    $("#resident-search-text").attr("value", "");
-    if($(this).val() == "State") {
-      $("#resident-search-text").attr("placeholder", "ex. TX");
-    } else {
-      $("#resident-search-text").attr("placeholder", "");
-    }
-  });
+    $("#resident-select").on("change", function () {
+      $("#resident-search-text").attr("value", "");
+      if($(this).val() == "State") {
+        $("#resident-search-text").attr("placeholder", "ex. TX");
+      } else {
+        $("#resident-search-text").attr("placeholder", "");
+      }
+    });
 
-  $("#admin-deactivated-select").on("change", function () {
-    $("#admin-deactivated-search-text").attr("value", "");
-    if($(this).val() == "State") {
-      $("#admin-deactivated-search-text").attr("placeholder", "ex. TX");
-    } else {
-      $("#admin-deactivated-search-text").attr("placeholder", "");
-    }
-  });
+    $("#admin-deactivated-select").on("change", function () {
+      $("#admin-deactivated-search-text").attr("value", "");
+      if($(this).val() == "State") {
+        $("#admin-deactivated-search-text").attr("placeholder", "ex. TX");
+      } else {
+        $("#admin-deactivated-search-text").attr("placeholder", "");
+      }
+    });
 
-  $("#admin-flagged-select").on("change", function () {
-    $("#admin-flagged-search-text").attr("value", "");
-    if($(this).val() == "State") {
-      $("#admin-flagged-search-text").attr("placeholder", "ex. TX");
-    } else {
-      $("#admin-flagged-search-text").attr("placeholder", "");
-    }
+    $("#admin-flagged-select").on("change", function () {
+      $("#admin-flagged-search-text").attr("value", "");
+      if($(this).val() == "State") {
+        $("#admin-flagged-search-text").attr("placeholder", "ex. TX");
+      } else {
+        $("#admin-flagged-search-text").attr("placeholder", "");
+      }
+    });
   });
-});
 </script>
+
 
 <%= form_tag(@search_submit_path, method: :get, class: "mx-auto") do %>
   <div class="d-md-flex justify-content-center mb-4">
@@ -53,20 +54,24 @@ $(document).ready(function(){
     </div>
     <div class="m-2">
       <% if current_page?('/flagged-reports') %>
-        <%= text_field_tag :admin_flagged_search_term, @admin_flagged_search_term, id: 'admin-flagged-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+        <%= text_field_tag :admin_flagged_search_term, @admin_flagged_search_term, id: 'admin-flagged-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
       <% elsif current_page?('/deactivated-reports') %>
-        <%= text_field_tag :admin_deactivated_search_term, @admin_deactivated_search_term, id: 'admin-deactivated-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+        <%= text_field_tag :admin_deactivated_search_term, @admin_deactivated_search_term, id: 'admin-deactivated-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
       <% elsif current_page?('/official') || current_page?('/official-search') %>
-        <%= text_field_tag :official_search_term, @official_search_term, id: 'official-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+        <%= text_field_tag :official_search_term, @official_search_term, id: 'official-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
       <% else %>
-        <%= text_field_tag :resident_search_term, @resident_search_term, id: 'resident-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed' %>
+        <%= text_field_tag :resident_search_term, @resident_search_term, id: 'resident-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
       <% end %>
     </div>
     <div class="m-2">
       <%= submit_tag("Search", :value=>"Search", :id=>"search-button", :class=>"btn btn-primary", :name=>"submit") %>
     </div>
     <div class="m-2">
-      <%= submit_tag("Clear", :value=>"Clear", :id=>"clear-button", :class=>"btn btn-primary", :name=>"submit") %>
+      <% if current_page?('/official') || current_page?('/official-search') %>
+        <%= submit_tag("Clear", :value=>"Clear", :id=>"clear-button", :disabled=>@reports.empty?, :class=>"btn btn-primary", :name=>"submit") %>
+      <% else %>
+        <%= submit_tag("Clear", :value=>"Clear", :id=>"clear-button", :disabled=>(@reports_cleared == true), :class=>"btn btn-primary", :name=>"submit") %>
+      <% end %>
     </div>
   </div>
 <% end %>

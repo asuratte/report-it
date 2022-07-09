@@ -14,10 +14,14 @@ class ReportsController < ApplicationController
       @resident_search_type = nil
       @resident_search_term = nil
       @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
+
+      @reports_cleared = true
     else
       @resident_search_type = session[:resident_search_type]
       @resident_search_term = session[:resident_search_term]
       @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
+
+      @reports_cleared = false
     end
   end
 
