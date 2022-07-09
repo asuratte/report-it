@@ -34,10 +34,10 @@
   <body class="d-flex flex-column min-vh-100">
     <%= render "layouts/navbar" %>
     <header class='main'>
-    <% if get_logo_image_path == nil || get_logo_image_path == "" %>
-      <a href="<%= root_path %>"><%= image_tag 'report-it-logo.png', :class => "logo" %></a>
+    <% if Setting.first.image.attached? %>
+      <a href="<%= root_path %>"><%= image_tag Setting.first.image, :class => "logo" %></a>
     <% else %>
-      <a href="<%= root_path %>"><%= image_tag get_logo_image_path, :class => "logo" %></a>
+      <a href="<%= root_path %>"><%= image_tag 'report-it-logo.png', :class => "logo" %></a>
     <% end %>
     </header>
     <% if user_signed_in? %>
