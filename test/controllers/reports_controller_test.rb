@@ -173,26 +173,13 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_select "th#date_reported", text: "Date Reported"
   end
 
-  test "should return record on status search" do
+  test "should return record on category search" do
     sign_in @resident_user
     get resident_url
     assert_response :success
 
-    @search_type = "Status"
-    @search_term = "new"
-
-    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
-    assert_response :success
-    assert_select "th#date_reported", text: "Date Reported"
-  end
-
-  test "should return record on severity search" do
-    sign_in @resident_user
-    get resident_url
-    assert_response :success
-
-    @search_type = "Severity"
-    @search_term = "low"
+    @search_type = "Category"
+    @search_term = "trash"
 
     get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
@@ -269,6 +256,47 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on start end date search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @start_date = "06-01-2022"
+    @end_date = "06-01-2050"
+
+    get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should not return record on future start end date search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @start_date = "06-01-2049"
+    @end_date = "06-01-2050"
+
+    get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates'
+    assert_response :success
+    assert_select "p#no_reports", text: "No reports found."
+  end
+
+  test "should clear attribute search and show all reports" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "Incident+No."
+    @search_term = "1"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Clear+Attribute'
+    assert_response :success
+    assert_select "thead#true"
   end
 
 end

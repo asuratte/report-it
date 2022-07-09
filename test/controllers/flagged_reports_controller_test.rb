@@ -126,4 +126,45 @@ class FlaggedReportsControllerTest < ActionDispatch::IntegrationTest
     assert_select "p#no_reports", text: "No flagged reports."
   end
 
+  test "should return record on start end date search" do
+    sign_in @admin_user
+    get official_url
+    assert_response :success
+
+    @start_date = "06-01-2022"
+    @end_date = "06-01-2050"
+
+    get '/flagged-reports?admin_flagged_start_date=' + @start_date + '&admin_flagged_end_date=' + @end_date + '&commit=Search+Dates'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should not return record on future start end date search" do
+    sign_in @admin_user
+    get official_url
+    assert_response :success
+
+    @start_date = "06-01-2049"
+    @end_date = "06-01-2050"
+
+    get '/flagged-reports?admin_flagged_start_date=' + @start_date + '&admin_flagged_end_date=' + @end_date + '&commit=Search+Dates'
+    assert_response :success
+    assert_select "p#no_reports", text: "No flagged reports."
+  end
+
+  test "should clear attribute search and show all reports" do
+    sign_in @admin_user
+    get official_url
+    assert_response :success
+
+    @search_type = "Incident+No."
+    @search_term = "5"
+
+    get '/flagged-reports?admin_flagged_search_type=' + @search_type + '&admin_flagged_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    get '/flagged-reports?admin_flagged_search_type=' + @search_type + '&admin_flagged_search_term=' + @search_term + '&commit=Clear+Attribute'
+    assert_response :success
+    assert_select "thead#true"
+  end
+
 end

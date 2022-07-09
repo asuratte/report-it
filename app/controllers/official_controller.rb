@@ -7,25 +7,39 @@ class OfficialController < ApplicationController
   def index
     @search_submit_path = '/official-search'
 
-    if session[:official_search_term].nil? || params[:commit] == 'Clear Attribute'
-      self.clear_reports_list
+    if params[:commit] == 'Clear Attribute'
+      self.set_submit_fields('clear')
+      @pagy, @official_reports = pagy(Report.order(Arel.sql("CASE
+        WHEN status = 'New' THEN 1
+        WHEN status = 'In Progress' THEN 2
+        WHEN status = 'Flagged' THEN 3
+        WHEN status = 'Resolved' THEN 4
+        ELSE 5 END, created_at DESC")).where(active_status: 0), items: 10, size: [1,0,0,1])
 
       @reports_cleared = true
       self.set_radio_div('attribute')
-    elsif session[:official_search_term].nil? || params[:commit] == 'Clear Dates'
-      self.clear_reports_list
+
+    elsif params[:commit] == 'Clear Dates'
+      self.set_submit_fields('clear')
+      @pagy, @official_reports = pagy(Report.order(Arel.sql("CASE
+        WHEN status = 'New' THEN 1
+        WHEN status = 'In Progress' THEN 2
+        WHEN status = 'Flagged' THEN 3
+        WHEN status = 'Resolved' THEN 4
+        ELSE 5 END, created_at DESC")).where(active_status: 0), items: 10, size: [1,0,0,1])
 
       @reports_cleared = true
       self.set_radio_div('dates')
+
     elsif params[:commit] == 'Search Dates' && session[:official_start_date].present? && session[:official_end_date].present?
       self.set_submit_fields('dates')
-      @pagy, @reports = pagy(Report.order('created_at DESC').search_dates(session[:official_start_date], session[:official_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
+      @pagy, @official_reports = pagy(Report.order('created_at DESC').search_dates(session[:official_start_date], session[:official_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
 
       @reports_cleared = false
       self.set_radio_div('dates')
     else
       self.set_submit_fields('attribute')
-      @pagy, @reports = pagy(Report.order(Arel.sql("CASE
+      @pagy, @official_reports = pagy(Report.order(Arel.sql("CASE
         WHEN status = 'New' THEN 1
         WHEN status = 'In Progress' THEN 2
         WHEN status = 'Flagged' THEN 3
@@ -70,11 +84,6 @@ class OfficialController < ApplicationController
       @official_start_date = session[:official_start_date]
       @official_end_date = session[:official_end_date]
     end
-  end
-
-  # clear reports
-  def clear_reports_list
-    @reports = Report.where(id: 0)
   end
 
   private

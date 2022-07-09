@@ -2,41 +2,33 @@
 
 <%= render '/reports/search_form', report: @report %>
 
-<% if @reports.empty? && @reports_cleared == true %>
-<% elsif @reports.empty? && session[:official_search_term].nil? == false %>
 <hr>
+<% if @official_reports.empty? %>
   <p id="no_reports">No reports found.</p>
 <% else %>
-<hr>
   <table class="mb-3">
-    <thead>
+    <thead id="<%= @reports_cleared %>">
       <tr>
         <th scope="col" id="date_reported">Date Reported</th>
-          <th scope="col">Incident No.</th>
+        <th scope="col">Incident No.</th>
         <th scope="col">Report Type</th>
-        <th scope="col">Status</th>
-        <th scope="col">Severity</th>
+        <th scope="col">Description</th>
         <th scope="col">Zip</th>
+        <th scope="col">Status</th>
       </tr>
     </thead>
 
     <tbody>
-      <% if @reports.count> 0 %>
-        <% @reports.each do |report| %>
-          <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-            <td data-label="Date Reported"><%= report.created_at.to_date %></td>
-              <td data-label="Incident Number"><%= report.id %></td>
-            <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
-            <td data-label="Status"><%= report.status %></td>
-            <td data-label="Severity"><%= report.severity %></td>
-            <td data-label="Zip"><%= report.zip %></td>
-          </tr>
-        <% end %>
-        <% else %>
-          <tr>
-            <td colspan="5" class="py-3">No reports submitted.</td>
-          </tr>
-        <% end %>
+      <% @official_reports.each do |report| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td data-label="Date Reported" class="text-nowrap"><%= report.created_at.to_date %></td>
+          <td data-label="Incident No."><%= report.id %></td>
+          <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
+          <td data-label="Description"><%= truncate(report.description, length: 40) %></td>
+          <td data-label="Zip"><%= report.zip %></td>
+          <td data-label="Status"><%= report.status %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
