@@ -46,6 +46,15 @@ class Report < ApplicationRecord
     return report
   end
 
+  # Searches for reports by incident no, address, city, state, zip or description
+  def self.search_dates(start_date, end_date)
+    report = Report.all
+    if start_date.present? && end_date.present?
+      report = report.where("DATE(created_at) >= ? AND DATE(created_at) <= ?", "%#{start_date}%", "%#{end_date}%")
+    end
+    return report
+  end
+
   def address
     [address1, address2, city, state, zip].compact.join(', ')
   end
