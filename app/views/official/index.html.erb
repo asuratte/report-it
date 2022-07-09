@@ -2,7 +2,7 @@
 
 <%= render '/reports/search_form', report: @report %>
 
-<% if @reports.empty? && (session[:official_search_term].nil? == true || params[:submit] == 'Clear') %>
+<% if @reports.empty? && @reports_cleared == true %>
 <% elsif @reports.empty? && session[:official_search_term].nil? == false %>
 <hr>
   <p id="no_reports">No reports found.</p>

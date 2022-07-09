@@ -10,52 +10,31 @@ class ReportsController < ApplicationController
   def index
     @search_submit_path = reports_path
 
-    puts 'Attribute Attribute Attribute Attribute' + params[:submit_attribute].to_s
-    puts 'Dates Dates Dates Dates Dates Dates' + params[:submit_dates].to_s
-
     if params[:commit] == 'Clear Attribute'
-      @resident_search_type = nil
-      @resident_search_term = nil
-      @resident_start_date = nil
-      @resident_end_date = nil
+      self.set_submit_fields('clear')
       @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
 
       @reports_cleared = true
-
       self.set_radio_div('attribute')
 
     elsif params[:commit] == 'Clear Dates'
-      @resident_search_type = nil
-      @resident_search_term = nil
-      @resident_start_date = nil
-      @resident_end_date = nil
+      self.set_submit_fields('clear')
       @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
 
       @reports_cleared = true
-
       self.set_radio_div('dates')
 
     elsif params[:commit] == 'Search Dates' && session[:resident_start_date].present? && session[:resident_end_date].present?
-      @resident_search_type = nil
-      @resident_search_term = nil
-      @resident_start_date = session[:resident_start_date]
-      @resident_end_date = session[:resident_end_date]
-
+      self.set_submit_fields('dates')
       @pagy, @reports = pagy(Report.order('created_at DESC').search_dates(session[:resident_start_date], session[:resident_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
 
       @reports_cleared = false
-
       self.set_radio_div('dates')
     else
-      @resident_search_type = session[:resident_search_type]
-      @resident_search_term = session[:resident_search_term]
-      @resident_start_date = nil
-      @resident_end_date = nil
-
+      self.set_submit_fields('attribute')
       @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
 
       @reports_cleared = false
-
       self.set_radio_div('attribute')
     end
   end
@@ -73,6 +52,25 @@ class ReportsController < ApplicationController
 
       @radio_checked_attribute = ""
       @display_form_attribute = "display: none;"
+    end
+  end
+
+  def set_submit_fields(set_submit_type)
+    if set_submit_type == 'clear'
+      @resident_search_type = nil
+      @resident_search_term = nil
+      @resident_start_date = nil
+      @resident_end_date = nil
+    elsif set_submit_type == 'attribute'
+      @resident_search_type = session[:resident_search_type]
+      @resident_search_term = session[:resident_search_term]
+      @resident_start_date = nil
+      @resident_end_date = nil
+    elsif set_submit_type == "dates"
+      @resident_search_type = nil
+      @resident_search_term = nil
+      @resident_start_date = session[:resident_start_date]
+      @resident_end_date = session[:resident_end_date]
     end
   end
 

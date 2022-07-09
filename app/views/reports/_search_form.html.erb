@@ -13,6 +13,15 @@
   $( function() {
     $( "#resident-start-date" ).datepicker();
     $( "#resident-end-date" ).datepicker();
+
+    $( "#official-start-date" ).datepicker();
+    $( "#official-end-date" ).datepicker();
+
+    $( "#admin-flagged-start-date" ).datepicker();
+    $( "#admin-flagged-end-date" ).datepicker();
+
+    $( "#admin-deactivated-start-date" ).datepicker();
+    $( "#admin-deactivated-end-date" ).datepicker();
   });
 
   $(document).ready(function(){
@@ -67,10 +76,13 @@
     <div class="m-2">
       <% if current_page?('/flagged-reports') %>
         <%= select_tag :admin_flagged_search_type, options_for_select(["Incident No.", "Category", "Address", "City", "State", "Zip", "Description"], @admin_flagged_search_type), class: "form-select", id: 'admin-flagged-select' %>
+
       <% elsif current_page?('/deactivated-reports') %>
         <%= select_tag :admin_deactivated_search_type, options_for_select(["Incident No.", "Category", "Address", "City", "State", "Zip", "Description"], @admin_deactivated_search_type), class: "form-select", id: 'admin-deactivated-select' %>
+
       <% elsif current_page?('/official') || current_page?('/official-search') %>
         <%= select_tag :official_search_type, options_for_select(["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"], @official_search_type), class: "form-select", id: 'official-select' %>
+
       <% else %>
         <%= select_tag :resident_search_type, options_for_select(["Incident No.", "Category", "Address", "City", "State", "Zip", "Description"], @resident_search_type), class: "form-select", id: 'resident-select' %>
       <% end %>
@@ -78,10 +90,13 @@
     <div class="m-2" id="text-field-div">
       <% if current_page?('/flagged-reports') %>
         <%= text_field_tag :admin_flagged_search_term, @admin_flagged_search_term, id: 'admin-flagged-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
+
       <% elsif current_page?('/deactivated-reports') %>
         <%= text_field_tag :admin_deactivated_search_term, @admin_deactivated_search_term, id: 'admin-deactivated-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
+
       <% elsif current_page?('/official') || current_page?('/official-search') %>
         <%= text_field_tag :official_search_term, @official_search_term, id: 'official-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
+
       <% else %>
         <%= text_field_tag :resident_search_term, @resident_search_term, id: 'resident-search-text', class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
       <% end %>
@@ -97,12 +112,41 @@
 
 <%= form_tag(@search_submit_path, method: :get, class: "Dates search mx-auto", id: "search-dates", style: @display_form_dates) do %>
   <div class="d-md-flex justify-content-center mb-4">
+
+    <% if current_page?('/flagged-reports') %>
+    <div class="m-2" id="admin-flagged-start-div">
+      <%= text_field_tag :admin_flagged_start_date, @admin_flagged_start_date, placeholder: "Enter Start Date", id: 'admin-flagged-start-date', :class => "form-control datepicker", required: true %>
+    </div>
+    <div class="m-2" id="admin-flagged-end-div">
+        <%= text_field_tag :admin_flagged_end_date, @admin_flagged_end_date, placeholder: "Enter End Date", id: 'admin-flagged-end-date', :class => "form-control datepicker", required: true %>
+    </div>
+
+    <% elsif current_page?('/deactivated-reports') %>
+    <div class="m-2" id="admin-deactivated-start-div">
+      <%= text_field_tag :admin_deactivated_start_date, @admin_deactivated_start_date, placeholder: "Enter Start Date", id: 'admin-deactivated-start-date', :class => "form-control datepicker", required: true %>
+    </div>
+    <div class="m-2" id="admin-deactivated-end-div">
+        <%= text_field_tag :admin_deactivated_end_date, @admin_deactivated_end_date, placeholder: "Enter End Date", id: 'admin-deactivated-end-date', :class => "form-control datepicker", required: true %>
+    </div>
+
+
+    <% elsif current_page?('/official') || current_page?('/official-search') %>
+    <div class="m-2" id="official-start-div">
+      <%= text_field_tag :official_start_date, @official_start_date, placeholder: "Enter Start Date", id: 'official-start-date', :class => "form-control datepicker", required: true %>
+    </div>
+    <div class="m-2" id="official-end-div">
+        <%= text_field_tag :official_end_date, @official_end_date, placeholder: "Enter End Date", id: 'official-end-date', :class => "form-control datepicker", required: true %>
+    </div>
+
+    <% else %>
     <div class="m-2" id="resident-start-div">
       <%= text_field_tag :resident_start_date, @resident_start_date, placeholder: "Enter Start Date", id: 'resident-start-date', :class => "form-control datepicker", required: true %>
     </div>
     <div class="m-2" id="resident-end-div">
         <%= text_field_tag :resident_end_date, @resident_end_date, placeholder: "Enter End Date", id: 'resident-end-date', :class => "form-control datepicker", required: true %>
     </div>
+    <% end %>
+
     <div class="m-2">
       <%= submit_tag("Search Dates", :id=>"search-dates-button", :class=>"btn btn-primary") %>
     </div>
