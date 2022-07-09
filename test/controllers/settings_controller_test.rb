@@ -60,8 +60,24 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update setting" do
     sign_in @admin_user
-    patch setting_url(@setting), params: { setting: { footer_copyright: @setting.footer_copyright, homepage_heading_1: @setting.homepage_heading_1, logo_image_path: @setting.logo_image_path, allow_anonymous_reports: false } }
+    patch setting_url(@setting), params: { setting: { footer_copyright: @setting.footer_copyright, homepage_heading_1: @setting.homepage_heading_1, allow_anonymous_reports: false } }
     assert_redirected_to setting_url(@setting)
+  end
+
+  test "should delete image from setting" do
+    sign_in @admin_user
+    get setting_url(@setting)
+    assert_response :success
+    assert_equal false, @setting.image.attached?
+
+    patch setting_url(@setting), params: { setting: { image: fixture_file_upload('test/fixtures/files/testimage.png', 'image/png') } }
+    @setting.reload
+    assert @setting.image.attached?
+    assert_equal "testimage.png", @setting.image.filename.to_s
+
+    delete delete_image_setting_path(image_id: @setting.image.id)
+    @setting.reload
+    assert_equal false, @setting.image.attached?
   end
 
 end

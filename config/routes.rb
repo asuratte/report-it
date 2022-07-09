@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   authenticate :user, -> (user) { user.is_admin? } do
     resources :users
     resources :themes, except: [:create, :new, :destroy]
-    resources :settings, except: [:create, :new, :destroy]
+    resources :settings, except: [:create, :new, :destroy] do
+      member do
+        delete 'delete_image/:image_id', to: 'settings#delete_image', as: 'delete_image'
+      end
+    end
     resources :subcategories, except: [:destroy]
     resources :categories, except: [:destroy]
     get 'deactivated-reports', to: 'deactivated_reports#index'
