@@ -160,4 +160,115 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, @report.image.attached?
   end
 
+  test "should return record on incident search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "Incident+No."
+    @search_term = "1"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on status search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "Status"
+    @search_term = "new"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on severity search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "Severity"
+    @search_term = "low"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on address search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "Address"
+    @search_term = "main"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+
+    @search_type = "Address"
+    @search_term = "apt+2"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on city search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "City"
+    @search_term = "atlanta"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on state search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "State"
+    @search_term = "GA"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on zip search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "Zip"
+    @search_term = "12345"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
+  test "should return record on description search" do
+    sign_in @resident_user
+    get resident_url
+    assert_response :success
+
+    @search_type = "Description"
+    @search_term = "trash"
+
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_reported", text: "Date Reported"
+  end
+
 end

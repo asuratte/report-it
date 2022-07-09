@@ -9,7 +9,7 @@
   <table class="mb-3">
     <thead>
       <tr>
-        <th scope="col">Date Created</th>
+        <th scope="col" id="date_reported">Date Reported</th>
         <th scope="col">Incident No.</th>
         <th scope="col">Report Type</th>
         <th scope="col">Description</th>
@@ -21,7 +21,7 @@
     <tbody>
       <% @reports.each do |report| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-          <td data-label="Date Created" class="text-nowrap"><%= report.created_at.to_date %></td>
+          <td data-label="Date Reported" class="text-nowrap"><%= report.created_at.to_date %></td>
           <td data-label="Incident No."><%= report.id %></td>
           <td data-label="Report Type"><%= link_to report.subcategory, report %></td>
           <td data-label="Description"><%= truncate(report.description, length: 40) %></td>
