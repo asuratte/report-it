@@ -5,7 +5,7 @@ class FollowedReportsController < ApplicationController
   # GET /followed_reports or /followed_reports.json
   def index
     @user = current_user
-    @pagy, @followed_reports = pagy(@user.followed_reports.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
+    @pagy, @followed_reports = pagy(@user.followed_reports.order('created_at DESC'), items: 10, size: [1,0,0,1])
   end
 
 

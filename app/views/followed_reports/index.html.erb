@@ -1,12 +1,16 @@
-<p id="notice"><%= notice %></p>
+<h1 class="text-center mb-4">Followed Reports</h1>
 
-<h1>Followed Reports</h1>
-
-<table>
-  <thead>
+<% if @followed_reports.empty? %>
+  <p id="no_reports">No reports found.</p>
+<% else %>
+  <table class="mb-3">
+    <thead id="<%= @reports_cleared %>">
     <tr>
-      <th>User</th>
-      <th>Report</th>
+      <th scope="col" id="date_reported">Date Reported</th>
+      <th scope="col">Report Type</th>
+      <th scope="col">Description</th>
+      <th scope="col">Zip</th>
+      <th scope="col">Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,16 +18,15 @@
   <tbody>
     <% @followed_reports.each do |followed_report| %>
       <tr>
-        <td><%= followed_report.user_id %></td>
-        <td><%= followed_report.report_id %></td>
-        <td><%= link_to 'Show', followed_report %></td>
-        <td><%= link_to 'Edit', edit_followed_report_path(followed_report) %></td>
+        <td data-label="Date Reported" class="text-nowrap"><%= followed_report.report.created_at.to_date %></td>
+        <td data-label="Report Type"><%= link_to followed_report.report.subcategory, followed_report.report %></td>
+        <td data-label="Description"><%= truncate(followed_report.report.description, length: 40) %></td>
+        <td data-label="Zip"><%= followed_report.report.zip %></td>
+        <td data-label="Status"><%= followed_report.report.status %></td>
         <td><%= link_to 'Destroy', followed_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Followed Report', new_followed_report_path %>
+<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+<% end %>
