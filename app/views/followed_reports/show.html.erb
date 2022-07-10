@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @followed_report.user_id %>
+</p>
+
+<p>
+  <strong>Report:</strong>
+  <%= @followed_report.report_id %>
+</p>
+
+<%= link_to 'Edit', edit_followed_report_path(@followed_report) %> |
+<%= link_to 'Back', followed_reports_path %>

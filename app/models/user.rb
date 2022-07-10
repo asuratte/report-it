@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :username, length: {minimum: 6, maximum: 30}, uniqueness: true
   has_many :reports
   has_many :comments
+  has_many :followed_reports
 
   def active_for_authentication?
     super && self.active

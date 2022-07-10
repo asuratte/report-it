@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, -> (user) { user.is_resident? } do
+    get 'followed-reports', to: 'followed_reports#index'
     get 'resident', to: 'resident#index'
   end
 
