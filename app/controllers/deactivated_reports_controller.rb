@@ -26,6 +26,13 @@ class DeactivatedReportsController < ApplicationController
 
         @reports_cleared = false
         self.set_radio_div('dates')
+      elsif params[:commit] == 'Search Dates' && !session[:admin_deactivated_start_date].present? && !session[:admin_deactivated_end_date].present?
+        self.set_submit_fields('dates')
+
+        @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').where.not(active_status: 0), items: 10, size: [1,0,0,1])
+
+        @reports_cleared = true
+        self.set_radio_div('dates')
       else
         self.set_submit_fields('attribute')
         @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').search(session[:admin_deactivated_search_type], session[:admin_deactivated_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])

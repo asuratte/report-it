@@ -26,6 +26,13 @@ class FlaggedReportsController < ApplicationController
 
         @reports_cleared = false
         self.set_radio_div('dates')
+      elsif params[:commit] == 'Search Dates' && !session[:admin_flagged__start_date].present? && !session[:admin_flagged__end_date].present?
+        self.set_submit_fields('dates')
+
+        @pagy, @flagged_reports = pagy(Report.order('created_at DESC').where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
+
+        @reports_cleared = true
+        self.set_radio_div('dates')
       else
         self.set_submit_fields('attribute')
         @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
@@ -82,7 +89,7 @@ class FlaggedReportsController < ApplicationController
       session[:admin_flagged_search_term] = nil
       session[:admin_flagged_start_date] = nil
       session[:admin_flagged_end_date] = nil
-      
+
       if params[:admin_flagged_search_term]
         session[:admin_flagged_search_type] = params[:admin_flagged_search_type]
         session[:admin_flagged_search_term] = params[:admin_flagged_search_term]
