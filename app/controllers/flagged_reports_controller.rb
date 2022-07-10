@@ -78,6 +78,11 @@ class FlaggedReportsController < ApplicationController
 
     # Sets the search type and term for the session using the search parameters
     def get_search_values
+      session[:admin_flagged_search_type] = nil
+      session[:admin_flagged_search_term] = nil
+      session[:admin_flagged_start_date] = nil
+      session[:admin_flagged_end_date] = nil
+      
       if params[:admin_flagged_search_term]
         session[:admin_flagged_search_type] = params[:admin_flagged_search_type]
         session[:admin_flagged_search_term] = params[:admin_flagged_search_term]

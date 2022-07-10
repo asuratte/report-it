@@ -95,6 +95,11 @@ class OfficialController < ApplicationController
 
   # Sets the search type and term for the session using the search parameters
   def get_search_values
+    session[:official_search_type] = nil
+    session[:official_search_term] = nil
+    session[:official_start_date] = nil
+    session[:official_end_date] = nil
+
     if params[:official_search_term]
       session[:official_search_type] = params[:official_search_type]
       session[:official_search_term] = params[:official_search_term]

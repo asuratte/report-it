@@ -78,6 +78,11 @@ class DeactivatedReportsController < ApplicationController
 
     # Sets the search type and term for the session using the search parameters
     def get_search_values
+      session[:admin_deactivated_search_type] = nil
+      session[:admin_deactivated_search_term] = nil
+      session[:admin_deactivated_start_date] = nil
+      session[:admin_deactivated_end_date] = nil
+
       if params[:admin_deactivated_search_term]
         session[:admin_deactivated_search_type] = params[:admin_deactivated_search_type]
         session[:admin_deactivated_search_term] = params[:admin_deactivated_search_term]

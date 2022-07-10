@@ -176,6 +176,11 @@ class ReportsController < ApplicationController
 
     # Sets the search type and term for the session using the search parameters
     def get_search_values
+      session[:resident_search_type] = nil
+      session[:resident_search_term] = nil
+      session[:resident_start_date] = nil
+      session[:resident_end_date] = nil
+
       if params[:resident_search_term]
         session[:resident_search_type] = params[:resident_search_type]
         session[:resident_search_term] = params[:resident_search_term]
