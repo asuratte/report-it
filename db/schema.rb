@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_09_000050) do
+ActiveRecord::Schema.define(version: 2022_07_10_224830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 2022_07_09_000050) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "followed_reports", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "report_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_followed_reports_on_report_id"
+    t.index ["user_id"], name: "index_followed_reports_on_user_id"
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string "address1"
     t.string "address2"
@@ -83,7 +92,7 @@ ActiveRecord::Schema.define(version: 2022_07_09_000050) do
     t.string "footer_copyright"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "allow_anonymous_reports", default: true
+    t.boolean "allow_anonymous_reports"
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -128,6 +137,8 @@ ActiveRecord::Schema.define(version: 2022_07_09_000050) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "followed_reports", "reports"
+  add_foreign_key "followed_reports", "users"
   add_foreign_key "reports", "users"
   add_foreign_key "subcategories", "categories"
 end
