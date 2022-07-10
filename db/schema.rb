@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_07_09_000050) do
     t.string "footer_copyright"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "allow_anonymous_reports"
+    t.boolean "allow_anonymous_reports", default: true
   end
 
   create_table "subcategories", force: :cascade do |t|

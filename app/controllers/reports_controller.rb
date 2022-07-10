@@ -8,10 +8,77 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @form_submit_path = reports_path
-    @resident_search_type = session[:resident_search_type]
-    @resident_search_term = session[:resident_search_term]
-    @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    @search_submit_path = reports_path
+
+    if params[:commit] == 'Clear Attribute'
+      self.set_submit_fields('clear')
+      @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
+
+      @reports_cleared = true
+      self.set_radio_div('attribute')
+
+    elsif params[:commit] == 'Clear Dates'
+      self.set_submit_fields('clear')
+      @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
+
+      @reports_cleared = true
+      self.set_radio_div('dates')
+
+    elsif params[:commit] == 'Search Dates' && session[:resident_start_date].present? && session[:resident_end_date].present?
+      self.set_submit_fields('dates')
+      @pagy, @reports = pagy(Report.order('created_at DESC').search_dates(session[:resident_start_date], session[:resident_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
+
+      @reports_cleared = false
+      self.set_radio_div('dates')
+    elsif params[:commit] == 'Search Dates' && !session[:resident_start_date].present? && !session[:resident_end_date].present?
+      self.set_submit_fields('dates')
+
+      @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
+
+      @reports_cleared = true
+      self.set_radio_div('dates')
+    else
+      self.set_submit_fields('attribute')
+      @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
+
+      @reports_cleared = false
+      self.set_radio_div('attribute')
+    end
+  end
+
+  def set_radio_div(set_radio_type)
+    if set_radio_type == 'attribute'
+      @radio_checked_dates = ""
+      @display_form_dates = "display: none;"
+
+      @radio_checked_attribute = "checked"
+      @display_form_attribute = "display: block;"
+    elsif set_radio_type == 'dates'
+      @radio_checked_dates = "checked"
+      @display_form_dates = "display: block;"
+
+      @radio_checked_attribute = ""
+      @display_form_attribute = "display: none;"
+    end
+  end
+
+  def set_submit_fields(set_submit_type)
+    if set_submit_type == 'clear'
+      @resident_search_type = nil
+      @resident_search_term = nil
+      @resident_start_date = nil
+      @resident_end_date = nil
+    elsif set_submit_type == 'attribute'
+      @resident_search_type = session[:resident_search_type]
+      @resident_search_term = session[:resident_search_term]
+      @resident_start_date = nil
+      @resident_end_date = nil
+    elsif set_submit_type == "dates"
+      @resident_search_type = nil
+      @resident_search_term = nil
+      @resident_start_date = session[:resident_start_date]
+      @resident_end_date = session[:resident_end_date]
+    end
   end
 
   # GET /reports/1 or /reports/1.json
@@ -116,9 +183,23 @@ class ReportsController < ApplicationController
 
     # Sets the search type and term for the session using the search parameters
     def get_search_values
+      session[:resident_search_type] = nil
+      session[:resident_search_term] = nil
+      session[:resident_start_date] = nil
+      session[:resident_end_date] = nil
+
       if params[:resident_search_term]
         session[:resident_search_type] = params[:resident_search_type]
         session[:resident_search_term] = params[:resident_search_term]
+      end
+
+      if params[:resident_start_date] && params[:resident_end_date]
+        session[:resident_start_date] = params[:resident_start_date]
+        session[:resident_end_date] = params[:resident_end_date]
+      end
+
+      if params[:commit]
+        session[:commit] = params[:commit]
       end
     end
 end
