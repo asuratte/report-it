@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :reports do
     member do
       delete 'delete_image/:image_id', to: 'reports#delete_image', as: 'delete_image'
+      put 'follow', as: 'follow'
     end
   end
 

@@ -140,6 +140,17 @@
 
 <br>
 
+<!-- Only display if user is the resident -->
+<% if user_signed_in? %>
+  <% if current_user.is_resident? %>
+    <% if current_user.has_followed?(@report) %>
+      <%= button_to 'Unfollow', follow_report_path(@report), method: :put, class: "btn btn-primary button-float" %>
+    <% else %>
+      <%= button_to 'Follow', follow_report_path(@report), method: :put, class: "btn btn-primary button-float" %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <!-- Only display if user is Official/Admin/Or the report writer -->
 <% if user_signed_in? %>
   <% if (@report.user.present? && current_user == @report.user && @report.status == "New") || current_user.is_official? || current_user.is_admin? %>
