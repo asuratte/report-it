@@ -83,6 +83,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
+    session[:return_to] ||= request.referer
     @pagy, @report_comments = pagy(Comment.joins(:user).select("comments.id, comments.user_id, users.username, comments.comment, comments.created_at").where("comments.report_id = " + params[:id].to_s).order("comments.created_at DESC"), items: 5, size: [1,0,0,1])
 
     if @report.active_status != "active" && (current_user == nil || current_user.is_resident? || current_user.is_official?)
@@ -164,9 +165,9 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     current_user.follow(@report)
     if current_user.has_followed?(@report)
-      redirect_to report_url(@report), notice: "Report was successfully followed."
+      redirect_to session.delete(:return_to), notice: "Report was successfully followed."
     else
-      redirect_to report_url(@report), notice: "Report was successfully unfollowed."
+      redirect_to session.delete(:return_to), notice: "Report was successfully unfollowed."
     end
   end
 
