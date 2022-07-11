@@ -16,7 +16,7 @@
 
   <tbody>
     <% @followed_reports.each do |followed_report| %>
-      <tr>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td data-label="Date Reported" class="text-nowrap"><%= followed_report.report.created_at.to_date %></td>
         <td data-label="Report Type"><%= link_to followed_report.report.subcategory, followed_report.report %></td>
         <td data-label="Description"><%= truncate(followed_report.report.description, length: 40) %></td>
