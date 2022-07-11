@@ -2,8 +2,8 @@
 
 one:
   user: one
-  report: one
+  report_id: 1
 
 two:
-  user: two
-  report: two
+  user: one
+  report_id: 2
