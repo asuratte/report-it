@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :reports
   has_many :comments
   has_many :followed_reports, dependent: :destroy
+  has_many :confirmations, dependent: :destroy
 
   def active_for_authentication?
     super && self.active
