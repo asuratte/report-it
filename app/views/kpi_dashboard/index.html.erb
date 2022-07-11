@@ -3,9 +3,6 @@
 <%= render '/kpi_dashboard/search_form' %>
 
 <% if @reports %>
-<p>Reports length <%= @reports.length %></p>
-<p>start date <%= @start_date %></p>
-<p>end date <%= @end_date %></p>
     <section class="chart-wrap">
         <h2 class="dark">Total Number of Reports Submitted</h2>
         <%= line_chart @reports.group_by_day(:created_at).count %>
