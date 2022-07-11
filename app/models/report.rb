@@ -13,7 +13,7 @@ class Report < ApplicationRecord
   validates :image, size: { between: 1.kilobyte..5.megabytes , message: 'must be between 1 KB and 5 MB' }
   has_many :comments
   has_many :followed_reports, dependent: :destroy
-  has_many :confirmations, dependent: destroy
+  has_many :confirmations, dependent: :destroy
 
   def is_active?
       return self.active_status == 'active' ? true : false
