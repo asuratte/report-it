@@ -2,8 +2,8 @@
 <p class="text-center">Select start and end dates and click "Choose Dates" to view key performance indicators for the specified time period.</p>
 <%= render '/kpi_dashboard/search_form' %>
 
-<% if @reports %>
-    <section class="chart-wrap">
+<% if @reports && @reports.count > 0 %>
+    <section class="chart-wrap total-submitted">
         <h2 class="dark">Total Number of Reports Submitted</h2>
         <%= line_chart @reports.group_by_day(:created_at).count %>
     </section>

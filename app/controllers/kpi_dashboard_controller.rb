@@ -5,8 +5,6 @@ class KpiDashboardController < ApplicationController
             start_date_beginning_of_day = @start_date.beginning_of_day
             @end_date = Date.parse(params[:end_date])
             end_date_end_of_day = @end_date.end_of_day
-            puts @start_date
-            puts @end_date
             @reports = Report.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
         else
             @reports = nil
