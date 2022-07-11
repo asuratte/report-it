@@ -1,0 +1,30 @@
+<h1 class="text-center mb-4">Followed Reports</h1>
+
+<% if @followed_reports.empty? %>
+  <p id="no_reports">No reports found.</p>
+<% else %>
+  <table class="mb-3">
+    <thead id="<%= @reports_cleared %>">
+    <tr>
+      <th scope="col" id="date_reported">Date Reported</th>
+      <th scope="col">Report Type</th>
+      <th scope="col">Description</th>
+      <th scope="col">Zip</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @followed_reports.each do |followed_report| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td data-label="Date Reported" class="text-nowrap"><%= followed_report.report.created_at.to_date %></td>
+        <td data-label="Report Type"><%= link_to followed_report.report.subcategory, followed_report.report %></td>
+        <td data-label="Description"><%= truncate(followed_report.report.description, length: 40) %></td>
+        <td data-label="Zip"><%= followed_report.report.zip %></td>
+        <td data-label="Status"><%= followed_report.report.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+<% end %>

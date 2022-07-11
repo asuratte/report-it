@@ -159,6 +159,17 @@ class ReportsController < ApplicationController
     end
   end
 
+  # Calls the current user's follow method and redirects to the current report page
+  def follow
+    @report = Report.find(params[:id])
+    current_user.follow(@report)
+    if current_user.has_followed?(@report)
+      redirect_to followed_reports_path, notice: "Report was successfully followed."
+    else
+      redirect_to followed_reports_path, notice: "Report was successfully unfollowed."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
