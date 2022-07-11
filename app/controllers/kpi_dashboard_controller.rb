@@ -1,0 +1,2 @@
+class KpiDashboardController < ApplicationController
+end
