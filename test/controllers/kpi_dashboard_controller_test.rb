@@ -37,6 +37,13 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     assert_select ".total-submitted h2", text: "Total Number of Reports Submitted"
   end
 
+  test "should not show charts upon visiting KPI dashboard without submitting dates" do
+    sign_in @admin_user
+    get kpi_dashboard_path
+    assert_response :success
+    assert_select ".total-submitted h2", false, text: "Total Number of Reports Submitted"
+  end
+
   test "should not show charts on 'choose dates' button click when start and end date are not provided" do
     sign_in @admin_user
     get '/kpi-dashboard?start_date=&end_date=&commit=Choose+Dates'
@@ -50,6 +57,18 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     @end_date = (DateTime.current.beginning_of_day + 1.year).to_s
     get '/kpi-dashboard?start_date=' + @start_date + '&end_date=' + @end_date + '&commit=Choose+Dates'
     assert_response :success
+    assert_select ".total-submitted h2", false, text: "Total Number of Reports Submitted"
+  end
+
+  test "should hide charts on 'clear dates' button click" do
+    sign_in @admin_user
+    @start_date = DateTime.current.beginning_of_day.to_s
+    @end_date = (DateTime.current.beginning_of_day + 1.year).to_s
+    get '/kpi-dashboard?start_date=' + @start_date + '&end_date=' + @end_date + '&commit=Choose+Dates'
+    assert_response :success
+    assert_select ".total-submitted h2", text: "Total Number of Reports Submitted"
+    get '/kpi-dashboard?start_date=' + @start_date + '&end_date=' + @end_date + '&commit=Clear+Dates'
+    assert_redirected_to kpi_dashboard_path
     assert_select ".total-submitted h2", false, text: "Total Number of Reports Submitted"
   end
   
