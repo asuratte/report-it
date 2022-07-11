@@ -11,7 +11,7 @@
   });
   </script>
 <%= form_tag(kpi_dashboard_path, method: :get, class: "Dates search mx-auto", id: "choose-dates") do %>
-    <div class="d-md-flex justify-content-center mb-4">
+    <div class="d-lg-flex justify-content-center mb-4">
         <div class="m-2">
             <%= text_field_tag :start_date, @start_date, placeholder: "Enter Start Date", id: 'start-date', :class => "form-control datepicker", required: true, readonly: true %>
         </div>
@@ -22,7 +22,10 @@
             <%= submit_tag("Choose Dates", :id=>"choose-dates-button", :class=>"btn btn-primary") %>
         </div>
         <div class="m-2">
-            <%= submit_tag("Clear Dates", :id=>"clear-dates-button", :class=>"btn btn-primary") %>
+            <%= submit_tag("View All Time", :id=>"view-all-time-button", :class=>"btn btn-primary") %>
+        </div>
+        <div class="m-2">
+            <%= submit_tag("Clear Selection", :id=>"clear-selection-button", :class=>"btn btn-primary") %>
         </div>
     </div>
 <% end %>

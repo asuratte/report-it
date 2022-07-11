@@ -6,7 +6,9 @@ class KpiDashboardController < ApplicationController
             @end_date = Date.parse(params[:end_date])
             end_date_end_of_day = @end_date.end_of_day
             @reports = Report.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
-        elsif params[:commit] == 'Clear Dates'
+        elsif params[:commit] == 'View All Time'
+            @reports = Report.all
+        elsif params[:commit] == 'Clear Selection'
             redirect_to kpi_dashboard_path
         else
             @reports = nil
