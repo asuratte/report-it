@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     member do
       delete 'delete_image/:image_id', to: 'reports#delete_image', as: 'delete_image'
       put 'follow', as: 'follow'
+      put 'confirm', as: 'confirm'
     end
   end
 

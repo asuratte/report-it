@@ -159,7 +159,7 @@ class ReportsController < ApplicationController
     end
   end
 
-  # Calls the current user's follow method and redirects to the current report page
+  # Calls the current user's follow method and redirects to the followed reports page
   def follow
     @report = Report.find(params[:id])
     current_user.follow(@report)
@@ -168,6 +168,13 @@ class ReportsController < ApplicationController
     else
       redirect_to followed_reports_path, notice: "Report was successfully unfollowed."
     end
+  end
+
+  # Calls the current user's confirm method and redirects to the current report page
+  def confirm
+    @report = Report.find(params[:id])
+    current_user.confirm(@report)
+    redirect_to @report, notice: "Report was successfully confirmed."
   end
 
   private
