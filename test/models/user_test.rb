@@ -171,5 +171,35 @@ class UserTest < ActiveSupport::TestCase
     assert_equal false, @resident_user.has_followed?(@report1)
     assert_equal 1, @resident_user.followed_reports.count
   end
+
+  test "should verify if a user has confirmed a report" do
+    resident4 = users(:four)
+    assert_equal false, @resident_user.has_confirmed?(@report1)
+    assert resident4.has_confirmed?(@report1)
+  end
+
+  test "should confirm a report" do
+    report2 = reports(:two)
+    assert_equal false, @resident_user.has_confirmed?(report2)
+    assert_equal 0, @resident_user.confirmations.count
+    @resident_user.confirm(report2)
+    assert @resident_user.has_confirmed?(report2)
+    assert_equal 1, @resident_user.confirmations.count
+  end
+
+  test "should not confirm a report if user has already confirmed that report" do
+    resident4 = users(:four)
+    assert resident4.has_confirmed?(@report1)
+    assert_equal 2, resident4.confirmations.count
+    resident4.confirm(@report1)
+    assert_equal 2, resident4.confirmations.count
+  end
+
+  test "should not confirm a report if user created that report" do
+    assert_equal false, @resident_user.has_confirmed?(@report1)
+    assert_equal 0, @resident_user.confirmations.count
+    @resident_user.confirm(@report1)
+    assert_equal 0, @resident_user.confirmations.count
+  end
  
 end

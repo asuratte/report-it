@@ -13,6 +13,7 @@ class Report < ApplicationRecord
   validates :image, size: { between: 1.kilobyte..5.megabytes , message: 'must be between 1 KB and 5 MB' }
   has_many :comments
   has_many :followed_reports, dependent: :destroy
+  has_many :confirmations, dependent: :destroy
 
   def is_active?
       return self.active_status == 'active' ? true : false
@@ -62,6 +63,11 @@ class Report < ApplicationRecord
 
   def google_map
     "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:small%7Ccolor:red%7C#{latitude},#{longitude}&key=#{Rails.application.credentials.google_maps_api_key}"
+  end
+
+  # Gets the report's number of confirmations
+  def total_confirmations
+    self.confirmations.count
   end
 
 end

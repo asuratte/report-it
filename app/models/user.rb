@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :reports
   has_many :comments
   has_many :followed_reports, dependent: :destroy
+  has_many :confirmations, dependent: :destroy
 
   def active_for_authentication?
     super && self.active
@@ -47,6 +48,18 @@ class User < ApplicationRecord
       self.followed_reports.find_by(report_id: report.id).destroy
     else
       self.followed_reports.create(report_id: report.id)
+    end
+  end
+
+  # Checks if a report has been confirmed by the user
+  def has_confirmed?(report)
+    return self.confirmations.exists?(report_id: report.id)
+  end
+
+  # Creates a report confirmation for the given report, unless the user has already confirmed it or created the report
+  def confirm(report)
+    unless self.has_confirmed?(report) || self.reports.exists?(id: report.id)
+      self.confirmations.create(report_id: report.id)
     end
   end
 
