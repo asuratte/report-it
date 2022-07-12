@@ -45,6 +45,11 @@
 </p>
 
 <p>
+  <strong>Number of Report Confirmations:</strong>
+  <%= @report.total_confirmations %>
+</p>
+
+<p>
   <strong>Status:</strong>
   <%= @report.status %>
 </p>
@@ -147,6 +152,9 @@
       <%= button_to 'Unfollow', follow_report_path(@report), method: :put, class: "btn btn-primary button-float" %>
     <% else %>
       <%= button_to 'Follow', follow_report_path(@report), method: :put, class: "btn btn-primary button-float" %>
+    <% end %>
+    <% unless current_user.has_confirmed?(@report) %>
+      <%= button_to 'Confirm', confirm_report_path(@report), method: :put, class: "btn btn-primary button-float" %>
     <% end %>
   <% end %>
 <% end %>

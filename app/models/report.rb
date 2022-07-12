@@ -65,4 +65,9 @@ class Report < ApplicationRecord
     "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:small%7Ccolor:red%7C#{latitude},#{longitude}&key=#{Rails.application.credentials.google_maps_api_key}"
   end
 
+  # Gets the report's number of confirmations
+  def total_confirmations
+    self.confirmations.count
+  end
+
 end
