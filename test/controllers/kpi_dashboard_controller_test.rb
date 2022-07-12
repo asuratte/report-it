@@ -67,6 +67,7 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     get '/kpi-dashboard?start_date=' + @start_date + '&end_date=' + @end_date + '&commit=Choose+Dates'
     assert_response :success
     assert_select ".total-submitted h2", false, text: "Total Number of Reports Submitted"
+    assert_select ".text-center.fst-italic", "No data found for #{@start_date.to_date.to_s} - #{@end_date.to_date.to_s}."
   end
 
   test "should hide charts on 'clear selection' button click" do
