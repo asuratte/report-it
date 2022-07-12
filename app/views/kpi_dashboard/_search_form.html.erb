@@ -25,7 +25,7 @@
             <%= submit_tag("View All Time", :id=>"view-all-time-button", :class=>"btn btn-primary") %>
         </div>
         <div class="m-2">
-            <%= submit_tag("Clear Selection", :id=>"clear-selection-button", :class=>"btn btn-primary") %>
+            <%= submit_tag("Clear Selection", :id=>"clear-selection-button", :disabled=>(@selection_cleared == true), :class=>"btn btn-secondary") %>
         </div>
     </div>
 <% end %>
