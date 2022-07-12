@@ -8,7 +8,7 @@
         <%= line_chart @reports.group_by_day(:created_at).count %>
     </section>
 <% elsif @invalid_date %>
-     <p class="text-danger text-center fst-italic">Please enter a valid start and end date.</p>
+     <p class="text-danger text-center fst-italic info-message">Please enter a valid start and end date.</p>
 <% elsif @reports && @reports.count <= 0 %>
-    <p class="text-center fst-italic">No data found for <%= @start_date %> - <%= @end_date %>.</p>
+    <p class="text-center fst-italic info-message">No data found for <%= @start_date %> - <%= @end_date %>.</p>
 <% end %>
