@@ -101,5 +101,14 @@ namespace :import do
       fr.save
     end
 
+    csv_text = File.read(Rails.root.join("lib", "confirmation_data.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    csv.each do |row|
+      c = Confirmation.new
+      c.user_id = row["user_id"]
+      c.report_id = row["report_id"]
+      c.save
+    end
+
   end
 end
