@@ -194,5 +194,12 @@ class UserTest < ActiveSupport::TestCase
     resident4.confirm(@report1)
     assert_equal 2, resident4.confirmations.count
   end
+
+  test "should not confirm a report if user created that report" do
+    assert_equal false, @resident_user.has_confirmed?(@report1)
+    assert_equal 0, @resident_user.confirmations.count
+    @resident_user.confirm(@report1)
+    assert_equal 0, @resident_user.confirmations.count
+  end
  
 end

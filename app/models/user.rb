@@ -56,9 +56,9 @@ class User < ApplicationRecord
     return self.confirmations.exists?(report_id: report.id)
   end
 
-  # Creates a report confirmation for the given report, unless the user has already confirmed it
+  # Creates a report confirmation for the given report, unless the user has already confirmed it or created the report
   def confirm(report)
-    unless self.has_confirmed?(report)
+    unless self.has_confirmed?(report) || self.reports.exists?(id: report.id)
       self.confirmations.create(report_id: report.id)
     end
   end

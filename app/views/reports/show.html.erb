@@ -153,7 +153,7 @@
     <% else %>
       <%= button_to 'Follow', follow_report_path(@report), method: :put, class: "btn btn-primary button-float" %>
     <% end %>
-    <% unless current_user.has_confirmed?(@report) %>
+    <% unless current_user.has_confirmed?(@report) || current_user == @report.user %>
       <%= button_to 'Confirm', confirm_report_path(@report), method: :put, class: "btn btn-primary button-float" %>
     <% end %>
   <% end %>
