@@ -16,18 +16,15 @@ class ReportsController < ApplicationController
     if params[:commit] == 'Clear'
       self.set_submit_fields('clear', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
-      params[:search_radio_value] == 'Attribute' ? self.set_radio_div('attribute') : self.set_radio_div('dates')
-
     elsif params[:commit] == 'Search Dates'
       self.set_submit_fields('dates', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').search_dates(session[:resident_start_date], session[:resident_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
-      self.set_radio_div('dates')
-
     else
       self.set_submit_fields('attribute', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
-      self.set_radio_div('attribute')
     end
+
+    params[:search_radio_value] == 'Attribute' ? self.set_radio_div('attribute') : self.set_radio_div('dates')
   end
 
   # GET /reports/1 or /reports/1.json
