@@ -1,6 +1,7 @@
 <h1 class="text-center">KPI Dashboard</h1>
 <p class="text-center">Select start and end dates and click "Choose Dates" to view key performance indicators for the specified time period.</p>
 <%= render '/kpi_dashboard/search_form' %>
+<p class="text-center"><small><em>This application uses Coordinated Universal Time (UTC).</em></small></p>
 
 <% if @reports && @reports.count > 0 %>
     <h2 class="text-center mt-5">KPIs for <span class="fw-bold"><% if (@start_date && @end_date) && @start_date < @end_date %><%= @start_date %> - <%= @end_date %><% elsif (@start_date && @end_date) && @start_date == @end_date %><%= @start_date %><% elsif @all_time %>All Time<% end%></span></h2>

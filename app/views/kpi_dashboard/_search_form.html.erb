@@ -11,7 +11,7 @@
   });
   </script>
 <%= form_tag(kpi_dashboard_path, method: :get, class: "Dates search mx-auto", id: "choose-dates") do %>
-    <div class="d-lg-flex justify-content-center mb-4">
+    <div class="d-lg-flex justify-content-center mb-3">
         <div class="m-2">
             <%= text_field_tag :start_date, @start_date, placeholder: "Enter Start Date", id: 'start-date', :class => "form-control datepicker", required: true, readonly: true %>
         </div>

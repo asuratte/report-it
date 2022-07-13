@@ -40,3 +40,11 @@
         <%= column_chart @reports.group(:zip).count %>
     <% end %>
 </section>
+<section class="chart-wrap number-deactivated-reports text-center mt-5 pt-5 px-3">
+    <h2 class="dark">Number of Deactivated Reports</h2>
+    <% if @reports.where.not(active_status: 'active').count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+      <%= line_chart @reports.where.not(active_status: 'active').group(:active_status).group_by_day(:deactivated_at).count %>
+    <% end %>
+</section>
