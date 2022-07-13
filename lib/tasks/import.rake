@@ -41,6 +41,8 @@ namespace :import do
       r.active_status = row["active_status"]
       r.save
       r.created_at = (rand*30).days.ago
+      r.updated_at = (r.created_at + row["deactivated_at"].to_i.days) unless row["deactivated_at"].nil?
+      r.deactivated_at = (r.created_at + row["deactivated_at"].to_i.days) unless row["deactivated_at"].nil?
       r.save
     end
 
