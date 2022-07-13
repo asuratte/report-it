@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  include Search
   rescue_from Pagy::OverflowError, with: :redirect_to_last_page
   rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_report, only: %i[ show edit update destroy ]
@@ -43,22 +44,6 @@ class ReportsController < ApplicationController
 
       @reports_cleared = false
       self.set_radio_div('attribute')
-    end
-  end
-
-  def set_radio_div(set_radio_type)
-    if set_radio_type == 'attribute'
-      @radio_checked_dates = ""
-      @display_form_dates = "display: none;"
-
-      @radio_checked_attribute = "checked"
-      @display_form_attribute = "display: block;"
-    elsif set_radio_type == 'dates'
-      @radio_checked_dates = "checked"
-      @display_form_dates = "display: block;"
-
-      @radio_checked_attribute = ""
-      @display_form_attribute = "display: none;"
     end
   end
 
@@ -206,18 +191,11 @@ class ReportsController < ApplicationController
       session[:resident_start_date] = nil
       session[:resident_end_date] = nil
 
-      if params[:resident_search_term]
+      if params[:resident_search_term] || (params[:resident_start_date] && params[:resident_end_date])
         session[:resident_search_type] = params[:resident_search_type]
         session[:resident_search_term] = params[:resident_search_term]
-      end
-
-      if params[:resident_start_date] && params[:resident_end_date]
         session[:resident_start_date] = params[:resident_start_date]
         session[:resident_end_date] = params[:resident_end_date]
-      end
-
-      if params[:commit]
-        session[:commit] = params[:commit]
       end
     end
 end
