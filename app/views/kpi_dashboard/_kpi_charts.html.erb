@@ -1,50 +1,50 @@
 <section class="chart-wrap total-submitted text-center mt-4">
-    <h2 class="dark">Total Number of Reports Submitted</h2>
-    <% if @reports.count <= 0 %>
+    <h2 class="dark">Total Number of New Reports Submitted</h2>
+    <% if @new_reports.count <= 0 %>
         <em>No data for this date range.</em>
     <% else %>
-        <%= line_chart @reports.group_by_day(:created_at).count %>
+        <%= line_chart @new_reports.group_by_day(:created_at).count %>
     <% end %>
 </section>
 <div class="pie-wrap d-flex flex-wrap justify-content-around mt-5">
     <section class="chart-wrap reports-by-status text-center mt-5 px-3">
-        <h2 class="dark">Number of Reports By Status</h2>
-        <% if @reports.count <= 0 %>
+        <h2 class="dark">Number of New Reports By Status</h2>
+        <% if @new_reports.count <= 0 %>
             <em>No data for this date range.</em>
         <% else %>
-            <%= pie_chart @reports.group(:status).count, height: "500px" %>
+            <%= pie_chart @new_reports.group(:status).count, height: "500px" %>
         <% end %>
     </section>
     <section class="chart-wrap reports-by-severity text-center mt-5 px-3">
-        <h2 class="dark">Number of Reports By Severity</h2>
-        <% if @reports.count <= 0 %>
+        <h2 class="dark">Number of New Reports By Severity</h2>
+        <% if @new_reports.count <= 0 %>
             <em>No data for this date range.</em>
         <% else %>
-            <%= pie_chart @reports.group(:severity).count, height: "500px" %>
+            <%= pie_chart @new_reports.group(:severity).count, height: "500px" %>
         <% end %>
     </section>
     <section class="chart-wrap reports-by-category text-center mt-5 px-3">
-        <h2 class="dark">Number of Reports By Category</h2>
-        <% if @reports.count <= 0 %>
+        <h2 class="dark">Number of New Reports By Category</h2>
+        <% if @new_reports.count <= 0 %>
             <em>No data for this date range.</em>
         <% else %>
-            <%= pie_chart @reports.group(:category).count, height: "500px" %>
+            <%= pie_chart @new_reports.group(:category).count, height: "500px" %>
         <% end %>
     </section>
 </div>
 <section class="chart-wrap reports-by-zip text-center mt-5 px-3">
-    <h2 class="dark">Number of Reports By Zip Code</h2>
-    <% if @reports.count <= 0 %>
+    <h2 class="dark">Number of New Reports By Zip Code</h2>
+    <% if @new_reports.count <= 0 %>
         <em>No data for this date range.</em>
     <% else %>
-        <%= column_chart @reports.group(:zip).count %>
+        <%= column_chart @new_reports.group(:zip).count %>
     <% end %>
 </section>
 <section class="chart-wrap number-deactivated-reports text-center mt-5 pt-5 px-3">
     <h2 class="dark">Number of Deactivated Reports</h2>
-    <% if @reports.where.not(active_status: 'active').count <= 0 %>
+    <% if @deactivated_reports.count <= 0 %>
         <em>No data for this date range.</em>
     <% else %>
-      <%= line_chart @reports.where.not(active_status: 'active').group(:active_status).group_by_day(:deactivated_at).count %>
+      <%= line_chart @deactivated_reports.group(:active_status).group_by_day(:deactivated_at).count %>
     <% end %>
 </section>

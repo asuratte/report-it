@@ -3,11 +3,11 @@
 <%= render '/kpi_dashboard/search_form' %>
 <p class="text-center"><small><em>This application uses Coordinated Universal Time (UTC).</em></small></p>
 
-<% if @reports && @reports.count > 0 %>
+<% if @new_reports && @new_reports.count > 0 %>
     <h2 class="text-center mt-5">KPIs for <span class="fw-bold"><% if (@start_date && @end_date) && @start_date < @end_date %><%= @start_date %> - <%= @end_date %><% elsif (@start_date && @end_date) && @start_date == @end_date %><%= @start_date %><% elsif @all_time %>All Time<% end%></span></h2>
     <%= render '/kpi_dashboard/kpi_charts' %>
 <% elsif @invalid_date %>
      <p class="text-danger text-center fst-italic info-message">Please enter a valid start and end date.</p>
-<% elsif @reports && @reports.count <= 0 %>
+<% elsif @new_reports && @new_reports.count <= 0 %>
     <p class="text-center fst-italic info-message">No data found for <%= @start_date %> - <%= @end_date %>.</p>
 <% end %>
