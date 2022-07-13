@@ -128,11 +128,12 @@ class ReportsController < ApplicationController
   # PATCH/PUT /reports/1 or /reports/1.json
   def update
     respond_to do |format|
-      if params[:status] != "active"
-        params[:deactivated_at] = DateTime.now
+      if params[:report][:active_status] != "active"
+        @report.deactivated_at = DateTime.current
       else 
-        params[:deactivated_at] = nil
+        @report.deactivated_at = nil
       end
+      
       if @report.update(report_params)
         format.html { redirect_to report_url(@report), notice: "Report was successfully updated." }
         format.json { render :show, status: :ok, location: @report }
