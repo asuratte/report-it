@@ -128,6 +128,11 @@ class ReportsController < ApplicationController
   # PATCH/PUT /reports/1 or /reports/1.json
   def update
     respond_to do |format|
+      if params[:status] != "active"
+        params[:deactivated_at] = DateTime.now
+      else 
+        params[:deactivated_at] = nil
+      end
       if @report.update(report_params)
         format.html { redirect_to report_url(@report), notice: "Report was successfully updated." }
         format.json { render :show, status: :ok, location: @report }
@@ -167,7 +172,7 @@ class ReportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :image, :active_status)
+      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :image, :active_status, :deactivated_at)
     end
 
     # Redirects to the last page when exception thrown
