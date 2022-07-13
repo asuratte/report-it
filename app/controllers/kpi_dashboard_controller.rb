@@ -6,6 +6,7 @@ class KpiDashboardController < ApplicationController
             @end_date = Date.parse(params[:end_date])
             end_date_end_of_day = @end_date.end_of_day
             @reports = Report.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
+            @users = User.all.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
             @invalid_date = false
             @selection_cleared = false
             @all_time = false
@@ -15,6 +16,7 @@ class KpiDashboardController < ApplicationController
             @all_time = false
         elsif params[:commit] == 'View All Time'
             @reports = Report.all
+            @users = User.all.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
             @invalid_date = false
             @all_time = true
         elsif params[:commit] == 'Clear Selection'
