@@ -48,3 +48,19 @@
       <%= line_chart @deactivated_reports.group(:active_status).group_by_day(:deactivated_at).count %>
     <% end %>
 </section>
+<section class="chart-wrap number-resident-signups text-center mt-5 pt-5 px-3">
+    <h2 class="dark">Number of New Resident Account Signups</h2>
+    <% if @new_users.count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+      <%= line_chart @new_users.group_by_day(:created_at).count %>
+    <% end %>
+</section>
+<section class="chart-wrap number-resident-deactivations text-center mt-5 pt-5 px-3">
+    <h2 class="dark">Number of Deactivated Resident Accounts</h2>
+    <% if @deactivated_users.count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+      <%= line_chart @deactivated_users.group_by_day(:deactivated_at).count %>
+    <% end %>
+</section>
