@@ -12,6 +12,13 @@
         <li class="nav-item">
           <%=link_to "Reports", reports_path, :class=>"nav-link" %>
         </li>
+
+        <% if user_signed_in? && current_user.is_resident? %>
+          <li class="nav-item">
+            <%=link_to "Feedback", new_feedback_path, :class=>"nav-link" %>
+          </li>
+        <% end %>
+
         <!-- Show these links if the user is signed in AND user is official or admin -->
         <% if user_signed_in? %>
           <% if current_user.is_official? || current_user.is_admin? %>
