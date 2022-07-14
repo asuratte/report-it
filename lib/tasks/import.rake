@@ -21,8 +21,8 @@ namespace :import do
       u.password = row["password"]
       u.password_confirmation = row["password_confirmation"]
       u.created_at = (rand*30).days.ago
-      u.updated_at = (u.created_at + row["deactivated_at"].to_i.days) unless row["deactivated_at"].nil?
-      u.deactivated_at = (u.created_at + row["deactivated_at"].to_i.days) unless row["deactivated_at"].nil?
+      u.updated_at = (u.created_at + 2.hours) unless row["deactivated_at"].nil?
+      u.deactivated_at = (u.created_at + 2.hours) unless row["deactivated_at"].nil?
       u.save
     end
 
@@ -44,8 +44,8 @@ namespace :import do
       r.active_status = row["active_status"]
       r.save
       r.created_at = (rand*30).days.ago
-      r.updated_at = (r.created_at + row["deactivated_at"].to_i.days) unless row["deactivated_at"].nil?
-      r.deactivated_at = (r.created_at + row["deactivated_at"].to_i.days) unless row["deactivated_at"].nil?
+      r.updated_at = (r.created_at + 2.hours) unless row["deactivated_at"].nil?
+      r.deactivated_at = (r.created_at + 2.hours) unless row["deactivated_at"].nil?
       r.save
     end
 
