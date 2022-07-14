@@ -28,6 +28,7 @@ module Search
       session["#{search_page}_search_term".to_sym] = params["#{search_page}_search_term".to_sym]
       session["#{search_page}_start_date".to_sym] = params["#{search_page}_start_date".to_sym]
       session["#{search_page}_end_date".to_sym] = params["#{search_page}_end_date".to_sym]
+      session["#{search_page}_search_radio_value".to_sym] = params["#{search_page}_search_radio_value".to_sym]
     end
   end
 

@@ -31,7 +31,7 @@ class OfficialController < ApplicationController
         ELSE 5 END, created_at DESC")).search(session[:official_search_type], session[:official_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
     end
 
-    params[:search_radio_value] == 'Attribute' ? self.set_radio_div('attribute') : self.set_radio_div('dates')
+    session[:official_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')
   end
 
   private

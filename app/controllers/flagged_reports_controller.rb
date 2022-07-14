@@ -20,7 +20,7 @@ class FlaggedReportsController < ApplicationController
       @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
     end
 
-    params[:search_radio_value] == 'Attribute' ? self.set_radio_div('attribute') : self.set_radio_div('dates')
+    session[:admin_flagged_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')
   end
 
   private
