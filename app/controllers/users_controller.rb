@@ -25,10 +25,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     respond_to do |format|
-      if params[:user][:active] == false
-        @user.deactivated_at = DateTime.current
-      else 
+      if params[:user][:active] == "true"
         @user.deactivated_at = nil
+      else
+        @user.deactivated_at = DateTime.current
       end
 
       if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :address1, :address2, :city, :state, :zip, :phone, :username, :active, :role, :email, :password, :password_confirmation) 
+      params.require(:user).permit(:first_name, :last_name, :address1, :address2, :city, :state, :zip, :phone, :username, :active, :role, :email, :password, :password_confirmation, :deactivated_at) 
     end
 
     # Redirects to the last page when exception thrown

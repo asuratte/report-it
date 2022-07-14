@@ -100,4 +100,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(@official_user)
   end
 
+  test "should populate deactivated_at date when user is deactivated and show nil when user is active" do
+    sign_in @admin_user
+    patch user_url(@official_user), params:  { user: { first_name: 'Charles', last_name: @official_user.last_name, address1: @official_user.address1, address2: @official_user.address2, city: @official_user.city, state: @official_user.state, zip: @official_user.zip, phone: @official_user.phone, username: @official_user.username, active: false, role: @official_user.role, email: @official_user.email, password: @official_user.password } }
+    @official_user.reload
+    assert_equal @official_user.active, false
+    assert_not_nil @official_user.deactivated_at
+    
+    patch user_url(@official_user), params:  { user: { first_name: 'Charles', last_name: @official_user.last_name, address1: @official_user.address1, address2: @official_user.address2, city: @official_user.city, state: @official_user.state, zip: @official_user.zip, phone: @official_user.phone, username: @official_user.username, active: true, role: @official_user.role, email: @official_user.email, password: @official_user.password } }
+    @official_user.reload
+    assert_equal @official_user.active, true
+    assert_nil @official_user.deactivated_at
+  end
+
 end

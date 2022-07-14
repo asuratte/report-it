@@ -89,8 +89,8 @@
     </div>
 
     <div class="field mb-3">
-      <%= f.label :active, 'Active', :class => 'form-check-label required' %>
-      <%= f.check_box :active, :class => 'form-check-input' %>
+      <%= f.label :active, 'Active', :class => 'form-label' %>
+      <%= f.select(:active, [['Active', true], ['Inactive', false]], {}, { :class => 'form-select' }) %>
     </div>
 
     <br>
