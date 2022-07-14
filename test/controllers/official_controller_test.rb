@@ -244,7 +244,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @start_date = "06-01-2022"
     @end_date = "06-01-2050"
 
-    get '/official-search?official_start_date=' + @start_date + '&official_end_date=' + @end_date + '&commit=Search+Dates'
+    get '/official-search?official_start_date=' + @start_date + '&official_end_date=' + @end_date + '&commit=Search+Dates' + '&official_search_radio_value=Dates'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -257,7 +257,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     @start_date = "06-01-2049"
     @end_date = "06-01-2050"
 
-    get '/official-search?official_start_date=' + @start_date + '&official_end_date=' + @end_date + '&commit=Search+Dates'
+    get '/official-search?official_start_date=' + @start_date + '&official_end_date=' + @end_date + '&commit=Search+Dates' + '&official_search_radio_value=Dates'
     assert_response :success
     assert_select "p#no_reports", text: "No reports found."
   end
