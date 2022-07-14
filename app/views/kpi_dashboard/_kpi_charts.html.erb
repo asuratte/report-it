@@ -1,5 +1,5 @@
 <section class="chart-wrap total-submitted text-center mt-4">
-    <h2 class="dark">Total Number of Reports Submitted</h2>
+    <h2 class="dark pb-2">Total Number of Reports Submitted: <span class="accent"><%= @new_reports.count %></span></h2>
     <% if @new_reports.count <= 0 %>
         <em>No data for this date range.</em>
     <% else %>
@@ -41,7 +41,7 @@
     <% end %>
 </section>
 <section class="chart-wrap number-deactivated-reports text-center mt-5 pt-5 px-3">
-    <h2 class="dark">Number of Deactivated Reports</h2>
+    <h2 class="dark">Number of Deactivated Reports: <span class="accent"><%= @deactivated_reports.count %></span></h2>
     <% if @deactivated_reports.count <= 0 %>
         <em>No data for this date range.</em>
     <% else %>
@@ -49,7 +49,7 @@
     <% end %>
 </section>
 <section class="chart-wrap number-resident-signups text-center mt-5 pt-5 px-3">
-    <h2 class="dark">Number of Resident Account Signups</h2>
+    <h2 class="dark">Number of Resident Account Signups: <span class="accent"><%= @new_users.count %></span></h2>
     <% if @new_users.count <= 0 %>
         <em>No data for this date range.</em>
     <% else %>
@@ -57,7 +57,7 @@
     <% end %>
 </section>
 <section class="chart-wrap number-resident-deactivations text-center mt-5 pt-5 px-3">
-    <h2 class="dark">Number of Deactivated Resident Accounts</h2>
+    <h2 class="dark">Number of Deactivated Resident Accounts: <span class="accent"><%= @deactivated_users.count %></span></h2>
     <% if @deactivated_users.count <= 0 %>
         <em>No data for this date range.</em>
     <% else %>

@@ -7,8 +7,8 @@ class KpiDashboardController < ApplicationController
             end_date_end_of_day = @end_date.end_of_day
             @new_reports = Report.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
             @deactivated_reports = Report.where(deactivated_at: (start_date_beginning_of_day)..(end_date_end_of_day)).where.not(deactivated_at: nil)
-            @new_users = User.all.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
-            @deactivated_users = User.all.where(deactivated_at: (start_date_beginning_of_day)..(end_date_end_of_day))
+            @new_users = User.all.where(role: 'resident').where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
+            @deactivated_users = User.all.where(role: 'resident').where.not(deactivated_at: nil).where(deactivated_at: (start_date_beginning_of_day)..(end_date_end_of_day))
             @invalid_date = false
             @selection_cleared = false
             @all_time = false
@@ -19,8 +19,8 @@ class KpiDashboardController < ApplicationController
         elsif params[:commit] == 'View All Time'
             @new_reports = Report.all
             @deactivated_reports = Report.all.where.not(deactivated_at: nil)
-            @new_users = User.all.where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
-            @deactivated_users = User.all.where(deactivated_at: (start_date_beginning_of_day)..(end_date_end_of_day))
+            @new_users = User.all.where(role: 'resident').where(created_at: (start_date_beginning_of_day)..(end_date_end_of_day))
+            @deactivated_users = User.all.where(role: 'resident').where.not(deactivated_at: nil).where(deactivated_at: (start_date_beginning_of_day)..(end_date_end_of_day))
             @invalid_date = false
             @selection_cleared = false
             @all_time = true
