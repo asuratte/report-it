@@ -148,7 +148,10 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip, active_status: "outside_area" } }
     @report.reload
     assert_not_nil @report.deactivated_at
+  end
 
+  test "should show nil for deactivated_at date when report is updated to active_status 'active'" do
+    sign_in @admin_user
     patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip, active_status: "active" } }
     @report.reload
     assert_nil @report.deactivated_at
