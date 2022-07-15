@@ -58,6 +58,7 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     get kpi_dashboard_path
     assert_response :success
     assert_select ".total-submitted h2", false
+    assert_equal true, @controller.view_assigns['selection_cleared']
   end
 
   test "should not show charts on 'choose dates' button click when both start and end date are not provided" do
@@ -68,16 +69,19 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".total-submitted h2", false
     assert_equal true, @controller.view_assigns['invalid_date']
+    assert_equal true, @controller.view_assigns['selection_cleared']
 
     get '/kpi-dashboard?start_date=' + @start_date + '&end_date=&commit=Choose+Dates'
     assert_response :success
     assert_select ".total-submitted h2", false
     assert_equal true, @controller.view_assigns['invalid_date']
+    assert_equal true, @controller.view_assigns['selection_cleared']
 
     get '/kpi-dashboard?start_date=&end_date=' + @end_date + '&commit=Choose+Dates'
     assert_response :success
     assert_select ".total-submitted h2", false
     assert_equal true, @controller.view_assigns['invalid_date']
+    assert_equal true, @controller.view_assigns['selection_cleared']
   end
 
   test "should not show charts on 'choose dates' button click when start and end date do not have any associated reports" do
@@ -99,6 +103,7 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     assert_select ".total-submitted h2", false
     assert_select ".info-message", "Please enter a valid start and end date."
     assert_equal true, @controller.view_assigns['invalid_date']
+    assert_equal true, @controller.view_assigns['selection_cleared']
   end
 
   test "should hide charts on 'clear selection' button click" do
@@ -111,6 +116,7 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     get '/kpi-dashboard?start_date=' + @start_date + '&end_date=' + @end_date + '&commit=Clear+Selection'
     assert_redirected_to kpi_dashboard_path
     assert_select ".total-submitted h2", false
+    assert_redirected_to kpi_dashboard_path
     assert_equal true, @controller.view_assigns['selection_cleared']
   end
 
