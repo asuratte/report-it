@@ -63,3 +63,4 @@
   username: samsamsam
   role: 0
   active: false
+  deactivated_at: <%= DateTime.current %>
