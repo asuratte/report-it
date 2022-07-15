@@ -1,35 +1,33 @@
-<h1 class="text-center mb-4">Feedback Dashboard</h1>
+<h1 class="text-center mb-4">Flagged Feedback</h1>
 
 <%= render '/shared/search_form', feedback: @feedback %>
 
 <hr>
-<% if @feedbacks.empty? %>
-  <p id="no_feedback">No feedback found.</p>
+<% if @flagged_feedbacks.empty? %>
+  <p id="no_feedback">No flagged feedback.</p>
 <% else %>
   <table class="mb-3">
     <thead>
       <tr>
         <th scope="col" id="date_submitted">Date Submitted</th>
         <th scope="col">Feedback No.</th>
-        <th scope="col">User</th>
+        <th scope="col">Username</th>
         <th scope="col">Category</th>
         <th scope="col">Comment</th>
-        <th scope="col">Status</th>
       </tr>
     </thead>
 
     <tbody>
-      <% @feedbacks.each do |feedback| %>
+      <% @flagged_feedbacks.each do |feedback| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td data-label="Date Submitted"><%= feedback.created_at.to_date %></td>
           <td data-label="Feedback No."><%= feedback.id %></td>
-          <td data-label="User"><%= feedback.username %></td>
-          <td data-label="Category"><%= link_to feedback.category, feedback %></td>
-          <td data-label="Comment"><%= truncate(feedback.comment, length: 40) %></td>
-          <td data-label="Status"><%= feedback.status %></td>
+          <td data-label="Username"><%= feedback.username %></td>
+          <td data-label="Category"><%= feedback.category %></td>
+          <td data-label="Comment"><%= feedback.comment %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 <% end %>

@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :categories, except: [:destroy]
     get 'deactivated-reports', to: 'deactivated_reports#index'
     get 'flagged-reports', to: 'flagged_reports#index'
+    get 'deactivated-feedbacks', to: 'deactivated_feedbacks#index'
+    get 'flagged-feedbacks', to: 'flagged_feedbacks#index'
     get 'reports-by-user', to: 'reports_by_user#index'
     get 'official', to: 'official#index'
 

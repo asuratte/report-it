@@ -54,7 +54,7 @@ module Search
   def get_search_categories(search_page)
     if search_page == :official
       @search_categories = ["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"]
-    elsif search_page == :feedback
+    elsif search_page == :feedback || search_page == :admin_deactivated_feedback || search_page == :admin_flagged_feedback
       @search_categories = ["Feedback No.", "Username", "Status", "Category", "Comment"]
     else
       @search_categories = ["Incident No.", "Category", "Address", "City", "State", "Zip", "Description"]
