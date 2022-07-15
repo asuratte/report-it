@@ -16,9 +16,11 @@ class ReportsController < ApplicationController
     if params[:commit] == 'Clear'
       self.set_submit_fields('clear', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
-    elsif params[:commit] == 'Search Dates'
+    elsif params[:commit] == 'Search Dates' && params[:resident_start_date].present? && params[:resident_end_date].present? && params[:resident_start_date] <= params[:resident_end_date]
       self.set_submit_fields('dates', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').search_dates(session[:resident_start_date], session[:resident_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    elsif params[:commit] == 'Search Dates' && ((!params[:resident_start_date].present? || !params[:resident_end_date].present?) || params[:resident_start_date] > params[:resident_end_date])
+      @invalid_date = true
     else
       self.set_submit_fields('attribute', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])

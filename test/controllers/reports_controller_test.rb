@@ -303,7 +303,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
     get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates' + '&resident_search_radio_value=Dates'
     assert_response :success
-    assert_select "p#no_reports", text: "No reports found."
+    assert_select "p.info-message", text: "No reports found."
   end
 
   test "should clear attribute search and show all reports" do
