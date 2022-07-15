@@ -2,7 +2,7 @@
   <p id="no_reports" class="mb-4">User <%= User.find(params[:user_id]).username %> has not submitted any reports.</p>
 <% else %>
 <h1 class="text-center mb-4">Reports by <%= @user_reports.first.user.username %></h1>
-<table class="mb-3">
+<table class="mb-3 data-table">
     <thead>
       <tr>
         <th scope="col" id="date_reported">Date Reported</th>

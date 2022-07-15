@@ -43,7 +43,16 @@
         </div>
     <% end %>
     <!-- Admin Only Tiles - shows if logged in as admin user -->
-    <% if  user_signed_in? && (current_user.is_admin?) %>                
+    <% if  user_signed_in? && (current_user.is_admin?) %>   
+    <!-- KPI Dashboard Tile -->
+        <div class="card homepage-tile text-center py-5 mb-5">
+            <%= image_tag 'kpi-dashboard.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">KPI Dashboard</h5>
+                <p class="card-text">Visualize key performance indicators</p>
+                <%=link_to "View KPI Dashboard", kpi_dashboard_path, :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>             
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'add-user-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -78,6 +87,7 @@
         </div>
     <% end %>
     <!-- Explore Tile -->
+    <% if !user_signed_in? || (user_signed_in? && (!current_user.is_admin?)) %>  
         <div class="card homepage-tile text-center py-5 mb-5">
             <%= image_tag 'compass-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -86,6 +96,7 @@
                 <%=link_to "Explore Open Reports", reports_path, :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
+    <% end %>
 </div>
 
 <div class="homepage-how-it-works-container text-center pt-3">

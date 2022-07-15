@@ -32,3 +32,5 @@ document.addEventListener("turbolinks:load", () => {
         return new Popover(popoverTriggerEl)
     })
 })
+
+import "chartkick/chart.js"

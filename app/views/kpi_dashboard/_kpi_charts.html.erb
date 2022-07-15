@@ -1,0 +1,66 @@
+<section class="chart-wrap total-submitted text-center mt-4">
+    <h2 class="dark pb-2">Total Number of Reports Submitted: <span class="accent"><%= @new_reports.count %></span></h2>
+    <% if @new_reports.count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+        <%= line_chart @new_reports.group_by_day(:created_at).count, xtitle: "Submission Date", ytitle: "Reports" %>
+    <% end %>
+</section>
+<div class="pie-wrap d-flex flex-wrap justify-content-around mt-5">
+    <section class="chart-wrap reports-by-status text-center mt-5 px-3">
+        <h2 class="dark">Number of Reports By Status</h2>
+        <% if @new_reports.count <= 0 %>
+            <em>No data for this date range.</em>
+        <% else %>
+            <%= pie_chart @new_reports.group(:status).count, height: "500px" %>
+        <% end %>
+    </section>
+    <section class="chart-wrap reports-by-severity text-center mt-5 px-3">
+        <h2 class="dark">Number of Reports By Severity</h2>
+        <% if @new_reports.count <= 0 %>
+            <em>No data for this date range.</em>
+        <% else %>
+            <%= pie_chart @new_reports.group(:severity).count, height: "500px" %>
+        <% end %>
+    </section>
+    <section class="chart-wrap reports-by-category text-center mt-5 px-3">
+        <h2 class="dark">Number of Reports By Category</h2>
+        <% if @new_reports.count <= 0 %>
+            <em>No data for this date range.</em>
+        <% else %>
+            <%= pie_chart @new_reports.group(:category).count, height: "500px" %>
+        <% end %>
+    </section>
+</div>
+<section class="chart-wrap reports-by-zip text-center mt-5 px-3">
+    <h2 class="dark">Number of Reports By Zip Code</h2>
+    <% if @new_reports.count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+        <%= column_chart @new_reports.group(:zip).count, xtitle: "Zip Code", ytitle: "Reports" %>
+    <% end %>
+</section>
+<section class="chart-wrap number-deactivated-reports text-center mt-5 pt-5 px-3">
+    <h2 class="dark">Number of Deactivated Reports: <span class="accent"><%= @deactivated_reports.count %></span></h2>
+    <% if @deactivated_reports.count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+      <%= line_chart @deactivated_reports.group(:active_status).group_by_day(:deactivated_at).count, xtitle: "Deactivation Date", ytitle: "Deactivated Reports" %>
+    <% end %>
+</section>
+<section class="chart-wrap number-resident-signups text-center mt-5 pt-5 px-3">
+    <h2 class="dark">Number of Resident Account Signups: <span class="accent"><%= @new_users.count %></span></h2>
+    <% if @new_users.count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+      <%= line_chart @new_users.group_by_day(:created_at).count, xtitle: "Signup Date", ytitle: "Accounts" %>
+    <% end %>
+</section>
+<section class="chart-wrap number-resident-deactivations text-center mt-5 pt-5 px-3">
+    <h2 class="dark">Number of Deactivated Resident Accounts: <span class="accent"><%= @deactivated_users.count %></span></h2>
+    <% if @deactivated_users.count <= 0 %>
+        <em>No data for this date range.</em>
+    <% else %>
+      <%= line_chart @deactivated_users.group_by_day(:deactivated_at).count, xtitle: "Deactivation Date", ytitle: "Deactivated Accounts" %>
+    <% end %>
+</section>

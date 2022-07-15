@@ -1,0 +1,2 @@
+module KpiDashboardHelper
+end

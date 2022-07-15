@@ -14,6 +14,8 @@ one:
   severity: Low
   user: one
   active_status: 0
+  deactivated_at: 
+
 
 two:
   id: 2
@@ -29,6 +31,8 @@ two:
   severity: Low
   user: two
   active_status: 1
+  deactivated_at: <%= DateTime.current %>
+
 
 three:
   id: 3
@@ -44,6 +48,7 @@ three:
   severity: Low
   user: one
   active_status: 2
+  deactivated_at: <%= DateTime.current %>
 
 four:
   id: 4
@@ -59,6 +64,7 @@ four:
   severity: Low
   user: one
   active_status: 3
+  deactivated_at: <%= DateTime.current %>
 
 five:
   id: 5
@@ -74,3 +80,4 @@ five:
   severity: Low
   user: one
   active_status: 0
+  deactivated_at: 
