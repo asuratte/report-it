@@ -48,6 +48,10 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks/new
   def new
+    if current_user.is_official? || current_user.is_admin?
+      redirect_to root_path
+    end
+
     @feedback = Feedback.new
   end
 

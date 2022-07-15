@@ -52,10 +52,12 @@ module Search
   end
 
   def get_search_categories(search_page)
-    if search_page == :official
-      @search_categories = ["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"]
-    elsif search_page == :feedback || search_page == :admin_deactivated_feedback || search_page == :admin_flagged_feedback
+    if search_page == :admin_deactivated_feedback || search_page == :admin_flagged_feedback
+      @search_categories = ["Feedback No.", "Username", "Category", "Comment"]
+    elsif search_page == :feedback
       @search_categories = ["Feedback No.", "Username", "Status", "Category", "Comment"]
+    elsif search_page == :official
+      @search_categories = ["Incident No.", "Status", "Severity", "Category", "Address", "City", "State", "Zip", "Description"]
     else
       @search_categories = ["Incident No.", "Category", "Address", "City", "State", "Zip", "Description"]
     end

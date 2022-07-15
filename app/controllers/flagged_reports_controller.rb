@@ -4,7 +4,7 @@ class FlaggedReportsController < ApplicationController
   rescue_from Pagy::VariableError, with: :redirect_to_last_page
 
   def index
-    @search_page = :admin_flagged
+    @search_page = :admin_flagged_report
     get_search_values @search_page
     get_search_categories @search_page
     @search_submit_path = flagged_reports_path
@@ -14,13 +14,13 @@ class FlaggedReportsController < ApplicationController
       @pagy, @flagged_reports = pagy(Report.order('created_at DESC').where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
     elsif params[:commit] == 'Search Dates'
       self.set_submit_fields('dates', @search_page)
-      @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search_dates(session[:admin_flagged_start_date], session[:admin_flagged_end_date]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
+      @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search_dates(session[:admin_flagged_report_start_date], session[:admin_flagged_report_end_date]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
     else
       self.set_submit_fields('attribute', @search_page)
-      @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_search_type], session[:admin_flagged_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
+      @pagy, @flagged_reports = pagy(Report.order('created_at DESC').search(session[:admin_flagged_report_search_type], session[:admin_flagged_report_search_term]).where(status: "Flagged", active_status: "active"), items: 10, size: [1,0,0,1])
     end
 
-    session[:admin_flagged_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')
+    session[:admin_flagged_report_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')
   end
 
   private

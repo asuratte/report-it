@@ -49,7 +49,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Incident+No."
     @search_term = "2"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -62,14 +62,14 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Address"
     @search_term = "avenue"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
 
     @search_type = "Address"
     @search_term = "apt+2"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -82,7 +82,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "City"
     @search_term = "atlanta"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -95,7 +95,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "State"
     @search_term = "GA"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -108,7 +108,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Zip"
     @search_term = "12345"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -121,7 +121,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Description"
     @search_term = "light"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -134,7 +134,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Zip"
     @search_term = "00000"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
     assert_select "p#no_reports", text: "No deactivated reports."
   end
@@ -147,7 +147,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @start_date = "06-01-2022"
     @end_date = "06-01-2050"
 
-    get '/deactivated-reports?admin_deactivated_start_date=' + @start_date + '&admin_deactivated_end_date=' + @end_date + '&commit=Search+Dates' + '&admin_deactivated_search_radio_value=Dates'
+    get '/deactivated-reports?admin_deactivated_report_start_date=' + @start_date + '&admin_deactivated_report_end_date=' + @end_date + '&commit=Search+Dates' + '&admin_deactivated_report_search_radio_value=Dates'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -160,7 +160,7 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @start_date = "06-01-2049"
     @end_date = "06-01-2050"
 
-    get '/deactivated-reports?admin_deactivated_start_date=' + @start_date + '&admin_deactivated_end_date=' + @end_date + '&commit=Search+Dates' + '&admin_deactivated_search_radio_value=Dates'
+    get '/deactivated-reports?admin_deactivated_report_start_date=' + @start_date + '&admin_deactivated_report_end_date=' + @end_date + '&commit=Search+Dates' + '&admin_deactivated_report_search_radio_value=Dates'
     assert_response :success
     assert_select "p#no_reports", text: "No deactivated reports."
   end
@@ -173,9 +173,9 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     @search_type = "Incident+No."
     @search_term = "2"
 
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Search+Attribute'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
-    get '/deactivated-reports?admin_deactivated_search_type=' + @search_type + '&admin_deactivated_search_term=' + @search_term + '&commit=Clear'
+    get '/deactivated-reports?admin_deactivated_report_search_type=' + @search_type + '&admin_deactivated_report_search_term=' + @search_term + '&commit=Clear'
     assert_response :success
     assert_select "thead"
   end
