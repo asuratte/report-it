@@ -56,11 +56,11 @@
 <%= form_tag(@search_submit_path, method: :get, class: "Dates search mx-auto", id: "search-dates", style: @display_form_dates) do %>
   <div class="d-md-flex justify-content-center align-items-center mb-4">
     <div class="m-2 form-floating">
-      <%= text_field_tag "#{@search_page}_start_date", @start_date, placeholder: "Start Date", class: "form-control datepicker", required: true, autocomplete: 'off', readonly: true %>
+      <%= text_field_tag "#{@search_page}_start_date", @start_date, placeholder: "Start Date", class: "form-control datepicker", required: true, readonly: true %>
       <%= label_tag "#{@search_page}_start_date", "Start Date" %>
     </div>
     <div class="m-2 form-floating">
-      <%= text_field_tag "#{@search_page}_end_date", @end_date, placeholder: "End Date", class: "form-control datepicker", required: true, autocomplete: 'off', readonly: true %>
+      <%= text_field_tag "#{@search_page}_end_date", @end_date, placeholder: "End Date", class: "form-control datepicker", required: true, readonly: true %>
       <%= label_tag "#{@search_page}_end_date", "End Date" %>
     </div>
     <%= hidden_field_tag "#{@search_page}_search_radio_value", 'Dates' %>
