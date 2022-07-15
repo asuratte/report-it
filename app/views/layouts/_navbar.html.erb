@@ -28,6 +28,7 @@
         <!-- Show these links if the user is signed in AND user is resident -->
         <% if user_signed_in? && current_user.is_resident? %>
         <li class="nav-item"><%=link_to "Resident Dashboard", resident_path , :class=>"nav-link" %></li>
+        <li class="nav-item"><%=link_to "Followed Reports", followed_reports_path , :class=>"nav-link" %></li>
         <% end %>
         <!-- Show these links if user is signed in -->
         <% if user_signed_in? %>

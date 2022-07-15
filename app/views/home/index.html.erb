@@ -21,6 +21,16 @@
             </div>
         </div>
     <% end %>
+    <% if  user_signed_in? && current_user.is_resident? %>                
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'reports-following.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Reports I'm Following</h5>
+                <p class="card-text">View all followed reports</p>
+                <%=link_to "View Followed Reports", followed_reports_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+    <% end %>
     <!-- Official Dashboard Tile - shows if logged in as official or admin user -->
     <% if  user_signed_in? && (current_user.is_admin? || current_user.is_official?) %>                
         <div class="card homepage-tile text-center py-5 mb-5">

@@ -288,7 +288,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     @start_date = "06-01-2022"
     @end_date = "06-01-2050"
 
-    get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates'
+    get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates' + '&resident_search_radio_value=Dates'
     assert_response :success
     assert_select "th#date_reported", text: "Date Reported"
   end
@@ -301,7 +301,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     @start_date = "06-01-2049"
     @end_date = "06-01-2050"
 
-    get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates'
+    get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates' + '&resident_search_radio_value=Dates'
     assert_response :success
     assert_select "p#no_reports", text: "No reports found."
   end
@@ -316,9 +316,9 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
     get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
-    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Clear+Attribute'
+    get '/reports?resident_search_type=' + @search_type + '&resident_search_term=' + @search_term + '&commit=Clear'
     assert_response :success
-    assert_select "thead#true"
+    assert_select "thead"
   end
 
 end

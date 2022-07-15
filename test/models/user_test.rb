@@ -7,6 +7,8 @@ class UserTest < ActiveSupport::TestCase
     @official_user = users(:two)
     @admin_user = users(:three)
     @inactive_user = users(:four)
+    @report1 = reports(:one)
+    @report5 = reports(:five)
   end
 
   test "should return true for user one active_for_authentication?" do
@@ -147,6 +149,57 @@ class UserTest < ActiveSupport::TestCase
     assert user1.invalid?
     assert user1.errors[:email].any?
     assert user1.errors[:username].any?
+  end
+
+  test "should verify if a user has followed a report" do
+    assert_equal false, @resident_user.has_followed?(@report5)
+    assert @resident_user.has_followed?(@report1)
+  end
+
+  test "should follow a report" do
+    assert_equal false, @resident_user.has_followed?(@report5)
+    assert_equal 2, @resident_user.followed_reports.count
+    @resident_user.follow(@report5)
+    assert @resident_user.has_followed?(@report5)
+    assert_equal 3, @resident_user.followed_reports.count
+  end
+
+  test "should unfollow a report" do
+    assert @resident_user.has_followed?(@report1)
+    assert_equal 2, @resident_user.followed_reports.count
+    @resident_user.follow(@report1)
+    assert_equal false, @resident_user.has_followed?(@report1)
+    assert_equal 1, @resident_user.followed_reports.count
+  end
+
+  test "should verify if a user has confirmed a report" do
+    resident4 = users(:four)
+    assert_equal false, @resident_user.has_confirmed?(@report1)
+    assert resident4.has_confirmed?(@report1)
+  end
+
+  test "should confirm a report" do
+    report2 = reports(:two)
+    assert_equal false, @resident_user.has_confirmed?(report2)
+    assert_equal 0, @resident_user.confirmations.count
+    @resident_user.confirm(report2)
+    assert @resident_user.has_confirmed?(report2)
+    assert_equal 1, @resident_user.confirmations.count
+  end
+
+  test "should not confirm a report if user has already confirmed that report" do
+    resident4 = users(:four)
+    assert resident4.has_confirmed?(@report1)
+    assert_equal 2, resident4.confirmations.count
+    resident4.confirm(@report1)
+    assert_equal 2, resident4.confirmations.count
+  end
+
+  test "should not confirm a report if user created that report" do
+    assert_equal false, @resident_user.has_confirmed?(@report1)
+    assert_equal 0, @resident_user.confirmations.count
+    @resident_user.confirm(@report1)
+    assert_equal 0, @resident_user.confirmations.count
   end
  
 end
