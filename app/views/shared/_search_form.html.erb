@@ -1,0 +1,74 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('input[type="radio"]').change(function() {
+      var inputValue = $(this).attr("value");
+      var targetBox = $("." + inputValue);
+      $(".search").not(targetBox).hide();
+      $(targetBox).show();
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $("select").on("change", function () {
+      $("#<%= @search_page %>_search_term").attr("value", "");
+      if ($(this).val() == "State") {
+        $("#<%= @search_page %>_search_term").attr("placeholder", "ex. TX");
+      } else {
+        $("#<%= @search_page %>_search_term").attr("placeholder", "");
+      }
+    });
+  });
+</script>
+
+<script>
+  $( function() {
+    $( "#<%= @search_page%>_start_date").datepicker();
+    $( "#<%= @search_page%>_end_date").datepicker();
+  });
+</script>
+
+<div class="d-md-flex justify-content-center mb-2">
+  <span>Search by:</span>&nbsp;&nbsp;
+  <label class="search_radio_label"><input type="radio" name="search_radio" id="radio_attribute" value="Attribute" <%= @radio_checked_attribute %>>&nbsp;&nbsp;Attribute</label>&nbsp;&nbsp;
+  <label class="search_radio_label"><input type="radio" name="search_radio" id="radio_dates" value="Dates" <%= @radio_checked_dates %>>&nbsp;&nbsp;Dates</label>
+</div>
+
+
+<%= form_tag(@search_submit_path, method: :get, class: "Attribute search mx-auto", id: "search-type", style: @display_form_attribute) do %>
+  <div class="d-md-flex justify-content-center mb-4">
+    <div class="m-2">
+      <%= select_tag "#{@search_page}_search_type", options_for_select(@search_categories, @search_type_value), class: "form-select" %>
+    </div>
+    <div class="m-2" id="text-field-div">
+      <%= text_field_tag "#{@search_page}_search_term", @search_term_value, class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
+    </div>
+    <div class="m-2">
+      <%= submit_tag("Search Attribute", :id=>"search-attribute-button", :class=>"btn btn-primary") %>
+    </div>
+    <div class="m-2">
+      <%= submit_tag("Clear", :id=>"clear-attribute-button", formnovalidate: "true", :class=>"btn btn-primary") %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_tag(@search_submit_path, method: :get, class: "Dates search mx-auto", id: "search-dates", style: @display_form_dates) do %>
+  <div class="d-md-flex justify-content-center align-items-center mb-4">
+    <div class="m-2 form-floating">
+      <%= text_field_tag "#{@search_page}_start_date", @start_date, placeholder: "Start Date", class: "form-control datepicker", required: true %>
+      <%= label_tag "#{@search_page}_start_date", "Start Date" %>
+    </div>
+    <div class="m-2 form-floating">
+      <%= text_field_tag "#{@search_page}_end_date", @end_date, placeholder: "End Date", class: "form-control datepicker", required: true %>
+      <%= label_tag "#{@search_page}_end_date", "End Date" %>
+    </div>
+    <%= hidden_field_tag "#{@search_page}_search_radio_value", 'Dates' %>
+    <div class="m-2">
+      <%= submit_tag("Search Dates", :id=>"search-dates-button", :class=>"btn btn-primary") %>
+    </div>
+    <div class="m-2">
+      <%= submit_tag("Clear", :id=>"clear-dates-button", formnovalidate: "true", :class=>"btn btn-primary") %>
+    </div>
+  </div>
+<% end %>
