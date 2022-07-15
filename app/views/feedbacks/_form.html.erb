@@ -11,6 +11,15 @@
     </div>
   <% end %>
 
+  <% if user_signed_in? %>
+    <% if current_user.is_official? || current_user.is_admin? %>
+    <p>
+      <strong id="feedback_number">Feedback Number:</strong>
+      <%= @feedback.id %>
+    </p>
+    <% end %>
+  <% end %>
+
   <%= hidden_field_tag :user_id, @feedback.user_id %>
 
   <!-- Only display if user is Official or Admin -->

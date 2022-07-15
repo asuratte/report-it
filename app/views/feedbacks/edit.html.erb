@@ -3,4 +3,4 @@
 <%= render 'form', feedback: @feedback %>
 
 <%= button_to 'Show', @feedback, :method => :get, class: "btn btn-secondary button-float" %>
-<%= button_to 'Back', url_for(:back), :method => :get, class: "btn btn-secondary button-float" %>
+<%= button_to 'Back', feedbacks_path, :method => :get, class: "btn btn-secondary button-float" %>

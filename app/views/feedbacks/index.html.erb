@@ -1,35 +1,38 @@
-<p id="notice"><%= notice %></p>
+<h1 class="text-center mb-4">Feedback Dashboard</h1>
 
-<h1>Feedbacks</h1>
+<%= render '/shared/search_form', feedback: @feedback %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Category</th>
-      <th>Comment</th>
-      <th>Status</th>
-      <th>Active status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @feedbacks.each do |feedback| %>
+<hr>
+<% if @feedbacks.empty? %>
+  <p id="no_reports">No feedback found.</p>
+<% else %>
+  <table class="mb-3">
+    <thead>
       <tr>
-        <td><%= feedback.user_id %></td>
-        <td><%= feedback.category %></td>
-        <td><%= feedback.comment %></td>
-        <td><%= feedback.status %></td>
-        <td><%= feedback.active_status %></td>
-        <td><%= link_to 'Show', feedback %></td>
-        <td><%= link_to 'Edit', edit_feedback_path(feedback) %></td>
-        <td><%= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col" id="date_submitted">Date Submitted</th>
+        <th scope="col">Feedback No.</th>
+        <th scope="col">Username</th>
+        <th scope="col">Category</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Status</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Feedback', new_feedback_path %>
+    <tbody>
+      <% @feedbacks.each do |feedback| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td data-label="Date Submitted"><%= feedback.created_at.to_date %></td>
+          <td data-label="Feedback No."><%= feedback.id %></td>
+          <td data-label="Username"><%= feedback.username %></td>
+          <td data-label="Category"><%= feedback.category %></td>
+          <td data-label="Comment"><%= feedback.comment %></td>
+          <td data-label="Status"><%= feedback.status %></td>
+          <td><%= link_to 'Show', feedback %></td>
+          <td><%= link_to 'Edit', edit_feedback_path(feedback) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+<% end %>

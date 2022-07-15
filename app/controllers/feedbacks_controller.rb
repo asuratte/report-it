@@ -1,15 +1,39 @@
 class FeedbacksController < ApplicationController
+  include Search
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+  rescue_from Pagy::VariableError, with: :redirect_to_last_page
+  before_action :authenticate_user!
   before_action :set_feedback, only: %i[ show edit update ]
   before_action :allow_feedback_access, only: %i[ show edit update ]
 
   # GET /feedbacks or /feedbacks.json
   def index
-    @feedbacks = Feedback.all
+    @search_page = :feedback
+    get_search_values @search_page
+    get_search_categories @search_page
+    @search_submit_path = feedbacks_path
+
+    if params[:commit] == 'Clear'
+      self.set_submit_fields('clear', @search_page)
+      @pagy, @feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('feedbacks.created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
+    elsif params[:commit] == 'Search Dates'
+      self.set_submit_fields('dates', @search_page)
+      @pagy, @feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('feedbacks.created_at DESC').search_dates(session[:feedback_start_date], session[:feedback_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    else
+      self.set_submit_fields('attribute', @search_page)
+      @pagy, @feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('feedbacks.created_at DESC').search(session[:feedback_search_type], session[:feedback_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    end
+
+    session[:feedback_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')
   end
 
   # GET /feedbacks/1 or /feedbacks/1.json
   def show
     @username = User.get_username(@feedback.user_id).username
+
+    unless @feedback.user_id == current_user.id || current_user.is_official? || current_user.is_admin?
+      redirect_to root_path
+    end
   end
 
   # GET /feedbacks/new

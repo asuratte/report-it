@@ -2,9 +2,19 @@
   <% if current_user.is_resident? %>
     <h1>Thank You</h1>
 
-    <p>We appreciate your feedback, and we will work hard to meet your needs. If you require technical assistance, we will evaluate your request and reach out for more details if necessary.</p>
+    <p>We appreciate your feedback, and we will work hard to meet your needs.</p>
+    <p>If you require technical assistance, we will evaluate your request and reach out for more details if necessary.</p>
 
   <% elsif current_user.is_official? || current_user.is_admin? %>
+
+    <% if user_signed_in? %>
+      <% if current_user.is_official? || current_user.is_admin? %>
+        <p>
+          <strong id="feedback_number">Feedback Number:</strong>
+          <%= @feedback.id %>
+        </p>
+      <% end %>
+    <% end %>
 
     <p>
       <strong>Username:</strong>
