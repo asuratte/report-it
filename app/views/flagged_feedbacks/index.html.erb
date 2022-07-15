@@ -11,7 +11,7 @@
       <tr>
         <th scope="col" id="date_submitted">Date Submitted</th>
         <th scope="col">Feedback No.</th>
-        <th scope="col">Username</th>
+        <th scope="col">User</th>
         <th scope="col">Category</th>
         <th scope="col">Comment</th>
       </tr>
@@ -22,7 +22,7 @@
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td data-label="Date Submitted"><%= feedback.created_at.to_date %></td>
           <td data-label="Feedback No."><%= feedback.id %></td>
-          <td data-label="Username"><%= feedback.username %></td>
+          <td data-label="User"><%= feedback.username %></td>
           <td data-label="Category"><%= feedback.category %></td>
           <td data-label="Comment"><%= feedback.comment %></td>
         </tr>
