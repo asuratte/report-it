@@ -20,10 +20,12 @@ class FeedbacksController < ApplicationController
         WHEN status = 'In Progress' THEN 2
         WHEN status = 'Flagged' THEN 3
         WHEN status = 'Resolved' THEN 4
-        ELSE 5 END, created_at DESC")).where(active_status: 0), items: 10, size: [1,0,0,1])
-    elsif params[:commit] == 'Search Dates'
+        ELSE 5 END, feedbacks.created_at DESC")).where(active_status: 0), items: 10, size: [1,0,0,1])
+    elsif params[:commit] == 'Search Dates' && params[:feedback_start_date].present? && params[:feedback_end_date].present? && params[:feedback_start_date] <= params[:feedback_end_date]
       self.set_submit_fields('dates', @search_page)
       @pagy, @feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('feedbacks.created_at DESC').feedback_search_dates(session[:feedback_start_date], session[:feedback_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    elsif params[:commit] == 'Search Dates' && ((!params[:feedback_start_date].present? || !params[:feedback_end_date].present?) || params[:feedback_start_date] > params[:feedback_end_date])
+      @invalid_date = true
     else
       self.set_submit_fields('attribute', @search_page)
       @pagy, @feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order(Arel.sql("CASE
@@ -31,7 +33,7 @@ class FeedbacksController < ApplicationController
         WHEN status = 'In Progress' THEN 2
         WHEN status = 'Flagged' THEN 3
         WHEN status = 'Resolved' THEN 4
-        ELSE 5 END, created_at DESC")).feedback_search(session[:feedback_search_type], session[:feedback_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
+        ELSE 5 END, feedbacks.created_at DESC")).feedback_search(session[:feedback_search_type], session[:feedback_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
     end
 
     session[:feedback_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')

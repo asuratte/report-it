@@ -152,17 +152,17 @@ class DeactivatedReportsControllerTest < ActionDispatch::IntegrationTest
     assert_select "th#date_reported", text: "Date Reported"
   end
 
-  test "should not return record on future start end date search" do
+  test "should return error for invalid search dates" do
     sign_in @admin_user
     get official_url
     assert_response :success
 
-    @start_date = "06-01-2049"
+    @start_date = ""
     @end_date = "06-01-2050"
 
     get '/deactivated-reports?admin_deactivated_report_start_date=' + @start_date + '&admin_deactivated_report_end_date=' + @end_date + '&commit=Search+Dates' + '&admin_deactivated_report_search_radio_value=Dates'
     assert_response :success
-    assert_select "p.info-message", text: "No deactivated reports found."
+    assert_select "p.info-message", text: "Please enter a valid start and end date."
   end
 
   test "should clear attribute search and show all reports" do

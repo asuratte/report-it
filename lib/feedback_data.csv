@@ -4,38 +4,37 @@ user_id,category,comment,status,active_status
 26,Technical Issue,How dare you all remove my report!,Flagged,0
 9,Compliment,The site looks amazing! Well done!,Resolved,0
 21,Suggestion,Can you send us a monthly summary of our reports and how quickly they were handled?,New,0
-30,Complaint,One of my reports was re-categorized, and I want it moved back.,In Progress,0
+30,Complaint,"One of my reports was re-categorized, and I want it moved back.",In Progress,0
 24,Technical Issue,I found some pornography in one of the posted images on the site.,In Progress,0
 5,Compliment,This is an excellent tool for citizens.,Resolved,0
 32,Suggestion,Can you add in Spanish capability to report issues?,New,0
-40,Complaint,I'm 65 years old, and I need the font bigger on my phone.,In Progress,0
+40,Complaint,"I'm 65 years old, and I need the font bigger on my phone.",In Progress,0
 21,Technical Issue,I can't use this,Flagged,0
 47,Compliment,I love that you took the time to create a site for cities. Thank you,Resolved,0
 50,Technical Issue,I'm having trouble getting the change password email.,New,0
 6,Complaint,Someone just posted pornography on a report.,In Progress,0
 40,Suggestion,Take this site and shove it!,Flagged,0
 9,Compliment,I had no idea this site existed! Amazing!,Resolved,0
-32,Complaint,Please remove my name from the post made about noisy animals on July 4th,,New,0
+32,Complaint,"Please remove my name from the post made about noisy animals on July 4th,",New,0
 5,Technical Issue,I'm having difficulty creating an account now that I have changed my email address.,In Progress,0
 26,Suggestion,Tell the powers that be paying for this that they are not moving fast enough on fixing things!,Flagged,0
 47,Complaint,Someone just posted a photo of my child on a report. Please remove immediately!,Resolved,0
 21,Suggestion,Can you add a feature for residents to flag inappropriate reports?,New,0
 6,Technical Issue,I can't seem to get the change password email to my inbox.,In Progress,0
 24,Suggestion,Can you add weather forecasts to the site?,In Progress,0
-32,Complaint,Someone posted a photo of my house on their report, and I want it removed.,Resolved,0
+32,Complaint,"Someone posted a photo of my house on their report, and I want it removed.",Resolved,0
 21,Suggestion,Can you add a city information feed to this site?,New,0
-5,Compliment,The site is very helpful, but can you add a lost and found section for reporting items or pets?,In Progress,0
+5,Compliment,"The site is very helpful, but can you add a lost and found section for reporting items or pets?",In Progress,0
 50,Technical Issue,I want to sell my routers to residents to help them access this site.,Flagged,0
 30,Complaint,Please remove the picture of my home on the post about trash buildup on July 8th.,Resolved,0
-6,Suggestion,I started making 10K a week, and you can too!,Flagged,1
+6,Suggestion,"I started making 10K a week, and you can too!",Flagged,1
 21,Compliment,To dream the impossible dream.,Flagged,1
 5,Technical Issue,Site loads slow. Fix your shit dummies!,Flagged,1
 32,Complaint,I'm not selling enough homes in the area on Douglas and Morgan. You need to let me sell ads on this site.,Flagged,1
 24,Suggestion,There are amazing timeshares available to the public. Contact 231-456-9876,Flagged,1
-34,Technical Issue,,Flagged,1
-5,Compliment,I like the site, but I really want you to sell ad space... specifically my ad space for my business.,Flagged,2
+5,Compliment,"I like the site, but I really want you to sell ad space... specifically my ad space for my business.",Flagged,2
 38,Technical Issue,Hey stupids! Fix your shit.,Flagged,2
 6,Complaint,When are you all going to remove that old junker car on Main and Teel,Flagged,2
 39,Technical Issue,You expect me to pay for internet access to log a complaint with the city?,Flagged,2
-30,Technical Issue,You need to give everyone routers in my neighborhood, because we have so many issues with the city... it's crazy,Flagged,2
+30,Technical Issue,"You need to give everyone routers in my neighborhood, because we have so many issues with the city... it's crazy",Flagged,2
 5,Compliment,Why don't you come down to my neighborhood and kiss me.,Flagged,2

@@ -125,7 +125,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     get '/flagged-feedbacks?admin_flagged_feedback_search_type=' + @search_type + '&admin_flagged_feedback_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
-    assert_select "p#no_feedback", text: "No flagged feedback."
+    assert_select "p.info-message", text: "No flagged feedback found."
   end
 
   test "should return feedback on start end date search" do
@@ -145,7 +145,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     assert_select "th#date_submitted", text: "Date Submitted"
   end
 
-  test "should not return feedback on future start end date search" do
+  test "should return error for invalid search dates" do
     sign_in @admin_user
     get flagged_feedbacks_url
     assert_response :success
@@ -154,12 +154,12 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
-    @start_date = "06-01-2049"
+    @start_date = ""
     @end_date = "06-01-2050"
 
     get '/flagged-feedbacks?admin_flagged_feedback_start_date=' + @start_date + '&admin_flagged_feedback_end_date=' + @end_date + '&commit=Search+Dates' + '&admin_flagged_feedback_search_radio_value=Dates'
     assert_response :success
-    assert_select "p#no_feedback", text: "No flagged feedback."
+    assert_select "p.info-message", text: "Please enter a valid start and end date."
   end
 
   test "should clear attribute search and show all feedbacks" do
@@ -176,7 +176,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     get '/flagged-feedbacks?admin_flagged_feedback_search_type=' + @search_type + '&admin_flagged_feedback_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
-    assert_select "p#no_feedback", text: "No flagged feedback."
+    assert_select "p.info-message", text: "No flagged feedback found."
     get '/flagged-feedbacks?admin_flagged_feedback_search_type=' + @search_type + '&admin_flagged_feedback_search_term=' + @search_term + '&commit=Clear'
     assert_response :success
     assert_select "thead"

@@ -248,7 +248,7 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
-    assert_select "p#no_feedback", text: "No feedback found."
+    assert_select "p.info-message", text: "No feedback found."
   end
 
   test "should return feedback on start end date search" do
@@ -268,7 +268,7 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
     assert_select "th#date_submitted", text: "Date Submitted"
   end
 
-  test "should not return feedback on future start end date search" do
+  test "should return error for invalid search dates" do
     sign_in @admin_user
     get feedbacks_url
     assert_response :success
@@ -277,12 +277,12 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
-    @start_date = "06-01-2049"
+    @start_date = ""
     @end_date = "06-01-2050"
 
     get '/feedbacks?feedback_start_date=' + @start_date + '&feedback_end_date=' + @end_date + '&commit=Search+Dates' + '&feedback_search_radio_value=Dates'
     assert_response :success
-    assert_select "p#no_feedback", text: "No feedback found."
+    assert_select "p.info-message", text: "Please enter a valid start and end date."
   end
 
   test "should clear attribute search and show all feedbacks" do
@@ -299,7 +299,7 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
-    assert_select "p#no_feedback", text: "No feedback found."
+    assert_select "p.info-message", text: "No feedback found."
     get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Clear'
     assert_response :success
     assert_select "thead"

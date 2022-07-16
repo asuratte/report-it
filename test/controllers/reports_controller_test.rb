@@ -293,17 +293,17 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_select "th#date_reported", text: "Date Reported"
   end
 
-  test "should not return record on future start end date search" do
+  test "should return error for invalid search dates" do
     sign_in @resident_user
     get resident_url
     assert_response :success
 
-    @start_date = "06-01-2049"
+    @start_date = ""
     @end_date = "06-01-2050"
 
     get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates' + '&resident_search_radio_value=Dates'
     assert_response :success
-    assert_select "p.info-message", text: "No reports found."
+    assert_select "p.info-message", text: "Please enter a valid start and end date."
   end
 
   test "should clear attribute search and show all reports" do
