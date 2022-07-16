@@ -14,10 +14,10 @@ class DeactivatedFeedbacksController < ApplicationController
       @pagy, @deactivated_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').where.not(active_status: 0), items: 10, size: [1,0,0,1])
     elsif params[:commit] == 'Search Dates'
       self.set_submit_fields('dates', @search_page)
-      @pagy, @deactivated_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').search_dates(session[:admin_deactivated_feedback_start_date], session[:admin_deactivated_feedback_end_date]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      @pagy, @deactivated_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').feedback_search_dates(session[:admin_deactivated_feedback_start_date], session[:admin_deactivated_feedback_end_date]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
     else
       self.set_submit_fields('attribute', @search_page)
-      @pagy, @deactivated_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').search(session[:admin_deactivated_feedback_search_type], session[:admin_deactivated_feedback_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      @pagy, @deactivated_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').feedback_search(session[:admin_deactivated_feedback_search_type], session[:admin_deactivated_feedback_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
     end
 
     session[:admin_deactivated_feedback_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')

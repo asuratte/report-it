@@ -33,7 +33,6 @@ four:
   active_status: 1
 
 five:
-  id: 5
   user_id: :one
   category: Complaint
   comment: MyString5

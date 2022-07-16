@@ -10,6 +10,8 @@ class DeactivatedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     @resident_user = users(:one)
     @official_user = users(:two)
     @admin_user = users(:three)
+    @search_type = nil
+    @search_term = nil
   end
 
   test "admin user should get deactivated-feedbacks" do
@@ -39,23 +41,6 @@ class DeactivatedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     sign_in @resident_user
     get deactivated_feedbacks_url
     assert_response :redirect
-  end
-
-  test "should return record on feedback number search" do
-    sign_in @admin_user
-    get deactivated_feedbacks_url
-    assert_response :success
-
-    @feedback = feedbacks(:five)
-
-    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
-
-    @search_type = "Feedback+No."
-    @search_term = "5"
-
-    get '/deactivated-feedbacks?admin_deactivated_feedback_search_type=' + @search_type + '&admin_deactivated_feedback_search_term=' + @search_term + '&commit=Search+Attribute'
-    assert_response :success
-    assert_select "th#date_submitted", text: "Date Submitted"
   end
 
   test "should return feedback on username search" do
@@ -174,6 +159,7 @@ class DeactivatedFeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     get '/deactivated-feedbacks?admin_deactivated_feedback_search_type=' + @search_type + '&admin_deactivated_feedback_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
+    assert_select "p#no_feedback", text: "No deactivated feedback."
     get '/deactivated-feedbacks?admin_deactivated_feedback_search_type=' + @search_type + '&admin_deactivated_feedback_search_term=' + @search_term + '&commit=Clear'
     assert_response :success
     assert_select "thead"

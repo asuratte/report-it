@@ -239,7 +239,7 @@ class ReportTest < ActiveSupport::TestCase
     report.description = @report1.description
     report.category = @report1.category
     report.subcategory = @report1.subcategory
-    report.user = users(:one)  
+    report.user = users(:one)
     assert report.valid?
     assert_equal -74.0059731, report.longitude.to_f
     assert_equal 40.7143528, report.latitude.to_f

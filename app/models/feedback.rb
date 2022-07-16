@@ -6,11 +6,11 @@ class Feedback < ApplicationRecord
   end
 
   # Searches for feedbacks by attribute
-  def self.search(search_type, search_term)
+  def self.feedback_search(search_type, search_term)
     feedback = Feedback.all
     if search_type == "Feedback No." && search_term.present?
       if Integer(search_term, exception: false)
-        feedback = feedback.where("feedbacks.id =" + search_term)
+        feedback = Feedback.all.where("feedbacks.id =" + search_term)
       else
         feedback = feedback.none
       end
@@ -27,7 +27,7 @@ class Feedback < ApplicationRecord
   end
 
   # Searches for feedbacks by dates
-  def self.search_dates(start_date, end_date)
+  def self.feedback_search_dates(start_date, end_date)
     feedback = Feedback.all
     if start_date.present? && end_date.present?
       feedback = feedback.where("DATE(feedbacks.created_at) >= ? AND DATE(feedbacks.created_at) <= ?", "%#{start_date}%", "%#{end_date}%")
