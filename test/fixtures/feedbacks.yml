@@ -1,7 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   user_id: :one
   category: Complaint
   comment: MyString1
@@ -9,7 +8,6 @@ one:
   active_status: 0
 
 two:
-  id: 2
   user_id: :two
   category: Compliment
   comment: MyString2
@@ -17,7 +15,6 @@ two:
   active_status: 0
 
 three:
-  id: 3
   user_id: :two
   category: Complaint
   comment: MyString3
@@ -25,7 +22,6 @@ three:
   active_status: 1
 
 four:
-  id: 4
   user_id: :two
   category: Complaint
   comment: MyString4

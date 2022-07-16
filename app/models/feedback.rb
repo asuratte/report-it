@@ -10,12 +10,12 @@ class Feedback < ApplicationRecord
     feedback = Feedback.all
     if search_type == "Feedback No." && search_term.present?
       if Integer(search_term, exception: false)
-        feedback = Feedback.all.where("feedbacks.id =" + search_term)
+        feedback = feedback.where("feedbacks.id =" + search_term)
       else
         feedback = feedback.none
       end
     elsif search_type == "Username" && search_term.present?
-      feedback = feedback.joins(:user).where("lower(users.username) LIKE :search_term", search_term: "%#{search_term.downcase}%")
+      feedback = feedback.where("lower(users.username) LIKE :search_term", search_term: "%#{search_term.downcase}%")
     elsif search_type == "Status" && search_term.present?
       feedback = feedback.where("lower(feedbacks.status) LIKE ?", "%#{search_term.downcase}%")
     elsif search_type == "Category" && search_term.present?

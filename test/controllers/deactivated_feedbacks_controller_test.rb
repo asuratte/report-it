@@ -43,6 +43,23 @@ class DeactivatedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
+  test "should return feedback on number search" do
+    sign_in @admin_user
+    get flagged_feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:five)
+
+    @new_feedback = Feedback.create(id: 7, user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @search_type = "Feedback+No."
+    @search_term = "7"
+
+    get '/deactivated-feedbacks?admin_deactivated_feedback_search_type=' + @search_type + '&admin_deactivated_feedback_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_submitted", text: "Date Submitted"
+  end
+
   test "should return feedback on username search" do
     sign_in @admin_user
     get deactivated_feedbacks_url
@@ -152,10 +169,10 @@ class DeactivatedFeedbacksControllerTest < ActionDispatch::IntegrationTest
 
     @feedback = feedbacks(:five)
 
-    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+    @new_feedback = Feedback.create(id: 7, user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
     @search_type = "Feedback+No."
-    @search_term = "1"
+    @search_term = "6"
 
     get '/deactivated-feedbacks?admin_deactivated_feedback_search_type=' + @search_type + '&admin_deactivated_feedback_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
