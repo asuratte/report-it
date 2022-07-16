@@ -165,4 +165,143 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
     patch feedback_url(@feedback), params: { feedback: { active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status, user_id: @feedback.user_id } }
     assert_redirected_to feedback_url(@feedback)
   end
+
+  test "should return feedback on number search" do
+    sign_in @admin_user
+    get flagged_feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(id: 1, user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @search_type = "Feedback+No."
+    @search_term = "1"
+
+    get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_submitted", text: "Date Submitted"
+  end
+
+  test "should return feedback on username search" do
+    sign_in @admin_user
+    get feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @search_type = "Username"
+    @search_term = "spr0cket"
+
+    get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_submitted", text: "Date Submitted"
+  end
+
+  test "should return feedback on category search" do
+    sign_in @admin_user
+    get feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @search_type = "Category"
+    @search_term = "Complaint"
+
+    get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_submitted", text: "Date Submitted"
+  end
+
+  test "should return feedback on comment search" do
+    sign_in @admin_user
+    get feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @search_type = "Comment"
+    @search_term = "MyString"
+
+    get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "th#date_submitted", text: "Date Submitted"
+  end
+
+  test "should return no feedback on search where none exist" do
+    sign_in @admin_user
+    get feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @search_type = "Comment"
+    @search_term = "MyString000000"
+
+    get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "p#no_feedback", text: "No feedback found."
+  end
+
+  test "should return feedback on start end date search" do
+    sign_in @admin_user
+    get feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @start_date = "06-01-2022"
+    @end_date = "06-01-2050"
+
+    get '/feedbacks?feedback_start_date=' + @start_date + '&feedback_end_date=' + @end_date + '&commit=Search+Dates' + '&feedback_search_radio_value=Dates'
+    assert_response :success
+    assert_select "th#date_submitted", text: "Date Submitted"
+  end
+
+  test "should not return feedback on future start end date search" do
+    sign_in @admin_user
+    get feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @start_date = "06-01-2049"
+    @end_date = "06-01-2050"
+
+    get '/feedbacks?feedback_start_date=' + @start_date + '&feedback_end_date=' + @end_date + '&commit=Search+Dates' + '&feedback_search_radio_value=Dates'
+    assert_response :success
+    assert_select "p#no_feedback", text: "No feedback found."
+  end
+
+  test "should clear attribute search and show all feedbacks" do
+    sign_in @admin_user
+    get feedbacks_url
+    assert_response :success
+
+    @feedback = feedbacks(:one)
+
+    @new_feedback = Feedback.create(id: 1, user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
+
+    @search_type = "Feedback+No."
+    @search_term = "6"
+
+    get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Search+Attribute'
+    assert_response :success
+    assert_select "p#no_feedback", text: "No feedback found."
+    get '/feedbacks?feedback_search_type=' + @search_type + '&feedback_search_term=' + @search_term + '&commit=Clear'
+    assert_response :success
+    assert_select "thead"
+  end
 end
