@@ -21,7 +21,7 @@
           <td data-label="Date Submitted"><%= feedback.created_at.to_date %></td>
           <td data-label="Feedback No."><%= feedback.id %></td>
           <td data-label="User"><%= feedback.username %></td>
-          <td data-label="Category"><%= feedback.category %></td>
+          <td data-label="Category"><%= link_to feedback.category, feedback %></td>
           <td data-label="Comment"><%= feedback.comment %></td>
         </tr>
       <% end %>
