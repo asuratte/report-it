@@ -48,7 +48,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     get flagged_feedbacks_url
     assert_response :success
 
-    @feedback = feedbacks(:five)
+    @feedback = feedbacks(:four)
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
@@ -65,7 +65,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     get flagged_feedbacks_url
     assert_response :success
 
-    @feedback = feedbacks(:five)
+    @feedback = feedbacks(:four)
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
@@ -82,7 +82,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     get flagged_feedbacks_url
     assert_response :success
 
-    @feedback = feedbacks(:five)
+    @feedback = feedbacks(:four)
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
@@ -99,7 +99,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     get flagged_feedbacks_url
     assert_response :success
 
-    @feedback = feedbacks(:five)
+    @feedback = feedbacks(:four)
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
@@ -116,7 +116,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     get flagged_feedbacks_url
     assert_response :success
 
-    @feedback = feedbacks(:five)
+    @feedback = feedbacks(:four)
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
@@ -133,7 +133,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     get flagged_feedbacks_url
     assert_response :success
 
-    @feedback = feedbacks(:five)
+    @feedback = feedbacks(:four)
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 
@@ -150,7 +150,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     get flagged_feedbacks_url
     assert_response :success
 
-    @feedback = feedbacks(:five)
+    @feedback = feedbacks(:four)
 
     @new_feedback = Feedback.create(user_id: @resident_user.id, active_status: @feedback.active_status, category: @feedback.category, comment: @feedback.comment, status: @feedback.status)
 

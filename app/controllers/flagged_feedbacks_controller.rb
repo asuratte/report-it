@@ -11,13 +11,13 @@ class FlaggedFeedbacksController < ApplicationController
 
     if params[:commit] == 'Clear'
       self.set_submit_fields('clear', @search_page)
-      @pagy, @flagged_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      @pagy, @flagged_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').where(status: "Flagged", active_status: 0), items: 10, size: [1,0,0,1])
     elsif params[:commit] == 'Search Dates'
       self.set_submit_fields('dates', @search_page)
-      @pagy, @flagged_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').feedback_search_dates(session[:admin_flagged_feedback_start_date], session[:admin_flagged_feedback_end_date]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      @pagy, @flagged_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').feedback_search_dates(session[:admin_flagged_feedback_start_date], session[:admin_flagged_feedback_end_date]).where(status: "Flagged", active_status: 0), items: 10, size: [1,0,0,1])
     else
       self.set_submit_fields('attribute', @search_page)
-      @pagy, @flagged_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').feedback_search(session[:admin_flagged_feedback_search_type], session[:admin_flagged_feedback_search_term]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
+      @pagy, @flagged_feedbacks = pagy(Feedback.joins(:user).select("feedbacks.id, feedbacks.user_id, users.username, feedbacks.comment, feedbacks.status, feedbacks.category, feedbacks.active_status, feedbacks.created_at").order('created_at DESC').feedback_search(session[:admin_flagged_feedback_search_type], session[:admin_flagged_feedback_search_term]).where(status: "Flagged", active_status: 0), items: 10, size: [1,0,0,1])
     end
 
     session[:admin_flagged_feedback_search_radio_value] == 'Dates' ? self.set_radio_div('dates') : self.set_radio_div('attribute')

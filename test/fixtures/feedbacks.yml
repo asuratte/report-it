@@ -30,7 +30,7 @@ four:
   category: Complaint
   comment: MyString4
   status: Flagged
-  active_status: 1
+  active_status: 0
 
 five:
   user_id: :one
