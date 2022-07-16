@@ -21,7 +21,7 @@ module FeedbacksHelper
     [
     ['Active', '0'],
     ['Spam', '1'],
-    ['Abuse', '1']
+    ['Abuse', '2']
     ]
   end
 end
