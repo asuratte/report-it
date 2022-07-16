@@ -98,7 +98,7 @@
      }
  }
 
- table {
+ table.data-table {
    border: 0;
    border-collapse: collapse;
    margin: 0;
@@ -151,7 +151,7 @@
  }
 
  @media screen and (min-width: 650px) {
-   table {
+  table.data-table {
      thead {
        display: table-header-group;
      }
@@ -273,6 +273,12 @@
    color: $color_header_text;
  }
 
+ h2.dark {
+  margin: 0;
+  padding-bottom: 0.4em;
+  color: $color_text_dark;
+} 
+
  .navbar-light .navbar-nav .nav-item .nav-link {
      color: $color_nav_link;
  }
@@ -357,3 +363,6 @@
  .pagination .page-item .page-link {
    color: $color_page_link;
  }
+ .accent {
+  color: $color_accent
+}

@@ -1,0 +1,33 @@
+<script>
+  $( function() {
+    $( "#start-date" ).datepicker({
+        todayHighlight: true, 
+        dateFormat: "yy-mm-dd"
+    });
+    $( "#end-date" ).datepicker({
+        todayHighlight: true, 
+        dateFormat: "yy-mm-dd"
+    });
+  });
+  </script>
+<%= form_tag(kpi_dashboard_path, method: :get, class: "Dates search mx-auto", id: "choose-dates") do %>
+    <div class="d-lg-flex justify-content-center mb-3">
+        <div class="m-2">
+            <%= text_field_tag :start_date, @start_date, placeholder: "Enter Start Date", id: 'start-date', :class => "form-control datepicker", required: true, readonly: true %>
+        </div>
+        <div class="m-2">
+            <%= text_field_tag :end_date, @end_date, placeholder: "Enter End Date", id: 'end-date', :class => "form-control datepicker", required: true, readonly: true %>
+        </div>
+        <div class="d-flex flex-wrap flex-lg-nowrap">
+            <div class="m-2">
+                <%= submit_tag("Choose Dates", :id=>"choose-dates-button", :class=>"btn btn-primary") %>
+            </div>
+            <div class="m-2">
+                <%= submit_tag("View All Time", :id=>"view-all-time-button", :class=>"btn btn-primary") %>
+            </div>
+            <div class="m-2">
+                <%= submit_tag("Clear Selection", :id=>"clear-selection-button", :disabled=>(@selection_cleared == true), :class=>"btn btn-secondary") %>
+            </div>
+        </div>
+    </div>
+<% end %>

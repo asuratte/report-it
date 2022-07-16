@@ -135,6 +135,28 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to report_url(@report)
   end
 
+  test "should populate deactivated_at date when report is updated to any active_status other than 'active'" do
+    sign_in @admin_user
+    patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip, active_status: "abuse" } }
+    @report.reload
+    assert_not_nil @report.deactivated_at
+
+    patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip, active_status: "spam" } }
+    @report.reload
+    assert_not_nil @report.deactivated_at
+
+    patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip, active_status: "outside_area" } }
+    @report.reload
+    assert_not_nil @report.deactivated_at
+  end
+
+  test "should show nil for deactivated_at date when report is updated to active_status 'active'" do
+    sign_in @admin_user
+    patch report_url(@report), params: { report: { address1: @report.address1, address2: @report.address2, category: @report.category, city: @report.city, description: @report.description, state: @report.state, status: @report.status, severity: @report.severity, subcategory: @report.subcategory, user_id: @report.user_id, zip: @report.zip, active_status: "active" } }
+    @report.reload
+    assert_nil @report.deactivated_at
+  end
+
   test "should destroy report" do
     sign_in @resident_user
     assert_difference('Report.count', -1) do
@@ -281,7 +303,7 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
     get '/reports?resident_start_date=' + @start_date + '&resident_end_date=' + @end_date + '&commit=Search+Dates' + '&resident_search_radio_value=Dates'
     assert_response :success
-    assert_select "p#no_reports", text: "No reports found."
+    assert_select "p.info-message", text: "No reports found."
   end
 
   test "should clear attribute search and show all reports" do

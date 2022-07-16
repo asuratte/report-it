@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     end
     resources :subcategories, except: [:destroy]
     resources :categories, except: [:destroy]
+    get 'kpi-dashboard', to: 'kpi_dashboard#index'
     get 'deactivated-reports', to: 'deactivated_reports#index'
     get 'flagged-reports', to: 'flagged_reports#index'
     get 'deactivated-feedbacks', to: 'deactivated_feedbacks#index'

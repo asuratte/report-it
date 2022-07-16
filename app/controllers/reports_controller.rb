@@ -16,9 +16,11 @@ class ReportsController < ApplicationController
     if params[:commit] == 'Clear'
       self.set_submit_fields('clear', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').where(active_status: 0), items: 10, size: [1,0,0,1])
-    elsif params[:commit] == 'Search Dates'
+    elsif params[:commit] == 'Search Dates' && params[:resident_start_date].present? && params[:resident_end_date].present? && params[:resident_start_date] <= params[:resident_end_date]
       self.set_submit_fields('dates', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').search_dates(session[:resident_start_date], session[:resident_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    elsif params[:commit] == 'Search Dates' && ((!params[:resident_start_date].present? || !params[:resident_end_date].present?) || params[:resident_start_date] > params[:resident_end_date])
+      @invalid_date = true
     else
       self.set_submit_fields('attribute', @search_page)
       @pagy, @reports = pagy(Report.order('created_at DESC').search(session[:resident_search_type], session[:resident_search_term]).where(active_status: 0), items: 10, size: [1,0,0,1])
@@ -74,6 +76,12 @@ class ReportsController < ApplicationController
   # PATCH/PUT /reports/1 or /reports/1.json
   def update
     respond_to do |format|
+      if params[:report][:active_status] != "active"
+        @report.deactivated_at = DateTime.current
+      else 
+        @report.deactivated_at = nil
+      end
+      
       if @report.update(report_params)
         format.html { redirect_to report_url(@report), notice: "Report was successfully updated." }
         format.json { render :show, status: :ok, location: @report }
@@ -131,7 +139,7 @@ class ReportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :image, :active_status)
+      params.require(:report).permit(:address1, :address2, :city, :state, :zip, :description, :category, :subcategory, :status, :severity, :image, :active_status, :deactivated_at)
     end
 
     # Redirects to the last page when exception thrown

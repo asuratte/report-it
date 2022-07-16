@@ -233,7 +233,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
 
     get '/official-search?official_search_type=' + @search_type + '&official_search_term=' + @search_term + '&commit=Search+Attribute'
     assert_response :success
-    assert_select "p#no_reports", text: "No reports found."
+    assert_select "p.info-message", text: "No reports found."
   end
 
   test "should return record on start end date search" do
@@ -259,7 +259,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
 
     get '/official-search?official_start_date=' + @start_date + '&official_end_date=' + @end_date + '&commit=Search+Dates' + '&official_search_radio_value=Dates'
     assert_response :success
-    assert_select "p#no_reports", text: "No reports found."
+    assert_select "p.info-message", text: "No reports found."
   end
 
   test "should clear attribute search and show all reports" do

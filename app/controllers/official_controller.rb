@@ -18,9 +18,11 @@ class OfficialController < ApplicationController
         WHEN status = 'Flagged' THEN 3
         WHEN status = 'Resolved' THEN 4
         ELSE 5 END, created_at DESC")).where(active_status: 0), items: 10, size: [1,0,0,1])
-    elsif params[:commit] == 'Search Dates'
+    elsif params[:commit] == 'Search Dates' && params[:official_start_date].present? && params[:official_end_date].present? && params[:official_start_date] <= params[:official_end_date]
       self.set_submit_fields('dates', @search_page)
       @pagy, @official_reports = pagy(Report.order('created_at DESC').search_dates(session[:official_start_date], session[:official_end_date]).where(active_status: 0), items: 10, size: [1,0,0,1])
+    elsif params[:commit] == 'Search Dates' && ((!params[:official_start_date].present? || !params[:official_end_date].present?) || params[:official_start_date] > params[:official_end_date])
+      @invalid_date = true
     else
       self.set_submit_fields('attribute', @search_page)
       @pagy, @official_reports = pagy(Report.order(Arel.sql("CASE
