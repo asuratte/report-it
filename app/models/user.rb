@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :username, length: {minimum: 6, maximum: 30}, uniqueness: true
   has_many :reports
   has_many :comments
+  has_many :feedbacks
   has_many :followed_reports, dependent: :destroy
   has_many :confirmations, dependent: :destroy
 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   authenticate :user, -> (user) { user.is_admin? } do
     resources :users
     resources :themes, except: [:create, :new, :destroy]
+    resources :feedbacks, except: [:destroy]
     resources :settings, except: [:create, :new, :destroy] do
       member do
         delete 'delete_image/:image_id', to: 'settings#delete_image', as: 'delete_image'
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
     get 'kpi-dashboard', to: 'kpi_dashboard#index'
     get 'deactivated-reports', to: 'deactivated_reports#index'
     get 'flagged-reports', to: 'flagged_reports#index'
+    get 'deactivated-feedbacks', to: 'deactivated_feedbacks#index'
+    get 'flagged-feedbacks', to: 'flagged_feedbacks#index'
     get 'reports-by-user', to: 'reports_by_user#index'
     get 'official', to: 'official#index'
 
@@ -30,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, -> (user) { user.is_resident? } do
+    resources :feedbacks, except: [:index, :edit, :update, :destroy]
     get 'followed-reports', to: 'followed_reports#index'
     get 'resident', to: 'resident#index'
   end
@@ -39,6 +43,7 @@ Rails.application.routes.draw do
     get 'reports-by-user', to: 'reports_by_user#index'
     get '/users/new', to: redirect('/users')
 
+    resources :feedbacks, except: [:destroy]
     resources :users, only: [:index, :show]
     resources :comments, except: [:index]
   end

@@ -1,0 +1,6 @@
+<h1>Editing Feedback</h1>
+
+<%= render 'form', feedback: @feedback %>
+
+<%= button_to 'Show', @feedback, :method => :get, class: "btn btn-secondary button-float" %>
+<%= button_to 'Back', feedbacks_path, :method => :get, class: "btn btn-secondary button-float" %>

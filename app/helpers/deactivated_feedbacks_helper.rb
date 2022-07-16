@@ -1,0 +1,2 @@
+module DeactivatedFeedbacksHelper
+end

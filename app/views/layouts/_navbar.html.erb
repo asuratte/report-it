@@ -12,11 +12,21 @@
         <li class="nav-item">
           <%=link_to "Reports", reports_path, :class=>"nav-link" %>
         </li>
+
+        <% if user_signed_in? && current_user.is_resident? %>
+          <li class="nav-item">
+            <%=link_to "Feedback", new_feedback_path, :class=>"nav-link" %>
+          </li>
+        <% end %>
+
         <!-- Show these links if the user is signed in AND user is official or admin -->
         <% if user_signed_in? %>
           <% if current_user.is_official? || current_user.is_admin? %>
             <li class="nav-item">
               <%=link_to "Officials Dashboard", official_path, :class=>"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%=link_to "Feedback Dashboard", feedbacks_path, :class=>"nav-link" %>
             </li>
           <% end %>
           <% if current_user.is_official? %>
@@ -47,15 +57,17 @@
               Admin
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><%=link_to "View Deactivated Reports",  deactivated_reports_path, :class=>"dropdown-item" %></li>
-                <li><%=link_to "View Flagged Reports",  flagged_reports_path, :class=>"dropdown-item" %></li>
-                <li><%=link_to "View KPI Dashboard",  kpi_dashboard_path, :class=>"dropdown-item" %></li>
-                <li><%=link_to "Manage Users",  users_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "Add User",  new_user_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "Manage Users",  users_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "Manage Categories",  categories_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "Manage Subcategories",  subcategories_path, :class=>"dropdown-item" %></li>
-                <li><%=link_to "Manage Themes",  themes_path, :class=>"dropdown-item" %></li>
                 <li><%=link_to "Manage Settings",  setting_path(1), :class=>"dropdown-item" %></li>
+                <li><%=link_to "Manage Themes",  themes_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "View KPI Dashboard",  kpi_dashboard_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "View Deactivated Feedback",  deactivated_feedbacks_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "View Flagged Feedback",  flagged_feedbacks_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "View Deactivated Reports",  deactivated_reports_path, :class=>"dropdown-item" %></li>
+                <li><%=link_to "View Flagged Reports",  flagged_reports_path, :class=>"dropdown-item" %></li>
             </ul>
           </li>
           <% end %>

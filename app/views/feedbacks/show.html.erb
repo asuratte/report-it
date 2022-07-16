@@ -1,0 +1,49 @@
+<% if user_signed_in? %>
+  <% if current_user.is_resident? %>
+    <h1 id="thank_you">Thank You</h1>
+
+    <p>We appreciate your feedback, and we will work hard to meet your needs.</p>
+    <p>If you require technical assistance, we will evaluate your request and reach out for more details if necessary.</p>
+
+  <% elsif current_user.is_official? || current_user.is_admin? %>
+
+    <% if user_signed_in? %>
+      <% if current_user.is_official? || current_user.is_admin? %>
+        <p>
+          <strong id="feedback_number">Feedback Number:</strong>
+          <%= @feedback.id %>
+        </p>
+      <% end %>
+    <% end %>
+
+    <p>
+      <strong>Username:</strong>
+      <%= @username %>
+    </p>
+
+    <p>
+      <strong>Category:</strong>
+      <%= @feedback.category %>
+    </p>
+
+    <p>
+      <strong>Comment:</strong>
+      <%= @feedback.comment %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @feedback.status %>
+    </p>
+
+    <% if current_user.is_admin? %>
+      <p>
+        <strong>Active status:</strong>
+        <%= @feedback.active_status %>
+      </p>
+    <% end %>
+
+    <%= button_to 'Edit', edit_feedback_path(@feedback), :method => :get, class: "btn btn-primary button-float" %>
+    <%= button_to 'Back', url_for(:back), :method => :get, class: "btn btn-secondary button-float" %>
+  <% end %>
+<% end %>

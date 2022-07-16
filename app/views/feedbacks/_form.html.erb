@@ -1,0 +1,57 @@
+<%= form_with(model: feedback) do |form| %>
+  <% if feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+
+      <ul>
+        <% feedback.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <% if current_user.is_official? || current_user.is_admin? %>
+    <p>
+      <strong id="feedback_number">Feedback Number:</strong>
+      <%= @feedback.id %>
+    </p>
+    <% end %>
+  <% end %>
+
+  <%= hidden_field_tag :user_id, @feedback.user_id %>
+
+  <!-- Only display if user is Official or Admin -->
+  <% if user_signed_in? %>
+    <% if current_user.is_official? || current_user.is_admin? %>
+      <div class="field mb-3">
+        <%= form.label :status, 'Status', :class => 'form-label', :id => 'status_label' %>
+        <%= form.select(:status, options_for_select(status, :selected => form.object.status), {}, { :class => 'form-select' }) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :category, 'Category', :class => 'form-label', :id => 'category_label' %>
+    <%= form.select(:category, options_for_select(category, :selected => form.object.category), { prompt: "Select" }, { :class => 'form-select', :required => true }) %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :comment, class: 'form-label' %>
+    <%= form.text_area :comment, class: 'form-control', :maxlength => 200, :size => 200, placeholder: 'Comment', required: true, pattern: '^[^\s].*$' %>
+  </div>
+
+  <% if current_user.is_admin? %>
+   <div class="field mb-3 row">
+      <div class="col-md-4">
+        <%= form.label :active_status, 'Active Status', :class => 'form-label', :id => 'active_status_label' %>
+        <%= form.select(:active_status, options_for_select(active_status, :selected => form.object.active_status), {}, { :class => 'form-select' }) %>
+      </div>
+    </div>
+  <% end %>
+
+  <span class="actions button-float">
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  </span>
+<% end %>

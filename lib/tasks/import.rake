@@ -97,6 +97,18 @@ namespace :import do
       com.save
     end
 
+    csv_text = File.read(Rails.root.join("lib", "feedback_data.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    csv.each do |row|
+      feed = Feedback.new
+      feed.user_id = row["user_id"]
+      feed.category = row["category"]
+      feed.comment = row["comment"]
+      feed.status = row["status"]
+      feed.active_status = row["active_status"]
+      feed.save
+    end
+
     csv_text = File.read(Rails.root.join("lib", "followed_report_data.csv"))
     csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
     csv.each do |row|

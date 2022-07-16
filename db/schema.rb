@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 2022_07_14_004648) do
     t.index ["user_id"], name: "index_confirmations_on_user_id"
   end
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "category", null: false
+    t.string "comment", limit: 200, null: false
+    t.string "status", default: "New"
+    t.integer "active_status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "followed_reports", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "report_id", null: false
@@ -102,7 +112,7 @@ ActiveRecord::Schema.define(version: 2022_07_14_004648) do
     t.string "footer_copyright"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "allow_anonymous_reports"
+    t.boolean "allow_anonymous_reports", default: true
   end
 
   create_table "subcategories", force: :cascade do |t|

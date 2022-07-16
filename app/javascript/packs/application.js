@@ -14,6 +14,7 @@ ActiveStorage.start()
 
 require("@popperjs/core")
 
+
 import "bootstrap"
 
 // Import the specific modules you may need (Modal, Alert, etc)
