@@ -10,8 +10,9 @@
 </div>
 
 <div class="homepage-tiles-container my-5 mx-auto d-flex flex-wrap justify-content-center">
-    <!-- Resident Dashboard Tile - shows if logged in as resident user -->
-    <% if  user_signed_in? && current_user.is_resident? %>                
+    <!-- RESIDENT USER -->
+    <% if  user_signed_in? && current_user.is_resident? %>
+        <!-- Resident Dashboard Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -20,8 +21,7 @@
                 <%=link_to "Resident Dashboard", resident_path , :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
-    <% end %>
-    <% if  user_signed_in? && current_user.is_resident? %>                
+        <!-- Resident Follow Reports Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'reports-following.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -31,20 +31,39 @@
             </div>
         </div>
     <% end %>
-    <!-- Official Dashboard Tile - shows if logged in as official or admin user -->
-    <% if  user_signed_in? && (current_user.is_admin? || current_user.is_official?) %>                
+    <!-- OFFICIAL USER -->
+    <% if  user_signed_in? && current_user.is_official? %>
+        <!-- Official Dashboard Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Officials Dashboard</h5>
                 <p class="card-text">Manage and update submitted reports</p>
-                <%=link_to "Officials Dashboard", official_path , :class=>"btn btn-primary stretched-link" %>
+                <%=link_to "Officials Dashboard", "/official-search" , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+        <!-- Feedback Dashboard Tile -->
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Feedback Dashboard</h5>
+                <p class="card-text">Manage and update submitted feedback</p>
+                <%=link_to "Feedback Dashboard", feedbacks_path , :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
     <% end %>
     <!-- Admin Only Tiles - shows if logged in as admin user -->
-    <% if  user_signed_in? && (current_user.is_admin?) %>   
-    <!-- KPI Dashboard Tile -->
+    <% if  user_signed_in? && (current_user.is_admin?) %>
+        <!-- Official Dashboard Tile -->
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Officials Dashboard</h5>
+                <p class="card-text">Manage and update submitted reports</p>
+                <%=link_to "Officials Dashboard", "/official-search", :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+        <!-- KPI Dashboard Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
             <%= image_tag 'kpi-dashboard.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -52,7 +71,8 @@
                 <p class="card-text">Visualize key performance indicators</p>
                 <%=link_to "View KPI Dashboard", kpi_dashboard_path, :class=>"btn btn-primary stretched-link" %>
             </div>
-        </div>             
+        </div>
+        <!-- Add User Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'add-user-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -61,6 +81,7 @@
                 <%=link_to "Add Users", new_user_path , :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
+        <!-- Manager Users Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'manage-users-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -69,6 +90,7 @@
                 <%=link_to "Manage Users", users_path , :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
+        <!-- View Flagged Reports Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'flagged-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -77,6 +99,7 @@
                 <%=link_to "View Flagged Reports", flagged_reports_path , :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
+        <!-- View Deactivated Reports Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
              <%= image_tag 'deactivated-report-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
@@ -85,9 +108,27 @@
                 <%=link_to "View Deactivated Reports", deactivated_reports_path , :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
+        <!-- View Flagged Feedback Tile -->
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'flagged-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Flagged Feedback</h5>
+                <p class="card-text">View and process flagged feedback</p>
+                <%=link_to "View Flagged Feedback", flagged_feedbacks_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+        <!-- View Deactivated Feedback Tile -->
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'deactivated-report-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Deactivated Feedback</h5>
+                <p class="card-text">View deactivated feedback</p>
+                <%=link_to "View Deactivated Feedback", deactivated_feedbacks_path , :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
     <% end %>
-    <!-- Explore Tile -->
-    <% if !user_signed_in? || (user_signed_in? && (!current_user.is_admin?)) %>  
+    <!-- Explore Tile - seen by anyone but admin -->
+    <% if !user_signed_in? || (user_signed_in? && (!current_user.is_admin?)) %>
         <div class="card homepage-tile text-center py-5 mb-5">
             <%= image_tag 'compass-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
