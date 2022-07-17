@@ -1,8 +1,10 @@
 class Feedback < ApplicationRecord
   belongs_to :user, optional: true
+  validates :comment, presence: true
+  validates :comment, length: { maximum: 200 }
 
   def is_active?
-      return self.active_status == 'active' ? true : false
+      return self.active_status == 0 ? true : false
   end
 
   # Searches for feedbacks by attribute
