@@ -64,6 +64,18 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to setting_url(@setting)
   end
 
+  test "should attach image to setting" do
+    sign_in @admin_user
+    get setting_url(@setting)
+    assert_response :success
+    assert_equal false, @setting.image.attached?
+
+    patch setting_url(@setting), params: { setting: { image: fixture_file_upload('test/fixtures/files/testimage.png', 'image/png') } }
+    @setting.reload
+    assert @setting.image.attached?
+    assert_equal "testimage.png", @setting.image.filename.to_s 
+  end
+
   test "should delete image from setting" do
     sign_in @admin_user
     get setting_url(@setting)

@@ -62,7 +62,11 @@ class SubcategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subcategory
-      @subcategory = Subcategory.find(params[:id])
+      if (Subcategory.where(id: params[:id]).present?)
+        @subcategory = Subcategory.find(params[:id])
+      else
+        redirect_to subcategories_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

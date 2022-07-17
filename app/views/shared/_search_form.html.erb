@@ -44,11 +44,13 @@
     <div class="m-2" id="text-field-div">
       <%= text_field_tag "#{@search_page}_search_term", @search_term_value, class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
     </div>
-    <div class="m-2">
-      <%= submit_tag("Search Attribute", :id=>"search-attribute-button", :class=>"btn btn-primary") %>
-    </div>
-    <div class="m-2">
-      <%= submit_tag("Clear", :id=>"clear-attribute-button", formnovalidate: "true", :class=>"btn btn-primary") %>
+    <div class="d-flex flex-wrap flex-lg-nowrap">
+      <div class="m-2">
+        <%= submit_tag("Search Attribute", :id=>"search-attribute-button", :class=>"btn btn-primary") %>
+      </div>
+      <div class="m-2">
+        <%= submit_tag("Clear", :id=>"clear-attribute-button", formnovalidate: "true", :class=>"btn btn-primary") %>
+      </div>
     </div>
   </div>
 <% end %>
@@ -64,11 +66,13 @@
       <%= label_tag "#{@search_page}_end_date", "End Date" %>
     </div>
     <%= hidden_field_tag "#{@search_page}_search_radio_value", 'Dates' %>
-    <div class="m-2">
-      <%= submit_tag("Search Dates", :id=>"search-dates-button", :class=>"btn btn-primary") %>
-    </div>
-    <div class="m-2">
-      <%= submit_tag("Clear", :id=>"clear-dates-button", formnovalidate: "true", :class=>"btn btn-primary") %>
+    <div class="d-flex flex-wrap flex-lg-nowrap">
+      <div class="m-2">
+        <%= submit_tag("Search Dates", :id=>"search-dates-button", :class=>"btn btn-primary") %>
+      </div>
+      <div class="m-2">
+        <%= submit_tag("Clear", :id=>"clear-dates-button", formnovalidate: "true", :class=>"btn btn-primary") %>
+      </div>
     </div>
   </div>
 <% end %>
