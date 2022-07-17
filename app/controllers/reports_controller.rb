@@ -134,7 +134,11 @@ class ReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
-      @report = Report.find(params[:id])
+      if (Report.where(id: params[:id]).present?)
+        @report = Report.find(params[:id])
+      else
+        redirect_to reports_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

@@ -101,4 +101,16 @@ class SubcategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to subcategory_url(@subcategory)
   end
 
+  test "should not show subcategory if admin user and invalid subcategory id passed" do
+    sign_in @admin_user
+    get subcategory_url(2000)
+    assert_response :redirect
+  end
+
+  test "should not get edit if admin user and invalid subcategory id passed" do
+    sign_in @admin_user
+    get edit_subcategory_url(2000)
+    assert_response :redirect
+  end
+
 end

@@ -104,7 +104,11 @@ class FeedbacksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feedback
-      @feedback = Feedback.find(params[:id])
+      if (Feedback.where(id: params[:id]).present?)
+        @feedback = Feedback.find(params[:id])
+      else
+        redirect_to feedbacks_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
