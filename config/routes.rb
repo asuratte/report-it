@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     get 'deactivated-feedbacks', to: 'deactivated_feedbacks#index'
     get 'flagged-feedbacks', to: 'flagged_feedbacks#index'
     get 'reports-by-user', to: 'reports_by_user#index'
-    get 'official', to: 'official#index'
+    get 'official', to: 'home#index'
 
     resources :comments, except: [:index]
   end
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, -> (user) { user.is_official? } do
-    get 'official', to: 'official#index'
+    get 'official', to: 'home#index'
     get 'reports-by-user', to: 'reports_by_user#index'
     get '/users/new', to: redirect('/users')
 
