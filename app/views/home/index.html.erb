@@ -44,7 +44,7 @@
         </div>
         <!-- Feedback Dashboard Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
-             <%= image_tag 'dashboard-icon.svg', :class => "card-img-top" %>
+             <%= image_tag 'feedback-dashboard-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Feedback Dashboard</h5>
                 <p class="card-text">Manage and update submitted feedback</p>
@@ -70,6 +70,15 @@
                 <h5 class="card-title fw-bold">KPI Dashboard</h5>
                 <p class="card-text">Visualize key performance indicators</p>
                 <%=link_to "View KPI Dashboard", kpi_dashboard_path, :class=>"btn btn-primary stretched-link" %>
+            </div>
+        </div>
+        <!-- Feedback Dashboard Tile -->
+        <div class="card homepage-tile text-center py-5 mb-5">
+             <%= image_tag 'feedback-dashboard-icon.svg', :class => "card-img-top" %>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Feedback Dashboard</h5>
+                <p class="card-text">Manage and update submitted feedback</p>
+                <%=link_to "Feedback Dashboard", feedbacks_path , :class=>"btn btn-primary stretched-link" %>
             </div>
         </div>
         <!-- Add User Tile -->
@@ -110,7 +119,7 @@
         </div>
         <!-- View Flagged Feedback Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
-             <%= image_tag 'flagged-icon.svg', :class => "card-img-top" %>
+             <%= image_tag 'flagged-feedback-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Flagged Feedback</h5>
                 <p class="card-text">View and process flagged feedback</p>
@@ -119,7 +128,7 @@
         </div>
         <!-- View Deactivated Feedback Tile -->
         <div class="card homepage-tile text-center py-5 mb-5">
-             <%= image_tag 'deactivated-report-icon.svg', :class => "card-img-top" %>
+             <%= image_tag 'deactivated-feedback-icon.svg', :class => "card-img-top" %>
             <div class="card-body">
                 <h5 class="card-title fw-bold">Deactivated Feedback</h5>
                 <p class="card-text">View deactivated feedback</p>
