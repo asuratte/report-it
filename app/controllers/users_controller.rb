@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @search_type = session[:search_type]
       @search_term = session[:search_term]
       @pagy, @users = pagy(User.order(:username).search(session[:search_type], session[:search_term]), items: 10, size: [1,0,0,1])
-    elsif params[:commit] == 'Clear Selection'
+    elsif params[:commit] == 'Clear'
       redirect_to users_path
     else
       @pagy, @users = pagy(User.all.order(:username), items: 10, size: [1,0,0,1])

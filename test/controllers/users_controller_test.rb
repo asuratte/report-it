@@ -166,7 +166,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get '/users?search_type=' + @search_type + '&search_term=' + @search_term + '&commit=Search'
     assert_response :success
     get '/users?search_type=' + @search_type + '&search_term=' + @search_term + '&commit=Clear'
-    assert_response :success
+    assert_response :redirect
+    follow_redirect!
     assert_select "tbody tr", 5
   end
 
