@@ -24,4 +24,16 @@ module FeedbacksHelper
     ['Abuse', '2']
     ]
   end
+
+  def active_status_value(active_status)
+    @active_status_value = ""
+    if active_status == 0
+      @active_status_value = "Active"
+    elsif active_status == 1
+      @active_status_value = "Spam"
+    elsif active_status == 2
+      @active_status_value = "Abuse"
+    end
+    return @active_status_value
+  end
 end

@@ -39,7 +39,7 @@
     <% if current_user.is_admin? %>
       <p>
         <strong>Active status:</strong>
-        <%= @feedback.active_status %>
+        <%= active_status_value(@feedback.active_status) %>
       </p>
     <% end %>
 
