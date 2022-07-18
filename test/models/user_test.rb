@@ -201,5 +201,50 @@ class UserTest < ActiveSupport::TestCase
     @resident_user.confirm(@report1)
     assert_equal 0, @resident_user.confirmations.count
   end
+
+  test "search returns a single user" do
+    user = User.search("Username", @resident_user.username)
+    assert_equal 1, user.count
+  end
+
+  test "search returns multiple users" do
+    user = User.search("Name", "Bebis")
+    assert user.count > 1
+  end
+
+  test "search returns no user" do
+    user = User.search("Username", "fakeuser")
+    assert_equal 0, user.count
+  end
+
+  test "search returns all users if no search parameters specified" do
+    user = User.search("", "")
+    assert_equal 5, user.count
+  end
+
+  test "search finds users by username" do
+    user = User.search("Username", @resident_user.username)
+    assert_equal 1, user.count
+    assert_equal "spr0cket", user.first.username
+  end
+
+  test "search finds users by first name" do
+    user = User.search("Name", @resident_user.first_name)
+    assert_equal 1, user.count
+    assert_equal "Sprocket", user.first.first_name
+  end
+
+  test "search finds users by last name" do
+    user = User.search("Name", @resident_user.last_name)
+    assert_equal 1, user.count
+    assert_equal "Suratte", user.first.last_name
+  end
+
+  test "search finds users by first and last name" do
+    full_name = @resident_user.first_name + " " + @resident_user.last_name
+    user = User.search("Name", full_name)
+    assert_equal 1, user.count
+    assert_equal "spr0cket", user.first.username
+  end
  
 end

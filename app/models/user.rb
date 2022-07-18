@@ -64,4 +64,17 @@ class User < ApplicationRecord
     end
   end
 
+  # Searches for users by username or name (first and/or last)
+  def self.search(search_type, search_term)
+    user = User.all
+    if search_type == "Username" && search_term.present?
+      user = User.where("lower(username) LIKE ?", "%#{search_term.downcase}%")
+    elsif search_type == "Name" && search_term.present?
+      name = search_term.split(" ")
+      name.collect!{ |e| e.strip }
+      user = User.where('(first_name LIKE ? OR last_name LIKE ?) AND last_name LIKE ?', "%#{name[0]}%", "%#{name[0]}%", "%#{name[1]}%")
+    end
+    return user
+  end
+
 end
