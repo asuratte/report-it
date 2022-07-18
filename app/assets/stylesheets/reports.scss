@@ -8,3 +8,9 @@ h1.category {
     font-size: 1.5rem;
     font-weight: 600;
 }
+@media screen and (max-width: 1199px) {
+    .report-image.img-fluid {
+        width: 100%;
+        max-width: 600px
+    } 
+}
