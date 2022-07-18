@@ -4,16 +4,13 @@ class FeedbackTest < ActiveSupport::TestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @resident_user = users(:one)
-    @official_user = users(:two)
-    @admin_user = users(:three)
-
     @feedback_1 = feedbacks(:one)
     @feedback_2 = feedbacks(:two)
     @feedback_3 = feedbacks(:three)
     @feedback_4 = feedbacks(:four)
     @feedback_5 = feedbacks(:five)
     @feedback_6 = feedbacks(:six)
+    @feedback_7 = feedbacks(:seven)
   end
 
   test "feedback attributes cannot be empty" do
@@ -28,7 +25,7 @@ class FeedbackTest < ActiveSupport::TestCase
     assert feedback.errors[:comment].any?
   end
 
-  test "feedback should truncate and create if feedback comment over 200" do
+  test "feedback should not create if feedback comment over 200" do
     new_feedback = Feedback.new
     new_feedback.user_id = @feedback_1.user_id
     new_feedback.category = @feedback_1.category
@@ -83,7 +80,7 @@ class FeedbackTest < ActiveSupport::TestCase
 
   test "search returns all feedbacks if no search parameters specified" do
     feedback = Feedback.feedback_search("", "")
-    assert_equal 6, feedback.count
+    assert_equal 7, feedback.count
   end
 
   test "search finds feedbacks by number" do
@@ -100,9 +97,31 @@ class FeedbackTest < ActiveSupport::TestCase
   end
 
   test "search finds feedbacks by username" do
-    feedback = Feedback.feedback_search("Username", "s")
+    @new_user = User.create(
+    id: 50,
+    phone: "123-456-7890",
+    zip: "75033",
+    username: "mitc1209",
+    first_name: "Kim",
+    last_name: "Weible",
+    address1: "123 Street",
+    city: "Frisco",
+    state: "TX",
+    password: '12345678',
+    role: 0,
+    active: true,
+    email: "mitc1209@hotmail.com")
+
+    @new_feedback = Feedback.create(
+    user_id: 50,
+    category: "Complaint",
+    comment: "MyString50",
+    status: "Flagged",
+    active_status: 2)
+
+    feedback = Feedback.feedback_search("Username", "mitc1209")
     assert_equal 1, feedback.count
-    assert_equal "MyString1", feedback.first.comment
+    assert_equal "MyString50", feedback.first.comment
   end
 
   test "search finds feedbacks by category" do
