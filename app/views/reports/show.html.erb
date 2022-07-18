@@ -29,15 +29,10 @@
   });
 </script>
 
-
-<% if user_signed_in? %>
-  <% if current_user.is_official? || current_user.is_admin? %>
-    <h2 class="incident-number">
-      <strong id="incident_number">Incident Number:</strong>
-      <%= @report.id %>
-    </h2>
-  <% end %>
-<% end %>
+<h2 class="incident-number">
+  <strong id="incident_number">Incident Number:</strong>
+  <%= @report.id %>
+</h2>
 
 <h1 class="category dark">
   <%= @report.category %> - <%= @report.subcategory %>
