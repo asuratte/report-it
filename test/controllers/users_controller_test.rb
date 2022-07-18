@@ -116,4 +116,58 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_nil @official_user.deactivated_at
   end
 
+  test "should return record on username search" do
+    sign_in @admin_user
+    get users_url
+    assert_response :success
+
+    @search_type = "Username"
+    @search_term = @resident_user.username
+
+    get '/users?search_type=' + @search_type + '&search_term=' + @search_term + '&commit=Search'
+    assert_response :success
+    assert_select "th", text: "Username"
+  end
+
+  test "should return record on name search" do
+    sign_in @admin_user
+    get users_url
+    assert_response :success
+
+    @search_type = "Name"
+    @search_term = @resident_user.first_name
+
+    get '/users?search_type=' + @search_type + '&search_term=' + @search_term + '&commit=Search'
+    assert_response :success
+    assert_select "th", text: "Username"
+  end
+
+  test "should return no records on search where none exist" do
+    sign_in @admin_user
+    get users_url
+    assert_response :success
+
+    @search_type = "Username"
+    @search_term = "fakeusername"
+
+    get '/users?search_type=' + @search_type + '&search_term=' + @search_term + '&commit=Search'
+    assert_response :success
+    assert_select "p.info-message", text: "No users found."
+  end
+
+  test "should show all users on 'clear' button click" do
+    sign_in @admin_user
+    get users_url
+    assert_response :success
+
+    @search_type = "Username"
+    @search_term = @resident_user.username
+
+    get '/users?search_type=' + @search_type + '&search_term=' + @search_term + '&commit=Search'
+    assert_response :success
+    get '/users?search_type=' + @search_type + '&search_term=' + @search_term + '&commit=Clear'
+    assert_response :success
+    assert_select "tbody tr", 5
+  end
+
 end
