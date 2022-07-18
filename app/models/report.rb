@@ -48,7 +48,7 @@ class Report < ApplicationRecord
     return report
   end
 
-  # Searches for reports by incident no, address, city, state, zip or description
+  # Searches for reports by start date and end date
   def self.search_dates(start_date, end_date)
     report = Report.all
     if start_date.present? && end_date.present?

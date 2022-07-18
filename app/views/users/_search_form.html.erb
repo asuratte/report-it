@@ -1,0 +1,32 @@
+<script>
+  $(document).ready(function(){
+    $("select").on("change", function () {
+      $("#search_term").attr("value", "");
+      if ($(this).val() == "Name") {
+        $("#search_term").attr("placeholder", "First Name, Last Name, or Full Name");
+      } else {
+        $("#search_term").attr("placeholder", "");
+      }
+    });
+  });
+</script>
+
+<%= form_tag(@search_submit_path, method: :get, class: "Attribute search mx-auto", id: "search-type", style: @display_form_attribute) do %>
+  <div class="d-md-flex justify-content-center mb-4">
+    <div class="m-2">
+      <%= select_tag :search_type, options_for_select(["Username", "Name"], @search_type), class: "form-select" %>
+    </div>
+    <div class="m-2" id="text-field-div">
+      <%= text_field_tag :search_term, @search_term, class: "form-control", size: 50, placeholder: '', pattern: '^[^\s].*$', title: 'No leading or only spaces allowed', required: true %>
+    </div>
+    <div class="d-flex flex-wrap flex-lg-nowrap">
+      <div class="m-2">
+        <%= submit_tag("Search", :id=>"search-attribute-button", :class=>"btn btn-primary") %>
+      </div>
+      <div class="m-2">
+        <%= submit_tag("Clear", :id=>"clear-attribute-button", formnovalidate: "true", :class=>"btn btn-primary") %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

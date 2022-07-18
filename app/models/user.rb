@@ -64,4 +64,15 @@ class User < ApplicationRecord
     end
   end
 
+  # Searches for users by username or name (first and/or last)
+  def self.search(search_type, search_term)
+    user = User.all
+    if search_type == "Username" && search_term.present?
+      user = User.where("username ILIKE ?", "%#{search_term}%")
+    elsif search_type == "Name" && search_term.present?
+      user = User.where("(first_name || ' ' || last_name) ILIKE ? OR first_name ILIKE ? OR last_name ILIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
+    end
+    return user
+  end
+
 end

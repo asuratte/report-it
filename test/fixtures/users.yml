@@ -4,7 +4,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
- one:
+one:
   email: sprocket@example.com
   encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
   first_name: Sprocket
@@ -19,7 +19,7 @@
   role: 0
   active: true
 
- two:
+two:
   email: bella@example.com
   encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
   first_name: Bella
@@ -34,7 +34,7 @@
   role: 1
   active: true
 
- three:
+three:
   email: hazel@example.com
   encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
   first_name: Hazel
@@ -49,7 +49,7 @@
   role: 2
   active: true
 
- four:
+four:
   email: sam@example.com
   encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
   first_name: Sam
@@ -66,16 +66,16 @@
   deactivated_at: <%= DateTime.current %>
 
 five:
- email: mitc1209@hotmail.com
- encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
- first_name: Kim
- last_name: Weible
- address1: 123 Street
- address2:
- city: Frisco
- state: TX
- zip: 75033
- phone: 123-456-7890
- username: mitc1209
- role: 0
- active: true
+  email: mitc1209@hotmail.com
+  encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
+  first_name: Kim
+  last_name: Weible
+  address1: 123 Street
+  address2:
+  city: Frisco
+  state: TX
+  zip: 75033
+  phone: 123-456-7890
+  username: mitc1209
+  role: 0
+  active: true

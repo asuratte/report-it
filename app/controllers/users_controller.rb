@@ -2,10 +2,19 @@ class UsersController < ApplicationController
   rescue_from Pagy::OverflowError, with: :redirect_to_last_page
   rescue_from Pagy::VariableError, with: :redirect_to_last_page
   before_action :set_user, only: %i[ show edit update ]
+  before_action :get_search_values, only: [:index]
 
   # GET /users or /users.json
   def index
-    @pagy, @users = pagy(User.all.order(:username), items: 10, size: [1,0,0,1])
+    if params[:commit] == 'Search' && params[:search_term].present?
+      @search_type = session[:search_type]
+      @search_term = session[:search_term]
+      @pagy, @users = pagy(User.order(:username).search(session[:search_type], session[:search_term]), items: 10, size: [1,0,0,1])
+    elsif params[:commit] == 'Clear'
+      redirect_to users_path
+    else
+      @pagy, @users = pagy(User.all.order(:username), items: 10, size: [1,0,0,1])
+    end
   end
 
   # GET /users/1 or /users/1.json
@@ -68,6 +77,17 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
       else
         redirect_to users_path
+      end
+    end
+
+    # Sets the username and name for the session using the search parameters
+    def get_search_values
+      session[:search_term] = nil
+      session[:search_type] = nil
+
+      if params[:search_term]
+        session[:search_type] = params[:search_type]
+        session[:search_term] = params[:search_term]
       end
     end
 

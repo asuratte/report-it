@@ -97,23 +97,8 @@ class FeedbackTest < ActiveSupport::TestCase
   end
 
   test "search finds feedbacks by username" do
-    @new_user = User.create(
-    id: 50,
-    phone: "123-456-7890",
-    zip: "75033",
-    username: "mitc1209",
-    first_name: "Kim",
-    last_name: "Weible",
-    address1: "123 Street",
-    city: "Frisco",
-    state: "TX",
-    password: '12345678',
-    role: 0,
-    active: true,
-    email: "mitc1209@hotmail.com")
-
     @new_feedback = Feedback.create(
-    user_id: 50,
+    user: users(:five),
     category: "Complaint",
     comment: "MyString50",
     status: "Flagged",
