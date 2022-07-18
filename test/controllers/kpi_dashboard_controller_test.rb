@@ -168,20 +168,20 @@ class KpiDashboardControllerTest < ActionDispatch::IntegrationTest
     sign_in @admin_user
     get '/kpi-dashboard?start_date=&end_date=&commit=View+All+Time'
     assert_response :success
-    assert_equal 2, @controller.view_assigns['new_users'].count
+    assert_equal 3, @controller.view_assigns['new_users'].count
     assert_equal true, @controller.view_assigns['all_time']
     @controller.view_assigns['new_users'].each do |user|
       assert_equal 'resident', user.role
     end
   end
 
-  test "should return 2 resident users for new_users instance variable when viewing current date KPI data" do
+  test "should return 3 resident users for new_users instance variable when viewing current date KPI data" do
     sign_in @admin_user
     @start_date = DateTime.current.beginning_of_day.to_s
     @end_date = (DateTime.current.end_of_day + 1.days).to_s
     get '/kpi-dashboard?start_date=' + @start_date + '&end_date=' + @end_date + '&commit=Choose+Dates'
     assert_response :success
-    assert_equal 2, @controller.view_assigns['new_users'].count
+    assert_equal 3, @controller.view_assigns['new_users'].count
     @controller.view_assigns['new_users'].each do |user|
       assert_equal true, (user.created_at >= @start_date && user.created_at <= @end_date)
       assert_equal 'resident', user.role
