@@ -64,3 +64,18 @@
   role: 0
   active: false
   deactivated_at: <%= DateTime.current %>
+
+five:
+ email: mitc1209@hotmail.com
+ encrypted_password: $2a$12$bYCVkQAuVTaqu2tS3fB3VOxtEdhDWgNCUwIHMA8iDNrh382Ao3CSq
+ first_name: Kim
+ last_name: Weible
+ address1: 123 Street
+ address2:
+ city: Frisco
+ state: TX
+ zip: 75033
+ phone: 123-456-7890
+ username: mitc1209
+ role: 0
+ active: true

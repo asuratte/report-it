@@ -1,8 +1,10 @@
 class Feedback < ApplicationRecord
   belongs_to :user, optional: true
+  validates :comment, presence: true
+  validates :comment, length: { maximum: 200 }
 
   def is_active?
-      return self.active_status == 'active' ? true : false
+      return self.active_status == 0 ? true : false
   end
 
   # Searches for feedbacks by attribute
@@ -15,7 +17,7 @@ class Feedback < ApplicationRecord
         feedback = feedback.none
       end
     elsif search_type == "Username" && search_term.present?
-      feedback = feedback.where("lower(users.username) LIKE :search_term", search_term: "%#{search_term.downcase}%")
+      feedback = Feedback.joins(:user).where("lower(users.username) LIKE :search_term", search_term: "%#{search_term.downcase}%")
     elsif search_type == "Status" && search_term.present?
       feedback = feedback.where("lower(feedbacks.status) LIKE ?", "%#{search_term.downcase}%")
     elsif search_type == "Category" && search_term.present?

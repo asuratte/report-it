@@ -1,36 +1,50 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: :one
+  user_id: 1
   category: Complaint
   comment: MyString1
   status: New
   active_status: 0
 
 two:
-  user_id: :two
+  user_id: 2
   category: Compliment
   comment: MyString2
   status: In Progress
   active_status: 0
 
 three:
-  user_id: :two
+  user_id: 2
   category: Complaint
   comment: MyString3
   status: Resolved
   active_status: 1
 
 four:
-  user_id: :two
+  user_id: 2
   category: Complaint
   comment: MyString4
   status: Flagged
   active_status: 0
 
 five:
-  user_id: :one
+  user_id: 1
   category: Complaint
   comment: MyString5
   status: Flagged
   active_status: 1
+
+six:
+  user_id: 1
+  category: Suggestion
+  comment: MyString6
+  status: Flagged
+  active_status: 2
+
+seven:
+  user_id: 5
+  category: Complaint
+  comment: MyString7
+  status: Flagged
+  active_status: 2
