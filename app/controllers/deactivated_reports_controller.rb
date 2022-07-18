@@ -12,7 +12,7 @@ class DeactivatedReportsController < ApplicationController
     if params[:commit] == 'Clear'
       self.set_submit_fields('clear', @search_page)
       @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').where.not(active_status: 0), items: 10, size: [1,0,0,1])
-    elsif params[:commit] == 'Search Dates' && params[:admin_deactivated_start_date].present? && params[:admin_deactivated_end_date].present? && params[:admin_deactivated_start_date] <= params[:admin_deactivated_end_date]
+    elsif params[:commit] == 'Search Dates' && params[:admin_deactivated_report_start_date].present? && params[:admin_deactivated_report_end_date].present? && params[:admin_deactivated_report_start_date] <= params[:admin_deactivated_report_end_date]
       self.set_submit_fields('dates', @search_page)
       @pagy, @deactivated_reports = pagy(Report.order('created_at DESC').search_dates(session[:admin_deactivated_report_start_date], session[:admin_deactivated_report_end_date]).where.not(active_status: 0), items: 10, size: [1,0,0,1])
     elsif params[:commit] == 'Search Dates' && ((!params[:admin_deactivated_report_start_date].present? || !params[:admin_deactivated_report_end_date].present?) || params[:admin_deactivated_report_start_date] > params[:admin_deactivated_report_end_date])

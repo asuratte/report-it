@@ -33,16 +33,6 @@ class DeactivatedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     sign_out @resident_user
   end
 
-  test "official and resident users should not get deactivated-feedbacks" do
-    sign_in @official_user
-    get deactivated_feedbacks_url
-    assert_response :redirect
-    sign_out @official_user
-    sign_in @resident_user
-    get deactivated_feedbacks_url
-    assert_response :redirect
-  end
-
   test "should return feedback on number search" do
     sign_in @admin_user
     get flagged_feedbacks_url

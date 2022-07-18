@@ -321,4 +321,34 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_select "thead"
   end
 
+  test "should not show report for any user if invalid report id passed" do
+    get report_url(20000)
+    assert_response :redirect
+    sign_in @resident_user
+    get report_url(20000)
+    assert_response :redirect
+    sign_out @resident_user
+    sign_in @official_user
+    get report_url(20000)
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @admin_user
+    get report_url(20000)
+    assert_response :redirect
+  end
+
+  test "should not get edit for any logged in user if invalid report id passed" do
+    sign_in @resident_user
+    get edit_report_url(20000)
+    assert_response :redirect
+    sign_out @resident_user
+    sign_in @official_user
+    get edit_report_url(20000)
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @admin_user
+    get edit_report_url(20000)
+    assert_response :redirect
+  end
+
 end

@@ -39,7 +39,13 @@
     <% if current_user.is_admin? %>
       <p>
         <strong>Active status:</strong>
-        <%= active_status_value(@feedback.active_status) %>
+        <% if @feedback.active_status == 0 %>
+          <%= active_status[0][0] %>
+        <% elsif @feedback.active_status == 1 %>
+          Deactivated - <%= active_status[1][0] %>
+        <% elsif @feedback.active_status == 2 %>
+          Deactivated - <%= active_status[2][0] %>
+        <% end %>
       </p>
     <% end %>
 

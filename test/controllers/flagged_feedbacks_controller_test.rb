@@ -32,17 +32,7 @@ class FlaggedFeedbacksControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     sign_out @resident_user
   end
-
-  test "official and resident users should not get flagged-feedbacks" do
-    sign_in @official_user
-    get flagged_feedbacks_url
-    assert_response :redirect
-    sign_out @official_user
-    sign_in @resident_user
-    get flagged_feedbacks_url
-    assert_response :redirect
-  end
-
+  
   test "should return feedback on number search" do
     sign_in @admin_user
     get flagged_feedbacks_url

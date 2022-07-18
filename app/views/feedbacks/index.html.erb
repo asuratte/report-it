@@ -21,7 +21,11 @@
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td data-label="Date Submitted"><%= feedback.created_at.to_date %></td>
           <td data-label="Feedback No."><%= feedback.id %></td>
-          <td data-label="User"><%= feedback.username %></td>
+          <td data-label="User">
+            <% if feedback.user.present? %>
+              <%= link_to feedback.user.username, user_path(feedback.user) %>
+            <% end %>
+          </td>
           <td data-label="Category"><%= link_to feedback.category, feedback %></td>
           <td data-label="Comment"><%= truncate(feedback.comment, length: 40) %></td>
           <td data-label="Status"><%= feedback.status %></td>

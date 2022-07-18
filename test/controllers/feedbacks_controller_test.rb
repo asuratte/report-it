@@ -304,4 +304,32 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "thead"
   end
+
+  test "should not show feedback for any logged in user if invalid feedback id passed" do
+    sign_in @resident_user
+    get feedback_url(20000)
+    assert_response :redirect
+    sign_out @resident_user
+    sign_in @official_user
+    get feedback_url(20000)
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @admin_user
+    get feedback_url(20000)
+    assert_response :redirect
+  end
+
+  test "should not get edit if logged in user and invalid feedback id passed" do
+    sign_in @resident_user
+    get feedback_url(20000)
+    assert_response :redirect
+    sign_out @resident_user
+    sign_in @official_user
+    get edit_feedback_url(20000)
+    assert_response :redirect
+    sign_out @official_user
+    sign_in @admin_user
+    get edit_feedback_url(20000)
+    assert_response :redirect
+  end
 end
