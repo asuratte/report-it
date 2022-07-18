@@ -32,21 +32,19 @@
 
 <% if user_signed_in? %>
   <% if current_user.is_official? || current_user.is_admin? %>
-    <p>
+    <h2 class="incident-number">
       <strong id="incident_number">Incident Number:</strong>
       <%= @report.id %>
-    </p>
+    </h2>
   <% end %>
 <% end %>
 
-<p>
-  <strong>Category:</strong>
+<h1 class="category dark">
   <%= @report.category %> - <%= @report.subcategory %>
-</p>
+</h1>
 
-<p>
-  <strong>Number of Report Confirmations:</strong>
-  <%= @report.total_confirmations %>
+<p class="report-confirmations">
+  <i class="bi <% if @report.total_confirmations > 0 %>bi-check-circle-fill accent<% else %>bi-check-circle<% end %>"></i> Confirmed by <%= pluralize(@report.total_confirmations, 'resident') %>
 </p>
 
 <p>
@@ -63,34 +61,18 @@
   <% end %>
 <% end %>
 
+<strong>Address:</strong>
+<address>
 <% if @report.address1? %>
-<p>
-  <strong>Address1:</strong>
   <%= @report.address1 %>
-</p>
 <% end %>
-
 <% if @report.address2? %>
-<p>
-  <strong>Address2:</strong>
+  <br>
   <%= @report.address2 %>
-</p>
 <% end %>
-
-<p>
-  <strong>City:</strong>
-  <%= @report.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @report.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @report.zip %>
-</p>
+  <br>
+  <%= @report.city %>, <%= @report.state %> <%= @report.zip %>
+</address>
 
 <div>
   <% if @report.address1.present? %>
