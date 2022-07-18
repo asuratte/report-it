@@ -68,11 +68,9 @@ class User < ApplicationRecord
   def self.search(search_type, search_term)
     user = User.all
     if search_type == "Username" && search_term.present?
-      user = User.where("lower(username) LIKE ?", "%#{search_term.downcase}%")
+      user = User.where("username ILIKE ?", "%#{search_term}%")
     elsif search_type == "Name" && search_term.present?
-      name = search_term.split(" ")
-      name.collect!{ |e| e.strip }
-      user = User.where('(first_name LIKE ? OR last_name LIKE ?) AND last_name LIKE ?', "%#{name[0]}%", "%#{name[0]}%", "%#{name[1]}%")
+      user = User.where("(first_name || ' ' || last_name) ILIKE ? OR first_name ILIKE ? OR last_name ILIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
     end
     return user
   end
