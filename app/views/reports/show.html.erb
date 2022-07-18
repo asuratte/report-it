@@ -47,15 +47,35 @@
   <i class="bi <% if @report.total_confirmations > 0 %>bi-check-circle-fill accent<% else %>bi-check-circle<% end %>"></i> Confirmed by <%= pluralize(@report.total_confirmations, 'resident') %>
 </p>
 
+<strong>Status:</strong>
 <p>
-  <strong>Status:</strong>
+   <% if @report.status == 'New' %>
+    <i class="bi bi-chat-dots-fill accent"></i>
+   <% elsif @report.status == 'In Progress' %>
+    <i class="bi bi-clock-fill accent"></i>
+   <% elsif @report.status == 'Flagged' %>
+    <i class="bi bi-flag-fill accent"></i>
+   <% elsif @report.status == 'Resolved' %>
+    <i class="bi bi-check-square-fill accent"></i>
+   <% end %>
   <%= @report.status %>
 </p>
 
 <% if user_signed_in? %>
   <% if current_user.is_official? || current_user.is_admin? %>
-    <p>
-      <strong>Severity:</strong>
+   <strong>Severity:</strong>
+   <p>
+      <% if @report.severity == 'Not Set' %>
+        <i class="bi bi-question-circle-fill accent"></i>
+      <% elsif @report.severity == 'Low' %>
+        <i class="bi bi-arrow-down-circle-fill accent"></i>
+      <% elsif @report.severity == 'Moderate' %>
+        <i class="bi bi-exclamation-circle-fill accent"></i>
+      <% elsif @report.severity == 'Major' %>
+        <i class="bi bi-exclamation-octagon-fill accent"></i>
+      <% elsif @report.severity == 'Critical' %>
+        <i class="bi bi-exclamation-triangle-fill accent"></i>
+      <% end %>
       <%= @report.severity %>
     </p>
   <% end %>
@@ -65,12 +85,12 @@
 <address>
 <% if @report.address1? %>
   <%= @report.address1 %>
+  <br>
 <% end %>
 <% if @report.address2? %>
-  <br>
   <%= @report.address2 %>
-<% end %>
   <br>
+<% end %>
   <%= @report.city %>, <%= @report.state %> <%= @report.zip %>
 </address>
 
