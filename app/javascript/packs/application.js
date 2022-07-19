@@ -34,4 +34,6 @@ document.addEventListener("turbolinks:load", () => {
     })
 })
 
+import 'bootstrap-icons/font/bootstrap-icons.css'
+
 import "chartkick/chart.js"

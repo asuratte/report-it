@@ -50,12 +50,15 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
     assert_select "label#severity_label", text: "Severity"
   end
 
-  test "resident should not see incident number on report show" do
-    sign_in @resident_user
-
+  test "resident and unauthenticated users should see incident number on report show" do
     get '/reports/1'
     assert_response :success
-    assert_select "strong#incident_number", false, text: "Incident Number:"
+    assert_select "strong#incident_number", true
+    
+    sign_in @resident_user
+    get '/reports/1'
+    assert_response :success
+    assert_select "strong#incident_number", true
   end
 
   test "official should see incident number on report show" do
@@ -65,7 +68,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
 
     get '/reports/1'
     assert_response :success
-    assert_select "strong#incident_number", text: "Incident Number:"
+    assert_select "strong#incident_number", true
   end
 
   test "admin should see incident number on report show" do
@@ -75,15 +78,15 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
 
     get '/reports/1'
     assert_response :success
-    assert_select "strong#incident_number", text: "Incident Number:"
+    assert_select "strong#incident_number", true
   end
 
-  test "resident should not see incident number on report edit" do
+  test "resident should see incident number on report edit" do
     sign_in @resident_user
 
     get '/reports/1/edit'
     assert_response :success
-    assert_select "strong#incident_number", false, text: "Incident Number:"
+    assert_select "strong#incident_number", true
   end
 
   test "official should see incident number on report edit" do
@@ -93,7 +96,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
 
     get '/reports/1/edit'
     assert_response :success
-    assert_select "strong#incident_number", text: "Incident Number:"
+    assert_select "strong#incident_number", true
   end
 
   test "admin should see incident number on report edit" do
@@ -103,7 +106,7 @@ class OfficialControllerTest < ActionDispatch::IntegrationTest
 
     get '/reports/1/edit'
     assert_response :success
-    assert_select "strong#incident_number", text: "Incident Number:"
+    assert_select "strong#incident_number", true
   end
 
   test "should return record on incident search" do

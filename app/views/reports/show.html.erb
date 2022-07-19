@@ -29,112 +29,110 @@
   });
 </script>
 
-
-<% if user_signed_in? %>
-  <% if current_user.is_official? || current_user.is_admin? %>
-    <p>
+<div class="row">
+  <div class="col">
+    <h2 class="incident-number">
       <strong id="incident_number">Incident Number:</strong>
       <%= @report.id %>
-    </p>
-  <% end %>
-<% end %>
+    </h2>
 
-<p>
-  <strong>Category:</strong>
-  <%= @report.category %> - <%= @report.subcategory %>
-</p>
+    <h1 class="category dark mt-0 pb-2">
+      <%= @report.category %> - <%= @report.subcategory %>
+    </h1>
 
-<p>
-  <strong>Number of Report Confirmations:</strong>
-  <%= @report.total_confirmations %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @report.status %>
-</p>
-
-<% if user_signed_in? %>
-  <% if current_user.is_official? || current_user.is_admin? %>
-    <p>
-      <strong>Severity:</strong>
-      <%= @report.severity %>
-    </p>
-  <% end %>
-<% end %>
-
-<% if @report.address1? %>
-<p>
-  <strong>Address1:</strong>
-  <%= @report.address1 %>
-</p>
-<% end %>
-
-<% if @report.address2? %>
-<p>
-  <strong>Address2:</strong>
-  <%= @report.address2 %>
-</p>
-<% end %>
-
-<p>
-  <strong>City:</strong>
-  <%= @report.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @report.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @report.zip %>
-</p>
-
-<div>
-  <% if @report.address1.present? %>
-    <%= image_tag @report.google_map, class: 'img-fluid mb-4' %>
-  <% end %>
-</div>
-
-<p>
-  <strong>Description:</strong>
-  <%= @report.description %>
-</p>
-
-<% if user_signed_in? && (current_user.role == 'admin' || current_user.role == 'official') %>
-  <p>
-    <strong>Reported By:</strong>
-      <!-- Show linked username or Anonymous for Admin & Official users -->
-      <% if current_user.role == 'admin' || current_user.role == 'official' %>
-        <% if @report.user %>
-          <%= link_to @report.user.username, user_path(@report.user) %>
-        <% else  %>
-          Anonymous
-        <% end %>
-      <% end %>
-  </p>
-<% end %>
-
-<div>
-  <% if @report.image.attached? %>
-  <p>
-    <strong>Image:</strong>
-  </p>
-  <%= image_tag @report.image, class: 'img-fluid mb-4' %>
-  <% end %>
-</div>
-
-<% if user_signed_in? && current_user.is_admin? %>
-  <p>
-    <strong>Active Status:</strong>
-    <% if @report.active_status != "active" %>
-      Deactivated -
+    <% if user_signed_in? && (current_user.role == 'admin' || current_user.role == 'official') %>
+      <p class="reported-by fst-italic">
+        Reported by
+          <!-- Show linked username or Anonymous for Admin & Official users -->
+          <% if current_user.role == 'admin' || current_user.role == 'official' %>
+            <% if @report.user %>
+              <%= link_to @report.user.username, user_path(@report.user) %>
+            <% else  %>
+              Anonymous
+            <% end %>
+          <% end %>
+      </p>
     <% end %>
-    <%= @report.active_status.humanize.titleize %>
-  </p>
-<% end %>
+
+    <p class="report-confirmations">
+      <i class="bi <% if @report.total_confirmations > 0 %>bi-check-circle-fill accent<% else %>bi-check-circle<% end %>"></i> Confirmed by <%= pluralize(@report.total_confirmations, 'resident') %>
+    </p>
+
+    <strong>Status:</strong>
+    <p>
+      <% if @report.status == 'New' %>
+        <i class="bi bi-chat-dots-fill accent"></i>
+      <% elsif @report.status == 'In Progress' %>
+        <i class="bi bi-clock-fill accent"></i>
+      <% elsif @report.status == 'Flagged' %>
+        <i class="bi bi-flag-fill accent"></i>
+      <% elsif @report.status == 'Resolved' %>
+        <i class="bi bi-check-square-fill accent"></i>
+      <% end %>
+      <%= @report.status %>
+    </p>
+
+    <% if user_signed_in? %>
+      <% if current_user.is_official? || current_user.is_admin? %>
+      <strong>Severity:</strong>
+      <p>
+          <% if @report.severity == 'Not Set' %>
+            <i class="bi bi-question-circle-fill accent"></i>
+          <% elsif @report.severity == 'Low' %>
+            <i class="bi bi-arrow-down-circle-fill accent"></i>
+          <% elsif @report.severity == 'Moderate' %>
+            <i class="bi bi-exclamation-circle-fill accent"></i>
+          <% elsif @report.severity == 'Major' %>
+            <i class="bi bi-exclamation-octagon-fill accent"></i>
+          <% elsif @report.severity == 'Critical' %>
+            <i class="bi bi-exclamation-triangle-fill accent"></i>
+          <% end %>
+          <%= @report.severity %>
+        </p>
+      <% end %>
+    <% end %>
+
+    <strong>Address:</strong>
+    <address>
+    <% if @report.address1? %>
+      <%= @report.address1 %>
+      <br>
+    <% end %>
+    <% if @report.address2? %>
+      <%= @report.address2 %>
+      <br>
+    <% end %>
+      <%= @report.city %>, <%= @report.state %> <%= @report.zip %>
+    </address>
+
+    <div>
+      <% if @report.address1.present? %>
+        <%= image_tag @report.google_map, class: 'img-fluid mb-4' %>
+      <% end %>
+    </div>
+
+    <strong>Description:</strong>
+    <p>
+      <%= @report.description %>
+    </p>
+
+    <% if user_signed_in? && current_user.is_admin? %>
+      <strong>Active Status:</strong>
+      <p>
+        <% if @report.active_status != "active" %>
+          Deactivated -
+        <% end %>
+        <%= @report.active_status.humanize.titleize %>
+      </p>
+    <% end %>
+  </div>
+  <% if @report.image.attached? %>
+    <div class="col-lg-12 col-xl-5 d-flex flex-column align-items-xl-end">
+      <%= image_tag @report.image, class: 'mb-4 img-fluid report-image' %>
+    </div>
+  <% end %>
+</div>
+
 
 <br>
 
