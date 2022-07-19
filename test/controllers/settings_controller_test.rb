@@ -92,4 +92,24 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, @setting.image.attached?
   end
 
+  test "should not show 'Allow Anonymous Report Submission' option to Resident after setting allow_anonymous_reports to false" do
+    sign_in @admin_user
+    patch setting_url(@setting), params: { setting: { footer_copyright: @setting.footer_copyright, homepage_heading_1: @setting.homepage_heading_1, allow_anonymous_reports: false } }
+    @setting.reload
+    sign_out @admin_user
+    sign_in @resident_user
+    get new_report_path(category: "Transportation and streets", subcategory: "Road hazard complaint")
+    assert_select "label.form-check-label", false, text: "Allow Anonymous Report Submission"
+  end
+
+  test "should show 'Allow Anonymous Report Submission' option to Resident after setting allow_anonymous_reports to true" do
+    sign_in @admin_user
+    patch setting_url(@setting), params: { setting: { footer_copyright: @setting.footer_copyright, homepage_heading_1: @setting.homepage_heading_1, allow_anonymous_reports: true } }
+    @setting.reload
+    sign_out @admin_user
+    sign_in @resident_user
+    get new_report_path(category: "Transportation and streets", subcategory: "Road hazard complaint")
+    assert_select "label.form-check-label", true, text: "Allow Anonymous Report Submission"
+  end
+
 end
